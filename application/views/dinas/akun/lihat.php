@@ -4,11 +4,11 @@
       <div>
         <div>
           <ul class="site-menu">
-            <li class="site-menu-category">Operator</li>
+            <li class="site-menu-category">Profil Operator Dinas</li>
             <li class="site-menu-item has-sub active open">
               <a href="javascript:void(0)" data-slug="uikit">
                 <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
-                <span class="site-menu-title">Akun</span>
+                <span class="site-menu-title">Profil</span>
                 <span class="site-menu-arrow"></span>
               </a>
               <ul class="site-menu-sub">
@@ -44,54 +44,58 @@
   <!-- Page -->
   <div class="page">
     <div class="page-header">
-      <h1 class="page-title">Lihat Akun</h1>
+      <h1 class="page-title">Lihat Profil</h1>
       <ol class="breadcrumb">
         <li>Operator Dinas</li>
-        <li>Lihat</li>
+        <li>Lihat Profil</li>
       </ol>
     </div>
-
     <div class="page-content">
-      <!-- Panel Basic -->
       <div class="panel">
-        <header class="panel-heading">
-          <div class="panel-actions"></div>
-          <h3 class="panel-title">Lihat Akun</h3>
-        </header>
-        <div class="panel-body">
-          <table class="table table-hover dataTable table-striped width-full" data-plugin="dataTable">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nama Dinas</th>
-                <th>Telepon</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>A0000</td>
-                <td>Dinas Pertamanan</td>
-                <td>081234567890</td>
-                <td>Saya</td>
-                <td>rahasia</td>
-                <td class="text-nowrap">
-                  <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
-                    <a href=""><i class="icon wb-wrench" aria-hidden="true"></i></a>
-                  </button>
-                  <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
-                    <a href=""><i class="icon wb-close" aria-hidden="true"></i></a>
-                  </button>
-                </td>
-              </tr>
-              
-            </tbody>
-          </table>
+        <div class="panel-body container-fluid">
+          <div class="row row-lg">
+            <div class="col-sm-6">
+              <!-- Example Basic Form -->
+              <div class="example-wrap">
+                <h4 class="example-title">Profil</h4>
+                <div class="example">
+                  <form autocomplete="off">
+                    <div class="form-group">
+                        <label class="control-label" for="inputBasicFirstName">ID</label>
+                        <input type="text" class="form-control" id="inputBasicFirstName" name="inputFirstName"
+                        placeholder="A0000" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="inputBasicFirstName">Nama Dinas</label>
+                        <input type="text" class="form-control" id="inputBasicFirstName" name="inputFirstName"
+                        placeholder="Dinas Pertamanan" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label" for="inputBasicEmail">Telepon</label>
+                      <input type="text" class="form-control" id="inputBasicEmail" name="inputEmail"
+                      placeholder="0813287787" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label" for="inputBasicPassword">Username</label>
+                      <input type="text" class="form-control" id="inputBasicPassword" name="inputPassword"
+                      placeholder="Saya" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label" for="inputBasicPassword">Password</label>
+                      <input type="text" class="form-control" id="inputBasicPassword" name="inputPassword"
+                      placeholder="rahasia" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                      <button type="button" class="btn btn-primary">Simpan</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- End Example Basic Form -->
+            </div>
+          </div>
         </div>
       </div>
-      <!-- End Panel Basic -->
     </div>
   </div>
   <!-- End Page -->
