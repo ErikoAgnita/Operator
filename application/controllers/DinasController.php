@@ -13,4 +13,8 @@ class DinasController extends CI_Controller {
 		$data['h'] = $this->DinasModel->lihat_dinas();
     	$this->load->view('humas/header')->view('humas/dinas/lihat', $data)->view('humas/footer');
 	}
+	public function tabel()
+	{
+		$this->load->view('humas/dinas/data');
+	}
 }
