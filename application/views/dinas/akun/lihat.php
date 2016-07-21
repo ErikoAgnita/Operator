@@ -5,12 +5,21 @@
         <div>
           <ul class="site-menu">
             <li class="site-menu-category">Operator Dinas</li>
-            <li class="site-menu-item active open">
-              <a href="<?php echo base_url(); ?>Dinas/dinas_lihat" data-slug="uikit">
+            <li class="site-menu-item has-sub">
+              <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
-            </a>
-            </li>
+                <span class="site-menu-arrow"></span>
+              </a>
+                 <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Dinas/dinas_lihat" data-slug="uikit">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Lihat</span>
+                  </a>
+                </li>
+              </li>
+              </ul>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
@@ -26,6 +35,7 @@
                 </li>
               </ul>
             </li>
+          </li>
         </div>
       </div>
     </div>
@@ -35,11 +45,11 @@
   <!-- Page -->
   <div class="page">
     <div class="page-header">
-      <h1 class="page-title">Lihat Profil</h1>
- <!--     <ol class="breadcrumb">
+      <h1 class="page-title">Lihat Profil Operator Dinas</h1>
+      <ol class="breadcrumb">
         <li>Operator Dinas</li>
-        <li>Lihat Profil</li>
-      </ol> -->
+        <li>Lihat</li>
+      </ol>
     </div>
     <div class="page-content">
       <div class="panel">
@@ -77,7 +87,7 @@
                       placeholder="rahasia" autocomplete="off" />
                     </div>
                     <div class="form-group">
-                      <button type="button" class="btn btn-primary">Simpan</button>
+                      <button type="button" class="btn btn-primary">Ubah</button>
                     </div>
                   </form>
                 </div>
