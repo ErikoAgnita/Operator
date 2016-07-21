@@ -4,21 +4,12 @@
       <div>
         <div>
           <ul class="site-menu">
-            <li class="site-menu-category">Profil Operator Dinas</li>
-            <li class="site-menu-item has-sub active open">
-              <a href="javascript:void(0)" data-slug="uikit">
+            <li class="site-menu-category">Operator Dinas</li>
+            <li class="site-menu-item active open">
+              <a href="<?php echo base_url(); ?>Dinas/dinas_lihat" data-slug="uikit">
                 <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
-                <span class="site-menu-arrow"></span>
-              </a>
-              <ul class="site-menu-sub">
-                <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Dinas/dinas_lihat" data-slug="uikit-buttons">
-                    <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Lihat</span>
-                  </a>
-                </li>
-              </ul>
+            </a>
             </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
@@ -45,19 +36,19 @@
   <div class="page">
     <div class="page-header">
       <h1 class="page-title">Lihat Profil</h1>
-      <ol class="breadcrumb">
+ <!--     <ol class="breadcrumb">
         <li>Operator Dinas</li>
         <li>Lihat Profil</li>
-      </ol>
+      </ol> -->
     </div>
     <div class="page-content">
       <div class="panel">
         <div class="panel-body container-fluid">
           <div class="row row-lg">
+            <div class="col-sm-3"> </div>
             <div class="col-sm-6">
               <!-- Example Basic Form -->
               <div class="example-wrap">
-                <h4 class="example-title">Profil</h4>
                 <div class="example">
                   <form autocomplete="off">
                     <div class="form-group">
@@ -98,4 +89,5 @@
       </div>
     </div>
   </div>
+
   <!-- End Page -->
