@@ -19,6 +19,11 @@ class Dinas extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 
+	public function index()
+	{
+		$this->load->view('dinas/header')->view('dinas/index')->view('dinas/footer');
+	}
+	
 	public function dinas_lihat()
 	{
 		$this->load->view('dinas/header')->view('dinas/akun/lihat')->view('dinas/footer');
