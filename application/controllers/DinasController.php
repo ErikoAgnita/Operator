@@ -13,8 +13,34 @@ class DinasController extends CI_Controller {
 		$data['h'] = $this->DinasModel->lihat_dinas();
     	$this->load->view('humas/header')->view('humas/dinas/lihat', $data)->view('humas/footer');
 	}
-	public function tabel()
+
+	public function tambah()
 	{
-		$this->load->view('humas/dinas/data');
+		$this->load->view('humas/header')->view('humas/dinas/tambah')->view('humas/footer');
+	}
+
+	public function insert()
+	{
+		$NAMA_DINAS=$this->input->post('nama_dinas');
+		$USERNAME=$this->input->post('username');
+		$TELEPON=$this->input->post('telepon');
+		$PASSWORD=$this->input->post('password');
+
+		$data = array(
+            'NAMA_DINAS' => $NAMA_DINAS,
+            'USERNAME' => $USERNAME,
+            'TELP' => $TELEPON,
+            'PASSWORD' => $PASSWORD
+            );
+
+        $this->DinasModel->tambah_dinas($data);
+
+        redirect(base_url()."DinasController/lihat");
+	}
+
+	public function ubah($ID_DINAS)
+	{
+		$data['h'] = $this->DinasModel->form_ubah_dinas($ID_DINAS);
+		$this->load->view('humas/header')->view('humas/dinas/ubah', $data)->view('humas/footer');
 	}
 }

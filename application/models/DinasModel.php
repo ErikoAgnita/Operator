@@ -11,7 +11,19 @@ class DinasModel extends CI_Model
 
     function lihat_dinas()
     {
-        $query = $this->db->get('dinas');
+        $query = $this->db->get('dinas1');
+        return $query;
+    }
+
+    function tambah_dinas($data)
+    {
+        $query = $this->db->insert('dinas1', $data);
+    }
+
+    function form_ubah_dinas($ID_DINAS)
+    {
+        $this->db->where("ID_DINAS1", $ID_DINAS);
+        $query = $this->db->get('dinas1');
         return $query;
     }
 }
