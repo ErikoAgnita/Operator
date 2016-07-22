@@ -110,10 +110,10 @@
               <?php foreach ($admin->result() as $row){?>
               <tr>
                 <td><?php echo $no++ ?></td>
-                <td><?php echo $row->NAMA;?></td>
-                <td><?php echo $row->EMAIL;?></td>
-                <td><?php echo $row->TELP;?></td>
-                <td><?php echo $row->ALAMAT;?></td>
+                <td><?php echo $row->NAMA_DINAS;?></td>
+                <td><?php echo $row->EMAIL_ADMIN;?></td>
+                <td><?php echo $row->TELEPON;?></td>
+                <td><?php echo $row->ALAMAT_DINAS;?></td>
                 <td><?php echo $row->USERNAME;?></td>
                 <td><?php echo $row->PASSWORD;?></td>
                 <td class="text-nowrap">
