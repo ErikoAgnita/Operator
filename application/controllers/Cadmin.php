@@ -23,20 +23,22 @@ class Cadmin extends CI_Controller {
 
 	public function do_tambah()
 	{
-		$NAMA = $this->input->post('nama');
-		$EMAIL = $this->input->post('email');
-		$TELP = $this->input->post('telepon');
-		$ALAMAT = $this->input->post('alamat');
+		$NAMA_DINAS = $this->input->post('nama');
+		$ALAMAT_DINAS = $this->input->post('alamat');
+		$EMAIL_ADMIN = $this->input->post('email');
+		$TELEPON = $this->input->post('telepon');
 		$USERNAME = $this->input->post('username');
 		$PASSWORD = $this->input->post('password');
+		$LEVEL = $this->input->post('level');
 
 		$data = array(
-			'NAMA' => $NAMA,
-			'EMAIL' => $EMAIL,
-			'TELP' => $TELP,
-			'ALAMAT' => $ALAMAT,
+			'NAMA_DINAS' => $NAMA_DINAS,
+			'ALAMAT_DINAS' => $ALAMAT_DINAS,
+			'EMAIL_ADMIN' => $EMAIL_ADMIN,
+			'TELEPON' => $TELEPON,
 			'USERNAME' => $USERNAME,
-			'PASSWORD' => $PASSWORD
+			'PASSWORD' => $PASSWORD,
+			'LEVEL' => $LEVEL
 			);
 		$this->madmin->AddAkun($data, 'admin');
 		redirect('Cadmin/lihat');
@@ -52,20 +54,22 @@ class Cadmin extends CI_Controller {
 	public function do_update($ID_ADMIN)
 	{
 		$ID_ADMIN = $this->input->post('ID_ADMIN');
-		$NAMA = $this->input->post('nama');
-		$EMAIL = $this->input->post('email');
-		$TELP = $this->input->post('telepon');
-		$ALAMAT = $this->input->post('alamat');
+		$NAMA_DINAS = $this->input->post('nama');
+		$ALAMAT_DINAS = $this->input->post('alamat');
+		$EMAIL_ADMIN = $this->input->post('email');
+		$TELEPON = $this->input->post('telepon');
 		$USERNAME = $this->input->post('username');
 		$PASSWORD = $this->input->post('password');
+		$LEVEL = $this->input->post('level');
 
 		$data = array(
-			'NAMA' => $NAMA,
-			'EMAIL' => $EMAIL,
-			'TELP' => $TELP,
-			'ALAMAT' => $ALAMAT,
+			'NAMA_DINAS' => $NAMA_DINAS,
+			'ALAMAT_DINAS' => $ALAMAT_DINAS,
+			'EMAIL_ADMIN' => $EMAIL_ADMIN,
+			'TELEPON' => $TELEPON,
 			'USERNAME' => $USERNAME,
-			'PASSWORD' => $PASSWORD
+			'PASSWORD' => $PASSWORD,
+			'LEVEL' => $LEVEL
 		);
 
 		$where = array(
@@ -73,7 +77,7 @@ class Cadmin extends CI_Controller {
 		);
 
 		$this->madmin->UpdateAkun1($where, $data, 'admin');
-		redirect('Cadmin/lihat');
+		redirect('Cadmin/edit');
 
 	}
 

@@ -96,12 +96,13 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>Nama</th>
+                <th>Nama Dinas</th>
+                <th>Alamat Dinas</th>
                 <th>Email</th>
                 <th>Telepon</th>
-                <th>Alamat</th>
                 <th>Username</th>
                 <th>Password</th>
+                <th>Level</th>
                 <th>Aksi</th>
               </tr>
             </thead>            
@@ -111,17 +112,18 @@
               <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $row->NAMA_DINAS;?></td>
-                <td><?php echo $row->EMAIL_ADMIN;?></td>
-                <td><?php echo $row->TELEPON;?></td>
                 <td><?php echo $row->ALAMAT_DINAS;?></td>
+                <td><?php echo $row->EMAIL_ADMIN;?></td>
+                <td><?php echo $row->TELEPON;?></td>                
                 <td><?php echo $row->USERNAME;?></td>
                 <td><?php echo $row->PASSWORD;?></td>
+                <td><?php echo $row->LEVEL;?></td>
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
-                    <a href="<?php echo base_url(); ?>Admin/do_update/<?php echo $row->ID_ADMIN;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Cadmin/do_update/<?php echo $row->ID_ADMIN;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
                   </button>
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
-                    <a href="<?php echo base_url(); ?>Admin/hapus/<?php echo $row->ID_ADMIN;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Cadmin/hapus/<?php echo $row->ID_ADMIN;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
                   </button>
                 </td>
               </tr>

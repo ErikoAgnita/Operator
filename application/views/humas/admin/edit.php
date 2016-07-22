@@ -91,30 +91,30 @@
             <div class="col-sm-6">
               <!-- Example Basic Form -->
               <div class="example-wrap">
-                <h4 class="example-title">Tambah Admin</h4>
+                <h4 class="example-title">Edit Akun</h4>
                 <div class="example">
                   <?php foreach($admin as $a){ ?>
                   <form action="<?php echo base_url(). 'Cadmin/do_update'; ?>" method="post" autocomplete="off">
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicFirstName">Nama Admin</label>
+                        <label class="control-label" for="inputBasicFirstName">Nama Dinas</label>
                         <input type="hidden" name="ID_ADMIN" value="<?php echo $a->ID_ADMIN ?>">
-                        <input type="text" class="form-control" id="inputBasicFirstName" value="<?php echo $a->NAMA ?>" name="nama"
+                        <input type="text" class="form-control" id="inputBasicFirstName" value="<?php echo $a->NAMA_DINAS ?>" name="nama"
                         placeholder="VIRA WIENA" autocomplete="off" />
+                    </div>
+                     <div class="form-group">
+                      <label class="control-label" for="inputBasicAlamat">Alamat Dinas</label>
+                      <input type="text" class="form-control" id="inputBasicAlamat" value="<?php echo $a->ALAMAT_DINAS ?>" name="alamat"
+                      placeholder="Jalan Argoboga" autocomplete="off" />
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="inputBasicEmail">Email</label>
-                        <input type="text" class="form-control" id="inputBasicFirstName" value="<?php echo $a->EMAIL ?>" name="email"
+                        <input type="text" class="form-control" id="inputBasicEmail" value="<?php echo $a->EMAIL_ADMIN ?>" name="email"
                         placeholder="a13@mhs.its.ac.id" autocomplete="off" />
                     </div>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicTelepon">Telepon</label>
-                      <input type="text" class="form-control" id="inputBasicEmail" value="<?php echo $a->TELP ?>" name="telepon"
+                      <input type="text" class="form-control" id="inputBasicTelepon" value="<?php echo $a->TELEPON ?>" name="telepon"
                       placeholder="0813287787" autocomplete="off" />
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicAlamat">Alamat</label>
-                      <input type="text" class="form-control" id="inputBasicPassword" value="<?php echo $a->ALAMAT ?>" name="alamat"
-                      placeholder="Jalan Argoboga" autocomplete="off" />
                     </div>
                       <div class="form-group">
                       <label class="control-label" for="inputBasicUsername">Username</label>
@@ -125,6 +125,11 @@
                       <label class="control-label" for="inputBasicPassword">Password</label>
                       <input type="password" class="form-control" id="inputBasicPassword" value="<?php echo $a->PASSWORD ?>" name="password"
                        autocomplete="off" />
+                    </div>
+                      <div class="form-group">
+                      <label class="control-label" for="inputBasicLevel">Level</label>
+                      <input type="text" class="form-control" id="inputBasicLevel" value="<?php echo $a->LEVEL ?>" name="level"
+                      placeholder="Jalan Argoboga" autocomplete="off" />
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary">Simpan</button>

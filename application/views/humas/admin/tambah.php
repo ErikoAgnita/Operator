@@ -95,9 +95,14 @@
                 <div class="example">
                   <form action="<?php echo base_url(). 'Cadmin/do_tambah'; ?>" method="post" autocomplete="off">
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicFirstName">Nama Admin</label>
+                        <label class="control-label" for="inputBasicFirstName">Nama Dinas</label>
                         <input type="text" class="form-control" id="inputBasicFirstName" name="nama"
                         placeholder="VIRA WIENA" autocomplete="off" />
+                    </div>
+                     <div class="form-group">
+                      <label class="control-label" for="inputBasicAlamat">Alamat Dinas</label>
+                      <input type="text" class="form-control" id="inputBasicPassword" name="alamat"
+                      placeholder="Jalan Argoboga" autocomplete="off" />
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="inputBasicEmail">Email</label>
@@ -110,11 +115,6 @@
                       placeholder="0813287787" autocomplete="off" />
                     </div>
                     <div class="form-group">
-                      <label class="control-label" for="inputBasicAlamat">Alamat</label>
-                      <input type="text" class="form-control" id="inputBasicPassword" name="alamat"
-                      placeholder="Jalan Argoboga" autocomplete="off" />
-                    </div>
-                      <div class="form-group">
                       <label class="control-label" for="inputBasicUsername">Username</label>
                       <input type="text" class="form-control" id="inputBasicPassword" name="username"
                       placeholder="5113100061" autocomplete="off" />
@@ -122,6 +122,16 @@
                     <div class="form-group">
                       <label class="control-label" for="inputBasicPassword">Password</label>
                       <input type="password" class="form-control" id="inputBasicPassword" name="password"
+                       autocomplete="off" />
+                    </div>
+                     <div class="form-group">
+                      <label class="control-label" for="inputBasicImage">Foto</label>
+                      <input type="file" class="form-control" id="inputBasicPassword" name="foto"
+                       autocomplete="off" />
+                    </div>
+                     <div class="form-group">
+                      <label class="control-label" for="inputBasicLevel">Level</label>
+                      <input type="text" class="form-control" id="inputBasicPassword" name="level"
                        autocomplete="off" />
                     </div>
                     <div class="form-group">
