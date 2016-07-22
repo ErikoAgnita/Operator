@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Adminmodel extends CI_Model {
+class Madmin extends CI_Model {
 
 	public function GetAkun(){
 		return $this->db->get('admin');

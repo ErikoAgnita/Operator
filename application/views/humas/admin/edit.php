@@ -94,7 +94,7 @@
                 <h4 class="example-title">Tambah Admin</h4>
                 <div class="example">
                   <?php foreach($admin as $a){ ?>
-                  <form action="<?php echo base_url(). 'Admin/do_update'; ?>" method="post" autocomplete="off">
+                  <form action="<?php echo base_url(). 'Cadmin/do_update'; ?>" method="post" autocomplete="off">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicFirstName">Nama Admin</label>
                         <input type="hidden" name="ID_ADMIN" value="<?php echo $a->ID_ADMIN ?>">

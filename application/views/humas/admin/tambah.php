@@ -58,11 +58,11 @@
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Admin/lihat" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/lihat" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Data Admin</span>
                   </a>
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Admin/lihat" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/lihat" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                   <span class="site-menu-title">Tambah Admin</span>
                 </a>
@@ -93,7 +93,7 @@
               <div class="example-wrap">
                 <h4 class="example-title">Tambah Admin</h4>
                 <div class="example">
-                  <form action="<?php echo base_url(). 'Admin/do_tambah'; ?>" method="post" autocomplete="off">
+                  <form action="<?php echo base_url(). 'Cadmin/do_tambah'; ?>" method="post" autocomplete="off">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicFirstName">Nama Admin</label>
                         <input type="text" class="form-control" id="inputBasicFirstName" name="nama"

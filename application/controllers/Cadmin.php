@@ -1,17 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Cadmin extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->load->model('adminmodel');
+		$this->load->model('madmin');
 		$this->load->helper('url');
 	}
 
 	public function lihat()
 	{
-		$data['admin'] = $this->adminmodel->GetAkun();
+		$data['admin'] = $this->madmin->GetAkun();
 		$this->load->view('humas/header')->view('humas/admin/lihat', $data)->view('humas/footer');
 
 	} 
@@ -38,14 +38,14 @@ class Admin extends CI_Controller {
 			'USERNAME' => $USERNAME,
 			'PASSWORD' => $PASSWORD
 			);
-		$this->adminmodel->AddAkun($data, 'admin');
-		redirect('Admin/lihat');
+		$this->madmin->AddAkun($data, 'admin');
+		redirect('Cadmin/lihat');
 	}
 
 	public function update($ID_ADMIN)
 	{
 		$where = array('ID_ADMIN' => $ID_ADMIN);
-		$data['admin'] = $this->adminmodel->UpdateAkun($where, 'admin')->result();
+		$data['admin'] = $this->madmin->UpdateAkun($where, 'admin')->result();
 		$this->load->view('edit', $data);
 	}
 
@@ -72,15 +72,15 @@ class Admin extends CI_Controller {
 			'ID_ADMIN' => $ID_ADMIN
 		);
 
-		$this->adminmodel->UpdateAkun1($where, $data, 'admin');
-		redirect('Admin/lihat');
+		$this->madmin->UpdateAkun1($where, $data, 'admin');
+		redirect('Cadmin/lihat');
 
 	}
 
 	public function hapus($ID_ADMIN)
 	{
 		$where = array('ID_ADMIN' => $ID_ADMIN);
-		$this->adminmodel->Delete($where, 'admin');
-		redirect('Admin/lihat');
+		$this->madmin->Delete($where, 'admin');
+		redirect('Cadmin/lihat');
 	}
 }
