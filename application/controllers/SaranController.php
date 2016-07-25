@@ -60,16 +60,34 @@ class SaranController extends CI_Controller {
 	public function disposisi($ID_SARAN)
 	{	
 		$data['admin'] = $this->SaranModel->disposisi_saran();
-		$this->load->view('humas/header')->view('humas/saran/disposisi', $data, $ID_SARAN)->view('humas/footer');
+		$data['ID_SARAN'] = $ID_SARAN;
+		$this->load->view('humas/header')->view('humas/saran/disposisi', $data)->view('humas/footer');
 	}
 
 	public function disposisikan($ID_SARAN)
 	{
 		$ID_ADMIN = $this->input->post('id_admin');
+		$NAMA_DINAS = $this->SaranModel->dinas($ID_ADMIN); //belum bisa
+		$date = date_create();
+		$tanggal =  date_format($date, 'Y-m-d H:i:s');
+		$RESPON_HUMAS = "Laporan telah didisposisikan kepada ".$NAMA_DINAS." sejak tanggal ".$tanggal;
+		$STATUS_LAPORAN = 1;
 		$data = array (
 			'ID_ADMIN' => $ID_ADMIN,
+			'RESPON_HUMAS' => $RESPON_HUMAS,
+			'STATUS_LAPORAN' => $STATUS_LAPORAN,
+			'TANGGAL_DISPOSISI' =>$tanggal,
 			);
 		$this->SaranModel->disposisikan_saran($ID_SARAN, $data);
+		redirect(base_url()."SaranController/detail/".$ID_SARAN);
+	}
+
+	public function publish($ID_SARAN)
+	{
+		$data = array (
+			'STATUS_LAPORAN' => 3,			
+			);
+		$this->SaranModel->publish_saran($ID_SARAN, $data);
 		redirect(base_url()."SaranController/detail/".$ID_SARAN);
 	}
 }

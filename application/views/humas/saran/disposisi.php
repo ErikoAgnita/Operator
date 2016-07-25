@@ -16,23 +16,28 @@
               <div class="example-wrap">
                 <h4 class="example-title">Disposisi Saran</h4>
                 <div class="example">
-                  <form autocomplete="off"  action="<?php echo base_url();?>SaranController/disposisikan/<?php echo $row->ID_SARAN;?>" method="post">
+                  <form autocomplete="off" action="<?php echo base_url();?>SaranController/disposisikan/<?php echo $ID_SARAN;?>" method="post">
+
                     <div class="form-group">
                       <label >Dinas</label>
-                      <div >
+                      <div>
                         <select class="form-control" name="id_admin" required="off">
                           <option value="">Pilih Dinas</option>
                           <?php
                             foreach ($admin->result() as $row) {
-                              echo "<option value='".$row->ID_ADMIN."'>".$row->NAMA_DINAS."</option>";
+                              if($row->LEVEL == "SKPD")
+                              {
+                                echo "<option value='".$row->ID_ADMIN."'>".$row->NAMA_DINAS."</option>";
+                              }                              
                             }
                           ?>
                         </select>
                       </div>
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                        <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
-                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
+                      <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
+                    </div>
                     </div>
                   </form>
                 </div>
