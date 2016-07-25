@@ -18,7 +18,7 @@
     </div>
     <div class="row">
         
-        <?php foreach($aspirasi as $as){ ?>
+        <?php if(isset($aspirasi)){foreach($aspirasi as $as){ ?>
         <div class="col-sm-3">
             <div class="box box-widget">
                 <div class='box-header with-border'>
@@ -88,7 +88,7 @@
 <!-- Modal -->
         
         
-        <?php ;} ?>
+        <?php ;}} ?>
     </div>
 </div>
 <script>

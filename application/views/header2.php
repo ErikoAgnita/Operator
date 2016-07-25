@@ -39,8 +39,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"><img src="http://salatigakota.go.id/Images/LogoPemkot.jpg" alt="salatigakota.go.id">
-        <!--<a class="navbar-brand" href="#"><img src="http://bkd.salatigakota.go.id/other/salatiga-city-of-harmony-2.png" alt="salatigakota.go.id">-->
+        <a class="navbar-brand" href="#"><img src="<?php echo base_url(); ?>assets/images/TitleHeader.png" alt="salatigakota.go.id">
         </a>
       </div>
       <div id="navbar3" class="navbar-collapse collapse">
