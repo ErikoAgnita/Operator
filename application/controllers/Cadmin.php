@@ -48,7 +48,7 @@ class Cadmin extends CI_Controller {
 	{
 		$where = array('ID_ADMIN' => $ID_ADMIN);
 		$data['admin'] = $this->madmin->UpdateAkun($where, 'admin')->result();
-		$this->load->view('edit', $data);
+		$this->load->view('humas/header')->view('humas/admin/edit', $data)->view('humas/footer');
 	}
 
 	public function do_update($ID_ADMIN)
@@ -77,7 +77,7 @@ class Cadmin extends CI_Controller {
 		);
 
 		$this->madmin->UpdateAkun1($where, $data, 'admin');
-		redirect('Cadmin/edit');
+		redirect('Cadmin/lihat');
 
 	}
 
