@@ -207,7 +207,6 @@
             <?php if(isset($aspirasi)){
                 foreach($aspirasi as $as){ ?>
                 <div style="display: none;">
-                    <!--img data-u="image" src="<?php echo base_url();?>assets/img/portfolio/<?php echo $id; ?>.jpg" /-->
                     <img data-u="image" src="<?php echo base_url(); ?>uploads/<?php echo $as->LAMPIRAN_ASPIRASI; ?>" />
                     <!--img data-u="thumb" src="img/thumb-02.jpg" /-->
                 </div>
@@ -237,7 +236,7 @@
                 </div>
               <!--==========-->
                   <div class="col-md-6">
-                      <?=$this->session->flashdata('pesan')?>
+                      <?//=$this->session->flashdata('pesan')?>
                       <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>Welcome/add_saran/" >
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Nama</label>
