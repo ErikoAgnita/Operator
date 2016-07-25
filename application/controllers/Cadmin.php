@@ -83,8 +83,7 @@ class Cadmin extends CI_Controller {
 
 	public function hapus($ID_ADMIN)
 	{
-		$where = array('ID_ADMIN' => $ID_ADMIN);
-		$this->madmin->Delete($where, 'admin');
-		redirect('Cadmin/lihat');
+		$this->madmin->Delete($ID_ADMIN);
+		redirect(base_url().'Cadmin/lihat');
 	}
 }
