@@ -16,10 +16,80 @@ class Welcome extends CI_Controller {
 	 *
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
+	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->load->view('welcome_message');
-	}
+      function __construct() {
+        parent::__construct();
+        $this->load->helper(array('url','form'));
+        $this->load->model('msaran');
+        }
+        public function index()
+        {
+            $data['aspirasi'] = $this->msaran->list_saran();
+            $this->load->view('header1');
+            $this->load->view('aspirasi', $data);
+            $this->load->view('footer');
+        }
+        public function aspirasi()
+        {
+            $data['aspirasi'] = $this->msaran->list_saran();
+            $this->load->view('header2');
+            $this->load->view('laporan',$data);
+            $this->load->view('footer');
+        }
+    
+        public function add_saran(){
+            
+            $this->load->model('msaran');
+            $last=$this->msaran->ambil_id();
+            
+            $this->load->library('upload');
+            $this->load->library('form_validation');
+            foreach ($last as $l ){
+                $nmfile = $l->id_saran;
+            }
+            //$nmfile = "file_".time();
+            /*echo $nmfile;
+            echo "<br>";echo $this->input->post('nama'); 
+            echo "<br>";echo $this->input->post('almt'); 
+            echo "<br>";echo $this->input->post('telp'); 
+            echo "<br>";echo $this->input->post('email'); 
+            echo "<br>";echo $this->input->post('aspr'); */
+            
+            $config = array(
+            'upload_path' => "./uploads/",
+            'allowed_types' => "gif|jpg|png|jpeg|bmp",
+            'overwrite' => TRUE,
+            'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+            'max_height' => "768",
+            'max_width' => "1024",
+            'file_name'=> $nmfile
+            );
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if($_FILES['image']['name']){
+                if($this->upload->do_upload('image')){                
+                    $gbr=$this->upload->data();
+                    $status=0;
+                    $data=array('nama' => $this->input->post('nama'),
+                                'alamat' => $this->input->post('almt'),
+                                'telepon' => $this->input->post('telp'),
+                                'email' => $this->input->post('email'),
+                                'aspirasi' => $this->input->post('aspr'),
+                                'status_laporan' => $status,
+                                'lampiran_aspirasi'=>$gbr['file_name']);
+                    //echo $data;
+                $this->msaran->kirim_saran($data);
+                $this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Aspirasi anda sudah kami </div></div>");
+                redirect(site_url('../kp_coba'));
+    //jika berhasil maka akan ditampilkan view vupload
+                }/*
+                else{
+                    $this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-danger\" id=\"alert\">Gagal upload gambar !!</div></div>");*/
+                    //redirect(site_url('../index.php/admin/form'));//jika gagal maka akan ditampilkan form upload
+             /*   }  
+            */}
+        }
+    
 }
