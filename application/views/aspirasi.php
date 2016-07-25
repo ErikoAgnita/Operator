@@ -201,11 +201,11 @@
         <!-- Loading Screen -->
         <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
             <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-            <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+            <div style="position:absolute;display:block;background:url('../images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
         </div>
         <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 456px; overflow: hidden;">
-            <?php if(isset($aspirasi)){
-                foreach($aspirasi as $as){ ?>
+            <?php 
+                foreach($aspirasi as $as){ if(isset($aspirasi)){?>
                 <div style="display: none;">
                     <img data-u="image" src="<?php echo base_url(); ?>uploads/<?php echo $as->LAMPIRAN_ASPIRASI; ?>" />
                     <!--img data-u="thumb" src="img/thumb-02.jpg" /-->

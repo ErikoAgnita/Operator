@@ -61,7 +61,7 @@ class Welcome extends CI_Controller {
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if($_FILES['image']['name']){
-                if($this->upload->do_upload('image')){                
+                if($this->upload->do_upload('image')){
                     $gbr=$this->upload->data();
                     $status=0;
 					$date = date_create();
@@ -74,7 +74,7 @@ class Welcome extends CI_Controller {
 								'tanggal_lapor' => $tglapor,
                                 'status_laporan' => $status,
                                 'lampiran_aspirasi'=>$gbr['file_name']);
-                    //echo $data;
+                    //var_dump($data);
                 $this->msaran->kirim_saran($data);
                 //$this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Aspirasi anda sudah kami </div></div>");
                 redirect(site_url('../operator'));
@@ -85,6 +85,20 @@ class Welcome extends CI_Controller {
                     //redirect(site_url('../index.php/admin/form'));//jika gagal maka akan ditampilkan form upload
              /*   }  
             */}
+            else{
+                $status=0;
+                $date = date_create();
+                $tglapor =  date_format($date, 'Y-m-d H:i:s');
+                $data=array('nama' => $this->input->post('nama'),
+                            'alamat' => $this->input->post('almt'),
+                            'telepon' => $this->input->post('telp'),
+                            'email' => $this->input->post('email'),
+                            'aspirasi' => $this->input->post('aspr'),
+                            'tanggal_lapor' => $tglapor,
+                            'status_laporan' => $status);
+                $this->msaran->kirim_saran($data);
+                redirect(site_url('../operator'));
+            }
         }
     
 }
