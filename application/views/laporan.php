@@ -23,9 +23,9 @@
             <div class="box box-widget">
                 <div class='box-header with-border'>
                   <div class='user-block'>
-                    <img class='img-circle' src='../dist/img/user1-128x128.jpg' alt='user image'>
+                    <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
                     <span class='username'><a href="#"><?php echo $as->NAMA; ?></a></span>
-                    <span class='description'><?php echo date("d-m-Y H:i:s",strtotime($as->TANGGAL_LAPOR)); ?></span>
+                    <span class='description'><?php echo date("d M Y  H:i:s",strtotime($as->TANGGAL_LAPOR)); ?></span>
                   </div><!-- /.user-block -->
                   
                 </div>
@@ -50,9 +50,9 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div class='box-header'>
                   <div class='user-block'>
-                    <img class='img-circle' src='../dist/img/user1-128x128.jpg' alt='user image'>
-                    <span class='username'><a href="#">Masyarakat</a></span>
-                    <span class='description'>18 Juli 2016</span>
+                    <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
+                    <span class='username'><a href="#"><?php echo $as->NAMA; ?></a></span>
+                    <span class='description'><?php echo date("d-m-Y H:i:s",strtotime($as->TANGGAL_LAPOR)); ?></span>
                   </div><!-- /.user-block -->
                 </div><!-- /.box-header -->
       </div>
