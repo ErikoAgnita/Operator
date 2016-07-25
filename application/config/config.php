@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/Operator/trunk/';
-//$config['base_url'] = 'http://localhost/Kp/';
+$config['base_url'] = 'http://localhost/Operator/';
 
 /*
 |--------------------------------------------------------------------------
