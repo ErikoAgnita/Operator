@@ -25,7 +25,7 @@
                   <div class='user-block'>
                     <img class='img-circle' src='../dist/img/user1-128x128.jpg' alt='user image'>
                     <span class='username'><a href="#"><?php echo $as->NAMA; ?></a></span>
-                    <span class='description'>18 Juli 2016</span>
+                    <span class='description'><?php echo date("d-m-Y H:i:s",strtotime($as->TANGGAL_LAPOR)); ?></span>
                   </div><!-- /.user-block -->
                   
                 </div>
