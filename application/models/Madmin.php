@@ -24,4 +24,12 @@ class Madmin extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+
+	function get_profil($id) {
+        $this->db->from($this->tabel_admin);
+        $this->db->where("id_admin", $id);
+        $query = $this->db->get();
+  //      if ($query->num_rows() == 1) {
+        //    return $query->result();
+        }
 }
