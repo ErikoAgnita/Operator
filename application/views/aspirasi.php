@@ -206,8 +206,10 @@
         <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 456px; overflow: hidden;">
             <?php if(isset($aspirasi)){
                 foreach($aspirasi as $as){ ?>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url(); ?>uploads/<?php echo $as->LAMPIRAN_ASPIRASI; ?>" />
+            
+                <div style="display: inline-block;">
+                    <div class="slideImg"><p><?php echo substr($as->ASPIRASI,0,100); echo "<b> . . .</b>" ?></p></div>
+                    <img style="z-index:-1;" data-u="image" src="<?php echo base_url(); ?>uploads/<?php echo $as->LAMPIRAN_ASPIRASI; ?>" />
                     <!--img data-u="thumb" src="img/thumb-02.jpg" /-->
                 </div>
             <?php }} ?>
@@ -228,7 +230,7 @@
         <!-- Arrow Navigator -->
         <span data-u="arrowleft" class="jssora05l" style="top:158px;left:8px;width:40px;height:40px;"></span>
         <span data-u="arrowright" class="jssora05r" style="top:158px;right:8px;width:40px;height:40px;"></span>
-        <a href="http://www.jssor.com" style="display:none">Jssor Slider</a>
+        
     </div>
     <script>
         jssor_1_slider_init();

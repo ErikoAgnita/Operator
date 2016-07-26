@@ -16,14 +16,11 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <!--<link rel="stylesheet" href="<?php echo base_url();?>assets/css/skins/_all-skins.min.css">-->
-    
+      
     <script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>  
     <script src="<?php echo base_url();?>assets/js/jquery1-12-4.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
-        
+      
   </head>
   <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
   <body class="hold-transition skin-blue layout-boxed sidebar-mini">
@@ -46,19 +43,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="<?php echo base_url();?>">Beranda</a></li>
           <li class="active"><a href="<?php echo base_url(); ?>welcome/aspirasi">Aspirasi</a></li>
-          <!--<li><a href="#">Contact</a></li>-->
-          <!--<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>-->
+          
         </ul>
       </div>
       <!--/.nav-collapse -->

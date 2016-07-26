@@ -16,9 +16,6 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <!--<link rel="stylesheet" href="<?php echo base_url();?>assets/css/skins/_all-skins.min.css">-->
     
     <script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>  
     <script src="<?php echo base_url();?>assets/js/jquery1-12-4.min.js"></script>

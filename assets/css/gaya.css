@@ -1,4 +1,20 @@
- #imagePreview {
+.slideImg{
+    /*margin: 30px;*/
+    background-color: #000000;
+    border: 1px solid black;
+    opacity: 0.4;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+.slideImg p {
+    margin: 3%;
+    font-weight: bold;
+    font-size: 14pt;
+    font-size-adjust: auto;
+    color: #fff;
+}   
+
+#imagePreview {
     width: 100%;
     height: 180px;
     background-position: center center;

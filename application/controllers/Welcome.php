@@ -40,7 +40,7 @@ class Welcome extends CI_Controller {
             $total_row = $this->msaran->record_count();
             //echo $total_row;
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 8;
+            $config['per_page'] = 4;
             $config['use_page_numbers'] = TRUE;
             $config['num_links'] = $total_row;
             $config['cur_tag_open'] = '&nbsp;<a class="current">';
