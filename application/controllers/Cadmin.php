@@ -86,4 +86,26 @@ class Cadmin extends CI_Controller {
 		$this->madmin->Delete($ID_ADMIN);
 		redirect(base_url().'Cadmin/lihat');
 	}
+
+	public function index()
+	{
+		$this->load->view('dinas/header')->view('dinas/index')->view('dinas/footer');
+	}
+
+	public function dinas_lihat()
+	{
+		$data['admin'] = $this->madmin->GetAkun();
+		$this->load->view('dinas/header')->view('dinas/akun/lihat', $data)->view('dinas/footer');
+	}
+
+	public function profil(){   //profil guru
+       // $id_admin = $_SESSION['userid'];
+        $data['adata']	= $this->madmin->get_profil($id_admin);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
+        $this->load->view('dinas/header')->view('dinas/akun/lihat',$data)->view('dinas/footer');
+    }
+    
+	public function dinas_ubah()
+	{
+		$this->load->view('dinas/header')->view('dinas/akun/ubah')->view('dinas/footer');
+	}
 }
