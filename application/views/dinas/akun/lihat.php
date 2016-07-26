@@ -16,7 +16,7 @@
               <!-- Example Basic Form -->
               <div class="example-wrap">
                 <div class="example">
-                  <?php foreach($admin as $row){ ?>
+                  <?php foreach($adata as $row){ ?>
                   <form autocomplete="off">
               <!--      <div class="form-group">
                         <label class="control-label" for="inputBasicFirstName">ID</label>

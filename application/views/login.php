@@ -68,7 +68,7 @@
       <form method="post" action="<?php echo base_url(); ?>clogin/masuk_login">
         <div class="form-group">
           <label class="sr-only" for="inputName">Username</label>
-          <input type="text" class="form-control" id="inputName" name="id_admin" placeholder="Username">
+          <input type="text" class="form-control" id="inputName" name="username" placeholder="Username">
         </div>
         <div class="form-group">
           <label class="sr-only" for="inputPassword">Password</label>

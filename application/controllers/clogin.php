@@ -40,11 +40,11 @@ class clogin extends CI_Controller {
     public function masuk_login()
     {
 
-        $id_admin=$_POST['id_admin'];
+        $username=$_POST['username'];
         $password=$_POST['password'];
         
-        $cek = $this->mlogin->logindinas($id_admin,$password);
-        $cek1 = $this->mlogin->loginadmin($id_admin,$password);
+        $cek = $this->mlogin->logindinas($username,$password);
+        $cek1 = $this->mlogin->loginadmin($username,$password);
 
         if (!empty($cek)) 
         {
