@@ -8,6 +8,7 @@ class msaran extends CI_Model {
     }
     
     function list_saran() {
+        
         $query = $this->db->get('saran');  
         return $query->result();
     }
@@ -36,6 +37,7 @@ class msaran extends CI_Model {
     }
     public function fetch_data($limit, $id) {
         $this->db->limit($limit, $id);
+        $this->db->order_by('id_saran','desc');
         //$this->db->where('id_saran', $id);
         $query = $this->db->get('saran');
         if ($query->num_rows() > 0) {

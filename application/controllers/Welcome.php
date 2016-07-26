@@ -40,7 +40,7 @@ class Welcome extends CI_Controller {
             $total_row = $this->msaran->record_count();
             //echo $total_row;
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 4;
+            $config['per_page'] = 1;
             $config['use_page_numbers'] = TRUE;
             $config['num_links'] = $total_row;
             $config['cur_tag_open'] = '&nbsp;<a class="current">';
@@ -68,9 +68,11 @@ class Welcome extends CI_Controller {
             
             $this->load->model('msaran');
             $last=$this->msaran->ambil_id();
-            
+            //$this->load->helper('security');
             $this->load->library('upload');
             $this->load->library('form_validation');
+            
+            //$this->form_validation->set_rules('telepon','telp','trim|required|min_length[6]|max_length[15]|regex_match[/^[0-9+]{6,15}$/]');
             foreach ($last as $l ){
                 $nmfile = $l->id_saran;
             }

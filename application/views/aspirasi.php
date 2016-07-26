@@ -6,9 +6,8 @@
       <!--<div class="content-wrapper">-->
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            Aspirasi Warga
-            
+          <h1 style="color:#62a8ea;">
+            <b>Laporan Masyarakat</b>
           </h1>
      
         </section>
@@ -240,7 +239,7 @@
                   <div class="col-md-6">
                       <?php //$this->session->flashdata('pesan'); ?>
                       <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>Welcome/add_saran/" >
-                        <div class="form-group">
+                        <div class="form-group" style="color:#62a8ea;">
                             <label class="col-sm-2 control-label">Nama</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -279,8 +278,8 @@
                         </div>
                         
                         <div class="pull-right">
-                            <button type="reset"class="btn btn-danger btn-sm">Batal</button>
-                            <input type="submit" class="btn  btn-success btn-sm" value="Kirim" />
+                            <!--button type="reset"class="btn btn-danger btn-sm">Batal</button-->
+                            <input type="submit" class="btn btn-success btn-block btn-flat btn-sm" value="Kirim" />
                         </div>
                     </form>
 
