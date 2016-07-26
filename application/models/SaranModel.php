@@ -55,9 +55,22 @@ class SaranModel extends CI_Model
         return $query;
     }
 
-    function disposisikan_saran($ID_SARAN)
+    function dinas($ID_ADMIN)
+    {
+        $this->db->where('ID_ADMIN', $ID_ADMIN);
+        $query = $this->db->query("SELECT NAMA_DINAS from admin where admin.ID_ADMIN=$ID_ADMIN");
+        return $query;
+    }
+
+    function disposisikan_saran($ID_SARAN, $data)
     {
         $this->db->where("ID_SARAN", $ID_SARAN);
-        $query = $this->db->update('saran');
+        $query = $this->db->update('saran', $data);
+    }
+
+    function publish_saran($ID_SARAN, $data)
+    {
+        $this->db->where("ID_SARAN", $ID_SARAN);
+        $query = $this->db->update('saran', $data);
     }
 }

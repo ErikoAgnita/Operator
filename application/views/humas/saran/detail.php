@@ -29,6 +29,10 @@
                   method="post">
                     <a href="<?php echo base_url(); ?>SaranController/ubah/<?php echo $row->ID_SARAN;?>" class="btn btn-primary btn-rounded"><i class="icon-add position-left"></i>Ubah</a>
                     <a href="<?php echo base_url(); ?>SaranController/hapus/<?php echo $row->ID_SARAN;?>" class="btn btn-primary btn-rounded"><i class="icon-add position-left"></i>Hapus</a>
+                     <div class="form-group">      
+                        <label class="control-label" for="inputBasicFirstName">Dinas</label>
+                        <input type="text" class="form-control" value="<?php echo $row->ID_ADMIN;?>" name="id_admin">
+                    </div>
                     <div class="form-group">      
                         <label class="control-label" for="inputBasicFirstName">Nama Pelapor</label>
                         <input type="text" class="form-control" value="<?php echo $row->NAMA;?>" name="nama">
