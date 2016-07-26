@@ -125,7 +125,7 @@
         <!-- Navbar Toolbar Right -->
         <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
           <li role="presentation">
-            <a href="<?php echo base_url(); ?>Pegawai/login" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+            <a href="<?php echo base_url(); ?>clogin/login" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Keluar</a>
           </li>    
         </ul>
         <!-- End Navbar Toolbar Right -->
@@ -151,3 +151,53 @@
   </nav>
   
 <!-- End Header -->
+
+<!-- Menu -->
+<div class="site-menubar">
+    <div class="site-menubar-body">
+      <div>
+        <div>
+          <ul class="site-menu">
+            <li class="site-menu-category">Operator Dinas</li>
+            <li class="site-menu-item has-sub">
+              <a href="javascript:void(0)" data-slug="advanced">
+                <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
+                <span class="site-menu-title">Profil</span>
+                <span class="site-menu-arrow"></span>
+              </a>
+                 <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Admin/dinas_lihat" data-slug="uikit">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Lihat</span>
+                  </a>
+                </li>
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Admin/dinas_ubah" data-slug="uikit">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Ubah</span>
+                  </a>
+                </li>
+              </ul>
+              </li>
+            <li class="site-menu-item has-sub">
+              <a href="javascript:void(0)" data-slug="advanced">
+                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <span class="site-menu-title">Aspirasi</span>
+                <span class="site-menu-arrow"></span>
+              </a>
+              <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Admin/aspirasi_lihat" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Lihat</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </li>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Menu -->

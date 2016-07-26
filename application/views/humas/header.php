@@ -125,7 +125,7 @@
         <!-- Navbar Toolbar Right -->
         <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
           <li role="presentation">
-            <a href="<?php echo base_url(); ?>Pegawai/login" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Logout</a>
+            <a href="<?php echo base_url(); ?>clogin/login" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Keluar</a>
           </li>    
         </ul>
         <!-- End Navbar Toolbar Right -->
