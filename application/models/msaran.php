@@ -31,6 +31,21 @@ class msaran extends CI_Model {
        
         return TRUE;
     }
+    public function record_count() {
+        return $this->db->count_all('saran');
+    }
+    public function fetch_data($limit, $id) {
+        $this->db->limit($limit, $id);
+        //$this->db->where('id_saran', $id);
+        $query = $this->db->get('saran');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
     /*function hapus_produk($id)       
     {
         $this->db->reconnect();
