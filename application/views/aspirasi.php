@@ -204,8 +204,8 @@
             <div style="position:absolute;display:block;background:url('../images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
         </div>
         <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 456px; overflow: hidden;">
-            <?php 
-                foreach($aspirasi as $as){ if(isset($aspirasi)){?>
+            <?php if(isset($aspirasi)){
+                foreach($aspirasi as $as){ ?>
                 <div style="display: none;">
                     <img data-u="image" src="<?php echo base_url(); ?>uploads/<?php echo $as->LAMPIRAN_ASPIRASI; ?>" />
                     <!--img data-u="thumb" src="img/thumb-02.jpg" /-->
@@ -236,7 +236,7 @@
                 </div>
               <!--==========-->
                   <div class="col-md-6">
-                      <?//=$this->session->flashdata('pesan')?>
+                      <?php //$this->session->flashdata('pesan'); ?>
                       <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>Welcome/add_saran/" >
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Nama</label>

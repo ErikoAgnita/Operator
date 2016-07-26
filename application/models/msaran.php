@@ -12,6 +12,14 @@ class msaran extends CI_Model {
         return $query->result();
     }
     
+    function preview_asp(){
+        $query = $this->db->query("SELECT * FROM saran WHERE lampiran_aspirasi IS NOT NULL ORDER BY id_saran ASC");
+         
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+    }
+    
     function ambil_id() {
         $query = $this->db->query("SELECT id_saran FROM saran ORDER BY id_saran DESC LIMIT 1");
         return $query->result();

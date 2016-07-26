@@ -25,7 +25,7 @@ class Welcome extends CI_Controller {
         }
         public function index()
         {
-            $data['aspirasi'] = $this->msaran->list_saran();
+            $data['aspirasi'] = $this->msaran->preview_asp();
             $this->load->view('header1');
             $this->load->view('aspirasi', $data);
             $this->load->view('footer');
@@ -53,8 +53,8 @@ class Welcome extends CI_Controller {
             'allowed_types' => "gif|jpg|png|jpeg|bmp",
             'overwrite' => TRUE,
             'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-            'max_height' => "768",
-            'max_width' => "1024",
+            'max_height' => "3000",
+            'max_width' => "3000",
             'file_name'=> $nmfile
             );
 
@@ -62,7 +62,8 @@ class Welcome extends CI_Controller {
             $this->upload->initialize($config);
             if($_FILES['image']['name']){
                 if($this->upload->do_upload('image')){
-                    $gbr=$this->upload->data();
+                    
+                    $gbr= $this->upload->data();
                     $status=0;
 					$date = date_create();
                     $tglapor =  date_format($date, 'Y-m-d H:i:s');
