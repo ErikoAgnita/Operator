@@ -40,7 +40,7 @@ class Welcome extends CI_Controller {
             $total_row = $this->msaran->record_count();
             //echo $total_row;
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 1;
+            $config['per_page'] = 8;
             $config['use_page_numbers'] = TRUE;
             $config['num_links'] = $total_row;
             $config['cur_tag_open'] = '&nbsp;<a class="current">';
@@ -69,11 +69,17 @@ class Welcome extends CI_Controller {
             $this->load->model('msaran');
             $last=$this->msaran->ambil_id();
             //var_dump($last);
-            //$this->load->helper('security');
+            $this->load->helper('security');
             $this->load->library('upload');
             $this->load->library('form_validation');
+            $this->form_validation->set_rules('telp','Contact_no','trim|required|min_length[9]|max_length[15]|regex_match[/^[0123456789+]{9,15}$/]');
+            $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+            if ($this->form_validation->run() == FALSE){
+                $this->form_validation->set_message('Incorrect Number type.');
+                $this->index();
+                //echo "sdaasd";
+            }
             
-            //$this->form_validation->set_rules('telepon','telp','trim|required|min_length[6]|max_length[15]|regex_match[/^[0-9+]{6,15}$/]');
             if($last==0){
                 $nmfile = 0;}
             else{
@@ -89,7 +95,7 @@ class Welcome extends CI_Controller {
             //'max_width' => "3000",
             'file_name'=> $nmfile
             );
-
+            $hostname = gethostbyNAME($_SERVER['SERVER_ADDR']);
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if($_FILES['image']['name']){
@@ -104,6 +110,7 @@ class Welcome extends CI_Controller {
                                 'email' => $this->input->post('email'),
                                 'saran' => $this->input->post('aspr'),
 								'tanggal_saran' => $tglapor,
+                                'ip' => $hostname,
                                 'lampiran_saran'=>$gbr['file_name']);
                   //  var_dump($data);
                 $this->msaran->kirim_saran($data);
@@ -124,9 +131,10 @@ class Welcome extends CI_Controller {
                             'telepon' => $this->input->post('telp'),
                             'email' => $this->input->post('email'),
                             'saran' => $this->input->post('aspr'),
+                            'ip' => $hostname,
                             'tanggal_saran' => $tglapor);
-               // $this->msaran->kirim_saran($data);
-                //redirect(site_url('../operator'));
+                $this->msaran->kirim_saran($data);
+                redirect(site_url('../operator'));
             }
         }
     

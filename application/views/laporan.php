@@ -25,7 +25,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class='box-body'>
-                  <img class="img-responsive pad" src="<?php echo base_url(); ?>uploads/<?php echo $as->lampiran_saran; ?>" alt="Photo">
+                  <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/".$as->lampiran_saran."' alt='Photo'> <?php ";} ?>
                   <p><?php $baris= $as->saran;
     echo substr($baris, 0, 150); echo "<b> . . .</b>"; ?> <br></p>
                   
@@ -42,18 +42,18 @@
         <div class="box box-widget">
       <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <div class='box-header'>
+        <!--<div class='box-header'>-->
                   <div class='user-block'>
                     <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
                     <span class='username'><a href="#"><?php echo $as->nama; ?></a></span>
                     <span class='description'><?php echo date("d-m-Y H:i:s",strtotime($as->tanggal_saran)); ?></span>
                   </div><!-- /.user-block -->
-                </div><!-- /.box-header -->
+                <!--</div> /.box-header -->
       </div>
       <div class="modal-body">
         
                 <div class='box-body'>
-                  <img class="img-responsive pad" src="<?php echo base_url(); ?>uploads/<?php echo $as->lampiran_saran; ?>" alt="Photo">
+                  <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/".$as->lampiran_saran."' alt='Photo'> <?php ";} ?>
                   <p><?php echo $as->saran; ?> <br></p>
                                     
                 </div><!-- /.box-body -->

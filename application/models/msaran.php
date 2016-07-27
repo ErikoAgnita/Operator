@@ -7,18 +7,21 @@ class msaran extends CI_Model {
         $this->load->database();
     }
     
-    function list_saran() {
-        
-        $query = $this->db->get('saran');  
-        return $query->result();
-    }
-    
-    function preview_asp(){
-        $query = $this->db->query("SELECT * FROM saran WHERE lampiran_saran IS NOT NULL ORDER BY id_saran ASC");
-         
+    function balasan($idsaran) {
+        $this->db->where('id_saran',$idsaran);
+        $query = $this->db->get('respon');  
         if ($query->num_rows() > 0) {
             return $query->result();
         }
+        else return 0;
+    }
+    
+    function preview_asp(){
+        $query = $this->db->query("SELECT * FROM saran WHERE isAktif = 1 and lampiran_saran IS NOT NULL ORDER BY id_saran ASC"); 
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
     }
     
     function ambil_id() {
@@ -40,6 +43,7 @@ class msaran extends CI_Model {
         return $this->db->count_all('saran');
     }
     public function fetch_data($limit, $id) {
+        //$this->db->where('IsAktif','1');
         $this->db->limit($limit, $id);
         $this->db->order_by('id_saran','desc');
         //$this->db->where('id_saran', $id);

@@ -192,6 +192,11 @@
             width /**/: 72px;
             height /**/: 72px;
         }
+        .error {
+        color:red;
+        font-size:13px;
+        margin-bottom:-15px
+        }
         
     </style>
 
@@ -254,16 +259,27 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                 <input type="text" class="form-control" placeholder="HP" value="+62" name="telp" required>
+                                
+                                <?php
+if(validation_errors()!=NULL){
+    echo'
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">×</button>';
+            echo validation_errors();
+    echo '
+    </div>';
+}
+?>
                             </div>
                             <label class="col-sm-2 control-label">Email</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                                 <input type="email" class="form-control" placeholder="Email" name="email" required>
                             </div>
-                            <label class="col-sm-2 control-label">Aspirasi</label>
+                            <label class="col-sm-2 control-label">Laporan</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-comments"></i></span>
-                                <textarea name="aspr" class="textarea" placeholder="Salurkan aspirasi anda" style="width: 100%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required></textarea>
+                                <textarea name="aspr" class="textarea" placeholder="Salurkan aspirasi anda" style="width: 100%; font-size: 14px; line-height: 30px; color: #4F4F4F; border: 1px solid #dddddd; padding: 10px;" required></textarea>
                             </div>
                             <label class="col-sm-2 control-label">Lampirkan Foto</label>
                             <div class="input-group">
