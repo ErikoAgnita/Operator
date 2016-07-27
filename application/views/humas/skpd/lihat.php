@@ -43,11 +43,11 @@
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/lihat" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cskpd/lihat" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Data SKPD</span>
                   </a>
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/tambah" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cskpd/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                   <span class="site-menu-title">Tambah SKPD</span>
                 </a>
@@ -62,11 +62,11 @@
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/lihat" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cpengguna/lihat" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Data Operator</span>
                   </a>
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/tambah" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cpengguna/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                   <span class="site-menu-title">Tambah Operator</span>
                 </a>
@@ -100,37 +100,35 @@
             <thead>
               <tr>
                 <th>No</th>
+                <th>Kode Unit</th>
                 <th>Nama Dinas</th>
                 <th>Alamat Dinas</th>
-                <th>Email</th>
                 <th>Telepon</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Level</th>
+                <th>Email</th>
+                <th>Website</th>
                 <th>Aksi</th>
               </tr>
             </thead>            
             <tbody>
               <?php $no = $this->uri->segment('3') + 1; ?>
-              <?php foreach ($admin as $row){?>
+              <?php foreach ($skpd as $row){?>
               <tr>
                 <td><?php echo $no++ ?></td>
-                <td><?php echo $row->NAMA_DINAS;?></td>
-                <td><?php echo $row->ALAMAT_DINAS;?></td>
-                <td><?php echo $row->EMAIL_ADMIN;?></td>
-                <td><?php echo $row->TELEPON;?></td>                
-                <td><?php echo $row->USERNAME;?></td>
-                <td><?php echo $row->PASSWORD;?></td>
-                <td><?php echo $row->LEVEL;?></td>
+                <td><?php echo $row->kodeUnit;?></td>
+                <td><?php echo $row->nama;?></td>
+                <td><?php echo $row->alamat;?></td>
+                <td><?php echo $row->telepon;?></td>                
+                <td><?php echo $row->email;?></td>
+                <td><?php echo $row->website;?></td>
                 <td class="text-nowrap">
                    <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Detail">
-                    <a href="<?php echo base_url(); ?>Cadmin/detail/<?php echo $row->ID_ADMIN;?>"><i class="icon wb-eye" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Cskpd/detail/<?php echo $row->id_skpd;?>"><i class="icon wb-eye" aria-hidden="true"></i></a>
                   </button>
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
-                    <a href="<?php echo base_url(); ?>Cadmin/update/<?php echo $row->ID_ADMIN;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Cskpd/update/<?php echo $row->id_skpd;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
                   </button>
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
-                    <a href="<?php echo base_url(); ?>Cadmin/hapus/<?php echo $row->ID_ADMIN;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Cskpd/hapus/<?php echo $row->id_skpd;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
                   </button>
                 </td>
               </tr>
