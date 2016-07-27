@@ -4,22 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Cskpd extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('mpengguna');
+		$this->load->model('mskpd');
 		$this->load->helper(array('form', 'url'));
 	}
 
 	public function lihat()
 	{
 		$this->load->database();
-		$jumlah_data = $this->mpengguna->jumlah_data();
+		$jumlah_data = $this->mskpd->jumlah_data();
 		$this->load->library('pagination');
-		$config['base_url'] = base_url().'index.php/mpengguna/lihat/';
+		$config['base_url'] = base_url().'index.php/cskpd/lihat/';
 		$config['total_rows'] = $jumlah_data;
 		$config['per_page'] = 10;
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);
 
-		$data['skpd'] = $this->mpengguna->GetAkunskpd($config['per_page'], $from);
+		$data['skpd'] = $this->mskpd->GetAkunskpd($config['per_page'], $from);
 		$this->load->view('humas/header')->view('humas/skpd/lihat', $data)->view('humas/footer');
 	} 
 
@@ -55,14 +55,14 @@ class Cskpd extends CI_Controller {
 			'urut' => $urut,
 			'tema' => $tema
 			);
-		$this->mpengguna->AddAkun1($data, 'skpd');
+		$this->mskpd->AddAkun1($data, 'skpd');
 		redirect('Cskpd/lihat');
 	}
 
 	public function update($id_skpd)
 	{
 		$where = array('id_skpd' => $id_skpd);
-		$data['skpd'] = $this->mpengguna->UpdateAkun($where, 'skpd')->result();
+		$data['skpd'] = $this->mskpd->UpdateAkun($where, 'skpd')->result();
 		$this->load->view('humas/header')->view('humas/skpd/edit', $data)->view('humas/footer');
 	}
 
@@ -80,6 +80,8 @@ class Cskpd extends CI_Controller {
 		$website = $this->input->post('website');
 		$urut = $this->input->post('urut');
 		$tema = $this->input->post('tema');
+		$isLink = $this->input->post('isLink');
+		$isAktif = $this->input->post('isAktif');
 
 		$data = array(
 			'kodeUnit' => $kodeUnit,
@@ -92,20 +94,22 @@ class Cskpd extends CI_Controller {
 			'email' => $email,
 			'website' => $website,
 			'urut' => $urut,
-			'tema' => $tema
+			'tema' => $tema,
+			'isLink' => $isLink,
+			'isAktif' => $isAktif
 		);
 
 		$where = array(
 			'id_skpd' => $id_skpd
 		);
 
-		$this->mpengguna->UpdateAkun1($where, $data, 'skpd');
+		$this->mskpd->UpdateAkun1($where, $data, 'skpd');
 		redirect('Cskpd/lihat');
 	}
 
 	public function hapus($id_skpd)
 	{
-		$this->mpengguna->Delete($id_skpd);
+		$this->mskpd->Delete($id_skpd);
 		redirect(base_url().'Cskpd/lihat');
 	}
 }

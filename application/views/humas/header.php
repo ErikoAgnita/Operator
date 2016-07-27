@@ -157,7 +157,7 @@
       <div>
         <div>
           <ul class="site-menu">
-            <li class="site-menu-category">Profil Operator Humas</li>
+            <li class="site-menu-category">Profil Admin</li>
             <li class="site-menu-item has-sub active open">
               <a href="javascript:void(0)" data-slug="uikit">
                 <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
@@ -176,7 +176,7 @@
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
-                <span class="site-menu-title">Aspirasi</span>
+                <span class="site-menu-title">Laporan</span>
                 <span class="site-menu-arrow"></span>
               </a>
               <ul class="site-menu-sub">
@@ -191,30 +191,38 @@
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
-                <span class="site-menu-title">Kelola Dinas</span>
+                <span class="site-menu-title">SKPD</span>
                 <span class="site-menu-arrow"></span>
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Dinas/aspirasi_lihat" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cskpd/lihat" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Lihat</span>
+                    <span class="site-menu-title">Data SKPD</span>
                   </a>
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cskpd/tambah" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                  <span class="site-menu-title">Tambah SKPD</span>
+                </a>
                 </li>
               </ul>
             </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
-                <span class="site-menu-title">Kelola Admin </span>
+                <span class="site-menu-title">Pengguna</span>
                 <span class="site-menu-arrow"></span>
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Dinas/aspirasi_lihat" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cpengguna/lihat" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Lihat</span>
+                    <span class="site-menu-title">Data Pengguna</span>
                   </a>
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cpengguna/tambah" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                  <span class="site-menu-title">Tambah Pengguna</span>
+                </a>
                 </li>
               </ul>
             </li>
