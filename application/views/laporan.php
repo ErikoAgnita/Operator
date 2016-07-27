@@ -18,25 +18,25 @@
                 <div class='box-header with-border'>
                   <div class='user-block'>
                     <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
-                    <span class='username'><a href="#"><?php echo $as->NAMA; ?></a></span>
-                    <span class='description'><?php echo date("d M Y  H:i:s",strtotime($as->TANGGAL_LAPOR)); ?></span>
+                    <span class='username'><a href="#"><?php echo $as->nama; ?></a></span>
+                    <span class='description'><?php echo date("d M Y  H:i:s",strtotime($as->tanggal_saran)); ?></span>
                   </div><!-- /.user-block -->
                   
                 </div>
                 <!-- /.box-header -->
                 <div class='box-body'>
-                  <img class="img-responsive pad" src="<?php echo base_url(); ?>uploads/<?php echo $as->LAMPIRAN_ASPIRASI; ?>" alt="Photo">
-                  <p><?php $baris= $as->ASPIRASI;
+                  <img class="img-responsive pad" src="<?php echo base_url(); ?>uploads/<?php echo $as->lampiran_saran; ?>" alt="Photo">
+                  <p><?php $baris= $as->saran;
     echo substr($baris, 0, 150); echo "<b> . . .</b>"; ?> <br></p>
                   
-                  <a href="#myModal<?php echo $as->ID_SARAN; ?>" class='btn btn-info pull-right btn-xs' data-toggle="modal">Baca selengkapnya &nbsp; <i class='fa fa-share'></i></a>
+                  <a href="#myModal<?php echo $as->id_saran; ?>" class='btn btn-info pull-right btn-xs' data-toggle="modal">Baca selengkapnya &nbsp; <i class='fa fa-share'></i></a>
                   
                 </div><!-- /.box-body -->
               </div>
         </div>
         
         <!-- Modal -->
-<div class="modal fade" id="myModal<?php echo $as->ID_SARAN; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal<?php echo $as->id_saran; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="box box-widget">
@@ -45,16 +45,16 @@
         <div class='box-header'>
                   <div class='user-block'>
                     <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
-                    <span class='username'><a href="#"><?php echo $as->NAMA; ?></a></span>
-                    <span class='description'><?php echo date("d-m-Y H:i:s",strtotime($as->TANGGAL_LAPOR)); ?></span>
+                    <span class='username'><a href="#"><?php echo $as->nama; ?></a></span>
+                    <span class='description'><?php echo date("d-m-Y H:i:s",strtotime($as->tanggal_saran)); ?></span>
                   </div><!-- /.user-block -->
                 </div><!-- /.box-header -->
       </div>
       <div class="modal-body">
         
                 <div class='box-body'>
-                  <img class="img-responsive pad" src="<?php echo base_url(); ?>uploads/<?php echo $as->LAMPIRAN_ASPIRASI; ?>" alt="Photo">
-                  <p><?php echo $as->ASPIRASI; ?> <br></p>
+                  <img class="img-responsive pad" src="<?php echo base_url(); ?>uploads/<?php echo $as->lampiran_saran; ?>" alt="Photo">
+                  <p><?php echo $as->saran; ?> <br></p>
                                     
                 </div><!-- /.box-body -->
                 <div class='box-footer box-comments'>

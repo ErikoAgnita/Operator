@@ -207,8 +207,8 @@
                 foreach($aspirasi as $as){ ?>
             
                 <div style="display: inline-block;">
-                    <div class="slideImg"><p><?php echo substr($as->ASPIRASI,0,100); echo "<b> . . .</b>" ?></p></div>
-                    <img style="z-index:-1;" data-u="image" src="<?php echo base_url(); ?>uploads/<?php echo $as->LAMPIRAN_ASPIRASI; ?>" />
+                    <div class="slideImg"><p><?php echo substr($as->saran,0,100); echo "<b> . . .</b>" ?></p></div>
+                    <img style="z-index:-1;" data-u="image" src="<?php echo base_url(); ?>uploads/<?php echo $as->lampiran_saran; ?>" />
                     <!--img data-u="thumb" src="img/thumb-02.jpg" /-->
                 </div>
             <?php }} ?>

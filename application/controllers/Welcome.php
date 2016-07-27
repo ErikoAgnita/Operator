@@ -68,14 +68,18 @@ class Welcome extends CI_Controller {
             
             $this->load->model('msaran');
             $last=$this->msaran->ambil_id();
+            //var_dump($last);
             //$this->load->helper('security');
             $this->load->library('upload');
             $this->load->library('form_validation');
             
             //$this->form_validation->set_rules('telepon','telp','trim|required|min_length[6]|max_length[15]|regex_match[/^[0-9+]{6,15}$/]');
-            foreach ($last as $l ){
+            if($last==0){
+                $nmfile = 0;}
+            else{
+                foreach ($last as $l ){
                 $nmfile = $l->id_saran;
-            }
+            }}  
             $config = array(
             'upload_path' => "./uploads/",
             'allowed_types' => "gif|jpg|png|jpeg|bmp",
@@ -92,18 +96,16 @@ class Welcome extends CI_Controller {
                 if($this->upload->do_upload('image')){
                     
                     $gbr= $this->upload->data();
-                    $status=0;
 					$date = date_create();
                     $tglapor =  date_format($date, 'Y-m-d H:i:s');
                     $data=array('nama' => $this->input->post('nama'),
                                 'alamat' => $this->input->post('almt'),
                                 'telepon' => $this->input->post('telp'),
                                 'email' => $this->input->post('email'),
-                                'aspirasi' => $this->input->post('aspr'),
-								'tanggal_lapor' => $tglapor,
-                                'status_laporan' => $status,
-                                'lampiran_aspirasi'=>$gbr['file_name']);
-                    var_dump($data);
+                                'saran' => $this->input->post('aspr'),
+								'tanggal_saran' => $tglapor,
+                                'lampiran_saran'=>$gbr['file_name']);
+                  //  var_dump($data);
                 $this->msaran->kirim_saran($data);
                 //$this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Aspirasi anda sudah kami </div></div>");
                 redirect(site_url('../operator'));
@@ -115,18 +117,16 @@ class Welcome extends CI_Controller {
              /*   }  
             */}
             else{
-                $status=0;
                 $date = date_create();
                 $tglapor =  date_format($date, 'Y-m-d H:i:s');
                 $data=array('nama' => $this->input->post('nama'),
                             'alamat' => $this->input->post('almt'),
                             'telepon' => $this->input->post('telp'),
                             'email' => $this->input->post('email'),
-                            'aspirasi' => $this->input->post('aspr'),
-                            'tanggal_lapor' => $tglapor,
-                            'status_laporan' => $status);
-                $this->msaran->kirim_saran($data);
-                redirect(site_url('../operator'));
+                            'saran' => $this->input->post('aspr'),
+                            'tanggal_saran' => $tglapor);
+               // $this->msaran->kirim_saran($data);
+                //redirect(site_url('../operator'));
             }
         }
     
