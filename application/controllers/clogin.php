@@ -2,22 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class clogin extends CI_Controller {
-
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     *      http://example.com/index.php/welcome
-     *  - or -
-     *      http://example.com/index.php/welcome/index
-     *  - or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see http://codeigniter.com/user_guide/general/urls.html
-     */
      
     function __construct()
     {
@@ -54,7 +38,8 @@ class clogin extends CI_Controller {
             $session_data['user'] = $user;
             $this->session->set_userdata("masuk", $session_data);
             $data['admin'] = $this->madmin->GetAkun();
-        $this->load->view('dinas/header')->view('dinas/index', $data)->view('dinas/footer');
+            $this->load->view('dinas/header')->view('dinas/index', $data)->view('dinas/footer');
+            //redirect('SaranController/lihat');
         }
 
 
@@ -66,7 +51,7 @@ class clogin extends CI_Controller {
             $session_data['user'] = $user;
             $this->session->set_userdata("masuk", $session_data);
             $data['admin'] = $this->madmin->GetAkun();
-        $this->load->view('humas/header')->view('humas/admin/lihat', $data)->view('humas/footer');
+            redirect('SaranController/lihat');
         }
 
         else

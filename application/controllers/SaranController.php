@@ -17,7 +17,8 @@ class SaranController extends CI_Controller {
 	public function lihat()
 	{
 		$data['saran'] = $this->SaranModel->lihat_saran();
-    	$this->load->view('humas/header')->view('humas/saran/lihat', $data)->view('humas/footer');
+		$this->load->view('humas/header')->view('humas/saran/lihat', $data)->view('humas/footer');
+		
 	}
 
 	public function detail($ID_SARAN)

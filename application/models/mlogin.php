@@ -11,14 +11,12 @@ class mlogin extends CI_Model
     public function logindinas($username, $password)
     {
         $query=$this->db->query("SELECT * FROM `admin` WHERE username='$username' and password='$password' and level='skpd'");
-        
         return $query->result();
     }
 
     public function loginadmin($username, $password)
     {
         $query=$this->db->query("SELECT * FROM `admin` WHERE username='$username' and password='$password' and level='Humas'");
-        
         return $query->result();
     }
 
