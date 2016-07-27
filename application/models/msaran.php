@@ -7,8 +7,8 @@ class msaran extends CI_Model {
         $this->load->database();
     }
     
-    function balasan($idsaran) {
-        $this->db->where('id_saran',$idsaran);
+    function balasan() {
+        //$this->db->where('id_saran',$idsaran);
         $query = $this->db->get('respon');  
         if ($query->num_rows() > 0) {
             return $query->result();
@@ -46,7 +46,7 @@ class msaran extends CI_Model {
         //$this->db->where('IsAktif','1');
         $this->db->limit($limit, $id);
         $this->db->order_by('id_saran','desc');
-        //$this->db->where('id_saran', $id);
+        //$query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.ID_SARAN=saran.ID_SARAN");
         $query = $this->db->get('saran');
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {

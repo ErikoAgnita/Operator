@@ -28,8 +28,8 @@
                   <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/".$as->lampiran_saran."' alt='Photo'> <?php ";} ?>
                   <p><?php $baris= $as->saran;
     echo substr($baris, 0, 150); echo "<b> . . .</b>"; ?> <br></p>
-                  
-                  <a href="#myModal<?php echo $as->id_saran; ?>" class='btn btn-info pull-right btn-xs' data-toggle="modal">Baca selengkapnya &nbsp; <i class='fa fa-share'></i></a>
+                    <input type="hidden" name="saranid" value="<?php echo $as->id_saran; ?>" >
+                  <button  href="#myModal<?php echo $as->id_saran; ?>" class='btn btn-info pull-right btn-xs' data-toggle="modal">Baca selengkapnya &nbsp; <i class='fa fa-share'></i></button>
                   
                 </div><!-- /.box-body -->
               </div>
@@ -46,31 +46,32 @@
                   <div class='user-block'>
                     <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
                     <span class='username'><a href="#"><?php echo $as->nama; ?></a></span>
-                    <span class='description'><?php echo date("d-m-Y H:i:s",strtotime($as->tanggal_saran)); ?></span>
+                    <span class='description'><?php echo date("d M Y H:i:s",strtotime($as->tanggal_saran)); ?></span>
                   </div><!-- /.user-block -->
                 <!--</div> /.box-header -->
       </div>
       <div class="modal-body">
         
                 <div class='box-body'>
-                  <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/".$as->lampiran_saran."' alt='Photo'> <?php ";} ?>
+                  <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/".$as->lampiran_saran."' alt='Foto Laporan Masyarakat'> <?php ";} ?>
                   <p><?php echo $as->saran; ?> <br></p>
                                     
                 </div><!-- /.box-body -->
-                <div class='box-footer box-comments'>
+          <div class='box-footer box-comments'>
+              <?php foreach($balasan as $rply){ if($as->id_saran == $rply->id_saran) {?>
                   <div class='box-comment'>
                     <!-- User image -->
-                    <img class='img-circle img-sm' src='../dist/img/user3-128x128.jpg' alt='user image'>
+                    <img class='img-circle img-sm' src='<?php echo base_url(); ?>assets/images/logo.png' alt='pemerintah'>
                     <div class='comment-text'>
                       <span class="username">
                         Admin
-                        <span class='text-muted pull-right'>20 Juli 2016</span>
+                        <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($rply->tanggal_respon)); ?></span>
                       </span><!-- /.username -->
-                        <p><?php $baris="Terima kasih atas saran dan masukan Saudara.<br>Pelaksanaan Salatiga Expo direncanakan 2 tahun sekali dan perlu diketahui bahwa expo ini merupakan pameran keberhasilan pembangunan Pemerintah Kota Salatiga sehingga yang ditampilkan adalah hasil pembangunan yang dilakukan setiap SKPD (Satuan Kerja Perangkat Daerah), bukan arena jual-beli makanan dan arena permainan.<br>Sedangkan masukan untuk panggung, kami koordinasikan untuk penyesuaian anggaran, karena semua penambilan ditentukan oleh besaran anggaran yang tersedia.<br>Gebyar UMKM seperti yang dilaksanakan pada tahun 2015 kemarin, untuk saat ini belum direncanakan kembali.";
-    echo $baris; ?> <br></p>
+                        <p><?php echo $rply->isi_respon; ?> <br></p>
                     </div><!-- /.comment-text -->
-                  </div><!-- /.box-comment -->
-                </div>
+                  </div><!-- /.box-comment -->                    
+                <?php }} ?>
+              </div>
               </div>
       </div>
       <div class="modal-footer">

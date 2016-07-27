@@ -33,8 +33,6 @@ class Welcome extends CI_Controller {
         public function aspirasi()
         {
             $this->load->library('pagination');
-            //$data['aspirasi'] = $this->msaran->list_saran();
-            
             $config = array();
             $config['base_url'] = base_url() . "welcome/aspirasi";
             $total_row = $this->msaran->record_count();
@@ -56,6 +54,8 @@ class Welcome extends CI_Controller {
                 $strpage = ($page-1) * $config['per_page'];
             else   $strpage = 0;
             $data['aspirasi'] = $this->msaran->fetch_data($config['per_page'],$strpage);
+            
+            $data['balasan'] = $this->msaran->balasan();
             $str_links = $this->pagination->create_links();
             $data['links'] = explode('&nbsp;',$str_links );
             
@@ -77,7 +77,6 @@ class Welcome extends CI_Controller {
             if ($this->form_validation->run() == FALSE){
                 $this->form_validation->set_message('Incorrect Number type.');
                 $this->index();
-                //echo "sdaasd";
             }
             
             if($last==0){
