@@ -23,7 +23,7 @@
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
-                <span class="site-menu-title">Aspirasi</span>
+                <span class="site-menu-title">Laporan</span>
                 <span class="site-menu-arrow"></span>
               </a>
               <ul class="site-menu-sub">
@@ -38,33 +38,37 @@
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
-                <span class="site-menu-title">Kelola Dinas</span>
-                <span class="site-menu-arrow"></span>
-              </a>
-              <ul class="site-menu-sub">
-                <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Dinas/aspirasi_lihat" data-slug="advanced-lightbox">
-                    <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Lihat</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="site-menu-item has-sub">
-              <a href="javascript:void(0)" data-slug="advanced">
-                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
-                <span class="site-menu-title">Kelola Admin</span>
+                <span class="site-menu-title">SKPD</span>
                 <span class="site-menu-arrow"></span>
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
                   <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/lihat" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Data Admin</span>
+                    <span class="site-menu-title">Data SKPD</span>
                   </a>
                   <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                  <span class="site-menu-title">Tambah Admin</span>
+                  <span class="site-menu-title">Tambah SKPD</span>
+                </a>
+                </li>
+              </ul>
+            </li>
+            <li class="site-menu-item has-sub">
+              <a href="javascript:void(0)" data-slug="advanced">
+                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <span class="site-menu-title">Operator</span>
+                <span class="site-menu-arrow"></span>
+              </a>
+              <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/lihat" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Data Operator</span>
+                  </a>
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cadmin/tambah" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                  <span class="site-menu-title">Tambah Operator</span>
                 </a>
                 </li>
               </ul>
@@ -78,10 +82,10 @@
   <!-- Page -->
   <div class="page">
     <div class="page-header">
-      <h1 class="page-title">Admin</h1>
+      <h1 class="page-title">Satuan Kerja Perangkat Daerah (SKPD)</h1>
       <ol class="breadcrumb">
-        <li>Admin</li>
-        <li>Data Admin</li>
+        <li>SKPD</li>
+        <li>Data SKPD</li>
       </ol>
     </div>
     <div class="page-content">
@@ -89,7 +93,7 @@
       <div class="panel">
         <header class="panel-heading">
           <div class="panel-actions"></div>
-          <h3 class="panel-title">Lihat Daftar Admin</h3>
+          <h3 class="panel-title">Lihat Daftar SKPD</h3>
         </header>
         <div class="panel-body">
           <table class="table table-hover dataTable table-striped width-full" data-plugin="dataTable">
@@ -107,8 +111,8 @@
               </tr>
             </thead>            
             <tbody>
-              <?php $no = 1; ?>
-              <?php foreach ($admin->result() as $row){?>
+              <?php $no = $this->uri->segment('3') + 1; ?>
+              <?php foreach ($admin as $row){?>
               <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $row->NAMA_DINAS;?></td>
@@ -119,6 +123,9 @@
                 <td><?php echo $row->PASSWORD;?></td>
                 <td><?php echo $row->LEVEL;?></td>
                 <td class="text-nowrap">
+                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Detail">
+                    <a href="<?php echo base_url(); ?>Cadmin/detail/<?php echo $row->ID_ADMIN;?>"><i class="icon wb-eye" aria-hidden="true"></i></a>
+                  </button>
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
                     <a href="<?php echo base_url(); ?>Cadmin/update/<?php echo $row->ID_ADMIN;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
                   </button>
@@ -130,6 +137,8 @@
               <?php }?>              
             </tbody>
           </table>
+          <br/>
+          <?php echo $this->pagination->create_links(); ?>
         </div>
       </div>
       <!-- End Panel Basic -->

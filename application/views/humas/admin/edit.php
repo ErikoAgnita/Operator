@@ -81,7 +81,7 @@
       <h1 class="page-title">Admin</h1>
       <ol class="breadcrumb">
         <li>Admin</li>
-        <li>Tambah Admin</li>
+        <li>Edit Data</li>
       </ol>
     </div>
      <div class="page-content">
@@ -126,10 +126,14 @@
                       <input type="password" class="form-control" id="inputBasicPassword" value="<?php echo $a->PASSWORD ?>" name="password"
                        autocomplete="off" />
                     </div>
+                     <div class="form-group">
+                      <label class="control-label" for="inputBasicImage">Foto</label>
+                      <input type="file" class="form-control" id="inputBasicPassword" img src="gambar/<?=$a->FOTO_PROFIL?>" name="foto"
+                       autocomplete="off" />
+                    </div>
                       <div class="form-group">
                       <label class="control-label" for="inputBasicLevel">Level</label>
-                      <input type="text" class="form-control" id="inputBasicLevel" value="<?php echo $a->LEVEL ?>" name="level"
-                      placeholder="Jalan Argoboga" autocomplete="off" />
+                      <input type="text" class="form-control" id="inputBasicLevel" value="<?php echo $a->LEVEL ?>" name="level" autocomplete="off" />
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary">Simpan</button>

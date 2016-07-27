@@ -78,10 +78,10 @@
   <!-- Page -->
   <div class="page">
     <div class="page-header">
-      <h1 class="page-title">Admin</h1>
+      <h1 class="page-title">Satuan Kerja Perangkat Daerah (SKPD)</h1>
       <ol class="breadcrumb">
-        <li>Admin</li>
-        <li>Tambah Admin</li>
+        <li>SKPD</li>
+        <li>Tambah SKPD</li>
       </ol>
     </div>
      <div class="page-content">
@@ -91,9 +91,9 @@
             <div class="col-sm-6">
               <!-- Example Basic Form -->
               <div class="example-wrap">
-                <h4 class="example-title">Tambah Admin</h4>
+                <h4 class="example-title">Tambah SKPD</h4>
                 <div class="example">
-                  <form action="<?php echo base_url(). 'Cadmin/do_tambah'; ?>" method="post" autocomplete="off">
+                  <form action="<?php echo base_url()?>Cadmin/tambah_foto" method="post" enctype="multipart/form-data" autocomplete="off">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicFirstName">Nama Dinas</label>
                         <input type="text" class="form-control" id="inputBasicFirstName" name="nama"
@@ -106,8 +106,8 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="inputBasicEmail">Email</label>
-                        <input type="text" class="form-control" id="inputBasicFirstName" name="email"
-                        placeholder="a13@mhs.its.ac.id" autocomplete="off" />
+                        <input type="email" class="form-control" id="inputBasicFirstName" name="email"
+                        placeholder="tc13@mhs.its.ac.id" autocomplete="off" />
                     </div>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicTelepon">Telepon</label>
@@ -117,7 +117,7 @@
                     <div class="form-group">
                       <label class="control-label" for="inputBasicUsername">Username</label>
                       <input type="text" class="form-control" id="inputBasicPassword" name="username"
-                      placeholder="5113100061" autocomplete="off" />
+                      placeholder="5113100045" autocomplete="off" />
                     </div>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicPassword">Password</label>
@@ -126,13 +126,18 @@
                     </div>
                      <div class="form-group">
                       <label class="control-label" for="inputBasicImage">Foto</label>
-                      <input type="file" class="form-control" id="inputBasicPassword" name="foto"
+                      <input type="file" class="form-control" id="inputBasicPassword" name="filefoto"
                        autocomplete="off" />
                     </div>
                      <div class="form-group">
                       <label class="control-label" for="inputBasicLevel">Level</label>
-                      <input type="text" class="form-control" id="inputBasicPassword" name="level"
-                       autocomplete="off" />
+                      <div>
+                        <select class = "form_control" name="level" required="off">
+                          <option value="">Level</option>
+                          <option value="Admin">Admin</option>
+                          <option value="SKPD">SKPD</option>
+                        </select>
+                      </div>
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary">Tambah</button>
