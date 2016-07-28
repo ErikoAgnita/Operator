@@ -38,26 +38,31 @@ class Welcome extends CI_Controller {
             $total_row = $this->msaran->record_count();
             //echo $total_row;
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 8;
-            $config['use_page_numbers'] = TRUE;
-            $config['num_links'] = $total_row;
-            $config['cur_tag_open'] = '&nbsp;<a class="current">';
+            $config['per_page'] = 4;
+            //$config['use_page_numbers'] = TRUE;
+            //$config['num_links'] = $total_row;
+            $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
             $config['cur_tag_close'] = '</a>';
-            $config['next_link'] = 'Next';
-            $config['prev_link'] = 'Previous';
+            $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
+            $config['next_link'] = '<i class="fa fa-caret-right"></i>';
+            $config['last_link'] = '<i class="fa fa-forward"></i>';
+            $config['first_link'] = '<i class="fa fa-backward"></i>';
             $config['uri_segment'] = 3;
-            $choice = $config["total_rows"] / $config["per_page"];
+            /*$choice = $config["total_rows"] / $config["per_page"];
             $config["num_links"] = round($choice);
-            $this->pagination->initialize($config);
+            
             $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
             if($page != 0)
                 $strpage = ($page-1) * $config['per_page'];
-            else   $strpage = 0;
-            $data['aspirasi'] = $this->msaran->fetch_data($config['per_page'],$strpage);
+            else   $strpage = 0;*/
+            $this->pagination->initialize($config);
+            $strpage = $this->uri->segment(3,0);
+            $data['aspirasi'] = $this->msaran->fetch_data($config['per_page'],$strpage)->result();
             
             $data['balasan'] = $this->msaran->balasan();
-            $str_links = $this->pagination->create_links();
-            $data['links'] = explode('&nbsp;',$str_links );
+            //$str_links = $this->pagination->create_links();
+            $data['links'] = $this->pagination->create_links();
+            //$data['links'] = explode('&nbsp;',$str_links );
             
             $this->load->view('header2');
             $this->load->view('laporan',$data);

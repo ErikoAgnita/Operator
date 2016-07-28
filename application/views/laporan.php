@@ -1,12 +1,10 @@
 <div class="container" style="background-color:#525252;">
-    <h4 class="page-header" style="text-aligntment:center;">Aspirasi Warga</h4>
+    <h4 class="page-header" style="text-aligntment:center;">Laporan Masyarakat</h4>
      <div class="container-fluid">
          <div class="pull-right">
            <nav>           
               <ul class="pagination">
-                  <?php foreach ($links as $link) {
-                    echo "<li>". $link."</li>";
-                    } ?>
+                  <li> <?php echo $links; ?> </li>
               </ul>
            </nav>
         </div>

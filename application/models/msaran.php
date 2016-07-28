@@ -48,13 +48,14 @@ class msaran extends CI_Model {
         $this->db->order_by('id_saran','desc');
         //$query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.ID_SARAN=saran.ID_SARAN");
         $query = $this->db->get('saran');
-        if ($query->num_rows() > 0) {
+        /*if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $data[] = $row;
             }
             return $data;
         }
-        return false;
+        return false;*/
+        return $query;
     }
     /*function hapus_produk($id)       
     {
