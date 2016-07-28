@@ -1,116 +1,175 @@
-  
-  <div class="page">
-    <div class="page-header">
-      <h1 class="page-title">Detail Saran</h1>
-      <ol class="breadcrumb">
-        <li>Saran</li>
-        <li>Detail</li>
-      </ol>
-    </div>
-    <div class="page-content">
-      <div class="panel">
-        <div class="panel-body container-fluid">
-          <div class="row row-lg">
-            <div class="col-sm-6">
-              <!-- Example Basic Form -->
-              <div class="example-wrap">
-                <h4 class="example-title">Detail Saran</h4>
-                <div class="example">
-                <?php foreach ($saran->result() as $row){?>
-                  <form autocomplete="off" action="
-                  <?php
-                  $status = $row->STATUS_LAPORAN;
-                  if($status==0){
-                    echo base_url();?>SaranController/disposisi/<?php echo $row->ID_SARAN;
-                  }
-                  elseif($status == 2){
-                    echo base_url();?>SaranController/publish/<?php echo $row->ID_SARAN;
-                  }?>" 
-                  method="post">
-                    <a href="<?php echo base_url(); ?>SaranController/ubah/<?php echo $row->ID_SARAN;?>" class="btn btn-primary btn-rounded"><i class="icon-add position-left"></i>Ubah</a>
-                    <a href="<?php echo base_url(); ?>SaranController/hapus/<?php echo $row->ID_SARAN;?>" class="btn btn-primary btn-rounded"><i class="icon-add position-left"></i>Hapus</a>
-                     <div class="form-group">      
-                        <label class="control-label" for="inputBasicFirstName">Dinas</label>
-                        <input type="text" class="form-control" value="<?php echo $row->ID_ADMIN;?>" name="id_admin">
-                    </div>
-                    <div class="form-group">      
-                        <label class="control-label" for="inputBasicFirstName">Nama Pelapor</label>
-                        <input type="text" class="form-control" value="<?php echo $row->NAMA;?>" name="nama">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicEmail">Alamat</label>
-                      <input type="text" class="form-control" value="<?php echo $row->ALAMAT;?>" name="alamat">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Email</label>
-                      <input type="text" class="form-control" value="<?php echo $row->EMAIL;?>" name="email">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Telepon</label>
-                      <input type="text" class="form-control" value="<?php echo $row->TELEPON;?>" name="telepon">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Aspirasi</label>
-                      <input type="text" class="form-control" value="<?php echo $row->ASPIRASI;?>" name="aspirasi">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Tanggal Lapor</label>
-                      <input type="text" class="form-control" value="<?php echo $row->TANGGAL_LAPOR;?>" name="tanggal_lapor">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Lampiran Aspirasi</label>
-                      <input type="text" class="form-control" value="<?php echo $row->LAMPIRAN_ASPIRASI;?>" name="lampiran_aspirasi">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Status Laporan</label>
-                      <input type="text" class="form-control" value="
+<div class="page animsition" style="animation-duration: 800ms; opacity: 1;">
+  <div class="page-header">
+    <h1 class="page-title">Detail Saran</h1>
+    <ol class="breadcrumb">
+      <li><a href="../index.html">Saran</a></li>
+      <li class="active">Detail</li>
+    </ol>
+  </div>
+  <div class="page-content">
+    <!-- Panel X-Editable -->
+    <div class="panel">
+      <header class="panel-heading">
+        <h3 class="panel-title">Detail Saran</h3>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped" id="editableUser">
+            <tbody>
+              <?php foreach ($saran->result() as $row){?>
+              <form autocomplete="off" action="
+                <?php
+                $isStatus = $row->isStatus;
+                if($isStatus=='laporan baru' or $isStatus=='disposisi' or $isStatus=='publish'){
+                  echo base_url();?>SaranController/disposisi/<?php echo $row->id_saran;
+                }
+                elseif($isStatus == 'respon baru'){
+                  echo base_url();?>SaranController/publish/<?php echo $row->id_saran;
+                }?>" 
+                method="post">
+                <tr>
+                  <td style="width:20%">Topik</td>
+                  <td><span class="notready"><?php echo $row->topik;?></span></td>
+                </tr>
+                <tr>
+                  <td>Nama</td>
+                  <td><span class="notready"><?php echo $row->nama;?></span></td>
+                </tr>
+                <tr>
+                  <td>Alamat</td>
+                  <td><span class="notready"><?php echo $row->alamat;?></span></td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td><span class="notready"><?php echo $row->email;?></span></td>
+                </tr>
+                <tr>
+                  <td>Telepon</td>
+                  <td><span class="notready"><?php echo $row->telepon;?></span></td>
+                </tr>
+                <tr>
+                  <td>IP</td>
+                  <td><span class="notready"><?php echo $row->ip;?></span></td>
+                </tr>
+                <tr>
+                  <td>Host</td>
+                  <td><span class="notready"><?php echo $row->host;?></span></td>
+                </tr>
+                <tr>
+                  <td>Tanggal Saran</td>
+                  <td><span class="notready"><?php echo $row->tanggal_saran;?></span></td>
+                </tr>
+                <tr>
+                  <td>Saran</td>
+                  <td><span class="notready"><?php echo $row->saran;?></span></td>
+                </tr>                
+                <tr>
+                  <td>Lampiran Saran</td>
+                  <td><span class="notready"><?php echo $row->lampiran_saran;?></span></td>
+                </tr>
+                <tr>
+                  <td>Spam</td>
+                  <td><span class="notready"><?php echo $row->isSpam;?></span></td>
+                </tr>
+                <tr>
+                  <td>Aktif</td>
+                  <td><span class="notready"><?php echo $row->isAktif;?></span></td>
+                </tr>
+                <tr>
+                  <td>Status</td>
+                  <td><span class="notready"><?php echo $row->isStatus;?></span></td>
+                </tr>
+              </form>
+              <?php } ?>
+            </tbody>
+          </table>
+          <div class="form-group">
+            <?php
+            $isStatus = $row->isStatus;
+            if($isStatus=='laporan baru' or $isStatus=='disposisi' or $isStatus='publish'){
+              ?><button type="submit" class="btn btn-primary"><?php echo "Disposisi"; ?></button><?php
+            }
+            elseif($isStatus == 'respon baru'){
+              ?><button type="submit" class="btn btn-primary"><?php echo "Publish"; ?></button><?php
+            }
+            ?>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-content tab-content page-content-table nav-tabs-animate">
+        <div class="tab-pane animation-fade active" id="forum-newest" role="tabpanel">
+          <table class="table is-indent">          
+            <tbody>
+              <?php foreach ($respon->result() as $row2){?>
+                <form  action="
+                <?php
+                $isAktif = $row2->isAktif;
+                if($isAktif==0){
+                  echo base_url();?>crespon/publish/<?php echo $row2->id_respon;
+                }
+                else{
+                  echo base_url();?>crespon/unpublish/<?php echo $row2->id_respon;
+                }?>"
+                <tr data-url="panel.tpl" data-toggle="slidePanel">
+                  <td class="pre-cell"></td>
+                  <td class="cell-60 responsive-hide">
+                    <a>
+                      <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/logo.png" alt="...">
+                    </a>
+                  </td>
+
+                  <td>
+                    <div class="content">
+                      <div class="metas">
+                        <span class="author"><?php echo $row2->id_skpd;?></span>
+                      </div>
                       <?php 
-                      $status = $row->STATUS_LAPORAN;
-                      if($status==0){
-                        echo "Laporan Masuk";
-                      }
-                      elseif($status == 1){
-                        echo "Telah Didisposisi";
-                      }
-                      elseif($status == 2){
-                        echo "Respon SKPD Masuk";
-                      }
-                      elseif($status == 3){
-                        echo "Respon dipublish";
-                      }
-                      ?>
-                      " name="status_laporan">
-                      <!-- <input type="text" class="form-control" value="<?php echo $row->STATUS_LAPORAN;?>" name="status_laporan"> -->
+                      if($row2->isi_respon){?>
+                      <div class="metas">                        
+                        <span class="started"><?php echo $row2->kategori;?></span>
+                      </div>                      
+                      <div class="metas">                        
+                        <span class="tags"><?php echo $row2->tanggal_respon.' WIB';?></span>
+                      </div>
+                      <div class="title">
+                        <?php echo $row2->isi_respon; ?>
+                      </div>                                            
+                      <div class="metas">                 
+                        <span class="tags"><?php echo $row2->lampiran_respon;?></span>
+                      </div>
+                      <?php }
+                      else{?>                                                                 
+                      <div class="metas">                 
+                        <span class="tags">(Belum ada Respon)</span>
+                      </div>
+                      <?php } ?>       
                     </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Respon Humas</label>
-                      <input type="text" class="form-control" value="<?php echo $row->RESPON_HUMAS;?>" name="respon_humas">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Tanggal Disposisi</label>
-                      <input type="text" class="form-control" value="<?php echo $row->TANGGAL_DISPOSISI;?>" name="tanggal_disposisi">
-                    </div>                    
+                    <!--<button type="submit" class="btn btn-primary">Publish</button> -->
                     <div class="form-group">
                       <?php
-                      $status = $row->STATUS_LAPORAN;
-                      if($status==0){
-                        ?><button type="submit" class="btn btn-primary"><?php echo "Disposisi"; ?></button><?php
-                      }
-                      elseif($status == 2){
+                      $isAktif = $row2->isAktif;
+                      if($isAktif==0){
                         ?><button type="submit" class="btn btn-primary"><?php echo "Publish"; ?></button><?php
                       }
+                      else{
+                        ?><button type="submit" class="btn btn-primary"><?php echo "Unpublish"; ?></button><?php
+                      }
                       ?>
-                      <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
                     </div>
-                    <?php } ?>
-                  </form>
-                </div>
-              </div>
-              <!-- End Example Basic Form -->
-            </div>
-          </div>
+
+                  </td>
+                  <td class="cell-80 forum-posts">
+                  </td>
+                  <td class="suf-cell"></td>
+                </tr>
+                </form>
+              <?php } ?>
+            </tbody>
+          </table>
+
         </div>
       </div>
     </div>
   </div>
-  <!-- End Page -->
+</div>

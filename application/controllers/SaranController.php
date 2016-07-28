@@ -8,10 +8,25 @@ class SaranController extends CI_Controller {
 		parent::__construct();
 		$this->load->model('SaranModel');
 	}
-
-	public function index()
+	
+	//gak dipake
+	public function html($id_saran)
 	{
-		$this->load->view('welcome_message');
+		$data['saran'] = $this->SaranModel->detail_saran($id_saran);
+		$this->load->view('humas/header')->view('humas/saran/htmldetail', $data)->view('humas/footer');
+	}
+
+	//gak dipake
+	public function html2()
+	{
+		$data['saran'] = $this->SaranModel->lihat_saran();
+		$this->load->view('humas/header')->view('humas/saran/htmllihat', $data)->view('humas/footer');
+	}
+
+	//gak dipake
+	public function html3()
+	{
+		$this->load->view('humas/header')->view('humas/saran/htmllihat2')->view('humas/footer');
 	}
 
 	public function lihat()
@@ -21,25 +36,36 @@ class SaranController extends CI_Controller {
 		
 	}
 
-	public function detail($ID_SARAN)
+	//coba: untuk menampilkan respon juga
+	public function detail($id_saran)
 	{
-		$data['saran'] = $this->SaranModel->detail_saran($ID_SARAN);
+		$data['saran'] = $this->SaranModel->detail_saran($id_saran);
+		$data['respon'] = $this->SaranModel->respon($id_saran);
 		$this->load->view('humas/header')->view('humas/saran/detail', $data)->view('humas/footer');
 	}
 
-	public function saran_respon($ID_SARAN)
+	//coba: untuk menampilkan respon juga
+	public function detail2($id_saran)
 	{
-		$data['saran'] = $this->SaranModel->saran_respon($ID_SARAN);
+		$data['saran'] = $this->SaranModel->detail_saran($id_saran);
+		$data['respon'] = $this->SaranModel->respon($id_saran);
+		$this->load->view('humas/header')->view('humas/saran/detail2', $data)->view('humas/footer');
+	}
+
+	//belum bisa
+	public function saran_respon($id_saran)
+	{
+		$data['saran'] = $this->SaranModel->saran_respon($id_saran);
 		$this->load->view('humas/header')->view('humas/saran/saran_respon', $data)->view('humas/footer');
 	}
 
-	public function ubah($ID_SARAN)
+	public function ubah($id_saran)
 	{
-		$data['saran'] = $this->SaranModel->ubah_saran($ID_SARAN);
+		$data['saran'] = $this->SaranModel->ubah_saran($id_saran);
 		$this->load->view('humas/header')->view('humas/saran/ubah', $data)->view('humas/footer');
 	}
 
-	public function update($ID_SARAN)
+	public function update($id_saran)
 	{
 		$RESPON_HUMAS=$this->input->post('respon_humas');
 		
@@ -47,48 +73,56 @@ class SaranController extends CI_Controller {
             'RESPON_HUMAS' => $RESPON_HUMAS,
             );
 
-        $this->SaranModel->update_saran($ID_SARAN, $data);
+        $this->SaranModel->update_saran($id_saran, $data);
 
-        redirect(base_url()."SaranController/detail/".$ID_SARAN);
+        redirect(base_url()."SaranController/detail/".$id_saran);
 	}
 
-	public function hapus($ID_SARAN)
+	public function hapus($id_saran)
 	{
-		$this->SaranModel->hapus_saran($ID_SARAN);
+		$this->SaranModel->hapus_saran($id_saran);
         redirect(base_url()."SaranController/lihat");
 	}
 
-	public function disposisi($ID_SARAN)
+	//coba: untuk disposisi ke banyak skpd scr sekaligus
+	//bisa klik tambah skpd atau centang mungkin????
+	public function disposisi($id_saran)
 	{	
-		$data['admin'] = $this->SaranModel->disposisi_saran();
-		$data['ID_SARAN'] = $ID_SARAN;
+		$data['skpd'] = $this->SaranModel->disposisi_saran();
+		$data['id_saran'] = $id_saran;
+		$data['saran'] = $this->SaranModel->detail_saran($id_saran);
 		$this->load->view('humas/header')->view('humas/saran/disposisi', $data)->view('humas/footer');
 	}
 
-	public function disposisikan($ID_SARAN)
+	public function disposisikan($id_saran)
 	{
-		$ID_ADMIN = $this->input->post('id_admin');
-		$NAMA_DINAS = $this->SaranModel->dinas($ID_ADMIN); //belum bisa
+		$id_skpd = $this->input->post('id_skpd');
+		$topik = $this->input->post('topik');
+		//$nama = $this->SaranModel->skpd($id_skpd); //belum bisa
 		$date = date_create();
 		$tanggal =  date_format($date, 'Y-m-d H:i:s');
-		$RESPON_HUMAS = "Laporan telah didisposisikan kepada ".$NAMA_DINAS." sejak tanggal ".$tanggal;
-		$STATUS_LAPORAN = 1;
+		$isStatus = 'disposisi';
 		$data = array (
-			'ID_ADMIN' => $ID_ADMIN,
-			'RESPON_HUMAS' => $RESPON_HUMAS,
-			'STATUS_LAPORAN' => $STATUS_LAPORAN,
-			'TANGGAL_DISPOSISI' =>$tanggal,
+			'topik' => $topik,
+			'isStatus' => $isStatus
 			);
-		$this->SaranModel->disposisikan_saran($ID_SARAN, $data);
-		redirect(base_url()."SaranController/detail/".$ID_SARAN);
+		$data_respon = array (
+			'id_skpd' => $id_skpd,
+			'id_saran' => $id_saran,
+			);
+		$this->SaranModel->disposisikan_saran($id_saran, $data);
+		$this->SaranModel->addRespon($data_respon);
+		redirect(base_url()."SaranController/detail/".$id_saran);
 	}
-
-	public function publish($ID_SARAN)
+	
+	//isAktif untuk publish ke masyarakat
+	public function publish($id_saran)
 	{
 		$data = array (
-			'STATUS_LAPORAN' => 3,			
+			'isStatus' => 'publish',
+			'isAktif' => 1,
 			);
-		$this->SaranModel->publish_saran($ID_SARAN, $data);
-		redirect(base_url()."SaranController/detail/".$ID_SARAN);
+		$this->SaranModel->publish_saran($id_saran, $data);
+		redirect(base_url()."SaranController/detail/".$id_saran);
 	}
 }

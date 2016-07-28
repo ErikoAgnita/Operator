@@ -16,21 +16,29 @@
               <div class="example-wrap">
                 <h4 class="example-title">Disposisi Saran</h4>
                 <div class="example">
-                  <form autocomplete="off" action="<?php echo base_url();?>SaranController/disposisikan/<?php echo $ID_SARAN;?>" method="post">
+                  <form autocomplete="off" action="<?php echo base_url();?>SaranController/disposisikan/<?php echo $id_saran;?>" method="post">
+                    
+                    <div class="form-group">
+                      <label class="control-label" for="inputBasicEmail">Topik</label>
+                      <?php
+                      foreach ($saran->result() as $row) {?>
+                      <input type="text" class="form-control" value="<?php echo $row->topik;?>" name="topik">
+                      <?php } ?>  
+                    </div>
 
                     <div class="form-group">
-                      <label >Dinas</label>
+                      <label >SKPD</label>
                       <div>
-                        <select class="form-control" name="id_admin" required="off">
-                          <option value="">Pilih Dinas</option>
+                        <select class="form-control" name="id_skpd" required="off">
+                          <option value="">Pilih SKPD</option>
                           <?php
-                            foreach ($admin->result() as $row) {
-                              if($row->LEVEL == "SKPD")
-                              {
-                                echo "<option value='".$row->ID_ADMIN."'>".$row->NAMA_DINAS."</option>";
-                              }                              
+                            foreach ($skpd->result() as $row) {
+                              //if($row->LEVEL == "SKPD")
+                              //{
+                                echo "<option value='".$row->id_skpd."'>".$row->nama."</option>";
+                              //}                               
                             }
-                          ?>
+                          ?> 
                         </select>
                       </div>
                     </div>

@@ -15,62 +15,76 @@ class SaranModel extends CI_Model
         return $query;
     }
 
-    function detail_saran($ID_SARAN)
+    function detail_saran($id_saran)
     {
-        $this->db->where('ID_SARAN', $ID_SARAN);
+        $this->db->where('id_saran', $id_saran);
         $query = $this->db->get('saran');
-        //$query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.ID_SARAN=saran.ID_SARAN");
+        //$query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.id_saran=saran.id_saran");
         return $query;
     }
 
-    function saran_respon($ID_SARAN)
+    function respon($id_saran)
     {
-        $this->db->where('ID_SARAN', $ID_SARAN);
-        $query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.ID_SARAN=saran.ID_SARAN");
+        $this->db->where('id_saran', $id_saran);
+        //$query = $this->db->get('respon');
+        $query = $this->db->query("SELECT * FROM respon INNER join skpd ")
         return $query;
     }
 
-    function ubah_saran($ID_SARAN)
+    //belum bisa
+    function saran_respon($id_saran)
     {
-        $this->db->where('ID_SARAN', $ID_SARAN);
+        $this->db->where('id_saran', $id_saran);
+        $query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.id_saran=saran.id_saran");
+        return $query;
+    }
+
+    function ubah_saran($id_saran)
+    {
+        $this->db->where('id_saran', $id_saran);
         $query = $this->db->get('saran');
         return $query;
     }
 
-    function update_saran($ID_SARAN, $data)
+    function update_saran($id_saran, $data)
     {
-        $this->db->where("ID_SARAN", $ID_SARAN);
+        $this->db->where("id_saran", $id_saran);
         $this->db->update('saran', $data);
     }
 
-    function hapus_saran($ID_SARAN)
+    function hapus_saran($id_saran)
     {
-        $this->db->where("ID_SARAN", $ID_SARAN);
+        $this->db->where("id_saran", $id_saran);
         $this->db->delete('saran');
     }
 
     function disposisi_saran()
     {
-        $query = $this->db->get('admin');
+        $query = $this->db->get('skpd');
         return $query;
     }
 
-    function dinas($ID_ADMIN)
+    function skpd($id_skpd)
     {
-        $this->db->where('ID_ADMIN', $ID_ADMIN);
-        $query = $this->db->query("SELECT NAMA_DINAS from admin where admin.ID_ADMIN=$ID_ADMIN");
+        $this->db->where('id_skpd', $id_skpd);
+        $query = $this->db->query("SELECT nama from skpd where skpd.id_skpd=$id_skpd");
         return $query;
     }
 
-    function disposisikan_saran($ID_SARAN, $data)
+    function disposisikan_saran($id_saran, $data)
     {
-        $this->db->where("ID_SARAN", $ID_SARAN);
+        $this->db->where("id_saran", $id_saran);
         $query = $this->db->update('saran', $data);
     }
 
-    function publish_saran($ID_SARAN, $data)
+    function addRespon($data)
     {
-        $this->db->where("ID_SARAN", $ID_SARAN);
+        $this->db->insert('respon', $data);
+    }
+
+    function publish_saran($id_saran, $data)
+    {
+        $this->db->where("id_saran", $id_saran);
         $query = $this->db->update('saran', $data);
     }
 }

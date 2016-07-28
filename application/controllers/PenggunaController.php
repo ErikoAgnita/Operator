@@ -51,5 +51,4 @@ class PenggunaController extends CI_Controller {
         $this->PenggunaModel->AddAkun($data);
         redirect('PenggunaController/lihat');
     }
-
 }
