@@ -9,7 +9,7 @@
   <meta name="description" content="bootstrap admin template">
   <meta name="author" content="">
 
-  <title>Aspirasi Masyarakat Salatiga</title>
+  <title>Kotak Saran Salatiga</title>
 
   <link rel="apple-touch-icon" href="<?php  echo base_url(); ?>assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="<?php  echo base_url(); ?>assets/images/favicon.ico">
@@ -91,8 +91,8 @@
         <i class="icon wb-search" aria-hidden="true"></i>
       </button>
       <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="">
-        <img class="navbar-brand-logo" src="<?php  echo base_url(); ?>assets/images/logo.png" title="Aspirasi Masyarakat Salatiga">
-        <span class="navbar-brand-text"> Aspirasi</span>
+        <img class="navbar-brand-logo" src="<?php  echo base_url(); ?>assets/images/logo.png" title="Kotak Saran Salatiga">
+        <span class="navbar-brand-text">Kotak Saran Salatiga</span>
       </div>
     </div>
 
@@ -125,7 +125,7 @@
         <!-- Navbar Toolbar Right -->
         <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
           <li role="presentation">
-            <a href="<?php echo base_url(); ?>clogin/login" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Keluar</a>
+            <a href="<?php echo base_url(); ?>clogin/login" role="menuitem" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')"><i class="icon wb-power" aria-hidden="true"></i> Keluar</a>
           </li>    
         </ul>
         <!-- End Navbar Toolbar Right -->
@@ -157,21 +157,13 @@
       <div>
         <div>
           <ul class="site-menu">
-            <li class="site-menu-category">Profil Admin</li>
-            <li class="site-menu-item has-sub active open">
-              <a href="javascript:void(0)" data-slug="uikit">
+            <li class="site-menu-category">Admin</li>
+            <li class="site-menu-item">
+              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/admin_lihat" data-slug="uikit">
                 <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
-                <span class="site-menu-arrow"></span>
-              </a>
-              <ul class="site-menu-sub">
-                <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Dinas/dinas_lihat" data-slug="uikit-buttons">
-                    <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Lihat</span>
-                  </a>
-                </li>
-              </ul>
+                <span class="site-menu "></span>
+             </a>              
             </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
