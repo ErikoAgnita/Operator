@@ -44,4 +44,42 @@ class Mpengguna extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+
+	public function dataskpd(){
+		return $this->db->get('skpd');
+	}
+
+	//profil operator
+	public function get_profil($id) {
+        $this->db->from('pengguna');
+        $this->db->where('id_pengguna', $id);
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) {
+            return $query->result();
+        }
+	}
+
+	public function get_update_profil($id, $data) {
+        $this->db->where('id_pengguna', $id);
+        $this->db->update('pengguna', $data);
+
+        return TRUE;
+    }
+
+    //profil admin
+    public function get_profiladmin($id) {
+        $this->db->from('pengguna');
+        $this->db->where('id_pengguna', $id);
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) {
+            return $query->result();
+        }
+	}
+
+	public function get_update_profiladmin($id, $data) {
+        $this->db->where('id_pengguna', $id);
+        $this->db->update('pengguna', $data);
+
+        return TRUE;
+    }
 }

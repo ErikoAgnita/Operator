@@ -7,7 +7,7 @@
   <meta name="description" content="bootstrap admin template">
   <meta name="author" content="">
 
-  <title>Aspirasi Masyarakat Salatiga</title>
+  <title>Kotak Saran Salatiga</title>
 
   <link rel="apple-touch-icon" href="<?php echo base_url(); ?>assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
@@ -33,7 +33,6 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/brand-icons/brand-icons.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
-
   <!--[if lt IE 9]>
     <script src="../../assets/vendor/html5shiv/html5shiv.min.js"></script>
     <![endif]-->
@@ -50,6 +49,9 @@
     Breakpoints();
   </script>
 </head>
+
+<!-- validation error -->
+
 <body class="page-login layout-full">
   <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -64,7 +66,7 @@
         <img class="brand-img" src="<?php echo base_url(); ?>assets/images/logo.png" alt="...">
         <h2 class="brand-text">Pemerintah Kota Salatiga</h2>
       </div>
-      <p>Masuk ke halaman akun Anda</p>
+      <p>Silahkan isi Username dan Password Anda</p>
       <form method="post" action="<?php echo base_url(); ?>clogin/masuk_login">
         <div class="form-group">
           <label class="sr-only" for="inputName">Username</label>
@@ -75,6 +77,12 @@
           <input type="password" class="form-control" id="inputPassword" name="password"
           placeholder="Password">
         </div>
+
+
+
+    <!--      <span role="alert" class="error-msg" id="errormsg_0_Passwd">
+  The email and password that you entered don't match.
+  </span>
     <!--    <div class="form-group clearfix">
           <div class="checkbox-custom checkbox-inline pull-left">
             <input type="checkbox" id="inputCheckbox" name="checkbox">
@@ -88,12 +96,11 @@
 
       <footer class="page-copyright">
         <p>oleh TC</p>
-        <p>© 2016. Aspirasi Masyarakat Salatiga.</p>
+        <p>© 2016. Kotak Saran Salatiga.</p>
       </footer>
     </div>
   </div>
   <!-- End Page -->
-
 
   <!-- Core  -->
   <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.js"></script>

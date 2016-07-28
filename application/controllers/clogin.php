@@ -7,8 +7,10 @@ class clogin extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('mlogin');
-        $this->load->model('madmin');
+        $this->load->model('mpengguna');
         $this->load->library('session');
+     //   $this->load->library('form_validation');
+     //   $this->load->helper(array('url','form'));
     }
 
     public function login()
@@ -16,18 +18,18 @@ class clogin extends CI_Controller {
         $this->load->view('login');
     }
 
-    public function logout_dinas()
+    public function logout()
     {
-        $this->load->view('dinas/logout');
+        $this->load->view('logout');
     }
 
-    public function masuk_login()
+   public function masuk_login()
     {
 
         $username=$_POST['username'];
-        $password=$_POST['password'];
+        $password=md5($_POST['password']);
         
-        $cek = $this->mlogin->logindinas($username,$password);
+        $cek = $this->mlogin->loginoperator($username,$password);
         $cek1 = $this->mlogin->loginadmin($username,$password);
 
         if (!empty($cek)) 
@@ -37,9 +39,9 @@ class clogin extends CI_Controller {
             $session_data = $this->session->userdata('masuk');//nama session
             $session_data['user'] = $user;
             $this->session->set_userdata("masuk", $session_data);
-            $data['admin'] = $this->madmin->GetAkun();
-            $this->load->view('dinas/header')->view('dinas/index', $data)->view('dinas/footer');
-            //redirect('SaranController/lihat');
+            $data['admin'] = $this->mpengguna->GetAkun();
+       //     $this->load->view('dinas/header')->view('dinas/indexoperator', $data)->view('dinas/footer');
+            redirect('cpengguna/indexoperator');
         }
 
 
@@ -50,15 +52,49 @@ class clogin extends CI_Controller {
             $session_data = $this->session->userdata('masuk');//nama session
             $session_data['user'] = $user;
             $this->session->set_userdata("masuk", $session_data);
-            $data['admin'] = $this->madmin->GetAkun();
+            $data['admin'] = $this->mpengguna->GetAkun();
             redirect('SaranController/lihat');
         }
 
         else
         {
-            $this->load->view('login');
+            redirect('clogin/login');
         }
     
     }
+
+ /*   public function masuk_login() {
+        $this->load->helper('security');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('username','username','required');
+        $this->form_validation->set_rules('password','password','required|callback_verifyoper');
+        
+        if($this->form_validation->run() == false){
+            //redirect('clogin/login');
+            $this->login();
+            //redirect('dashboard');
+            //echo "string";
+        }
+        else{
+            redirect('cpengguna/indexoperator');
+        }
+    }
+
+    public function verifyoper(){
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        
+        $this->load->model('mlogin');
+        $this->load->library('session');
+        if($this->mlogin->loginoperator($username, $password)){
+            return true;
+        //    echo var_dump(query);
+        }
+        else{
+           $this->form_validation->set_message('verifyoper','Incorrect Username or Password. Please try again.');
+            return false;
+        }
+    }*/
+
 }
 ?>

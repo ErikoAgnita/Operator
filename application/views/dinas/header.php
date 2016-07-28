@@ -9,7 +9,7 @@
   <meta name="description" content="bootstrap admin template">
   <meta name="author" content="">
 
-  <title>Aspirasi Masyarakat Salatiga</title>
+  <title>Kotak Saran Salatiga</title>
 
   <link rel="apple-touch-icon" href="<?php  echo base_url(); ?>assets/images/apple-touch-icon.png">
   <link rel="shortcut icon" href="<?php  echo base_url(); ?>assets/images/favicon.ico">
@@ -91,8 +91,8 @@
         <i class="icon wb-search" aria-hidden="true"></i>
       </button>
       <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="">
-        <img class="navbar-brand-logo" src="<?php  echo base_url(); ?>assets/images/logo.png" title="Aspirasi Masyarakat Salatiga">
-        <span class="navbar-brand-text"> Aspirasi</span>
+        <img class="navbar-brand-logo" src="<?php  echo base_url(); ?>assets/images/logo.png" title="Kotak Saran Salatiga">
+        <span class="navbar-brand-text" data-slug="uikit"> Kotak Saran Salatiga</span>
       </div>
     </div>
 
@@ -125,7 +125,7 @@
         <!-- Navbar Toolbar Right -->
         <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
           <li role="presentation">
-            <a href="<?php echo base_url(); ?>clogin/login" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Keluar</a>
+            <a href="<?php echo base_url(); ?>clogin/login" role="menuitem" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')"><i class="icon wb-power" aria-hidden="true"></i> Keluar</a>
           </li>    
         </ul>
         <!-- End Navbar Toolbar Right -->
@@ -158,37 +158,38 @@
       <div>
         <div>
           <ul class="site-menu">
-            <li class="site-menu-category">Operator Dinas</li>
-            <li class="site-menu-item has-sub">
-              <a href="javascript:void(0)" data-slug="advanced">
+             <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/indexoperator" data-slug="uikit">
+            <li class="site-menu-category">Operator</li> </a>
+            <li class="site-menu-item">
+              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/operator_lihat" data-slug="uikit">
                 <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
-                <span class="site-menu-arrow"></span>
-              </a>
-                 <ul class="site-menu-sub">
+                <span class="site-menu "></span>
+             </a>
+         <!--         <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Admin/dinas_lihat" data-slug="uikit">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/dinas_lihat" data-slug="uikit">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Lihat</span>
                   </a>
                 </li>
-                <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Admin/dinas_ubah" data-slug="uikit">
+          <!--      <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>/dinas_ubah" data-slug="uikit">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Ubah</span>
                   </a>
-                </li>
-              </ul>
+                </li> 
+              </ul> -->
               </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
-                <span class="site-menu-title">Aspirasi</span>
+                <span class="site-menu-title">Laporan</span>
                 <span class="site-menu-arrow"></span>
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>Admin/aspirasi_lihat" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/laporan_lihat" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Lihat</span>
                   </a>

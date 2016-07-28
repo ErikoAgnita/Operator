@@ -7,6 +7,8 @@ class Cpengguna extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('mpengguna');
+        $this->load->helper('url');
+        $this->load->library('session');
     }
 
     public function lihat()
@@ -18,14 +20,15 @@ class Cpengguna extends CI_Controller {
 
     public function tambah()
     {
-        $this->load->view('humas/header')->view('humas/pengguna/tambah')->view('humas/footer');
+        $data['skpd'] = $this->mpengguna->dataskpd();
+        $this->load->view('humas/header')->view('humas/pengguna/tambah', $data)->view('humas/footer');
     }
 
     public function do_tambah()
     {
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
-        $kode_unit = $this->input->post('kode_unit');
+        $id_skpd = $this->input->post('id_skpd');
         $level = $this->input->post('level');
         $nama = $this->input->post('nama');
         $alamat = $this->input->post('alamat');
@@ -38,7 +41,7 @@ class Cpengguna extends CI_Controller {
         $data = array(
             'username' => $username,
             'password' => $password,
-            'kode_unit' => $kode_unit,
+            'id_skpd' => $id_skpd,
             'level' => $level,
             'nama' => $nama,
             'alamat' => $alamat,
@@ -100,5 +103,67 @@ class Cpengguna extends CI_Controller {
     {
         $this->mpengguna->Delete($id_pengguna);
         redirect(base_url().'Cpengguna/lihat');
+    }
+
+    //profil operator
+    public function indexoperator()
+    {
+        $this->load->view('dinas/header')->view('dinas/indexoperator')->view('dinas/footer');
+    }
+
+
+    public function operator_lihat(){   //
+        $id = $_SESSION['opeid'];
+        $data['adata']  = $this->mpengguna->get_profil($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
+        $this->load->view('dinas/header');
+        $this->load->view('dinas/akun/lihat',$data);
+        $this->load->view('dinas/footer');
+    }
+    
+    public function do_updateoperator() //update profil operator
+    {
+        $id= $this->input->post('id_pengguna');
+
+        $data = array(
+                'username' => $this->input->post('username'),
+                'password' => md5($this->input->post('password')),
+                'nama' => $this->input->post('nama'),
+                'alamat'  => $this->input->post('alamat'),
+                'telepon'   => $this->input->post('telepon'),
+                'handphone' => $this->input->post('handphone'),
+                'email' => $this->input->post('email')
+        );
+//var_dump($data);
+        $this->mpengguna->get_update_profil($id, $data);
+        redirect('cpengguna/operator_lihat');
+
+    }
+
+    //profil admin
+    public function admin_lihat(){   //
+        $id = $_SESSION['adminid'];
+        $data['adata']  = $this->mpengguna->get_profiladmin($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
+        $this->load->view('humas/header');
+        $this->load->view('humas/akun/lihat',$data);
+        $this->load->view('humas/footer');
+    }
+
+    public function do_updateadmin() //update profil operator
+    {
+        $id= $this->input->post('id_pengguna');
+
+        $data = array(
+                'username' => $this->input->post('username'),
+                'password' => md5($this->input->post('password')),
+                'nama' => $this->input->post('nama'),
+                'alamat'  => $this->input->post('alamat'),
+                'telepon'   => $this->input->post('telepon'),
+                'handphone' => $this->input->post('handphone'),
+                'email' => $this->input->post('email')
+        );
+//var_dump($data);
+        $this->mpengguna->get_update_profiladmin($id, $data);
+        redirect('cpengguna/admin_lihat');
+
     }
 }

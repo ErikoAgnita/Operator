@@ -16,7 +16,7 @@
               <div class="example-wrap">
                 <h4 class="example-title">Tambah Pengguna</h4>
                 <div class="example">
-                  <form action="<?php echo base_url(). 'PenggunaController/do_tambah'; ?>" method="post" autocomplete="off">
+                  <form action="<?php echo base_url(). 'cpengguna/do_tambah'; ?>" method="post" autocomplete="off">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicFirstName">username</label>
                         <input type="text" class="form-control" id="inputBasicFirstName" name="username"
@@ -28,9 +28,19 @@
                       placeholder="Jalan Argoboga" autocomplete="off" />
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicEmail">kode_unit</label>
-                        <input type="text" class="form-control" id="inputBasicFirstName" name="kode_unit"
-                        placeholder="a13@mhs.its.ac.id" autocomplete="off" />
+                      <label >SKPD</label>
+                      <div>
+                        <select class="form-control" name="id_skpd" required="off">
+                          <option value="">Pilih SKPD</option>
+                          <?php
+                            foreach ($skpd->result() as $row) {
+                              
+                                echo "<option value='".$row->id_skpd."'>".$row->nama."</option>";
+                                                            
+                            }
+                          ?>
+                        </select>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicTelepon">level</label>

@@ -1,7 +1,7 @@
   <!-- Page -->
   <div class="page">
     <div class="page-header">
-      <h2 class="intro-text text-center">Profil Operator</h2>
+      <h2 class="intro-text text-center">Profil Admin</h2>
    <!--   <ol class="breadcrumb">
         <li>Profil Operator Dinas</li>
         <li>Lihat</li>
@@ -18,7 +18,7 @@
               <div class="example-wrap">
                 <div class="example">
                   <?php foreach($adata as $row){ ?>
-                  <form action="<?php echo base_url();?>cpengguna/do_updateoperator" method="post">
+                  <form action="<?php echo base_url();?>cpengguna/do_updateadmin" method="post">
               <!--      <div class="form-group">
                         <label class="control-label" for="inputBasicFirstName">ID</label>
                         <input type="text" class="form-control" id="inputBasicFirstName" name="id_admin"
