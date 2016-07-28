@@ -24,7 +24,7 @@
                     echo base_url();?>SaranController/disposisi/<?php echo $row->id_saran;
                   }
                   elseif($isStatus == 'respon baru'){
-                    echo base_url();?>SaranController/publish/<?php echo $row->id_saran;
+                    echo base_url();?>SaranController/nonAktif/<?php echo $row->id_saran;
                   }?>" 
                   method="post">
                   <tr>
@@ -118,8 +118,8 @@
                 ?><button type="submit" class="btn btn-primary"><?php echo "Publish"; ?></button><?php
               }
               ?>
+            </div>
           </div>
-        </div>
 
       
                       

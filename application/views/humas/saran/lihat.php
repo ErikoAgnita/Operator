@@ -1,18 +1,11 @@
   <!-- Page -->
 <div class="page">
-  <div class="page-header">
-    <h1 class="page-title">Saran</h1>
-    <ol class="breadcrumb">
-      <li>Saran</li>
-      <li>Lihat</li>
-    </ol>
-  </div>
 
   <div class="page-content">
     <div class="panel">
       <header class="panel-heading">
         <div class="panel-actions"></div>
-        <h3 class="panel-title">Lihat Daftar Saran</h3>
+        <h3 class="panel-title">Daftar Saran</h3>
       </header>
 
         <!-- Forum Nav -->
@@ -31,7 +24,7 @@
                     <td class="pre-cell"></td>
                     <td class="cell-60 responsive-hide">
                       <a class="avatar" href="javascript:void(0)">
-                        <img class="img-responsive" src="../../../global/portraits/1.jpg" alt="...">
+                        <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/people.png" alt="...">
                       </a>
                     </td>
 
@@ -42,10 +35,14 @@
                           <span class="started">alamat: <?php echo $row->alamat;?></span>
                         </div>
                         <div class="metas">
-                          <span class="tags"><?php echo $row->tanggal_saran;?></span>
+                          <span class="tags"><?php echo $row->tanggal_saran.'  WIB';?></span>
                         </div>
                         <div class="title">
-                          <?php echo substr($row->saran, 0,200); echo '...'?>
+                          <?php                           
+                          echo substr($row->saran, 0,200); 
+                          if(strlen($row->saran) > 200){
+                            echo '...'; 
+                          }?>
                         </div>
                         <div class="title">
                           <a href="<?php echo base_url(); ?>SaranController/detail/<?php echo $row->id_saran;?>">Detail</a>

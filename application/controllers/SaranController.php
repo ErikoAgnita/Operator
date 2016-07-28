@@ -86,6 +86,7 @@ class SaranController extends CI_Controller {
 
 	//coba: untuk disposisi ke banyak skpd scr sekaligus
 	//bisa klik tambah skpd atau centang mungkin????
+	//isAktif => 1 -> saran bukan spam, dapat dilihat oleh skpd dan masyarakat sekaligus disposisi
 	public function disposisi($id_saran)
 	{	
 		$data['skpd'] = $this->SaranModel->disposisi_saran();
@@ -104,7 +105,8 @@ class SaranController extends CI_Controller {
 		$isStatus = 'disposisi';
 		$data = array (
 			'topik' => $topik,
-			'isStatus' => $isStatus
+			'isStatus' => $isStatus,
+			'isAktif' => 1,
 			);
 		$data_respon = array (
 			'id_skpd' => $id_skpd,
@@ -112,6 +114,15 @@ class SaranController extends CI_Controller {
 			);
 		$this->SaranModel->disposisikan_saran($id_saran, $data);
 		$this->SaranModel->addRespon($data_respon);
+		redirect(base_url()."SaranController/detail/".$id_saran);
+	}
+
+	public function nonAktif($id_saran)
+	{
+		$data = array (
+			'isAktif' => 0,
+			);
+		$this->SaranModel->publish_saran($id_saran, $data);
 		redirect(base_url()."SaranController/detail/".$id_saran);
 	}
 	
