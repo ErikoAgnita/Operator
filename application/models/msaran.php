@@ -8,8 +8,10 @@ class msaran extends CI_Model {
     }
     
     function balasan() {
-        //$this->db->where('id_saran',$idsaran);
-        $query = $this->db->get('respon');  
+        $this->db->select('isi_respon, tanggal_respon, respon.id_saran as rid_saran, skpd.nama as snama');    
+        $this->db->from('respon');
+        $this->db->join('skpd', 'respon.id_skpd = skpd.id_skpd');
+        $query = $this->db->get();  
         if ($query->num_rows() > 0) {
             return $query->result();
         }

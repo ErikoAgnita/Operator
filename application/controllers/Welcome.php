@@ -70,75 +70,75 @@ class Welcome extends CI_Controller {
         }
     
         public function add_saran(){
-            
+            $this->load->library('form_validation');
             $this->load->model('msaran');
             $last=$this->msaran->ambil_id();
             //var_dump($last);
             $this->load->helper('security');
             $this->load->library('upload');
-            $this->load->library('form_validation');
-            $this->form_validation->set_rules('telp','Contact_no','trim|required|min_length[9]|max_length[15]|regex_match[/^[0123456789+]{9,15}$/]');
-            $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-            if ($this->form_validation->run() == FALSE){
-                $this->form_validation->set_message('Incorrect Number type.');
-                $this->index();
-            }
             
-            if($last==0){
-                $nmfile = 0;}
-            else{
-                foreach ($last as $l ){
-                $nmfile = $l->id_saran;
-            }}  
-            $config = array(
-            'upload_path' => "./uploads/",
-            'allowed_types' => "gif|jpg|png|jpeg|bmp",
-            'overwrite' => TRUE,
-            'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-            //'max_height' => "3000",
-            //'max_width' => "3000",
-            'file_name'=> $nmfile
-            );
-            $hostname = gethostbyNAME($_SERVER['SERVER_ADDR']);
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);
-            if($_FILES['image']['name']){
-                if($this->upload->do_upload('image')){
-                    
-                    $gbr= $this->upload->data();
-					$date = date_create();
-                    $tglapor =  date_format($date, 'Y-m-d H:i:s');
-                    $data=array('nama' => $this->input->post('nama'),
-                                'alamat' => $this->input->post('almt'),
-                                'telepon' => $this->input->post('telp'),
-                                'email' => $this->input->post('email'),
-                                'saran' => $this->input->post('aspr'),
-								'tanggal_saran' => $tglapor,
-                                'ip' => $hostname,
-                                'lampiran_saran'=>$gbr['file_name']);
-                  //  var_dump($data);
-                $this->msaran->kirim_saran($data);
-                //$this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Aspirasi anda sudah kami </div></div>");
-                redirect(site_url('../operator'));
-    //jika berhasil maka akan ditampilkan view vupload
-                }/*
-                else{
-                    $this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-danger\" id=\"alert\">Gagal upload gambar !!</div></div>");*/
-                    //redirect(site_url('../index.php/admin/form'));//jika gagal maka akan ditampilkan form upload
-             /*   }  
-            */}
-            else{
-                $date = date_create();
-                $tglapor =  date_format($date, 'Y-m-d H:i:s');
-                $data=array('nama' => $this->input->post('nama'),
-                            'alamat' => $this->input->post('almt'),
-                            'telepon' => $this->input->post('telp'),
-                            'email' => $this->input->post('email'),
-                            'saran' => $this->input->post('aspr'),
-                            'ip' => $hostname,
-                            'tanggal_saran' => $tglapor);
-                $this->msaran->kirim_saran($data);
-                redirect(site_url('../operator'));
+            $this->form_validation->set_rules('nama','Nama','trim|required|regex_match[/[A-Za-z ]/]');
+            $this->form_validation->set_rules('telp','Telepon','trim|required|regex_match[/[0-9() +-]/]');
+            //$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+            if ($this->form_validation->run() == FALSE){
+                $this->index();
+            }else{
+                    if($last==0){
+                        $nmfile = 0;}
+                    else{
+                        foreach ($last as $l ){
+                        $nmfile = $l->id_saran;
+                    }}  
+                    $config = array(
+                    'upload_path' => "./uploads/",
+                    'allowed_types' => "gif|jpg|png|jpeg|bmp",
+                    'overwrite' => TRUE,
+                    'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+                    //'max_height' => "3000",
+                    //'max_width' => "3000",
+                    'file_name'=> $nmfile
+                    );
+                    $hostname = gethostbyNAME($_SERVER['SERVER_ADDR']);
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if($_FILES['image']['name']){
+                        if($this->upload->do_upload('image')){
+
+                            $gbr= $this->upload->data();
+                            $date = date_create();
+                            $tglapor =  date_format($date, 'Y-m-d H:i:s');
+                            $data=array('nama' => $this->input->post('nama'),
+                                        'alamat' => $this->input->post('almt'),
+                                        'telepon' => $this->input->post('telp'),
+                                        'email' => $this->input->post('email'),
+                                        'saran' => $this->input->post('aspr'),
+                                        'tanggal_saran' => $tglapor,
+                                        'ip' => $hostname,
+                                        'lampiran_saran'=>$gbr['file_name']);
+                          //  var_dump($data);
+                        $this->msaran->kirim_saran($data);
+                        //$this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Aspirasi anda sudah kami </div></div>");
+                        redirect(site_url('../operator'));
+            //jika berhasil maka akan ditampilkan view vupload
+                        }/*
+                        else{
+                            $this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-danger\" id=\"alert\">Gagal upload gambar !!</div></div>");*/
+                            //redirect(site_url('../index.php/admin/form'));//jika gagal maka akan ditampilkan form upload
+                     /*   }  
+                    */}
+                    else{
+                        $date = date_create();
+                        $tglapor =  date_format($date, 'Y-m-d H:i:s');
+                        $data=array('nama' => $this->input->post('nama'),
+                                    'alamat' => $this->input->post('almt'),
+                                    'telepon' => $this->input->post('telp'),
+                                    'email' => $this->input->post('email'),
+                                    'saran' => $this->input->post('aspr'),
+                                    'ip' => $hostname,
+                                    'tanggal_saran' => $tglapor);
+                        $this->msaran->kirim_saran($data);
+                        redirect(site_url('../operator'));
+                    }
             }
         }
     

@@ -14,6 +14,13 @@
 
         <!-- Main content -->
         <section class="content">
+            <?php
+if(validation_errors()!=NULL){
+    echo'<div class="alert alert-warning">';
+    echo validation_errors();
+    echo '<button type="button" class="close" data-dismiss="alert">×</button></div>';
+}
+?>
           <div class="row">
                 <!--==========-->
                 <div class="col-md-6">
@@ -248,38 +255,27 @@
                             <label class="col-sm-2 control-label">Nama</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nama" name="nama" required>
+                                <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?php echo set_value('nama'); ?>" required>
                             </div>
                             <label class="col-sm-2 control-label">Alamat</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-home"></i></span>
-                                <input type="text" class="form-control" placeholder="alamat" name="almt" required>
+                                <input type="text" class="form-control" placeholder="alamat" name="almt" value="<?php echo set_value('almt'); ?>" required>
                             </div>
                             <label class="col-sm-2 control-label">HP</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                <input type="text" class="form-control" placeholder="HP" value="+62" name="telp" required>
-                                
-                                <?php
-if(validation_errors()!=NULL){
-    echo'
-    <div class="alert alert-info">
-        <button type="button" class="close" data-dismiss="alert">×</button>';
-            echo validation_errors();
-    echo '
-    </div>';
-}
-?>
+                                <input type="text" class="form-control" placeholder="HP" value="<?php echo set_value('telp'); ?>" name="telp" required>
                             </div>
                             <label class="col-sm-2 control-label">Email</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control" placeholder="Email" name="email" required>
+                                <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" required>
                             </div>
                             <label class="col-sm-2 control-label">Laporan</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-comments"></i></span>
-                                <textarea name="aspr" class="textarea" placeholder="Salurkan aspirasi anda" style="width: 100%; font-size: 14px; line-height: 30px; color: #4F4F4F; border: 1px solid #dddddd; padding: 10px;" required></textarea>
+                                <input name="aspr" class="textarea" placeholder="Salurkan aspirasi anda" style="width: 100%; font-size: 14px; line-height: 50px; color: #4F4F4F; border: 1px solid #dddddd; padding: 10px;" value="<?php echo set_value('aspr'); ?>" required></input>
                             </div>
                             <label class="col-sm-2 control-label">Lampirkan Foto</label>
                             <div class="input-group">

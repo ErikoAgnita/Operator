@@ -56,13 +56,13 @@
                                     
                 </div><!-- /.box-body -->
           <div class='box-footer box-comments'>
-              <?php foreach($balasan as $rply){ if($as->id_saran == $rply->id_saran) {?>
+              <?php foreach($balasan as $rply){ if($as->id_saran == $rply->rid_saran) {?>
                   <div class='box-comment'>
                     <!-- User image -->
                     <img class='img-circle img-sm' src='<?php echo base_url(); ?>assets/images/logo.png' alt='pemerintah'>
                     <div class='comment-text'>
                       <span class="username">
-                        Admin
+                        <?php echo $rply->snama;?>
                         <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($rply->tanggal_respon)); ?></span>
                       </span><!-- /.username -->
                         <p><?php echo $rply->isi_respon; ?> <br></p>
