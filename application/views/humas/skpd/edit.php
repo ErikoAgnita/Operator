@@ -4,7 +4,7 @@
       <h1 class="page-title">Admin</h1>
       <ol class="breadcrumb">
         <li>Admin</li>
-        <li>Edit Data</li>
+        <li>Edit Data SKPD</li>
       </ol>
     </div>
      <div class="page-content">
@@ -75,13 +75,13 @@
                        autocomplete="off" />
                     </div>
                        <div class="form-group">
-                      <label class="control-label" for="inputBasicTema">isLink</label>
-                      <input type="text" class="form-control" id="inputBasicTema" value="<?php echo $s->isLink ?>" name="isLink"
+                      <label class="control-label" for="inputBasicisLink">isLink</label>
+                      <input type="text" class="form-control" id="inputBasicisLink" value="<?php echo $s->isLink ?>" name="isLink"
                        autocomplete="off" />
                     </div>
                        <div class="form-group">
-                      <label class="control-label" for="inputBasicTema">isAktif</label>
-                      <input type="text" class="form-control" id="inputBasicTema" value="<?php echo $s->isAktif ?>" name="isAktif"
+                      <label class="control-label" for="inputBasicisAktif">isAktif</label>
+                      <input type="text" class="form-control" id="inputBasicisAktif" value="<?php echo $s->isAktif ?>" name="isAktif"
                        autocomplete="off" />
                     </div>
                     <div class="form-group">

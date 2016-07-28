@@ -7,25 +7,63 @@ class Cpengguna extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('mpengguna');
-        $this->load->helper('url');
         $this->load->library('session');
     }
 
     public function lihat()
     {
-        $data['pengguna'] = $this->mpengguna->GetAkun();
+        //$data['pengguna'] = $this->mpengguna->GetAkun(); 
+        $data['pengguna'] = $this->mpengguna->GetPengguna(); 
         $this->load->view('humas/header')->view('humas/pengguna/lihat', $data)->view('humas/footer');
 
     } 
 
-    public function tambah()
+     public function tambah()
     {
-        $data['skpd'] = $this->mpengguna->dataskpd();
+        $data['skpd'] = $this->mpengguna->data_skpd();
         $this->load->view('humas/header')->view('humas/pengguna/tambah', $data)->view('humas/footer');
     }
 
     public function do_tambah()
     {
+        $id_skpd = $this->input->post('id_skpd');
+        $username = $this->input->post('username');
+        $password = md5($this->input->post('password'));
+        $level = $this->input->post('level');
+        $nama = $this->input->post('nama');
+        $alamat = $this->input->post('alamat');
+        $telepon = $this->input->post('telepon');
+        $handphone = $this->input->post('handphone');
+        $email = $this->input->post('email');
+        $keterangan = $this->input->post('keterangan');
+
+        $data = array(
+            'id_skpd' => $id_skpd,
+            'username' => $username,
+            'password' => $password,
+            'level' => $level,
+            'nama' => $nama,
+            'alamat' => $alamat,
+            'telepon' => $telepon,
+            'handphone' => $handphone,
+            'email' => $email,
+            'keterangan' => $keterangan
+            );
+        $this->mpengguna->AddPengguna($data, 'pengguna');
+        redirect('Cpengguna/lihat');
+    }
+
+    public function update($id_pengguna)
+    {
+        $where = array('id_pengguna' => $id_pengguna);
+        $data['pengguna'] = $this->mpengguna->UpdatePengguna($where, 'pengguna')->result();
+        $data['skpd_data'] = $this->mpengguna->data_skpd();
+        $this->load->view('humas/header')->view('humas/pengguna/edit', $data)->view('humas/footer');
+    }
+
+    public function do_update($id_pengguna)
+    {
+        $id_pengguna = $this->input->post('id_pengguna');
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
         $id_skpd = $this->input->post('id_skpd');
@@ -39,48 +77,9 @@ class Cpengguna extends CI_Controller {
         $isAktif = $this->input->post('isAktif');
 
         $data = array(
-            'username' => $username,
-            'password' => $password,
-            'id_skpd' => $id_skpd,
-            'level' => $level,
-            'nama' => $nama,
-            'alamat' => $alamat,
-            'telepon' => $telepon,
-            'handphone' => $handphone,
-            'email' => $email,
-            'keterangan' => $keterangan,
-            'isAktif' => $isAktif
-            );
-        $this->mpengguna->AddAkun($data);
-        redirect('Cpengguna/lihat');
-    }
-
-    public function update($id_pengguna)
-    {
-        $where = array('id_pengguna' => $id_pengguna);
-        $data['skpd'] = $this->mpengguna->UpdateAkun($where, 'pengguna')->result();
-        $this->load->view('humas/header')->view('humas/pengguna/edit', $data)->view('humas/footer');
-    }
-
-    public function do_update($id_pengguna)
-    {
-        $id_pengguna = $this->input->post('id_pengguna');
-        $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
-        $kode_unit = $this->input->post('kode_unit');
-        $level = $this->input->post('level');
-        $nama = $this->input->post('nama');
-        $alamat = $this->input->post('alamat');
-        $telepon = $this->input->post('telepon');
-        $handphone = $this->input->post('handphone');
-        $email = $this->input->post('email');
-        $keterangan = $this->input->post('keterangan');
-        $isAktif = $this->input->post('isAktif');
-
-        $data = array(
            'username' => $username,
             'password' => $password,
-            'kode_unit' => $kode_unit,
+            'id_skpd' => $id_skpd,
             'level' => $level,
             'nama' => $nama,
             'alamat' => $alamat,
@@ -95,7 +94,7 @@ class Cpengguna extends CI_Controller {
             'id_pengguna' => $id_pengguna
         );
 
-        $this->mpengguna->UpdateAkun1($where, $data, 'pengguna');
+        $this->mpengguna->UpdatePengguna1($where, $data, 'pengguna');
         redirect('Cpengguna/lihat');
     }
 
@@ -166,4 +165,5 @@ class Cpengguna extends CI_Controller {
         redirect('cpengguna/admin_lihat');
 
     }
+
 }

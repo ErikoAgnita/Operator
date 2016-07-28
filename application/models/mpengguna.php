@@ -9,44 +9,36 @@ class Mpengguna extends CI_Model {
         $this->load->database('default','true');
     }
 
+//PENGGUNA
+
 	public function GetAkun(){
 		return $this->db->get('pengguna');
 	}
 
-	public function AddAkun($data){
+	public function GetPengguna(){
+		return $this->db->query('SELECT p.id_pengguna, p.nama as nama_pengguna, p.alamat, p.handphone, p.email, s.nama as nama_dinas, p.level, p.keterangan from pengguna p, skpd s where p.id_skpd=s.id_skpd');
+	}
+
+	public function AddPengguna($data, $table){
 		$this->db->insert('pengguna', $data);
 	}
 
-	//SKPD
-
-	public function GetAkunskpd($number, $offset){
-		return $query = $this->db->get('skpd', $number, $offset)->result();
+	public function data_skpd(){
+		return $this->db->get('skpd');
 	}
 
-	public function jumlah_data(){
-		return $this->db->get('skpd')->num_rows();
-	}
-
-	public function AddAkun1($data, $table){
-		$this->db->insert($table, $data);
-	}
-
-	public function UpdateAkun($where, $table){
+	public function UpdatePengguna($where, $table){
 		return $this->db->get_where($table, $where);
 	}
 
-	public function UpdateAkun1($where, $data, $table){
+	public function UpdatePengguna1($where, $data, $table){
 		$this->db->where($where);
 		$this->db->update($table, $data);
 	}
 
-	public function Delete($where, $table){
+	public function DeletePengguna($where, $table){
 		$this->db->where($where);
 		$this->db->delete($table);
-	}
-
-	public function dataskpd(){
-		return $this->db->get('skpd');
 	}
 
 	//profil operator
@@ -82,4 +74,5 @@ class Mpengguna extends CI_Model {
 
         return TRUE;
     }
+
 }
