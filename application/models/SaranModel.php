@@ -26,8 +26,8 @@ class SaranModel extends CI_Model
     function respon($id_saran)
     {
         $this->db->where('id_saran', $id_saran);
-        //$query = $this->db->get('respon');
-        $query = $this->db->query("SELECT * FROM respon INNER join skpd ")
+        $query = $this->db->get('respon');
+        //$query = $this->db->query("SELECT * FROM respon INNER join skpd ")
         return $query;
     }
 
