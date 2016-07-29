@@ -3,22 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-      function __construct() {
+	function __construct() {
         parent::__construct();
         $this->load->helper(array('url','form'));
         $this->load->model('msaran');
@@ -38,9 +23,7 @@ class Welcome extends CI_Controller {
             $total_row = $this->msaran->record_count();
             //echo $total_row;
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 4;
-            //$config['use_page_numbers'] = TRUE;
-            //$config['num_links'] = $total_row;
+            $config['per_page'] = 1;
             $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
             $config['cur_tag_close'] = '</a>';
             $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
@@ -48,21 +31,13 @@ class Welcome extends CI_Controller {
             $config['last_link'] = '<i class="fa fa-forward"></i>';
             $config['first_link'] = '<i class="fa fa-backward"></i>';
             $config['uri_segment'] = 3;
-            /*$choice = $config["total_rows"] / $config["per_page"];
-            $config["num_links"] = round($choice);
-            
-            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-            if($page != 0)
-                $strpage = ($page-1) * $config['per_page'];
-            else   $strpage = 0;*/
+        
             $this->pagination->initialize($config);
             $strpage = $this->uri->segment(3,0);
             $data['aspirasi'] = $this->msaran->fetch_data($config['per_page'],$strpage)->result();
             
             $data['balasan'] = $this->msaran->balasan();
-            //$str_links = $this->pagination->create_links();
             $data['links'] = $this->pagination->create_links();
-            //$data['links'] = explode('&nbsp;',$str_links );
             
             $this->load->view('header2');
             $this->load->view('laporan',$data);
@@ -77,9 +52,9 @@ class Welcome extends CI_Controller {
             $this->load->helper('security');
             $this->load->library('upload');
             
-            $this->form_validation->set_rules('nama','Nama','trim|required|regex_match[/[A-Za-z ]/]');
-            $this->form_validation->set_rules('telp','Telepon','trim|required|regex_match[/[0-9() +-]/]');
-            //$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+            $this->form_validation->set_rules('nama','Nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
+            $this->form_validation->set_rules('telp','Telepon','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ]{4,20}$/]');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
             if ($this->form_validation->run() == FALSE){
                 $this->index();
             }else{
@@ -117,15 +92,9 @@ class Welcome extends CI_Controller {
                                         'lampiran_saran'=>$gbr['file_name']);
                           //  var_dump($data);
                         $this->msaran->kirim_saran($data);
-                        //$this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Aspirasi anda sudah kami </div></div>");
-                        redirect(site_url('../operator'));
-            //jika berhasil maka akan ditampilkan view vupload
-                        }/*
-                        else{
-                            $this->session->set_flashdata("pesan","<div class=\"col-md-12\"><div class=\"alert alert-danger\" id=\"alert\">Gagal upload gambar !!</div></div>");*/
-                            //redirect(site_url('../index.php/admin/form'));//jika gagal maka akan ditampilkan form upload
-                     /*   }  
-                    */}
+                        $this->index();
+                        }
+                    }
                     else{
                         $date = date_create();
                         $tglapor =  date_format($date, 'Y-m-d H:i:s');
@@ -137,7 +106,7 @@ class Welcome extends CI_Controller {
                                     'ip' => $hostname,
                                     'tanggal_saran' => $tglapor);
                         $this->msaran->kirim_saran($data);
-                        redirect(site_url('../operator'));
+                        $this->index();
                     }
             }
         }

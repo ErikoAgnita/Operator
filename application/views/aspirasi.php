@@ -291,7 +291,7 @@ if(validation_errors()!=NULL){
                         
                         <div class="pull-right">
                             <!--button type="reset"class="btn btn-danger btn-sm">Batal</button-->
-                            <input type="submit" class="btn btn-success btn-block btn-flat btn-sm" value="Kirim" />
+                            <input type="submit" class="btn btn-success btn-flat btn-sm btn-block" value="Kirim" />
                         </div>
                     </form>
 
