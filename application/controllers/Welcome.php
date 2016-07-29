@@ -23,7 +23,7 @@ class Welcome extends CI_Controller {
             $total_row = $this->msaran->record_count();
             //echo $total_row;
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 1;
+            $config['per_page'] = 8;
             $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
             $config['cur_tag_close'] = '</a>';
             $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
@@ -55,6 +55,7 @@ class Welcome extends CI_Controller {
             $this->form_validation->set_rules('nama','Nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
             $this->form_validation->set_rules('telp','Telepon','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ]{4,20}$/]');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('aspr', 'Laporan', 'trim|required|regex_match[/^[^&$%#@\'\|\>\<\\]$/]');
             if ($this->form_validation->run() == FALSE){
                 $this->index();
             }else{

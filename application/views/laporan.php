@@ -16,7 +16,7 @@
                 <div class='box-header with-border'>
                   <div class='user-block'>
                     <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
-                    <span class='username'><a href="#"><?php echo $as->nama; ?></a></span>
+                    <span class='username'><b><label><?php echo $as->nama; ?></label></b></span>
                     <span class='description'><?php echo date("d M Y  H:i:s",strtotime($as->tanggal_saran)); ?></span>
                   </div><!-- /.user-block -->
                   
@@ -43,7 +43,7 @@
         <!--<div class='box-header'>-->
                   <div class='user-block'>
                     <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
-                    <span class='username'><a href="#"><?php echo $as->nama; ?></a></span>
+                    <span class='username'><label><?php echo $as->nama; ?></label></span>
                     <span class='description'><?php echo date("d M Y H:i:s",strtotime($as->tanggal_saran)); ?></span>
                   </div><!-- /.user-block -->
                 <!--</div> /.box-header -->
