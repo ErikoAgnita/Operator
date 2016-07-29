@@ -14,11 +14,12 @@
 
         <!-- Main content -->
         <section class="content">
+            <?php echo $this->session->flashdata('pesan'); ?>
             <?php
 if(validation_errors()!=NULL){
-    echo'<div class="alert alert-warning">';
+    echo'<div class="alert alert-warning"><button href="#" class="close" data-dismiss="alert">&times;</button>';
     echo validation_errors();
-    echo '<button type="button" class="close" data-dismiss="alert">×</button></div>';
+    echo '</div>';
 }
 ?>
           <div class="row">
@@ -249,7 +250,6 @@ if(validation_errors()!=NULL){
                 </div>
               <!--==========-->
                   <div class="col-md-6">
-                      <?php //$this->session->flashdata('pesan'); ?>
                       <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>Welcome/add_saran/" >
                         <div class="form-group" style="color:#62a8ea;">
                             <label class="col-sm-2 control-label">Nama</label>
@@ -283,7 +283,7 @@ if(validation_errors()!=NULL){
                                 <!--<input type="file" class="form-control" name="foto">-->
                                 <input id="uploadFile" type="file" name="image" class="form-control" data-provides="uploadFile"/>
                                 <!--div id="imagePreview"><a type="button btn-danger" class="close" data-dismiss="uploadFile">×</a></div-->
-                                <div id="imagePreview"><a href="#" id="delImg" class="close">×</a></div>
+                                <div id="imagePreview"></div>
                                 
                             </div>
 

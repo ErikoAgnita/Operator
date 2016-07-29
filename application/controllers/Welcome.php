@@ -92,7 +92,8 @@ class Welcome extends CI_Controller {
                                         'lampiran_saran'=>$gbr['file_name']);
                           //  var_dump($data);
                         $this->msaran->kirim_saran($data);
-                        $this->index();
+                        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Pesan anda sudah kami simpan, tunggu tindak lanjut dari kami<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                        redirect(base_url());
                         }
                     }
                     else{
@@ -106,7 +107,8 @@ class Welcome extends CI_Controller {
                                     'ip' => $hostname,
                                     'tanggal_saran' => $tglapor);
                         $this->msaran->kirim_saran($data);
-                        $this->index();
+                        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Pesan anda sudah kami simpan, tunggu tindak lanjut dari kami<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                        redirect(base_url());
                     }
             }
         }
