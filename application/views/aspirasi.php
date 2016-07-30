@@ -213,10 +213,10 @@ if(validation_errors()!=NULL){
         <!-- Loading Screen -->
         <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
             <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-            <div style="position:absolute;display:block;background:url('../images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+            <div style="position:absolute;display:block;background:url('<?php echo base_url(); ?>assets/images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
         </div>
         <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 456px; overflow: hidden;">
-            <?php if(isset($aspirasi)){
+            <?php if($aspirasi!=0){
                 foreach($aspirasi as $as){ ?>
             
                 <div style="display: inline-block;">
@@ -224,7 +224,13 @@ if(validation_errors()!=NULL){
                     <img style="z-index:-1;" data-u="image" src="<?php echo base_url(); ?>uploads/<?php echo $as->lampiran_saran; ?>" />
                     <!--img data-u="thumb" src="img/thumb-02.jpg" /-->
                 </div>
-            <?php }} ?>
+            <?php }} else  {?>
+                <div style="display: inline-block;">
+                    <img style="z-index:-1;" data-u="image" src="http://cipkataru.salatigakota.go.id/img/kantor%20walikota.png" />
+                    <!--<img style="z-index:-1;" data-u="image" src="<?php //echo base_url(); ?>assets/images/boxed-bg.jpg" />-->
+                    <!--img data-u="thumb" src="img/thumb-02.jpg" /-->
+                </div>
+            <?php } ?>
         </div>
         <!-- Thumbnail Navigator -->
         <div data-u="thumbnavigator" class="jssort01" style="position:absolute;left:0px;bottom:0px;width:800px;height:100px;" data-autocenter="1">
@@ -291,7 +297,7 @@ if(validation_errors()!=NULL){
                         
                         <div class="pull-right">
                             <!--button type="reset"class="btn btn-danger btn-sm">Batal</button-->
-                            <input type="submit" class="btn btn-success btn-flat btn-sm btn-block" value="Kirim" />
+                            <input type="submit" class="btn btn-sm btn-success btn-flat btn-block" value="Kirim" />
                         </div>
                     </form>
 

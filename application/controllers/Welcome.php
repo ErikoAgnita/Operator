@@ -55,7 +55,7 @@ class Welcome extends CI_Controller {
             $this->form_validation->set_rules('nama','Nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
             $this->form_validation->set_rules('telp','Telepon','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ]{4,20}$/]');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-            $this->form_validation->set_rules('aspr', 'Laporan', 'trim|required|regex_match[/^[^&$%#@\'\|\>\<\\]$/]');
+            //$this->form_validation->set_rules('aspr', 'Laporan', 'trim|required|regex_match[/^[^&$%#@\'\|\>\<\\]$/]');
             if ($this->form_validation->run() == FALSE){
                 $this->index();
             }else{

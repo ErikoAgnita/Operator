@@ -48,6 +48,7 @@
                   </div><!-- /.user-block -->
                 <!--</div> /.box-header -->
       </div>
+            <?php if($balasan!=0){?>
       <div class="modal-body">
         
                 <div class='box-body'>
@@ -71,6 +72,7 @@
                 <?php }} ?>
               </div>
               </div>
+            <?php } ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
