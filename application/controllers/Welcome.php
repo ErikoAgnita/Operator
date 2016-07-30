@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
         parent::__construct();
         $this->load->helper(array('url','form'));
         $this->load->model('msaran');
+        $this->load->helper('security');
         }
         public function index()
         {
@@ -43,19 +44,32 @@ class Welcome extends CI_Controller {
             $this->load->view('laporan',$data);
             $this->load->view('footer');
         }
+     function check_message(){
+        $regex = '/[(a-zA-Z0-9 &_.-~,!"\/@%()+=?)]{1,}/';
+        $str = $this->input->post('aspr');
+          if(!preg_match($regex, $str)) {
+            $this->form_validation->set_message('check_message', 'dadasd');
+            return FALSE;
+          } else {
+            return TRUE;
+          }
+    }
     
         public function add_saran(){
             $this->load->library('form_validation');
             $this->load->model('msaran');
             $last=$this->msaran->ambil_id();
             //var_dump($last);
-            $this->load->helper('security');
+            
             $this->load->library('upload');
             
             $this->form_validation->set_rules('nama','Nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
+            $this->form_validation->set_rules('aspr','Saran','trim|min_length[1]|max_length[255]|required|xss_clean|regex_match[/^[a-zA-Z0-9  &_.~,!"\/@%()+=?-]{1,}$/]');
             $this->form_validation->set_rules('telp','Telepon','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ]{4,20}$/]');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-            //$this->form_validation->set_rules('aspr', 'Laporan', 'trim|required|regex_match[/^[^&$%#@\'\|\>\<\\]$/]');
+            
+            $this->form_validation->set_message('Saran', 'dadasd');
+            
             if ($this->form_validation->run() == FALSE){
                 $this->index();
             }else{

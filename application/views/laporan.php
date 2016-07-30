@@ -48,14 +48,14 @@
                   </div><!-- /.user-block -->
                 <!--</div> /.box-header -->
       </div>
-            <?php if($balasan!=0){?>
+            
       <div class="modal-body">
-        
-                <div class='box-body'>
-                  <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/".$as->lampiran_saran."' alt='Foto Laporan Masyarakat'> <?php ";} ?>
-                  <p><?php echo $as->saran; ?> <br></p>
-                                    
-                </div><!-- /.box-body -->
+            <div class='box-body'>
+              <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/".$as->lampiran_saran."' alt='Foto Laporan Masyarakat'> <?php ";} ?>
+              <p><?php echo $as->saran; ?> <br></p>
+
+            </div><!-- /.box-body -->
+          <?php if($balasan!=0){?>
           <div class='box-footer box-comments'>
               <?php foreach($balasan as $rply){ if($as->id_saran == $rply->rid_saran) {?>
                   <div class='box-comment'>
@@ -71,8 +71,8 @@
                   </div><!-- /.box-comment -->                    
                 <?php }} ?>
               </div>
-              </div>
-            <?php } ?>
+          <?php } ?>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>

@@ -226,8 +226,7 @@ if(validation_errors()!=NULL){
                 </div>
             <?php }} else  {?>
                 <div style="display: inline-block;">
-                    <img style="z-index:-1;" data-u="image" src="http://cipkataru.salatigakota.go.id/img/kantor%20walikota.png" />
-                    <!--<img style="z-index:-1;" data-u="image" src="<?php //echo base_url(); ?>assets/images/boxed-bg.jpg" />-->
+                    <img style="z-index:-1;" data-u="image" src="<?php echo base_url(); ?>assets/images/balaikota_salatiga.jpg" />
                     <!--img data-u="thumb" src="img/thumb-02.jpg" /-->
                 </div>
             <?php } ?>
