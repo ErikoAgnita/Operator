@@ -55,6 +55,9 @@ class Mpengguna extends CI_Model {
         $this->db->where('id_pengguna', $id);
         $this->db->update('pengguna', $data);
 
+        $waktu=date("Y-m-d H:i:s");
+        $this->db->query("UPDATE pengguna SET last_update='$waktu' where id_pengguna='$id'");
+
         return TRUE;
     }
 
@@ -71,6 +74,9 @@ class Mpengguna extends CI_Model {
 	public function get_update_profiladmin($id, $data) {
         $this->db->where('id_pengguna', $id);
         $this->db->update('pengguna', $data);
+
+        $waktu=date("Y-m-d H:i:s");
+        $this->db->query("UPDATE pengguna SET last_update='$waktu' where id_pengguna='$id'");
 
         return TRUE;
     }
