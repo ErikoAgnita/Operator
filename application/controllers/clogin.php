@@ -9,8 +9,8 @@ class clogin extends CI_Controller {
         $this->load->model('mlogin');
         $this->load->model('mpengguna');
         $this->load->library('session');
-     //   $this->load->library('form_validation');
-     //   $this->load->helper(array('url','form'));
+        $this->load->library('form_validation');
+        $this->load->helper(array('url','form'));
     }
 
     public function login()
@@ -23,7 +23,7 @@ class clogin extends CI_Controller {
         $this->load->view('logout');
     }
 
-   public function masuk_login()
+/*   public function masuk_login()
     {
 
         $username=$_POST['username'];
@@ -61,40 +61,50 @@ class clogin extends CI_Controller {
             redirect('clogin/login');
         }
     
-    }
+    }*/
 
- /*   public function masuk_login() {
+    public function masuk_login() {
         $this->load->helper('security');
-        $this->load->library('form_validation');
         $this->form_validation->set_rules('username','username','required');
-        $this->form_validation->set_rules('password','password','required|callback_verifyoper');
+        $this->form_validation->set_rules('password','password','required|callback_verify');
         
+        $username = $this->input->post('username');
+        $password = md5($this->input->post('password'));
+
+        $cek = $this->mlogin->loginoperator($username,$password);
+        $cek1 = $this->mlogin->loginadmin($username,$password);
+
         if($this->form_validation->run() == false){
-            //redirect('clogin/login');
             $this->login();
             //redirect('dashboard');
             //echo "string";
         }
-        else{
-            redirect('cpengguna/indexoperator');
+        else if (!empty($cek) == 1){
+             redirect('cpengguna/indexoperator');
+        }
+        else if (!empty($cek1) == 2){
+            redirect('SaranController/lihat');
         }
     }
 
-    public function verifyoper(){
+    public function verify(){
         $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        
-        $this->load->model('mlogin');
-        $this->load->library('session');
-        if($this->mlogin->loginoperator($username, $password)){
-            return true;
+        $password = md5($this->input->post('password'));
+    
+        $cek = $this->mlogin->loginoperator($username,$password);
+        $cek1 = $this->mlogin->loginadmin($username,$password);
+
+        if (!empty($cek)){
+            return 1;
         //    echo var_dump(query);
         }
+        else if (!empty($cek1)){
+            return 2;
+        }
         else{
-           $this->form_validation->set_message('verifyoper','Incorrect Username or Password. Please try again.');
+           $this->form_validation->set_message('verify','Username atau Password Anda tidak sesuai');
             return false;
         }
-    }*/
-
+    }
 }
 ?>

@@ -67,6 +67,17 @@
         <h2 class="brand-text">Pemerintah Kota Salatiga</h2>
       </div>
       <p>Silahkan isi Username dan Password Anda</p>
+      
+      <?php
+if(validation_errors()!=NULL){
+    echo'
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">×</button>';
+            echo validation_errors();
+    echo '
+    </div>';
+}
+?>
       <form method="post" action="<?php echo base_url(); ?>clogin/masuk_login">
         <div class="form-group">
           <label class="sr-only" for="inputName">Username</label>
