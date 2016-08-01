@@ -85,7 +85,7 @@
                        autocomplete="off" />
                     </div>
                      <label class="control-label" for="inputBasicKeterangan">Keterangan</label>
-                      <input type="text" class="form-control" id="inputBasicKeterangan" value="<?php echo $p->keterangan ?>" name="email"
+                      <input type="text" class="form-control" id="inputBasicKeterangan" value="<?php echo $p->keterangan ?>" name="keterangan"
                        autocomplete="off" />
                     </div>
                        <div class="form-group">

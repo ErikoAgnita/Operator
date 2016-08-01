@@ -7,7 +7,7 @@ class Cpengguna extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('mpengguna');
-        $this->load->library('session');
+        $this->load->library(array('form_validation', 'session'));
     }
 
     public function lihat()
@@ -90,11 +90,11 @@ class Cpengguna extends CI_Controller {
             'isAktif' => $isAktif
         );
 
-        $where = array(
+        /*$where = array(
             'id_pengguna' => $id_pengguna
-        );
+        );*/
 
-        $this->mpengguna->UpdatePengguna1($where, $data, 'pengguna');
+        $this->mpengguna->UpdatePengguna1($id_pengguna, $data);
         redirect('Cpengguna/lihat');
     }
 
@@ -103,6 +103,12 @@ class Cpengguna extends CI_Controller {
         $this->mpengguna->Delete($id_pengguna);
         redirect(base_url().'Cpengguna/lihat');
     }
+
+    /*public function detail($id_pengguna)
+    {
+        $data['pengguna'] = $this->mpengguna->DetailPengguna(); 
+        $this->load->view('humas/header')->view('humas/pengguna/lihat', $data)->view('humas/footer');
+    }*/
 
     //profil operator
     public function indexoperator()

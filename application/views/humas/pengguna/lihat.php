@@ -42,8 +42,10 @@
                 <td><?php echo $row->level;?></td>                
                 <td><?php echo $row->keterangan;?></td>
                  <td class="text-nowrap">
+                  <!-- Trigger the modal with a button -->
+                  <!-- <button href="#" type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="modal" data-original-title="Detail" data-target="#myModal"><i class="icon wb-eye" aria-hidden="true"></i> -->
                    <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Detail">
-                    <a href="<?php echo base_url(); ?>Cpengguna/detail/<?php echo $row->id_pengguna;?>"><i class="icon wb-eye" aria-hidden="true"></i></a>
+                    <a href="#myModal<?php echo $row->id_pengguna;?>" data-toggle="modal"><i class="icon wb-eye" aria-hidden="true"></i></a>
                   </button>
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
                     <a href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
@@ -52,6 +54,66 @@
                     <a href="<?php echo base_url(); ?>Cpengguna/hapus/<?php echo $row->id_pengguna;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
                   </button>
                 </td>
+                <!-- Modal -->
+<!-- Trigger the modal with a button -->
+
+
+<!-- Modal -->
+<div id="myModal<?php echo $row->id_pengguna;?>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class='user-block'>
+              <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
+              <span class='username'><label><?php echo $row->nama_pengguna; ?></label></span>
+              <span class='description'><?php echo $row->nama_dinas; ?></span>
+              <span class='description'>Terakhir di ubah pada <?php echo date("d M Y H:i:s",strtotime($row->last_update)); ?></span>
+          </div>
+        <!--<h4 class="modal-title">Modal Header</h4>-->
+      </div>
+      <div class="modal-body">
+            <p>Nama Pengguna<p>
+            <p><?php echo $row->nama_pengguna; ?><p>
+            <p>Alamat<p>
+            <p><?php echo $row->alamat; ?><p>
+            <p>Telepon<p>
+            <p><?php echo $row->telepon; ?><p>
+            <p>Email<p>
+            <p><?php echo $row->email; ?><p>
+            <p>Bagian SKPD<p>
+            <p><?php echo $row->nama_dinas; ?><p>
+            <p>Username<p>
+            <p><?php echo $row->username; ?><p>
+            <p>Password<p>
+            <p><?php echo $row->password; ?><p>
+            <p>Terakhir Login<p>
+            <p><?php echo $row->last_login; ?><p>
+            <p>Terakhir di Ubah<p>
+            <p><?php echo $row->last_update; ?><p>
+            <p>Level<p>
+            <p><?php echo $row->level; ?><p>
+            <p>isAktif<p>
+            <p><?php echo $row->isAktif; ?><p>
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-info btn-default">
+            <a href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>"></a>Update
+        </button>
+        <button type="button" class="btn btn-info default" data-toggle="modal" data-target="myModal/Cpengguna/do_ganti_password/<?php echo $row->id_pengguna;?>">Ganti Password</button>
+        <button type="button" class="btn btn-info default" data-dismiss="modal">Keluar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal -->
+
               </tr>
               <?php }?>              
             </tbody>
