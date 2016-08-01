@@ -5,10 +5,9 @@ class Welcome extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
-        $this->load->helper(array('url','form'));
+        $this->load->helper(array('url','form','captcha'));
         $this->load->model('msaran');
         $this->load->helper('security');
-        $this->load->helper(array('captcha','url'));
         }
         public function index()
         {
@@ -31,6 +30,10 @@ class Welcome extends CI_Controller {
             $this->load->view('aspirasi', $data);
             $this->load->view('footer');
         }
+    public function dadda(){
+        $d= "selamat pagi. kepada bapak gubernur ganjar pranowo yang saya hormati. saya wahab warga desa ngemplik wetan karanganyar demak. lapor di desa saya ada w..";
+        echo strlen($d);
+    }
         public function aspirasi()
         {
             $this->load->library('pagination');
@@ -59,17 +62,7 @@ class Welcome extends CI_Controller {
             $this->load->view('laporan',$data);
             $this->load->view('footer');
         }
-     function check_message(){
-        $regex = '/[(a-zA-Z0-9 &_.-~,!"\/@%()+=?)]{1,}/';
-        $str = $this->input->post('aspr');
-          if(!preg_match($regex, $str)) {
-            $this->form_validation->set_message('check_message', 'dadasd');
-            return FALSE;
-          } else {
-            return TRUE;
-          }
-    }
-    
+       
         public function add_saran(){
             $this->load->library('form_validation');
             
@@ -88,16 +81,23 @@ class Welcome extends CI_Controller {
             $this->form_validation->set_rules('userCaptcha', 'Captcha', 'required|callback_check_captcha');
             $userCaptcha = $this->input->post('userCaptcha');
             
+            $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
+            $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
+            $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
+            
             if ($this->form_validation->run() == FALSE){
                 $this->index();
             }else{
-                
+                    $random_number = substr(number_format(time() * rand(),0,'',''),0,4);
                     if($last==0){
-                        $nmfile = 0;}
+                        $nm = 0;
+                        $nmfile = $nm.$random_number;
+                    }
                     else{
                         foreach ($last as $l ){
-                        $nmfile = $l->id_saran;
-                    }}  
+                        $nm = $l->id_saran;
+                        $nmfile = $nm.$random_number;
+                    }}
                     $config = array(
                     'upload_path' => "./uploads/",
                     'allowed_types' => "gif|jpg|png|jpeg|bmp",
@@ -153,7 +153,7 @@ class Welcome extends CI_Controller {
           return true;
         }
         else{
-          $this->form_validation->set_message('check_captcha', 'Captcha tidak sesuai!');
+          $this->form_validation->set_message('check_captcha', 'Kode keamanan tidak sesuai!');
           return false;
         }
     }
