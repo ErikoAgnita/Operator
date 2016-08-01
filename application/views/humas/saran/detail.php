@@ -127,15 +127,17 @@
                   <td>
                     <div class="content">
                       <div class="metas">
-                        <span class="author"><?php echo $row2->id_skpd;?></span>
+                        <span class="username">
+                          <?php echo $row2->id_skpd;
+                          if($row2->isi_respon){?>
+                            <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row2->tanggal_respon));?> WIB</span> 
+                          <?php } ?>
+                        </span>
                       </div>
                       <?php 
                       if($row2->isi_respon){?>
                       <div class="metas">                        
                         <span class="started"><?php echo $row2->kategori;?></span>
-                      </div>                      
-                      <div class="metas">                        
-                        <span class="tags"><?php echo $row2->tanggal_respon.' WIB';?></span>
                       </div>
                       <div class="title">
                         <?php echo $row2->isi_respon; ?>
@@ -163,10 +165,6 @@
                       ?>
                     </div>
 
-                  </td>
-                  <td class="cell-80 forum-posts">
-                  </td>
-                  <td class="suf-cell"></td>
                 </tr>
                 </form>
               <?php } ?>

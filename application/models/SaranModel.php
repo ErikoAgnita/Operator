@@ -15,10 +15,24 @@ class SaranModel extends CI_Model
         return $query;
     }
 
+    //sadbsajhd
+    public function record_count() {
+        return $this->db->count_all('saran');
+    }
+
+    //adhgasj
+    public function fetch_data($limit, $id) {
+        $this->db->limit($limit, $id);
+        $this->db->order_by('id_saran','desc');
+        $query = $this->db->get('saran');
+        return $query;
+    }
+
     function detail_saran($id_saran)
     {
         $this->db->where('id_saran', $id_saran);
         $query = $this->db->get('saran');
+        //$query = $this->db->query("SELECT ")
         //$query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.id_saran=saran.id_saran");
         return $query;
     }

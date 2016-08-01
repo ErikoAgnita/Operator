@@ -1,4 +1,18 @@
-  
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   
+  <!-- Include the plugin's CSS and JS: -->
+  <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $('#clist').multiselect();
+      });
+  </script>
+
   <div class="page">
     <div class="page-header">
       <h1 class="page-title">Disposisi Saran</h1>
@@ -29,22 +43,21 @@
                     <div class="form-group">
                       <label >SKPD</label>
                       <div>
-                        <select class="form-control" name="id_skpd" required="off">
-                          <option value="">Pilih SKPD</option>
+                        <select class="form-control" name="id_skpd[]" required="off" multiple="multiple" id="clist">
+                          <option value="" disabled="disabled" selected="selected">Pilih SKPD</option>
                           <?php
                             foreach ($skpd->result() as $row) {
-                              //if($row->LEVEL == "SKPD")
-                              //{
-                                echo "<option value='".$row->id_skpd."'>".$row->nama."</option>";
-                              //}                               
+                              echo "<option value='".$row->id_skpd."' type='checkboxes'>".$row->nama."</option>"; 
                             }
-                          ?> 
+                          ?>
                         </select>
                       </div>
                     </div>
+
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
                       <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
+                    </div>
                     </div>
                     </div>
                   </form>

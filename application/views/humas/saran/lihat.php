@@ -31,28 +31,24 @@
                     <td>
                       <div class="content">
                         <div class="metas">
-                          <span class="author"><?php echo $row->nama;?></span>
-                          <span class="started">alamat: <?php echo $row->alamat;?></span>
-                        </div>
-                        <div class="metas">
-                          <span class="tags"><?php echo $row->tanggal_saran.'  WIB';?></span>
+                          <span class="username">
+                            <?php echo $row->nama;?>
+                            <span class="started">(<?php echo $row->alamat;?>)</span>
+                            <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</span>
+                          </span>
                         </div>
                         <div class="title">
                           <?php                           
-                          echo substr($row->saran, 0,200); 
-                          if(strlen($row->saran) > 200){
-                            echo '...'; 
+                          echo substr($row->saran, 0,250); 
+                          if(strlen($row->saran) > 250){
+                            echo '...';
                           }?>
                         </div>
                         <div class="title">
                           <a href="<?php echo base_url(); ?>SaranController/detail/<?php echo $row->id_saran;?>">Detail</a>
-                        </div>
-                        
+                        </div>                        
                       </div>
                     </td>
-                    <td class="cell-80 forum-posts">
-                    </td>
-                    <td class="suf-cell"></td>
                   </tr>
                   <?php }?>   
                 </tbody>
@@ -68,54 +64,8 @@
               </ul>
             </div>
           </div>
-
-
-
-  <!-- Core  -->
-  <script src="../../../global/vendor/jquery/jquery.min.js"></script>
-  <script src="../../../global/vendor/bootstrap/bootstrap.min.js"></script>
-  <script src="../../../global/vendor/animsition/animsition.min.js"></script>
-  <script src="../../../global/vendor/asscroll/jquery-asScroll.min.js"></script>
-  <script src="../../../global/vendor/mousewheel/jquery.mousewheel.min.js"></script>
-  <script src="../../../global/vendor/asscrollable/jquery.asScrollable.all.min.js"></script>
-  <script src="../../../global/vendor/ashoverscroll/jquery-asHoverScroll.min.js"></script>
-
-  <!-- Plugins -->
-  <script src="../../../global/vendor/switchery/switchery.min.js"></script>
-  <script src="../../../global/vendor/intro-js/intro.min.js"></script>
-  <script src="../../../global/vendor/screenfull/screenfull.min.js"></script>
-  <script src="../../../global/vendor/slidepanel/jquery-slidePanel.min.js"></script>
-
-  <!-- Plugins For This Page -->
-  <script src="../../../global/vendor/slidepanel/jquery-slidePanel.min.js"></script>
-  <script src="../../../global/vendor/bootstrap-markdown/bootstrap-markdown.js"></script>
-  <script src="../../../global/vendor/bootstrap-select/bootstrap-select.min.js"></script>
-  <script src="../../../global/vendor/marked/marked.min.js"></script>
-  <script src="../../../global/vendor/to-markdown/to-markdown.js"></script>
-
-  <!-- Scripts -->
-  <script src="../../../global/js/core.min.js"></script>
-  <script src="../../assets/js/site.min.js"></script>
-
-  <script src="../../assets/js/sections/menu.min.js"></script>
-  <script src="../../assets/js/sections/menubar.min.js"></script>
-  <script src="../../assets/js/sections/gridmenu.min.js"></script>
-  <script src="../../assets/js/sections/sidebar.min.js"></script>
-
-  <script src="../../../global/js/configs/config-colors.min.js"></script>
-  <script src="../../assets/js/configs/config-tour.min.js"></script>
-
-  <script src="../../../global/js/components/asscrollable.min.js"></script>
-  <script src="../../../global/js/components/animsition.min.js"></script>
-  <script src="../../../global/js/components/slidepanel.min.js"></script>
-  <script src="../../../global/js/components/switchery.min.js"></script>
-
-  <script src="../../../global/js/components/bootstrap-select.min.js"></script>
-
-
-  <script src="../../assets/js/app.min.js"></script>
-
-  <script src="../../assets/examples/js/apps/forum.min.js"></script>
+        </div>
+      </div>
 
 
   <!-- Google Analytics -->

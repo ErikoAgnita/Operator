@@ -30,7 +30,28 @@ class SaranController extends CI_Controller {
 	}
 
 	public function lihat()
-	{
+	{	
+		$this->load->library('pagination');
+        $config = array();
+        $config['base_url'] = base_url() . "SaranController/lihat";
+        $total_row = $this->SaranModel->record_count();
+        //echo $total_row;
+        $config['total_rows'] = $total_row;
+        $config['per_page'] = 2;
+        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+        $config['cur_tag_close'] = '</a>';
+        $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
+        $config['next_link'] = '<i class="fa fa-caret-right"></i>';
+        $config['last_link'] = '<i class="fa fa-forward"></i>';
+        $config['first_link'] = '<i class="fa fa-backward"></i>';
+        $config['uri_segment'] = 3;
+    
+        $this->pagination->initialize($config);
+        $strpage = $this->uri->segment(3,0);
+        $data['saran'] = $this->SaranModel->fetch_data($config['per_page'],$strpage)->result();
+        
+        $data['links'] = $this->pagination->create_links();
+
 		$data['saran'] = $this->SaranModel->lihat_saran();
 		$this->load->view('humas/header')->view('humas/saran/lihat', $data)->view('humas/footer');
 		
@@ -97,7 +118,7 @@ class SaranController extends CI_Controller {
 
 	public function disposisikan($id_saran)
 	{
-		$id_skpd = $this->input->post('id_skpd');
+		$id_skpd_list = $this->input->post('id_skpd');
 		$topik = $this->input->post('topik');
 		//$nama = $this->SaranModel->skpd($id_skpd); //belum bisa
 		$date = date_create();
@@ -107,15 +128,26 @@ class SaranController extends CI_Controller {
 			'topik' => $topik,
 			'isStatus' => $isStatus,
 			'isAktif' => 1,
-			);
-		$data_respon = array (
-			'id_skpd' => $id_skpd,
-			'id_saran' => $id_saran,
-			);
+			);		
 		$this->SaranModel->disposisikan_saran($id_saran, $data);
-		$this->SaranModel->addRespon($data_respon);
+		foreach($id_skpd_list as $id_skpd) {
+			$data_respon = array(
+				'id_skpd' => $id_skpd,
+				'id_saran' => $id_saran,
+				);
+			$this->SaranModel->addRespon($data_respon);	
+		}
 		redirect(base_url()."SaranController/detail/".$id_saran);
 	}
+
+
+    public function dropdown($id_saran)
+    {
+    	$data['skpd'] = $this->SaranModel->disposisi_saran();
+		$data['id_saran'] = $id_saran;
+		$data['saran'] = $this->SaranModel->detail_saran($id_saran);
+        $this->load->view('humas/saran/dw_clist', $data);
+    }
 
 	public function nonAktif($id_saran)
 	{
