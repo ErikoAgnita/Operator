@@ -8,10 +8,25 @@ class Welcome extends CI_Controller {
         $this->load->helper(array('url','form'));
         $this->load->model('msaran');
         $this->load->helper('security');
+        $this->load->helper(array('captcha','url'));
         }
         public function index()
         {
             $data['aspirasi'] = $this->msaran->preview_asp();
+            
+            $random_number = substr(number_format(time() * rand(),0,'',''),0,6);
+              // setting up captcha config
+            $vals = array(
+                     'word' => $random_number,
+                     'img_path' => './captcha/',
+                     'img_url' => base_url().'captcha/',
+                     'img_width' => 140,
+                     'img_height' => 35,
+                     'expiration' => 7200
+                    );
+            $data['captcha'] = create_captcha($vals);
+            $this->session->set_userdata('captchaWord',$data['captcha']['word']);
+            
             $this->load->view('header1');
             $this->load->view('aspirasi', $data);
             $this->load->view('footer');
@@ -57,7 +72,9 @@ class Welcome extends CI_Controller {
     
         public function add_saran(){
             $this->load->library('form_validation');
+            
             $this->load->model('msaran');
+            
             $last=$this->msaran->ambil_id();
             //var_dump($last);
             
@@ -68,10 +85,13 @@ class Welcome extends CI_Controller {
             $this->form_validation->set_rules('telp','Telepon','trim|required|xss_clean|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
             $this->form_validation->set_rules('aspr','Saran','trim|min_length[1]|required|xss_clean|regex_match[/^[a-zA-Z0-9  &_.~,!"\/@%()+=?-]{1,}$/]');
+            $this->form_validation->set_rules('userCaptcha', 'Captcha', 'required|callback_check_captcha');
+            $userCaptcha = $this->input->post('userCaptcha');
             
             if ($this->form_validation->run() == FALSE){
                 $this->index();
             }else{
+                
                     if($last==0){
                         $nmfile = 0;}
                     else{
@@ -124,7 +144,18 @@ class Welcome extends CI_Controller {
                         $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Pesan anda sudah kami simpan, tunggu tindak lanjut dari kami<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
                         redirect(base_url());
                     }
+                
             }
         }
+    public function check_captcha($str){
+        $word = $this->session->userdata('captchaWord');
+        if(strcmp(strtoupper($str),strtoupper($word)) == 0){
+          return true;
+        }
+        else{
+          $this->form_validation->set_message('check_captcha', 'Captcha tidak sesuai!');
+          return false;
+        }
+    }
     
 }

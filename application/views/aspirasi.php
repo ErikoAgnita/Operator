@@ -289,9 +289,16 @@ if(validation_errors()!=NULL){
                                 <input id="uploadFile" type="file" name="image" class="form-control" data-provides="uploadFile"/>
                                 <!--div id="imagePreview"><a type="button btn-danger" class="close" data-dismiss="uploadFile">×</a></div-->
                                 <div id="imagePreview"></div>
-                                
                             </div>
-
+                        </div>
+                      <div class="form-group" style="color:#62a8ea;">
+                      <label class="col-sm-2 control-label">Kode Keamanan</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><?php echo $captcha['image']; ?></span>
+                                <input name="userCaptcha" style="height: 50px; font-size: 14px;  padding: 10px;" class="form-control" autocomplete="off" placeholder="Kode Keamanan"  value="<?php if(!empty($userCaptcha)){ echo $userCaptcha;} ?>" required></input>
+                                <!--<input style="width:100%; height:100%;" type="text" autocomplete="off" name="userCaptcha" placeholder="" value="<?php //if(!empty($userCaptcha)){ echo $userCaptcha;} ?>" />-->
+                                <span class="required-server"><?php echo form_error('userCaptcha','<p style="color:#F83A18">','</p>'); ?></span>
+                            </div>
                         </div>
                         
                         <div class="pull-right">
