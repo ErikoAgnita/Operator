@@ -54,11 +54,19 @@
                     <a href="<?php echo base_url(); ?>Cpengguna/hapus/<?php echo $row->id_pengguna;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
                   </button>
                 </td>
+            
                 <!-- Modal -->
 <!-- Trigger the modal with a button -->
 
 
-<!-- Modal -->
+
+
+              </tr>
+              <?php }?>
+              </tbody>
+            </table> 
+<?php foreach ($pengguna->result() as $row){?> 
+            <!-- Modal -->
 <div id="myModal<?php echo $row->id_pengguna;?>" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -75,29 +83,50 @@
         <!--<h4 class="modal-title">Modal Header</h4>-->
       </div>
       <div class="modal-body">
-            <p>Nama Pengguna<p>
-            <p><?php echo $row->nama_pengguna; ?><p>
-            <p>Alamat<p>
-            <p><?php echo $row->alamat; ?><p>
-            <p>Telepon<p>
-            <p><?php echo $row->telepon; ?><p>
-            <p>Email<p>
-            <p><?php echo $row->email; ?><p>
-            <p>Bagian SKPD<p>
-            <p><?php echo $row->nama_dinas; ?><p>
-            <p>Username<p>
-            <p><?php echo $row->username; ?><p>
-            <p>Password<p>
-            <p><?php echo $row->password; ?><p>
-            <p>Terakhir Login<p>
-            <p><?php echo $row->last_login; ?><p>
-            <p>Terakhir di Ubah<p>
-            <p><?php echo $row->last_update; ?><p>
-            <p>Level<p>
-            <p><?php echo $row->level; ?><p>
-            <p>isAktif<p>
-            <p><?php echo $row->isAktif; ?><p>
+        <table class="table table-hover dataTable table-striped width-full" style="width:100%">
+        <tr>
+          <td>Nama Pengguna</td>
+          <td><?php echo $row->nama_pengguna; ?></td>
+        </tr>
+        <tr>
+          <td>Alamat</td>
+          <td><?php echo $row->alamat; ?></td>
+        </tr>
+        <tr>
+          <td>Telepon</td>
+          <td><?php echo $row->telepon; ?></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><?php echo $row->email; ?></td>
+        </tr>
+        <tr>
+          <td>Bagian SKPD</td>
+          <td><?php echo $row->nama_dinas; ?></td>
+        </tr>
+        <tr>
+          <td>Username</td>
+          <td><?php echo $row->username; ?></td>
+        </tr>
+        <tr>
+          <td>Terakhir Login</td>
+          <td><?php echo $row->last_login; ?></td>
+        </tr>
+        <tr>
+          <td>Terakhir di Ubah</td>
+          <td><?php echo $row->last_update; ?></td>
+        </tr>
+        <tr>
+          <td>Level</td>
+          <td><?php echo $row->level; ?></td>
+        </tr>
+        <tr>
+          <td>isAktif</td>
+          <td><?php echo $row->isAktif; ?></td>
+        </tr>
         <br>
+</table>
+        
 
       </div>
       <div class="modal-footer">
@@ -111,12 +140,8 @@
 
   </div>
 </div>
-<!-- Modal -->
-
-              </tr>
-              <?php }?>              
-            </tbody>
-          </table>
+<!-- Modal -->   
+<?php }?>            
         </div>
       </div>
       <!-- End Panel Basic -->
