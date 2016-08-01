@@ -64,11 +64,10 @@ class Welcome extends CI_Controller {
             $this->load->library('upload');
             
             $this->form_validation->set_rules('nama','Nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
-            $this->form_validation->set_rules('aspr','Saran','trim|min_length[1]|max_length[255]|required|xss_clean|regex_match[/^[a-zA-Z0-9  &_.~,!"\/@%()+=?-]{1,}$/]');
-            $this->form_validation->set_rules('telp','Telepon','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ]{4,20}$/]');
+            $this->form_validation->set_rules('almt','Alamat','trim|min_length[1]|max_length[255]|required|xss_clean|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
+            $this->form_validation->set_rules('telp','Telepon','trim|required|xss_clean|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-            
-            $this->form_validation->set_message('Saran', 'dadasd');
+            $this->form_validation->set_rules('aspr','Saran','trim|min_length[1]|required|xss_clean|regex_match[/^[a-zA-Z0-9  &_.~,!"\/@%()+=?-]{1,}$/]');
             
             if ($this->form_validation->run() == FALSE){
                 $this->index();
