@@ -45,7 +45,7 @@ class msaran extends CI_Model {
         return $this->db->count_all('saran');
     }
     public function fetch_data($limit, $id) {
-        //$this->db->where('IsAktif','1');
+        $this->db->where('IsAktif','1');
         $this->db->limit($limit, $id);
         $this->db->order_by('id_saran','desc');
         //$query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.ID_SARAN=saran.ID_SARAN");

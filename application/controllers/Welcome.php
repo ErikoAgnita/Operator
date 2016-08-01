@@ -42,7 +42,7 @@ class Welcome extends CI_Controller {
             $total_row = $this->msaran->record_count();
             //echo $total_row;
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 8;
+            $config['per_page'] = 4;
             $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
             $config['cur_tag_close'] = '</a>';
             $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
@@ -107,7 +107,9 @@ class Welcome extends CI_Controller {
                     //'max_width' => "3000",
                     'file_name'=> $nmfile
                     );
-                    $hostname = gethostbyNAME($_SERVER['SERVER_ADDR']);
+                    $ip = $_SERVER['SERVER_ADDR'];
+                    $hostname = gethostbyNAME($ip);
+                    
                     $this->load->library('upload', $config);
                     $this->upload->initialize($config);
                     if($_FILES['image']['name']){
@@ -122,7 +124,8 @@ class Welcome extends CI_Controller {
                                         'email' => $this->input->post('email'),
                                         'saran' => $this->input->post('aspr'),
                                         'tanggal_saran' => $tglapor,
-                                        'ip' => $hostname,
+                                        'ip' => $ip,
+                                        'host' => $hostname,
                                         'lampiran_saran'=>$gbr['file_name']);
                           //  var_dump($data);
                         $this->msaran->kirim_saran($data);
@@ -138,7 +141,8 @@ class Welcome extends CI_Controller {
                                     'telepon' => $this->input->post('telp'),
                                     'email' => $this->input->post('email'),
                                     'saran' => $this->input->post('aspr'),
-                                    'ip' => $hostname,
+                                    'ip' => $ip,
+                                    'host' => $hostname,
                                     'tanggal_saran' => $tglapor);
                         $this->msaran->kirim_saran($data);
                         $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Pesan anda sudah kami simpan, tunggu tindak lanjut dari kami<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");

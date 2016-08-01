@@ -69,6 +69,11 @@ class Mpengguna extends CI_Model {
 
         return TRUE;
     }
+    
+    public function get_update_pass($id, $data) {
+        $this->db->query("UPDATE pengguna SET password='$data' where id_pengguna='$id'");
+        return TRUE;
+    }
 
     //profil admin
     public function get_profiladmin($id) {

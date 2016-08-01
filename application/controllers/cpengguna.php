@@ -17,6 +17,36 @@ class Cpengguna extends CI_Controller {
         $this->load->view('humas/header')->view('humas/pengguna/lihat', $data)->view('humas/footer');
 
     } 
+    
+    public function ganti_password($id_pengguna)
+    {
+        $data['pengguna'] = $this->mpengguna->get_profil($id_pengguna);
+        $this->load->view('humas/header')->view('humas/pengguna/ganti_pass1', $data)->view('humas/footer');
+    } 
+    public function do_update_password() //update profil operator
+    {
+        $this->load->library('form_validation');
+        $this->load->helper('security');
+        
+        $this->form_validation->set_rules('password','Password','trim|required|min_length[6]');
+        $this->form_validation->set_rules('konfir_password', 'Konfirmasi Password', 'trim|required|matches[password]');
+        
+        $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
+        $this->form_validation->set_message('matches', 'password tidak sesuai');
+        
+        $id= $this->input->post('id_pengguna');
+        $pass = $this->input->post('password');
+        
+        if ($this->form_validation->run() == FALSE){
+            redirect('cpengguna/ganti_password/'.$id);
+        }else{
+            
+            $this->mpengguna->get_update_pass($id, $pass);
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Password baru berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            redirect('cpengguna/ganti_password/'.$id);
+        }
+
+    }
 
      public function tambah()
     {
