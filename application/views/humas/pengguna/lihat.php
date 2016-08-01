@@ -101,12 +101,11 @@
 
       </div>
       <div class="modal-footer">
-        
-        <button type="button" class="btn btn-info btn-default">
-            <a href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>"></a>Update
-        </button>
-        <button type="button" class="btn btn-info default" data-toggle="modal" data-target="myModal/Cpengguna/do_ganti_password/<?php echo $row->id_pengguna;?>">Ganti Password</button>
-        <button type="button" class="btn btn-info default" data-dismiss="modal">Keluar</button>
+        <!--<button type="button" class="btn btn-info">-->
+          <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>">Update</a>
+        <!--</button>-->
+          <a type="button" class="btn btn-success" href="<?php echo base_url(); ?>Cpengguna/do_ganti_password/<?php echo $row->id_pengguna;?>">Ganti Password</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
       </div>
     </div>
 
