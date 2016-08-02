@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class SaranModel extends CI_Model 
 {
-	function __construct()
+    function __construct()
     {
         parent::__construct();
         $this->load->database('default','true');
@@ -40,16 +40,9 @@ class SaranModel extends CI_Model
     function respon($id_saran)
     {
         $this->db->where('id_saran', $id_saran);
-        $query = $this->db->get('respon');
-        //$query = $this->db->query("SELECT * FROM respon INNER join skpd ")
-        return $query;
-    }
-
-    //belum bisa
-    function saran_respon($id_saran)
-    {
-        $this->db->where('id_saran', $id_saran);
-        $query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.id_saran=saran.id_saran");
+        $query = $this->db->query("SELECT respon.id_respon, respon.id_saran , respon.kategori, 
+            respon.isi_respon, respon.lampiran_respon, respon.tanggal_respon, respon.isAktif, skpd.nama 
+            FROM respon INNER JOIN skpd ON respon.id_skpd=skpd.id_skpd AND respon.id_saran=$id_saran order by respon.tanggal_respon desc;");
         return $query;
     }
 
@@ -72,7 +65,7 @@ class SaranModel extends CI_Model
         $this->db->delete('saran');
     }
 
-    function disposisi_saran()
+    function getskpd()
     {
         $query = $this->db->get('skpd');
         return $query;
@@ -98,6 +91,11 @@ class SaranModel extends CI_Model
 
     function publish_saran($id_saran, $data)
     {
+        $this->db->where("id_saran", $id_saran);
+        $query = $this->db->update('saran', $data);
+    }
+
+    function aktif_saran($id_saran, $data){
         $this->db->where("id_saran", $id_saran);
         $query = $this->db->update('saran', $data);
     }

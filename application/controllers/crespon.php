@@ -41,19 +41,18 @@ class crespon extends CI_Controller {
 
 	public function publish($id_respon)
 	{
-		$data = array (
-			'isAktif' => 1,
-			);
+		$id_saran = $this->input->post('id_saran');
+		if($this->input->post('btn2')=="publish"){
+			$data = array (
+				'isAktif' => 1,
+				);
+		}
+		else{
+			$data = array (
+				'isAktif' => 0,
+				);
+		}
 		$this->mrespon->publish($id_respon, $data);
-		redirect(base_url()."SaranController/lihat");
-	}
-
-	public function unpublish($id_respon)
-	{
-		$data = array (
-			'isAktif' => 0,
-			);
-		$this->mrespon->publish($id_respon, $data);
-		redirect(base_url()."SaranController/lihat");
+		redirect(base_url().'SaranController/detail/'.$id_saran);
 	}
 }

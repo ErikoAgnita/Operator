@@ -1,3 +1,9 @@
+<style type="text/css">
+  strong { 
+    color: black;
+  }
+</style>
+
 <div class="page animsition" style="animation-duration: 800ms; opacity: 1;">
   <div class="page-content">
     <!-- Panel X-Editable -->
@@ -93,8 +99,28 @@
               </tbody>
             </table>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary"><?php echo "Disposisi"; ?></button>
-            </div>
+              <span><button type="submit" class="btn btn-primary" name="btn" value="disposisi"><?php echo "Disposisi"; ?></button></span>
+              <span><button type="submit" class="btn btn-primary" name="btn"
+              <?php 
+              if($row->isSpam == "0"){
+                echo "value = 'publish'>";
+                echo "Publish";
+              }
+              else{
+                echo "value = 'unpublish'>";
+                echo "Unpublish";
+              }?></button></span>
+
+              <span><button type="submit" class="btn btn-primary" name="btn"
+              <?php 
+              if($row->isAktif == "0"){
+                echo "value = 'aktif'>";
+                echo "Aktif";
+              }
+              else{
+                echo "value = 'nonaktif'>";
+                echo "Nonaktif";
+              }?></button></span>
             </form>
           </div>
       </div>
@@ -107,15 +133,7 @@
           <table class="table is-indent">          
             <tbody>
               <?php foreach ($respon->result() as $row2){?>
-                <form  action="
-                <?php
-                $isAktif = $row2->isAktif;
-                if($isAktif== "0"){
-                  echo base_url();?>crespon/publish/<?php echo $row2->id_respon;
-                }
-                else{
-                  echo base_url();?>crespon/unpublish/<?php echo $row2->id_respon;
-                }?>">
+                <form autocomplete="off" action="<?php echo base_url();?>crespon/publish/<?php echo $row2->id_respon;?>" method="post">
                 <tr data-url="panel.tpl" data-toggle="slidePanel">
                   <td class="pre-cell"></td>
                   <td class="cell-60 responsive-hide">
@@ -123,12 +141,12 @@
                       <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/logo.png" alt="...">
                     </a>
                   </td>
-
                   <td>
-                    <div class="content">
+                    <div>
                       <div class="metas">
                         <span class="username">
-                          <?php echo $row2->id_skpd;
+                          <strong><?php echo $row2->nama;?></strong>
+                          <?php 
                           if($row2->isi_respon){?>
                             <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row2->tanggal_respon));?> WIB</span> 
                           <?php } ?>
@@ -136,35 +154,39 @@
                       </div>
                       <?php 
                       if($row2->isi_respon){?>
-                      <div class="metas">                        
-                        <span class="started"><?php echo $row2->kategori;?></span>
-                      </div>
-                      <div class="title">
-                        <?php echo $row2->isi_respon; ?>
-                      </div>                                            
-                      <div class="metas">                 
-                        <span class="tags"><?php echo $row2->lampiran_respon;?></span>
-                      </div>
+                        <div class="metas">                        
+                          <span class="started"><?php echo $row2->kategori;?></span>
+                        </div>
+                        <div class="title">
+                          <?php echo $row2->isi_respon; ?>
+                        </div>
+                        <?php if($row2->lampiran_respon){?>
+                          <div class="metas">                 
+                            <span class="tags"><?php echo $row2->lampiran_respon;?></span>
+                          </div>
+                        <?php } ?>
                       <?php }
                       else{?>                                                                 
-                      <div class="metas">                 
-                        <span class="tags">(Belum ada Respon)</span>
-                      </div>
+                        <div class="metas">                 
+                          <span class="tags">(Belum ada Respon)</span>
+                        </div>
                       <?php } ?>       
                     </div>
-                    <!--<button type="submit" class="btn btn-primary">Publish</button> -->
                     <div class="form-group">
-                      <?php
-                      $isAktif = $row2->isAktif;
-                      if($isAktif== "0"){
-                        ?><button type="submit" class="btn btn-primary"><?php echo "Publish"; ?></button><?php
+                      <input type="hidden" value="<?php echo $row2->id_saran ?>" name="id_saran"/>
+                    </div>
+                    <div class="form-group">
+                      <span><button type="submit" class="btn btn-primary" name="btn2"
+                      <?php 
+                      if($row2->isAktif == "0"){
+                        echo "value = 'publish'>";
+                        echo "Publish";
                       }
                       else{
-                        ?><button type="submit" class="btn btn-primary"><?php echo "Unpublish"; ?></button><?php
-                      }
-                      ?>
+                        echo "value = 'unpublish'>";
+                        echo "Unpublish";
+                      }?></button></span>
                     </div>
-
                 </tr>
                 </form>
               <?php } ?>
