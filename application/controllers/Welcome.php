@@ -30,9 +30,27 @@ class Welcome extends CI_Controller {
             $this->load->view('aspirasi', $data);
             $this->load->view('footer');
         }
-    public function dadda(){
-        $d= "selamat pagi. kepada bapak gubernur ganjar pranowo yang saya hormati. saya wahab warga desa ngemplik wetan karanganyar demak. lapor di desa saya ada w..";
-        echo strlen($d);
+    public function search(){
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
+        $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
+        
+        if ($this->form_validation->run() == FALSE){
+                //$this->aspirasi();
+            echo "asda";
+        }else{
+            $cari = $this->input->post('cari');
+            
+            
+            $data['aspirasi'] = $this->msaran->pencarian($cari);
+             $data['links'] = "Dsadas";
+            $data['balasan'] = $this->msaran->balasan();
+            
+            $this->load->view('header2');
+            $this->load->view('laporan',$data);
+            $this->load->view('footer');
+        }
+        
     }
         public function aspirasi()
         {
@@ -99,7 +117,7 @@ class Welcome extends CI_Controller {
                         $nmfile = $nm.$random_number;
                     }}
                     $config = array(
-                    'upload_path' => "./uploads/",
+                    'upload_path' => "./uploads/saran",
                     'allowed_types' => "gif|jpg|png|jpeg|bmp",
                     'overwrite' => TRUE,
                     'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)

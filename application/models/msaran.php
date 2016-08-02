@@ -50,14 +50,21 @@ class msaran extends CI_Model {
         $this->db->order_by('id_saran','desc');
         //$query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.ID_SARAN=saran.ID_SARAN");
         $query = $this->db->get('saran');
-        /*if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
-                $data[] = $row;
-            }
-            return $data;
-        }
-        return false;*/
         return $query;
+    }
+    
+    function pencarian($cari){
+        
+        $query = $this->db->query("SELECT * FROM saran WHERE nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%'");
+        
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
+    public function record_count_search($cari) {
+        $query = $this->db->query("SELECT COUNT(id_saran) FROM saran WHERE nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%'");
+            return $query->result();
     }
     /*function hapus_produk($id)       
     {

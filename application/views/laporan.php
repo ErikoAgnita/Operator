@@ -1,13 +1,27 @@
 <div class="container" style="background-color:#525252;">
     <h4 class="page-header" style="text-aligntment:center;">Laporan Masyarakat</h4>
      <div class="container-fluid">
-         <div class="pull-right">
-           <nav>           
-              <ul class="pagination">
-                  <li> <?php echo $links; ?> </li>
-              </ul>
-           </nav>
-        </div>
+         <div class="row">
+             <div class="col-sm-6">
+                 <form role="form" method="POST" action="<?php echo base_url();?>Welcome/search/" >
+                     <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" name="cari" placeholder="Cari . . .">
+                        <span class="input-group-btn">
+                          <button class="btn btn-info btn-flat" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
+                      </div>
+                 </form>
+             </div>
+             <div class="col-sm-6">
+                <div class="pull-right">
+                   <nav>           
+                      <ul class="pagination">
+                          <li> <?php echo $links; ?> </li>
+                      </ul>
+                   </nav>
+                </div>
+            </div>
+         </div>
     </div>
     <div class="row">
         <?php if(isset($aspirasi)){foreach($aspirasi as $as){ ?>
@@ -15,7 +29,7 @@
             <div class="box box-widget">
                 <div class='box-header with-border'>
                   <div class='user-block'>
-                    <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
+                    <img class='img-circle' src='<?php echo base_url(); ?>assets/images/comment.png' alt='masyarakat'>
                     <span class='username'><b><label><?php echo $as->nama; ?></label></b></span>
                     <span class='description'><?php echo date("d M Y  H:i:s",strtotime($as->tanggal_saran)); ?></span>
                   </div><!-- /.user-block -->
@@ -23,7 +37,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class='box-body'>
-                  <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/".$as->lampiran_saran."' alt='Photo'> <?php ";} ?>
+                  <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$as->lampiran_saran."' alt='Photo'> <?php ";} ?>
                   <p><?php $baris= $as->saran;
     echo substr($baris, 0, 150); echo "<b> . . .</b>"; ?> <br></p>
                     <input type="hidden" name="saranid" value="<?php echo $as->id_saran; ?>" >
@@ -42,7 +56,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <!--<div class='box-header'>-->
                   <div class='user-block'>
-                    <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
+                    <img class='img-circle' src='<?php echo base_url(); ?>assets/images/comment.png' alt='masyarakat'>
                     <span class='username'><label><?php echo $as->nama; ?></label></span>
                     <span class='description'><?php echo date("d M Y H:i:s",strtotime($as->tanggal_saran)); ?></span>
                   </div><!-- /.user-block -->
@@ -51,7 +65,7 @@
             
       <div class="modal-body">
             <div class='box-body'>
-              <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/".$as->lampiran_saran."' alt='Foto Laporan Masyarakat'> <?php ";} ?>
+              <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$as->lampiran_saran."' alt='Foto Laporan Masyarakat'> <?php ";} ?>
               <p><?php echo $as->saran; ?> <br></p>
 
             </div><!-- /.box-body -->
