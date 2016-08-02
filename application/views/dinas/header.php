@@ -15,6 +15,12 @@
   <link rel="shortcut icon" href="<?php  echo base_url(); ?>assets/images/favicon.ico">
 
   <!-- Stylesheets -->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/AdminLTE.min.css">
+  
+ <script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>  
+<script src="<?php echo base_url();?>assets/js/jquery1-12-4.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+
   <link rel="stylesheet" href="<?php  echo base_url(); ?>assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php  echo base_url(); ?>assets/css/bootstrap-extend.min.css">
   <link rel="stylesheet" href="<?php  echo base_url(); ?>assets/css/site.min.css">
@@ -161,7 +167,7 @@
              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/indexoperator" data-slug="uikit">
             <li class="site-menu-category">Operator</li> </a>
             <li class="site-menu-item">
-              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/operator_lihat" data-slug="uikit">
+              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/lihatawal" data-slug="uikit">
                 <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
                 <span class="site-menu "></span>

@@ -165,7 +165,7 @@
           <ul class="site-menu">
             <li class="site-menu-category">Admin</li>
             <li class="site-menu-item">
-              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/admin_lihat" data-slug="uikit">
+              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/lihatawaladmin" data-slug="uikit">
                 <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
                 <span class="site-menu "></span>
