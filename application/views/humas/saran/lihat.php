@@ -30,20 +30,22 @@
                   <div>
                     <div class="metas">
                       <span class="username">
-                        <?php echo $row->nama;?>
+                        <?php echo "<b>".$row->nama."</b>";?>
                         <span class="started">(<?php echo $row->alamat;?>)</span>
-                        <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</span>
+                        <span class='text-muted pull-right'><?php echo "<i>".date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</i></span>
                       </span>
                     </div>
                     <div class="title">
-                      <?php                           
-                      echo substr($row->saran, 0,250); 
-                      if(strlen($row->saran) > 250){
-                        echo '...';
-                      }?>
+                        <div style="width:80%;">
+                          <?php                           
+                          echo substr($row->saran, 0,250); 
+                          if(strlen($row->saran) > 250){
+                            echo '...';
+                          }?>
+                        </div>
                     </div>
                     <div class="title">
-                      <a href="<?php echo base_url(); ?>SaranController/detail/<?php echo $row->id_saran;?>">Detail</a>
+                      <a type="button" href="<?php echo base_url(); ?>SaranController/detail/<?php echo $row->id_saran;?>">Detail</a>
                     </div>                        
                   </div>
                 </td>

@@ -6,8 +6,8 @@
       <!--<div class="content-wrapper">-->
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1 style="color:#62a8ea;">
-            <b>Laporan Masyarakat</b>
+          <h1 class="page-header" style="text-aligntment:center; color:#62a8ea;">
+            <b>Kotak Saran Pemerintah Kota Salatiga</b>
           </h1>
      
         </section>
