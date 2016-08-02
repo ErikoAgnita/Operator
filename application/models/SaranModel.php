@@ -84,6 +84,12 @@ class SaranModel extends CI_Model
         $query = $this->db->update('saran', $data);
     }
 
+    function cekDisposisi($id_saran, $id_skpd)
+    {
+        $query = $this->db->query("SELECT * from respon where respon.id_skpd=$id_skpd and respon.id_saran=$id_saran");
+        return $query;
+    }
+
     function addRespon($data)
     {
         $this->db->insert('respon', $data);

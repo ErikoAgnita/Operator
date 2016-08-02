@@ -15,11 +15,6 @@
 
   <div class="page">
     <div class="page-header">
-      <h1 class="page-title">Disposisi Saran</h1>
-      <ol class="breadcrumb">
-        <li>Saran</li>
-        <li>Disposisi</li>
-      </ol>
     </div>
     <div class="page-content">
       <div class="panel">
@@ -29,6 +24,7 @@
               <!-- Example Basic Form -->
               <div class="example-wrap">
                 <h4 class="example-title">Disposisi Saran</h4>
+                <p><?php echo $this->session->flashdata('message');?></p>
                 <div class="example">
                   <form autocomplete="off" action="<?php echo base_url();?>SaranController/disposisikan/<?php echo $id_saran;?>" method="post">
                     

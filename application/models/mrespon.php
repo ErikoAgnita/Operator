@@ -39,4 +39,15 @@ class mrespon extends CI_Model
         $this->db->where('id_respon', $id_respon);
         $this->db->update('respon', $data);
     }
+    function saran($id_saran)
+    {
+        $this->db->where('id_saran', $id_saran);
+        $query = $this->db->get('saran');
+        return $query;
+    }
+
+    function respon($id_saran, $id_skpd)
+    {
+        $query = $this->db->query("SELECT * FROM respon where id_saran=$id_saran and id_skpd=$id_skpd");
+    }
 }

@@ -42,7 +42,7 @@
                          <span><?php echo $row->saran;?></span>
                         </div>
                         <div class="title">
-                          <a href="<?php echo base_url(); ?>crespon/balas/<?php echo $row->id_saran;?>">Balas</a>
+                          <a href="<?php echo base_url(); ?>crespon/respon/<?php echo $row->id_saran;?>">Balas</a>
                         </div>                    
                   </div>
                 </td>

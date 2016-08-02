@@ -122,22 +122,30 @@ class SaranController extends CI_Controller {
 			'isAktif' => 1,
 			);		
 		$this->SaranModel->disposisikan_saran($id_saran, $data);
+		$flag;
 		foreach($id_skpd_list as $id_skpd) {
 			$data_respon = array(
 				'id_skpd' => $id_skpd,
 				'id_saran' => $id_saran,
 				);
-			$this->SaranModel->addRespon($data_respon);	
+			//work here
+			$sudah_disposisi = $this->SaranModel->cekDisposisi($id_saran, $id_skpd);
+			if(!$sudah_disposisi){
+				$this->SaranModel->addRespon($data_respon);
+			}
+			else{
+				$flag = 1;
+			}
+		}
+		if($flag==1){			
+			$this->session->set_flashdata('message', 'Saran telah didisposisikan ke Dinas');
+			redirect(base_url()."SaranController/detail/".$id_saran); //flashdata belum muncul
 		}
 		redirect(base_url()."SaranController/detail/".$id_saran);
 	}
 
-
-    public function dropdown()
+    public function coba()
     {
-    	//$data['skpd'] = $this->SaranModel->disposisi_saran();
-		//$data['id_saran'] = $id_saran;
-		//$data['saran'] = $this->SaranModel->detail_saran($id_saran);
-        $this->load->view('humas/saran/dw_clist');
+    	$this->load->view('humas/saran/coba');
     }
 }

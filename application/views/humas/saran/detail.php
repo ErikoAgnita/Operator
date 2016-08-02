@@ -56,7 +56,7 @@
                   <tr>
                     <td>Tanggal Saran</td>
                     <td>
-                      <span class="notready"><?php echo $row->tanggal_saran;?></span>
+                      <span class="notready"><?php echo $row->tanggal_saran;?> WIB</span>
                     </td>
                   </tr>
                   <tr>
@@ -73,8 +73,13 @@
                   </tr>                
                   <tr>
                     <td>Lampiran Saran</td>
-                    <td>
-                      <span class="notready"><?php echo $row->lampiran_saran;?></span>
+                    <td>                    
+                      <span class="notready">
+                        <?php if($row->lampiran_saran!=NULL){
+                          echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
+                          alt='Photo'> <?php ";
+                        } ?>
+                      </span>
                     </td>
                   </tr>
                   <tr>
@@ -162,7 +167,12 @@
                         </div>
                         <?php if($row2->lampiran_respon){?>
                           <div class="metas">                 
-                            <span class="tags"><?php echo $row2->lampiran_respon;?></span>
+                            <span class="tags">
+                              <?php if($row->lampiran_saran!=NULL){
+                                echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$row2->lampiran_respon."' 
+                                alt='Photo'> <?php ";
+                              } ?>
+                            </span>
                           </div>
                         <?php } ?>
                       <?php }

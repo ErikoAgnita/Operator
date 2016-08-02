@@ -15,6 +15,17 @@ class crespon extends CI_Controller {
 		$this->load->view('dinas/header')->view('dinas/respon/dariadmin', $data)->view('dinas/footer');
 	}
 
+	//COBA
+	public function respon($id_saran)
+	{
+		$id_skpd = 18; //$id_skpd : di set statis dulu. aturannya diambil dari id_skpd session pengguna
+
+		$data['saran'] = $this->mrespon->saran($id_saran);
+		$data['respon'] = $this->mrespon->respon($id_saran, $id_skpd);
+		$this->load->view('dinas/header')->view('dinas/respon/respon', $data)->view('dinas/footer');
+	}
+
+	//COBA -_-
 	public function balas($id_saran)
 	{
 		$data['respon'] = $this->mrespon->balas_respon($id_saran);

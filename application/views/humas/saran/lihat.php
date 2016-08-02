@@ -23,7 +23,7 @@
                 <td class="pre-cell"></td>
                 <td class="cell-60 responsive-hide">
                   <a class="avatar" href="javascript:void(0)">
-                    <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/people.png" alt="...">
+                    <img class='img-circle' src='<?php echo base_url(); ?>assets/images/comment.png' alt='masyarakat'>
                   </a>
                 </td>
                 <td>
