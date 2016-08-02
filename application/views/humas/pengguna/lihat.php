@@ -47,9 +47,9 @@
                    <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Detail">
                     <a href="#myModal<?php echo $row->id_pengguna;?>" data-toggle="modal"><i class="icon wb-eye" aria-hidden="true"></i></a>
                   </button>
-                  <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
-                    <a href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
-                  </button>
+                  <!--<button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
+                    <a href="<?php //echo base_url(); ?>Cpengguna/update/<?php //echo $row->id_pengguna;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
+                  </button>-->
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
                     <a href="<?php echo base_url(); ?>Cpengguna/hapus/<?php echo $row->id_pengguna;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
                   </button>

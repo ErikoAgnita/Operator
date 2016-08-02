@@ -116,9 +116,10 @@ class Cskpd extends CI_Controller {
 		redirect('Cskpd/lihat');
 	}
 
-	public function hapus($id_skpd)
-	{
-		$this->mskpd->Delete($id_skpd);
-		redirect(base_url().'Cskpd/lihat');
-	}
+	   public function hapus($id_skpd)
+    {
+    	$where = array('id_skpd' => $id_skpd);
+        $this->mskpd->DeleteSKPD($id_skpd, 'id_skpd');
+        redirect('Cskpd/lihat');
+    }
 }

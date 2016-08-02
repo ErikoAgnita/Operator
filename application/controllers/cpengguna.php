@@ -95,7 +95,6 @@ class Cpengguna extends CI_Controller {
     {
         $id_pengguna = $this->input->post('id_pengguna');
         $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
         $id_skpd = $this->input->post('id_skpd');
         $level = $this->input->post('level');
         $nama = $this->input->post('nama');
@@ -108,7 +107,6 @@ class Cpengguna extends CI_Controller {
 
         $data = array(
            'username' => $username,
-            'password' => $password,
             'id_skpd' => $id_skpd,
             'level' => $level,
             'nama' => $nama,
@@ -128,10 +126,11 @@ class Cpengguna extends CI_Controller {
         redirect('Cpengguna/lihat');
     }
 
-    public function hapus($id_pengguna)
+     public function hapus($id_pengguna)
     {
-        $this->mpengguna->Delete($id_pengguna);
-        redirect(base_url().'Cpengguna/lihat');
+        $where = array('id_pengguna' => $id_pengguna);
+        $this->mpengguna->DeletePengguna($id_pengguna, 'pengguna');
+        redirect('Cpengguna/lihat');
     }
 
     /*public function detail($id_pengguna)

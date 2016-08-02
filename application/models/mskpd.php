@@ -32,7 +32,7 @@ class Mskpd extends CI_Model {
 		$this->db->update($table, $data);
 	}
 
-	public function Delete($where, $table){
+	public function DeleteSKPD($where, $table){
 		$this->db->where($where);
 		$this->db->delete($table);
 	}

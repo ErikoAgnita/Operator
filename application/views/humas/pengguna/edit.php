@@ -1,9 +1,9 @@
  <!-- Page -->
   <div class="page">
     <div class="page-header">
-      <h1 class="page-title">Admin</h1>
+      <h1 class="page-title">Pengguna</h1>
       <ol class="breadcrumb">
-        <li>Admin</li>
+        <li>Pengguna</li>
         <li>Edit Data Pengguna</li>
       </ol>
     </div>
@@ -17,6 +17,8 @@
                 <h4 class="example-title">Edit Akun</h4>
                 <div class="example">
                   <?php foreach($pengguna as $p){ ?>
+                  <span class='username'><h4><b><?php echo $p->nama; ?></b></h4></span>
+
                   <form action="<?php echo base_url(). 'Cpengguna/do_update'; ?>" method="post" autocomplete="off">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicUsername">Username</label>
@@ -24,12 +26,7 @@
                         <input type="text" class="form-control" id="inputBasicUsername" value="<?php echo $p->username ?>" name="username"
                          autocomplete="off" />
                     </div>
-                     <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Password</label>
-                      <input type="text" class="form-control" id="inputBasicPassword" value="<?php echo $p->password ?>" name="password"
-                       autocomplete="off" />
-                    </div>
-
+                    
                     <div class="form-group">
                         <label class="control-label" for="inputBasicLevel">SKPD</label>
                         <div>

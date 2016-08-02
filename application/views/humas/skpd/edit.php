@@ -17,6 +17,7 @@
                 <h4 class="example-title">Edit Akun</h4>
                 <div class="example">
                   <?php foreach($skpd as $s){ ?>
+                  <span class='username'><h4><b><?php echo $s->nama; ?></b></h4></span>
                   <form action="<?php echo base_url(). 'Cskpd/do_update'; ?>" method="post" autocomplete="off">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicKodeUnit">Kode Unit</label>

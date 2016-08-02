@@ -208,6 +208,44 @@
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <span class="site-menu-title">Kecamatan</span>
+                <span class="site-menu-arrow"></span>
+              </a>
+              <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Ckecamatan/lihat" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Data Kecamatan</span>
+                  </a>
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Ckecamatan/tambah" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                  <span class="site-menu-title">Tambah Kecamatan</span>
+                </a>
+                </li>
+              </ul>
+            </li>
+            <li class="site-menu-item has-sub">
+              <a href="javascript:void(0)" data-slug="advanced">
+                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <span class="site-menu-title">Kelurahan</span>
+                <span class="site-menu-arrow"></span>
+              </a>
+              <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Ckelurahan/lihat" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Data Kelurahan</span>
+                  </a>
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Ckelurahan/tambah" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                  <span class="site-menu-title">Tambah Kelurahan</span>
+                </a>
+                </li>
+              </ul>
+            </li>
+            <li class="site-menu-item has-sub">
+              <a href="javascript:void(0)" data-slug="advanced">
+                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
                 <span class="site-menu-title">Pengguna</span>
                 <span class="site-menu-arrow"></span>
               </a>
