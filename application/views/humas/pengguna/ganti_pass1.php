@@ -15,7 +15,6 @@
               <!-- Example Basic Form -->
               <div class="example-wrap">
                 <h4 class="example-title">Ganti Password</h4>
-                <?php echo validation_errors(); ?>
                   <?php echo $this->session->flashdata('pesan'); ?>
                 <div class="example">
                    <?php foreach($pengguna as $p){ ?>
@@ -30,9 +29,9 @@
           <div class="form-group">
             <label class="control-label" for="inputBasicPassword">Masukan Password Baru</label>
             <input type="password" class="form-control" id="inputBasicPassword" name="password"
-                   autocomplete="off" />
+                   autocomplete="off" value="<?php echo set_value('password'); ?>"/>
               <?php
-                echo form_error('password');
+                echo form_error('password','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                 ?>
           </div>
           <div class="form-group">
@@ -40,7 +39,7 @@
             <input type="password" class="form-control" id="inputBasicKonfirmasiPassword" name="konfir_password"
                    autocomplete="off" />
               <?php
-                echo form_error('konfir_password');
+                echo form_error('konfir_password','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                 ?>
           </div>
 
