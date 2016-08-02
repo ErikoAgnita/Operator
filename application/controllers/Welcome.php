@@ -36,19 +36,42 @@ class Welcome extends CI_Controller {
         $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
         
         if ($this->form_validation->run() == FALSE){
-                //$this->aspirasi();
-            echo "asda";
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                $this->aspirasi();
+            //echo "asda";
         }else{
             $cari = $this->input->post('cari');
+            $this->load->library('pagination');
+            $config = array();
+            $config['base_url'] = base_url() . "welcome/search";
+            $total_row = $this->msaran->record_count_search($cari);
+            //var_dump($total_row);
+            $config['total_rows'] = $total_row;
+            $config['per_page'] = 4;
+            $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+            $config['cur_tag_close'] = '</a>';
+            $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
+            $config['next_link'] = '<i class="fa fa-caret-right"></i>';
+            $config['last_link'] = '<i class="fa fa-forward"></i>';
+            $config['first_link'] = '<i class="fa fa-backward"></i>';
+            $config['uri_segment'] = 3;
+        
+            $this->pagination->initialize($config);
+            $strpage = $this->uri->segment(3,0);
             
-            
-            $data['aspirasi'] = $this->msaran->pencarian($cari);
-             $data['links'] = "Dsadas";
+            $data['aspirasi'] = $this->msaran->pencarian($cari,$config['per_page'],$strpage);
             $data['balasan'] = $this->msaran->balasan();
+            $data['links'] = $this->pagination->create_links();
             
-            $this->load->view('header2');
-            $this->load->view('laporan',$data);
-            $this->load->view('footer');
+            if($data['aspirasi'] == NULL){
+                $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                $this->aspirasi();
+            }
+            else{   
+                $this->load->view('header2');
+                $this->load->view('laporan',$data);
+                $this->load->view('footer');
+            }
         }
         
     }

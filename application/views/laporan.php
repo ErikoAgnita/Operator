@@ -1,11 +1,11 @@
-<div class="container" style="background-color:#525252;">
+<div class="container" style="background-color:#525252; min-height:screen.height/2px">
     <h4 class="page-header" style="text-aligntment:center;">Laporan Masyarakat</h4>
      <div class="container-fluid">
          <div class="row">
              <div class="col-sm-6">
                  <form role="form" method="POST" action="<?php echo base_url();?>Welcome/search/" >
                      <div class="input-group input-group-sm">
-                        <input type="text" class="form-control" name="cari" placeholder="Cari . . .">
+                        <input type="text" class="form-control" value="<?php echo set_value('cari'); ?>" name="cari" placeholder="Cari . . .">
                         <span class="input-group-btn">
                           <button class="btn btn-info btn-flat" type="submit"><i class="fa fa-search"></i></button>
                         </span>
@@ -23,8 +23,9 @@
             </div>
          </div>
     </div>
+    <?php echo $this->session->flashdata('pesan'); ?>
     <div class="row">
-        <?php if(isset($aspirasi)){foreach($aspirasi as $as){ ?>
+        <?php if($aspirasi!=0){foreach($aspirasi as $as){ ?>
         <div class="col-sm-3">
             <div class="box box-widget">
                 <div class='box-header with-border'>
