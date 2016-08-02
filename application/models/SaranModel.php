@@ -11,7 +11,7 @@ class SaranModel extends CI_Model
 
     function lihat_saran()
     {
-        $query = $this->db->get('saran');
+        $query = $this->db->query("SELECT * FROM saran order by tanggal_saran desc");
         return $query;
     }
 
