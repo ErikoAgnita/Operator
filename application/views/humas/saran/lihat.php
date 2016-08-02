@@ -18,7 +18,7 @@
         <div class="tab-pane animation-fade active" id="forum-newest" role="tabpanel">
           <table class="table is-indent">
             <tbody>
-              <?php foreach ($saran->result() as $row){?>
+              <?php foreach ($saran as $row){?>
               <tr data-url="panel.tpl" data-toggle="slidePanel">
                 <td class="pre-cell"></td>
                 <td class="cell-60 responsive-hide">
@@ -51,15 +51,13 @@
               <?php }?>   
             </tbody>
           </table>
-          <ul class="pagination pagination-gap">
-            <li class="disabled"><a href="javascript:void(0)">Previous</a></li>
-            <li class="active"><a href="javascript:void(0)">1 <span class="sr-only">(current)</span></a></li>
-            <li><a href="javascript:void(0)">2</a></li>
-            <li><a href="javascript:void(0)">3</a></li>
-            <li><a href="javascript:void(0)">4</a></li>
-            <li><a href="javascript:void(0)">5</a></li>
-            <li><a href="javascript:void(0)">Next</a></li>
-          </ul>
+            <div class="pull-right">
+                <nav>           
+                    <ul class="pagination">
+                        <li> <?php echo $links; ?> </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
       </div>
     </div>

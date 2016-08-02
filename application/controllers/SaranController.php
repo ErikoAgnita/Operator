@@ -17,13 +17,13 @@ class SaranController extends CI_Controller {
         $total_row = $this->SaranModel->record_count();
         //echo $total_row;
         $config['total_rows'] = $total_row;
-        $config['per_page'] = 2;
+        $config['per_page'] = 7;
         $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
         $config['cur_tag_close'] = '</a>';
-        $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
-        $config['next_link'] = '<i class="fa fa-caret-right"></i>';
-        $config['last_link'] = '<i class="fa fa-forward"></i>';
-        $config['first_link'] = '<i class="fa fa-backward"></i>';
+        $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
+        $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
+        $config['last_link'] = '<b>>></b>';
+        $config['first_link'] = '<b><<</b>';
         $config['uri_segment'] = 3;
     
         $this->pagination->initialize($config);
@@ -32,7 +32,7 @@ class SaranController extends CI_Controller {
         
         $data['links'] = $this->pagination->create_links();
 
-		$data['saran'] = $this->SaranModel->lihat_saran();
+		//$data['saran'] = $this->SaranModel->lihat_saran();
 		$this->load->view('humas/header')->view('humas/saran/lihat', $data)->view('humas/footer');
 		
 	}
