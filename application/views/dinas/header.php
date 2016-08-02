@@ -195,7 +195,7 @@
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/laporan_lihat" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Lihat</span>
                   </a>

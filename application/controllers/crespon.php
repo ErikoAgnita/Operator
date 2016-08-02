@@ -9,6 +9,12 @@ class crespon extends CI_Controller {
 		$this->load->model('mrespon');
 	}
 
+	public function dariadmin()
+	{
+		$data['saran'] = $this->mrespon->lihat_saran();
+		$this->load->view('dinas/header')->view('dinas/respon/dariadmin', $data)->view('dinas/footer');
+	}
+
 	public function balas($id_saran)
 	{
 		$data['respon'] = $this->mrespon->balas_respon($id_saran);

@@ -9,6 +9,12 @@ class mrespon extends CI_Model
         $this->load->database('default','true');
     }
 
+    function lihat_saran()
+    {
+        $query = $this->db->query("SELECT * FROM saran order by tanggal_saran desc");
+        return $query;
+    }
+    
     function balas_respon($id_saran)
     {
     	$this->db->where('id_saran', $id_saran);
