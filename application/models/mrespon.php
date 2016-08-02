@@ -61,5 +61,6 @@ class mrespon extends CI_Model
     function respon($id_saran, $id_skpd)
     {
         $query = $this->db->query("SELECT * FROM respon where id_saran=$id_saran and id_skpd=$id_skpd");
+        return $query;
     }
 }

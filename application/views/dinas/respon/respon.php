@@ -16,7 +16,7 @@
             <table class="table table-bordered table-striped" id="editableUser">
               <tbody>
                 <?php foreach ($saran->result() as $row){?>
-                <form autocomplete="off" action="<?php echo base_url();?>SaranController/disposisi/<?php echo $row->id_saran;?>" method="post">
+                <form autocomplete="off" action="" method="post">
                   <tr>
                     <td>Nama</td>
                     <td>
@@ -94,31 +94,58 @@
               <div class="panel-body container-fluid">
                <div class="row row-lg">
                   <div class="col-sm-6">
-                  <?php              
-                    //foreach ($respon->result() as $row2){}?>
-                    <form action="" method="post" autocomplete="off">
-                      <div class="form-group">      
-                        <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                        <input type="text" class="form-control" value="" name="kategori">
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label" for="inputBasicEmail">Respon</label>
-                        <input type="text" class="form-control" value="" name="isi_respon">
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                        <input type="file" class="form-control" value="" name="lampiran_respon">
-                      </div>
+                  <?php
+                    foreach ($respon->result() as $row2){
+                    if($row2->isi_respon){?>
+                      <form autocomplete="off" action="" method="post">
+                        <tr data-url="panel.tpl" data-toggle="slidePanel">
+                          <td class="pre-cell"></td>
+                          <td class="cell-60 responsive-hide">
+                            <a>
+                              <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/logo.png" alt="...">
+                            </a>
+                          </td>
+                          <td>
+                            <div>
+                              <div class="metas">
+                                <span class="username">
+                                  <strong><?php echo $row2->id_skpd;?></strong>
+                                  <?php
+                                  if($row2->isi_respon){?>
+                                    <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row2->tanggal_respon));?> WIB</span> 
+                                  <?php } ?>
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </form>
+                    <?php }
+                    else{?>
+                      <form action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $row2->id_respon;?>" method="post" autocomplete="off">
+                        <div class="form-group">      
+                          <label class="control-label" for="inputBasicFirstName">Kategori</label>
+                          <input type="text" class="form-control" value="" name="kategori">
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label" for="inputBasicEmail">Respon</label>
+                          <input type="text" class="form-control" value="" name="isi_respon">
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
+                          <input type="file" class="form-control" value="" name="lampiran_respon">
+                        </div>
+                        <div class="form-group">
+                          <input type="hidden" class="form-control" value="" name="id_saran">
+                        </div>
 
-                      <div class="form-group">
-                        <input type="hidden" class="form-control" value="" name="id_saran">
-                      </div>
-
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                        <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
-                      </div>
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
+                          <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
+                        </div>
+                    <?php } ?>       
                     </form>
+                    <?php } ?>
                   </div>
                 </div>
               </div>

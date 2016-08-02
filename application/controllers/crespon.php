@@ -43,18 +43,11 @@ class crespon extends CI_Controller {
 	//COBA
 	public function respon($id_saran)
 	{
-		$id_skpd = 18; //$id_skpd : di set statis dulu. aturannya diambil dari id_skpd session pengguna
+		$id_skpd = 129; //$id_skpd : di set statis dulu. aturannya diambil dari id_skpd session pengguna
 
 		$data['saran'] = $this->mrespon->saran($id_saran);
 		$data['respon'] = $this->mrespon->respon($id_saran, $id_skpd);
 		$this->load->view('dinas/header')->view('dinas/respon/respon', $data)->view('dinas/footer');
-	}
-
-	//COBA -_-
-	public function balas($id_saran)
-	{
-		$data['respon'] = $this->mrespon->balas_respon($id_saran);
-		$this->load->view('dinas/header')->view('dinas/respon/balas', $data)->view('dinas/footer');
 	}
 
 	public function kirim_respon($id_respon)
@@ -78,7 +71,7 @@ class crespon extends CI_Controller {
 		);
 		$this->mrespon->kirim_respon($id_respon, $data);
 		$this->mrespon->respon_saran($id_saran, $data_saran);
-		redirect (base_url().'crespon/balas/'.$id_respon);
+		redirect (base_url().'crespon/respon'.$id_respon);
 	}
 
 	public function publish($id_respon)
