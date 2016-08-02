@@ -148,8 +148,13 @@
 <!-- Modal -->   
 <?php }?>
 
-          <br/>
-          <?php echo $this->pagination->create_links(); ?>
+        <div class="pull-right">
+            <nav>           
+                <ul class="pagination">
+                  <li> <?php echo $links; ?> </li>
+                </ul>
+            </nav>
+        </div>
         </div>
       </div>
       <!-- End Panel Basic -->

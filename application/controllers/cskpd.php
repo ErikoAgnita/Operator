@@ -16,10 +16,19 @@ class Cskpd extends CI_Controller {
 		$config['base_url'] = base_url().'index.php/cskpd/lihat/';
 		$config['total_rows'] = $jumlah_data;
 		$config['per_page'] = 10;
+        
+        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+        $config['cur_tag_close'] = '</a>';
+        $config['prev_link'] = '<';
+        $config['next_link'] = '>';
+        $config['last_link'] = '>>';
+        $config['first_link'] = '<<';
+        
 		$from = $this->uri->segment(3);
 		$this->pagination->initialize($config);
 
 		$data['skpd'] = $this->mskpd->GetAkunskpd($config['per_page'], $from);
+        $data['links'] = $this->pagination->create_links();
 		$this->load->view('humas/header')->view('humas/skpd/lihat', $data)->view('humas/footer');
 	} 
 
