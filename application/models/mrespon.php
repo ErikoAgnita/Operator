@@ -14,6 +14,18 @@ class mrespon extends CI_Model
         $query = $this->db->query("SELECT * FROM saran order by tanggal_saran desc");
         return $query;
     }
+
+    public function record_count() {
+        return $this->db->count_all('saran');
+    }
+
+    //adhgasj
+    public function fetch_data($limit, $id) {
+        $this->db->limit($limit, $id);
+        $this->db->order_by('id_saran','desc');
+        $query = $this->db->get('saran');
+        return $query;
+    }
     
     function balas_respon($id_saran)
     {

@@ -18,12 +18,12 @@
         <div class="tab-pane animation-fade active" id="forum-newest" role="tabpanel">
           <table class="table is-indent">
             <tbody>
-              <?php foreach ($saran->result() as $row){?>
+              <?php foreach ($saran as $row){?>
               <tr data-url="panel.tpl" data-toggle="slidePanel">
                 <td class="pre-cell"></td>
                 <td class="cell-60 responsive-hide">
                   <a class="avatar" href="javascript:void(0)">
-                    <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/people.png" alt="...">
+                    <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/comment.png" alt="...">
                   </a>
                 </td>
                 <td>
@@ -49,38 +49,16 @@
               </tr>
               <?php }?>   
             </tbody>
-          </table>
-          <ul class="pagination pagination-gap">
-            <li class="disabled"><a href="javascript:void(0)">Previous</a></li>
-            <li class="active"><a href="javascript:void(0)">1 <span class="sr-only">(current)</span></a></li>
-            <li><a href="javascript:void(0)">2</a></li>
-            <li><a href="javascript:void(0)">3</a></li>
-            <li><a href="javascript:void(0)">4</a></li>
-            <li><a href="javascript:void(0)">5</a></li>
-            <li><a href="javascript:void(0)">Next</a></li>
-          </ul>
+          </table> 
+          <div class="pull-right">
+            <nav>           
+                <ul class="pagination">
+                    <li> <?php echo $links; ?> </li>
+                </ul>
+            </nav>
+          </div>   
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-  <!-- Google Analytics -->
-  <script>
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js',
-      'ga');
-
-    ga('create', 'UA-65522665-1', 'auto');
-    ga('send', 'pageview');
-  </script>

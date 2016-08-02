@@ -11,7 +11,32 @@ class crespon extends CI_Controller {
 
 	public function dariadmin()
 	{
-		$data['saran'] = $this->mrespon->lihat_saran();
+		$this->load->library('pagination');
+        $config = array();
+        $config['base_url'] = base_url() . "crespon/dariadmin";
+        $total_row = $this->mrespon->record_count();
+        //echo $total_row;
+        $config['total_rows'] = $total_row;
+        $config['per_page'] = 7;
+        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+        $config['cur_tag_close'] = '</a>';
+        $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
+        $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
+        $config['last_link'] = '<b>>></b>';
+        $config['first_link'] = '<b><<</b>';
+        $config['uri_segment'] = 3;
+    
+        $this->pagination->initialize($config);
+        $strpage = $this->uri->segment(3,0);
+        $data['saran'] = $this->mrespon->fetch_data($config['per_page'],$strpage)->result();
+        
+        $data['links'] = $this->pagination->create_links();
+
+        //echo $total_row;
+        $config['total_rows'] = $total_row;
+        $config['per_page'] = 7;
+
+		//$data['saran'] = $this->mrespon->lihat_saran();
 		$this->load->view('dinas/header')->view('dinas/respon/dariadmin', $data)->view('dinas/footer');
 	}
 
