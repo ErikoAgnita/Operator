@@ -1,8 +1,8 @@
 <!-- Footer -->
   <footer class="site-footer">
-    <span class="site-footer-legal">© 2016 Kotak Saran Salatiga</span>
+    <span class="site-footer-legal"> <strong>Copyright &copy; 2016 </strong>Kotak Saran Salatiga</span>
     <div class="site-footer-right">
-      Dibuat <i class="red-600 wb wb-heart"></i> oleh TC
+      Dibuat oleh Teknik Informatika ITS
     </div>
   </footer>
 

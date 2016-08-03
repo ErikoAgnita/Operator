@@ -28,9 +28,10 @@ class mlogin extends CI_Model
         $this->db->from('pengguna');
         $this->db->where('username', $username);
         $this->db->where('password', $password);
+        $this->db->where('isAktif =', '1');
         $this->db->where('level =', 'operator');
         $waktu=date("Y-m-d H:i:s");
-        $this->db->query("UPDATE pengguna SET last_login='$waktu' where username='$username'"); //last login
+        $this->db->query("UPDATE pengguna SET last_login='$waktu' where username='$username' and password='$password' and isAktif = '1'"); //last login
 
         $query = $this->db->get();
         $idid = $query->result();
@@ -73,9 +74,10 @@ class mlogin extends CI_Model
         $this->db->from('pengguna');
         $this->db->where('username', $username);
         $this->db->where('password', $password);
+        $this->db->where('isAktif =', '1');
         $this->db->where('level =', 'admin');
         $waktu=date("Y-m-d H:i:s");
-        $this->db->query("UPDATE pengguna SET last_login='$waktu' where username='$username'"); //last login
+        $this->db->query("UPDATE pengguna SET last_login='$waktu' where username='$username' and password='$password' and isAktif = '1'"); //last login
 
         $query = $this->db->get();
         $idid = $query->result();

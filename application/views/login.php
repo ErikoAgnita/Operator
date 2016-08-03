@@ -112,8 +112,8 @@ if(validation_errors()!=NULL){
       
 
       <footer class="page-copyright">
-        <p>oleh TC</p>
-        <p>© 2016. Kotak Saran Salatiga.</p>
+        <p>Teknik Informatika ITS</p>
+        <strong>Copyright &copy; 2016 </strong> Kotak Saran Salatiga
       </footer>
     </div>
   </div>

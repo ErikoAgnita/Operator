@@ -69,7 +69,7 @@ class clogin extends CI_Controller {
         $this->form_validation->set_rules('password','password','required|callback_verify');
         
         $username = $this->input->post('username');
-        $password = $this->input->post('password');
+        $password = md5($this->input->post('password'));
 
         $cek = $this->mlogin->loginoperator($username,$password);
         $cek1 = $this->mlogin->loginadmin($username,$password);
@@ -89,7 +89,7 @@ class clogin extends CI_Controller {
 
     public function verify(){
         $username = $this->input->post('username');
-        $password = $this->input->post('password');
+        $password = md5($this->input->post('password'));
     
         $cek = $this->mlogin->loginoperator($username,$password);
         $cek1 = $this->mlogin->loginadmin($username,$password);

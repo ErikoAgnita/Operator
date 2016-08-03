@@ -214,17 +214,21 @@ class Cpengguna extends CI_Controller {
         
         $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
         $this->form_validation->set_message('matches', 'password tidak sesuai');
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+
         
         $id= $this->input->post('id_pengguna');
         $pass = md5($this->input->post('password'));
         
         if ($this->form_validation->run() == FALSE){
-            redirect('cpengguna/ganti_password_op/'.$id);
+            $this->ganti_password_op($id);
+
         }else{
             
             $this->mpengguna->get_update_pass($id, $pass);
             $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Password baru berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-            redirect('cpengguna/ganti_password_op/'.$id);
+            $this->ganti_password_op($id);
+
         }
 
     }
@@ -282,17 +286,19 @@ class Cpengguna extends CI_Controller {
         
         $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
         $this->form_validation->set_message('matches', 'password tidak sesuai');
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+
         
         $id= $this->input->post('id_pengguna');
         $pass = md5($this->input->post('password'));
         
         if ($this->form_validation->run() == FALSE){
-            redirect('cpengguna/ganti_password_ad/'.$id);
+            $this->ganti_password_ad($id);
         }else{
             
             $this->mpengguna->get_update_pass($id, $pass);
             $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Password baru berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-            redirect('cpengguna/ganti_password_ad/'.$id);
+            $this->ganti_password_ad($id);
         }
 
     }

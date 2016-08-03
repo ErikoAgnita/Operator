@@ -31,7 +31,7 @@
             <input type="password" class="form-control" id="inputBasicPassword" name="password"
                    autocomplete="off" />
               <?php
-                echo form_error('password'); 
+                echo form_error('password', '<div class="input", style="color:#990000;">','</div>'); 
                 ?>
           </div>
           <div class="form-group">
@@ -39,7 +39,7 @@
             <input type="password" class="form-control" id="inputBasicPassword1" name="konfir_password"
                    autocomplete="off" />
               <?php
-                echo form_error('konfir_password');
+                echo form_error('konfir_password', '<div class="input", style="color:#990000;">','</div>');
                 ?>
           </div>
 
