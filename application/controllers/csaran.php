@@ -125,6 +125,7 @@ class Csaran extends CI_Controller {
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
             $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
             $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
+            $this->form_validation->set_message('valid_email', '{field} tidak sesuai format penulisan yang benar');
             
             if ($this->form_validation->run() == FALSE){
                 $this->index();
