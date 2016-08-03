@@ -14,49 +14,50 @@
       </div>
 
       <!-- Forum Content -->
-      <div class="page-content tab-content page-content-table nav-tabs-animate">
-        <div class="tab-pane animation-fade active" id="forum-newest" role="tabpanel">
-          <table class="table is-indent">
-            <tbody>
-              <?php foreach ($saran as $row){?>
-              <tr data-url="panel.tpl" data-toggle="slidePanel">
-                <td class="pre-cell"></td>
-                <td class="cell-60 responsive-hide">
-                  <a class="avatar" href="javascript:void(0)">
-                    <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/comment.png" alt="...">
-                  </a>
-                </td>
-                <td>
-                  <div>
-                    <div class="metas">
-                      <span class="username">
-                        <?php echo $row->nama;?>
-                        <span class="started">(<?php echo $row->alamat;?>)</span>
-                        <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</span>
-                      </span>
+      <div class="panel-body">
+        <div class="page-content tab-content page-content-table nav-tabs-animate">
+          <div class="tab-pane animation-fade active" id="forum-newest" role="tabpanel">
+            <table class="table is-indent">  
+              <tbody>
+                <?php foreach ($saran as $row){?>
+                <tr data-url="panel.tpl" data-toggle="slidePanel">
+                  <td class="cell-60 responsive-hide">
+                    <a class="avatar" href="javascript:void(0)">
+                      <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/comment.png" alt="...">
+                    </a>
+                  </td>
+                  <td>
+                    <div>
+                      <div class="metas">
+                        <span class="username">
+                          <?php echo $row->nama;?>
+                          <span class="started">(<?php echo $row->alamat;?>)</span>
+                          <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</span>
+                        </span>
+                      </div>
+                      <div class="title">
+                           <span> Topik : <?php echo $row->topik;?></span>
+                          </div>
+                      <div class="title">
+                           <span><?php echo $row->saran;?></span>
+                          </div>
+                          <div class="title">
+                            <a href="<?php echo base_url(); ?>crespon/respon/<?php echo $row->id_saran;?>">Balas</a>
+                          </div>                    
                     </div>
-                    <div class="title">
-                         <span> Topik : <?php echo $row->topik;?></span>
-                        </div>
-                    <div class="title">
-                         <span><?php echo $row->saran;?></span>
-                        </div>
-                        <div class="title">
-                          <a href="<?php echo base_url(); ?>crespon/respon/<?php echo $row->id_saran;?>">Balas</a>
-                        </div>                    
-                  </div>
-                </td>
-              </tr>
-              <?php }?>   
-            </tbody>
-          </table> 
-          <div class="pull-right">
-            <nav>           
-                <ul class="pagination">
-                    <li> <?php echo $links; ?> </li>
-                </ul>
-            </nav>
-          </div>   
+                  </td>
+                </tr>
+                <?php }?>   
+              </tbody>
+            </table> 
+            <div class="pull-right">
+              <nav>           
+                  <ul class="pagination">
+                      <li> <?php echo $links; ?> </li>
+                  </ul>
+              </nav>
+            </div>   
+          </div>
         </div>
       </div>
     </div>

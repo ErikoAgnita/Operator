@@ -40,14 +40,61 @@ class crespon extends CI_Controller {
 		$this->load->view('dinas/header')->view('dinas/respon/dariadmin', $data)->view('dinas/footer');
 	}
 
-	//COBA
 	public function respon($id_saran)
 	{
-		$id_skpd = 129; //$id_skpd : di set statis dulu. aturannya diambil dari id_skpd session pengguna
-
+		$id_skpd = 129;
 		$data['saran'] = $this->mrespon->saran($id_saran);
 		$data['respon'] = $this->mrespon->respon($id_saran, $id_skpd);
+		$data['Idskpd'] = 129; //dari data session
 		$this->load->view('dinas/header')->view('dinas/respon/respon', $data)->view('dinas/footer');
+	}
+
+	public function kirim_respon2($id_respon)
+	{
+		$last=$this->mrespon->ambil_id();
+		$random_number = substr(number_format(time() * rand(),0,'',''),0,4);
+        if($last==0){
+            $nm = 0;
+            $nmfile = $nm.$random_number;
+        }
+        else{
+            foreach ($last as $l ){
+            $nm = $l->id_respon;
+            $nmfile = $nm.$random_number;
+        }}
+        $config = array(
+        'upload_path' => "./uploads/respon",
+        'allowed_types' => "gif|jpg|png|jpeg|bmp",
+        'overwrite' => TRUE,
+        'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+        //'max_height' => "3000",
+        //'max_width' => "3000",
+        'file_name'=> $nmfile
+        );
+        
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if($_FILES['image']['name']){
+            if($this->upload->do_upload('lampiran_respon')){
+
+                $gbr= $this->upload->data();
+                $date = date_create();
+                $tglapor =  date_format($date, 'Y-m-d H:i:s');
+                $data=array('kategori' => $this->input->post('kategori'),
+                            'isi_respon' => $this->input->post('isi_respon'),
+                            'tanggal_respon' => $tglapor,
+                            'lampiran_respon'=>$gbr['file_name']);
+
+                $data_saran = array(
+                	'isStatus' => 'respon baru',
+                	);
+
+	              //  var_dump($data);
+	            $this->mrespon->kirim_respon($id_respon, $data);
+	            $this->mrespon->respon_saran($id_saran, $data_saran);
+	            redirect (base_url().'crespon/respon/'.$id_saran);
+            }
+        }
 	}
 
 	public function kirim_respon($id_respon)
@@ -71,7 +118,7 @@ class crespon extends CI_Controller {
 		);
 		$this->mrespon->kirim_respon($id_respon, $data);
 		$this->mrespon->respon_saran($id_saran, $data_saran);
-		redirect (base_url().'crespon/respon'.$id_respon);
+		redirect (base_url().'crespon/respon/'.$id_saran);
 	}
 
 	public function publish($id_respon)

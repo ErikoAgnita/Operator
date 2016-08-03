@@ -116,13 +116,14 @@ class SaranController extends CI_Controller {
 		$id_skpd_list = $this->input->post('id_skpd');
 		$topik = $this->input->post('topik');
 		$isStatus = 'disposisi';
+		//update saran
 		$data = array (
 			'topik' => $topik,
 			'isStatus' => $isStatus,
-			'isAktif' => 1,
 			);		
 		$this->SaranModel->disposisikan_saran($id_saran, $data);
 		$flag;
+		//membuat respon
 		foreach($id_skpd_list as $id_skpd) {
 			$data_respon = array(
 				'id_skpd' => $id_skpd,
@@ -130,16 +131,9 @@ class SaranController extends CI_Controller {
 				);
 			//work here
 			$sudah_disposisi = $this->SaranModel->cekDisposisi($id_saran, $id_skpd);
-			if(!$sudah_disposisi){
+			if(!$sudah_disposisi->result()){
 				$this->SaranModel->addRespon($data_respon);
 			}
-			else{
-				$flag = 1;
-			}
-		}
-		if($flag==1){			
-			$this->session->set_flashdata('message', 'Saran telah didisposisikan ke Dinas');
-			redirect(base_url()."SaranController/detail/".$id_saran); //flashdata belum muncul
 		}
 		redirect(base_url()."SaranController/detail/".$id_saran);
 	}

@@ -6,13 +6,6 @@
   <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
   <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
 
-
-  <script type="text/javascript">
-      $(document).ready(function() {
-          $('#clist').multiselect();
-      });
-  </script>
-
   <div class="page">
     <div class="page-header">
     </div>

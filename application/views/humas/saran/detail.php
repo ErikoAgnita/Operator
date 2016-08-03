@@ -140,10 +140,9 @@
               <?php foreach ($respon->result() as $row2){?>
                 <form autocomplete="off" action="<?php echo base_url();?>crespon/publish/<?php echo $row2->id_respon;?>" method="post">
                 <tr data-url="panel.tpl" data-toggle="slidePanel">
-                  <td class="pre-cell"></td>
                   <td class="cell-60 responsive-hide">
                     <a>
-                      <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/logo.png" alt="...">
+                      <img class="" width="50px" src="<?php  echo base_url(); ?>assets/images/logo.png" alt="...">
                     </a>
                   </td>
                   <td>
@@ -202,10 +201,8 @@
               <?php } ?>
             </tbody>
           </table>
-
         </div>
       </div>
-
     </div>
   </div>
 </div>

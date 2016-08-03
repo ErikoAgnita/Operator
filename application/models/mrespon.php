@@ -34,6 +34,14 @@ class mrespon extends CI_Model
     	return $query;
     }
 
+    function ambil_id() {
+        $query = $this->db->query("SELECT id_respon FROM respon ORDER BY id_respon DESC LIMIT 1");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
+
     function kirim_respon($id_respon, $data)
     {
     	$this->db->where('id_respon', $id_respon);
@@ -60,7 +68,12 @@ class mrespon extends CI_Model
 
     function respon($id_saran, $id_skpd)
     {
-        $query = $this->db->query("SELECT * FROM respon where id_saran=$id_saran and id_skpd=$id_skpd");
+        $this->db->where('id_saran', $id_saran);
+        $query = $this->db->query("SELECT respon.id_respon, respon.id_saran, respon.id_skpd, respon.kategori, 
+            respon.isi_respon, respon.lampiran_respon, respon.tanggal_respon, skpd.nama 
+            FROM respon INNER JOIN skpd ON respon.id_skpd=skpd.id_skpd AND respon.id_saran=$id_saran and 
+            (respon.isAktif=1 or respon.id_skpd=$id_skpd)
+            order by respon.tanggal_respon desc;");
         return $query;
     }
 }
