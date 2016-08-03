@@ -181,7 +181,26 @@ class Cpengguna extends CI_Controller {
     
     public function do_updateoperator() //update profil operator
     {
+        $this->load->library('form_validation');
+                        
+            $this->form_validation->set_rules('username','username','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
+            $this->form_validation->set_rules('nama','nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
+            $this->form_validation->set_rules('alamat','alamat','trim|min_length[1]|max_length[255]|required|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
+            $this->form_validation->set_rules('telepon', 'telepon', 'trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
+            $this->form_validation->set_rules('handphone','handphone','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
+            $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
+
+            $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
+            $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
+            $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
+            $this->form_validation->set_message('valid_email', '{field} tidak sesuai format penulisan yang benar');
+
+            
         $id= $this->input->post('id_pengguna');
+
+       if ($this->form_validation->run() == FALSE){
+                $this->operator_lihat();
+                }else{
 
         $data = array(
                 'username' => $this->input->post('username'),
@@ -196,7 +215,7 @@ class Cpengguna extends CI_Controller {
         $this->mpengguna->get_update_profil($id, $data);
         $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('cpengguna/lihatawal');
-
+        }
     }
 
     public function ganti_password_op($id_pengguna)
@@ -253,11 +272,29 @@ class Cpengguna extends CI_Controller {
 
     public function do_updateadmin() //update profil operator
     {
+        $this->load->library('form_validation');
+                        
+            $this->form_validation->set_rules('username','username','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
+            $this->form_validation->set_rules('nama','nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
+            $this->form_validation->set_rules('alamat','alamat','trim|min_length[1]|max_length[255]|required|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
+            $this->form_validation->set_rules('telepon', 'telepon', 'trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
+            $this->form_validation->set_rules('handphone','handphone','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
+            $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
+
+            $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
+            $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
+            $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
+            $this->form_validation->set_message('valid_email', '{field} tidak sesuai format penulisan yang benar');
+
         $id= $this->input->post('id_pengguna');
+
+       if ($this->form_validation->run() == FALSE){
+                $this->admin_lihat();
+                }else{
 
         $data = array(
                 'username' => $this->input->post('username'),
-           //     'password' => md5($this->input->post('password')),
+        //        'password' => md5($this->input->post('password')),
                 'nama' => $this->input->post('nama'),
                 'alamat'  => $this->input->post('alamat'),
                 'telepon'   => $this->input->post('telepon'),
@@ -268,7 +305,7 @@ class Cpengguna extends CI_Controller {
         $this->mpengguna->get_update_profiladmin($id, $data);
         $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('cpengguna/lihatawaladmin');
-
+        }
     }
 
     public function ganti_password_ad($id_pengguna)
