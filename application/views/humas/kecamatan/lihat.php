@@ -26,8 +26,8 @@
               </tr>
             </thead>            
             <tbody>
-              <?php $no = 1; ?>
-              <?php foreach ($kecamatan->result() as $row){?>
+              <?php $no = $this->uri->segment('3') + 1; ?>
+              <?php foreach ($kecamatan as $row){?>
               <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $row->kode_kecamatan;?></td>
@@ -45,6 +45,15 @@
               <?php }?>              
             </tbody>
           </table>
+        
+            <div class="pull-right">
+            <nav>           
+                <ul class="pagination">
+                  <li> <?php echo $links; ?> </li>
+                </ul>
+            </nav>
+        </div>
+
         </div>
       </div>
       <!-- End Panel Basic -->

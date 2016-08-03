@@ -14,13 +14,17 @@
             <div class="col-sm-6">
               <!-- Example Basic Form -->
               <div class="example-wrap">
-                  <h4 class="example-title">Edit Akun</h4>     
-                <div class="example">
+                 <?php foreach($kelurahan as $kel){ ?>
 
-                   <?php foreach($kelurahan as $kel){ ?>
+                 <div class='user-block'>
+                  <img src='<?php echo base_url(); ?>assets/images/logo.png' alt='logo' width="42" height="50">
+                  <span class='username'><h4><label><?php echo $kel->nama_kelurahan; ?></label></h4></span>
+                 </div>
+                 <br>
+                  <h4 class="example-title"><b>Edit Akun</b></h4>     
+                <div class="example">
                   <form action="<?php echo base_url(). 'Ckelurahan/do_update'; ?>" method="post" autocomplete="off">
-                  <span class='username'><h4><b><?php echo $kel->nama_kelurahan; ?></b></h4></span>
-                
+                    
                     <div class="form-group">
                         <label class="control-label" for="inputBasicLevel">Kecamatan</label>
                         <div>

@@ -16,8 +16,12 @@
               <div class="example-wrap">
                 <?php foreach($kecamatan as $kec){ ?>
 
-                <span class='username'><label><?php echo $kec->nama_kecamatan; ?></label></span>
-                <h4 class="example-title">Edit Akun</h4>
+                 <div class='user-block'>
+                  <img src='<?php echo base_url(); ?>assets/images/logo.png' alt='logo' width="42" height="50">
+                  <span class='username'><h4><label><?php echo $kec->nama_kecamatan; ?></label></h4></span>
+                 </div>
+                 <br>
+                  <h4 class="example-title"><b>Edit Akun</b></h4>   
                 <div class="example">
                   
                   <form action="<?php echo base_url(). 'Ckecamatan/do_update'; ?>" method="post" autocomplete="off">

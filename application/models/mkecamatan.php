@@ -9,9 +9,13 @@ class Mkecamatan extends CI_Model {
         $this->load->database('default','true');
     }
 
-    public function GetKecamatan(){
-		return $this->db->get('kecamatan');
+    public function GetKecamatan($number, $offset){
+		return $query = $this->db->get('kecamatan', $number, $offset)->result();
 	}
+
+    public function jumlah_data(){
+        return $this->db->get('kecamatan')->num_rows();
+    }
 
 	public function AddKecamatan($data, $table){
 		$this->db->insert('kecamatan', $data);

@@ -9,9 +9,13 @@ class Mkelurahan extends CI_Model {
         $this->load->database('default','true');
     }
 
-   public function GetKelurahan(){
-		return $this->db->query('SELECT kel.kode_kelurahan, kel.nama_kelurahan, kel.isAktif, kel.kode_kecamatan, kec.nama_kecamatan from kecamatan kec, kelurahan kel where kel.kode_kecamatan=kec.kode_kecamatan');
+   public function GetKelurahan($number, $offset){
+		return $this->db->query(('SELECT kel.kode_kelurahan, kel.nama_kelurahan, kel.isAktif, kel.kode_kecamatan, kec.nama_kecamatan from kecamatan kec, kelurahan kel where kel.kode_kecamatan=kec.kode_kecamatan'), $number, $offset);
 	}
+
+    public function jumlah_data(){
+        return $this->db->get('kelurahan')->num_rows();
+    }
 
 	public function AddKelurahan($data, $table){
 		$this->db->insert('kelurahan', $data);

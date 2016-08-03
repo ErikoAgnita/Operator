@@ -28,7 +28,7 @@
               </tr>
             </thead>            
             <tbody>
-              <?php $no = 1; ?>
+              <?php $no = $this->uri->segment('3') + 1; ?>
               <?php foreach ($kelurahan->result() as $row){?>
               <tr>
                 <td><?php echo $no++ ?></td>
@@ -49,6 +49,15 @@
               <?php }?>              
             </tbody>
           </table>
+
+              <div class="pull-right">
+            <nav>           
+                <ul class="pagination">
+                  <li> <?php echo $links; ?> </li>
+                </ul>
+            </nav>
+        </div>
+        
         </div>
       </div>
       <!-- End Panel Basic -->

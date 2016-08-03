@@ -15,9 +15,13 @@ class Mpengguna extends CI_Model {
 		return $this->db->get('pengguna');
 	}
 
-	public function GetPengguna(){
-		return $this->db->query('SELECT p.id_pengguna, p.username, p.password, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas, p.level, p.keterangan from pengguna p, skpd s where p.id_skpd=s.id_skpd');
+	public function GetPengguna($number, $offset){
+		return $this->db->query(('SELECT p.id_pengguna, p.username, p.password, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas, p.level, p.keterangan from pengguna p, skpd s where p.id_skpd=s.id_skpd'), $number, $offset);
 	}
+
+    public function jumlah_data(){
+        return $this->db->get('pengguna')->num_rows();
+    }
 
 	public function AddPengguna($data, $table){
 		$this->db->insert('pengguna', $data);

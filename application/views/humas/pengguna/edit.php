@@ -14,10 +14,15 @@
             <div class="col-sm-6">
               <!-- Example Basic Form -->
               <div class="example-wrap">
-                <h4 class="example-title">Edit Akun</h4>
+
+                 <?php foreach($pengguna as $p){ ?>
+                     <div class='user-block'>
+                 <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
+                  <span class='username'><h4><label><?php echo $p->nama; ?></label></h4></span>
+                 </div>
+                 <br>
+                  <h4 class="example-title"><b>Edit Akun</b></h4>   
                 <div class="example">
-                  <?php foreach($pengguna as $p){ ?>
-                  <span class='username'><h4><b><?php echo $p->nama; ?></b></h4></span>
 
                   <form action="<?php echo base_url(). 'Cpengguna/do_update'; ?>" method="post" autocomplete="off">
                     <div class="form-group">
@@ -26,7 +31,7 @@
                         <input type="text" class="form-control" id="inputBasicUsername" value="<?php echo $p->username ?>" name="username"
                          autocomplete="off" />
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="control-label" for="inputBasicLevel">SKPD</label>
                         <div>
