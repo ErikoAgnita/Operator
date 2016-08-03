@@ -21,6 +21,7 @@ class clogin extends CI_Controller {
     public function logout()
     {
         $this->load->view('logout');
+        redirect('clogin/login');
     }
 
 /*   public function masuk_login()
@@ -76,8 +77,6 @@ class clogin extends CI_Controller {
 
         if($this->form_validation->run() == false){
             $this->login();
-            //redirect('dashboard');
-            //echo "string";
         }
         else if (!empty($cek) == 1){
              redirect('cpengguna/indexoperator');

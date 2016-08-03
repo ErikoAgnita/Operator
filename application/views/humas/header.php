@@ -1,5 +1,17 @@
 <!-- Header -->
+<?php
 
+    error_reporting(E_ALL & ~E_WARNING);
+
+    if($_SESSION['username']){
+        //echo $_SESSION['username'];
+//        $id_guru = $_SESSION['userid'];
+        //echo $_SESSION['name'];
+    }
+    else{
+        redirect('clogin/login');
+    }
+?>
 <!DOCTYPE html>
 <html class="no-js before-run" lang="en">
 <head>
