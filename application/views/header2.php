@@ -43,7 +43,7 @@
       <div id="navbar3" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="<?php echo base_url();?>">Beranda</a></li>
-          <li class="active"><a href="<?php echo base_url(); ?>welcome/aspirasi">Laporan Masyarakat</a></li>
+          <li class="active"><a href="<?php echo base_url(); ?>csaran/aspirasi">Laporan Masyarakat</a></li>
           
         </ul>
       </div>

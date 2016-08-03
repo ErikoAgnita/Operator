@@ -255,7 +255,7 @@
                 </div>
               <!--==========-->
                   <div class="col-md-6">
-                      <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>Welcome/add_saran/" >
+                      <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>csaran/add_saran/" >
                         <div class="form-group" style="color:#62a8ea;">
                             <label class="col-sm-2 control-label">Nama</label>
                             <div class="input-group">

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Csaran extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
@@ -43,7 +43,7 @@ class Welcome extends CI_Controller {
             $cari = $this->input->post('cari');
             $this->load->library('pagination');
             $config = array();
-            $config['base_url'] = base_url() . "welcome/search";
+            $config['base_url'] = base_url() . "csaran/search";
             $total_row = $this->msaran->record_count_search($cari);
             //var_dump($total_row);
             $config['total_rows'] = $total_row;
@@ -79,7 +79,7 @@ class Welcome extends CI_Controller {
         {
             $this->load->library('pagination');
             $config = array();
-            $config['base_url'] = base_url() . "welcome/aspirasi";
+            $config['base_url'] = base_url() . "csaran/aspirasi";
             $total_row = $this->msaran->record_count();
             //echo $total_row;
             $config['total_rows'] = $total_row;

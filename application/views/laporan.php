@@ -2,7 +2,7 @@
     <h1 class="page-header" style="text-aligntment:center; color:#62a8ea;">
             <b>Laporan Masyarakat</b>
           </h1>
-    <form role="form" method="POST" action="<?php echo base_url();?>Welcome/search/" >
+    <form role="form" method="POST" action="<?php echo base_url();?>csaran/search/" >
          <div class="input-group input-group-sm">
             <input type="text" class="form-control" value="<?php echo set_value('cari'); ?>" name="cari" placeholder="Cari . . .">
             <span class="input-group-btn">
