@@ -126,6 +126,8 @@
                 echo "value = 'nonaktif'>";
                 echo "Nonaktif";
               }?></button></span>
+
+              <span><button type="submit" class="btn btn-primary" name="btn" value="hapus"><?php echo "Hapus"; ?></button></span>              
             </form>
           </div>
       </div>
@@ -195,6 +197,7 @@
                         echo "value = 'unpublish'>";
                         echo "Unpublish";
                       }?></button></span>
+                      <span><button type="submit" class="btn btn-primary" name="btn2" value="hapus"><?php echo "Hapus"; ?></button></span>
                     </div>
                 </tr>
                 </form>

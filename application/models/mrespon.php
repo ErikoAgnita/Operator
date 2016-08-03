@@ -16,14 +16,18 @@ class mrespon extends CI_Model
     }
 
     public function record_count() {
-        return $this->db->count_all('saran');
+        $this->db->select('id_saran');
+        $this->db->from('saran');
+        $this->db->where('isSpam=1');
+        $num_results = $this->db->count_all_results();
+        return $num_results;
     }
 
     //adhgasj
     public function fetch_data($limit, $id) {
         $this->db->limit($limit, $id);
         $this->db->order_by('id_saran','desc');
-        $query = $this->db->get('saran');
+        $query = $this->db->query('SELECT * FROM saran where isSpam=1');
         return $query;
     }
     
@@ -62,6 +66,7 @@ class mrespon extends CI_Model
     function saran($id_saran)
     {
         $this->db->where('id_saran', $id_saran);
+        $this->db->where('isSpam', '1');
         $query = $this->db->get('saran');
         return $query;
     }
@@ -75,5 +80,16 @@ class mrespon extends CI_Model
             (respon.isAktif=1 or respon.id_skpd=$id_skpd)
             order by respon.tanggal_respon desc;");
         return $query;
+    }
+
+    function addRespon($data)
+    {
+        $this->db->insert('respon', $data);
+    }
+
+    function hapus_respon($id_respon)
+    {
+        $this->db->where("id_respon", $id_respon);
+        $this->db->delete('respon');
     }
 }

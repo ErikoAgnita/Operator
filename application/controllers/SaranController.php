@@ -108,6 +108,10 @@ class SaranController extends CI_Controller {
 			$this->SaranModel->aktif_saran($id_saran, $data);
 			redirect(base_url()."SaranController/detail/".$id_saran);
 		}
+		elseif($this->input->post('btn')=="hapus"){	
+			$this->SaranModel->hapus_saran($id_saran);
+			redirect(base_url()."SaranController/lihat/");
+		}
 		
 	}
 

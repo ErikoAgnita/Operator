@@ -8,8 +8,11 @@
   strong { 
     color: black;
   }
+
 </style>
 
+<?php
+if($saran->result()){?>
 <div class="page animsition" style="animation-duration: 800ms; opacity: 1;">
   <div class="page-content">
     <!-- Panel X-Editable -->
@@ -23,7 +26,9 @@
             <div class="panel-body container-fluid">
               <table class="table is-indent">          
                 <tbody>
-                  <?php foreach ($saran->result() as $row){?>
+                  <?php foreach ($saran->result() as $row){
+                  //$id_saran = $row->id_saran; 
+                  ?>
                   <form autocomplete="off" action="" method="post">
                     <tr data-url="panel.tpl" data-toggle="slidePanel">      
                       <td class="cell-60 responsive-hide">
@@ -72,70 +77,105 @@
               <table class="table is-indent">   
                 <tbody>
                   <?php
-                    foreach ($respon->result() as $row2){
-                    if($row2->id_skpd == $Idskpd){
-                      if(empty($row2->isi_respon)){?>
-                      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon</button>
-                        <div id="demo" class="collapse">
-                          <div class="col-sm-6">                            
-                            <form autocomplete="off" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $row2->id_respon;?>" method="post">
-                              <div>      
-                                <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                <input type="text" class="form-control" value="<?php echo $row2->kategori;?>" name="kategori">
-                              </div>
-                              <div>
-                                <label class="control-label" for="inputBasicEmail">Respon</label>
-                                <input type="text" class="form-control" value="<?php echo $row2->isi_respon;?>" name="isi_respon">
-                              </div>
-                              <div>
-                                <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                                <input type="file" class="form-control" value="<?php echo $row2->lampiran_respon;?>" name="lampiran_respon">
-                              </div>
-                              <div>
-                                <input type="hidden" class="form-control" value="<?php echo $row2->id_saran;?>" name="id_saran">
-                              </div>
-                              <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                                <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
-                            </form>
-                          </div>
-                        </div>
-                      <?php }
-                      else{?>
-                      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Ubah Respon</button>
-                        <div id="demo" class="collapse">
-                          <div class="col-sm-6">                            
-                            <form autocomplete="off" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $row2->id_respon;?>" method="post">
-                              <div>      
-                                <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                <input type="text" class="form-control" value="<?php echo $row2->kategori;?>" name="kategori">
-                              </div>
-                              <div>
-                                <label class="control-label" for="inputBasicEmail">Respon</label>
-                                <input type="text" class="form-control" value="<?php echo $row2->isi_respon;?>" name="isi_respon">
-                              </div>
-                              <div>
-                                <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                                <input type="file" class="form-control" value="<?php echo $row2->lampiran_respon;?>" name="lampiran_respon">
-                              </div>
-                              <div>
-                                <input type="hidden" class="form-control" value="<?php echo $row2->id_saran;?>" name="id_saran">
-                              </div>
-                              <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                                <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
-                            </form>
-                          </div>
-                        </div>
-                      <?php
+                      foreach ($saran->result() as $row){                        
+                        $id_saran = $row->id_saran; 
                       }
-                    }
-                  }?>
+                      $id_respon=NULL;
+                      $id_skpd=NULL;
+                      $kategori=NULL;
+                      $isi_respon=NULL;
+                      $lampiran_respon=NULL;
+                      $tanggal_respon=NULL;
+
+                      foreach ($respon->result() as $row2){
+                      if($row2->id_skpd == $Idskpd){
+                        $flag=1;
+                        if($row2->isi_respon){
+                          $flag=2;
+                        }
+                        $id_respon = $row2->id_respon;
+                        $id_skpd = $row2->id_skpd;
+                        $kategori = $row2->kategori;
+                        $isi_respon = $row2->isi_respon;
+                        $lampiran_respon = $row2->lampiran_respon;
+                        $tanggal_respon = $row2->tanggal_respon;
+                      }
+                      }?>
+
+                      <?php
+                      if($flag==0 or $flag==1){?>
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon</button>
+                          <div id="demo" class="collapse">
+                            <div class="col-sm-6">                            
+                              <form autocomplete="off" action="
+                              <?php 
+                              if($flag==1){
+                                echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;
+                              }
+                              else{
+                                echo base_url();?>crespon/addRespon
+                              <?php }
+                              ?>
+                              " method="post">
+                                <div>      
+                                  <label class="control-label" for="inputBasicFirstName">Kategori</label>
+                                  <input type="text" class="form-control" value="" name="kategori">
+                                </div>
+                                <div>
+                                  <label class="control-label" for="inputBasicEmail">Respon</label>
+                                  <input type="text" class="form-control" value="" name="isi_respon">
+                                </div>
+                                <div>
+                                  <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
+                                  <input type="file" class="form-control" value="" name="lampiran_respon">
+                                </div>
+                                <div>
+                                  <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
+                                </div>
+                                <div>
+                                  <input type="hidden" class="form-control" value="<?php echo $flag;?>" name="flag">
+                                </div>
+                                <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
+                              </form>
+                            </div>
+                          </div>
+                        <?php }
+                        else{?>
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Ubah Respon</button>
+                          <div id="demo" class="collapse">
+                            <div class="col-sm-6">                            
+                              <form autocomplete="off" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
+                                <div>      
+                                  <label class="control-label" for="inputBasicFirstName">Kategori</label>
+                                  <input type="text" class="form-control" value="<?php echo $kategori;?>" name="kategori">
+                                </div>
+                                <div>
+                                  <label class="control-label" for="inputBasicEmail">Respon</label>
+                                  <input type="text" class="form-control" value="<?php echo $isi_respon;?>" name="isi_respon">
+                                </div>
+                                <div>
+                                  <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
+                                  <input type="file" class="form-control" value="<?php echo $lampiran_respon;?>" name="lampiran_respon">
+                                </div>
+                                <div>
+                                  <input type="hidden" class="form-control" value="<?php echo $id_saran_row;?>" name="id_saran">
+                                </div>
+                                <div>
+                                  <input type="hidden" class="form-control" value="<?php echo $flag;?>" name="flag">
+                                </div>
+                                <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
+                                  <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
+                              </form>
+                            </div>
+                          </div>
+                        <?php
+                      }?>
                 </tbody>
               </table>            
             </div>
           </div>
       </div>
 
-      
       <header class="panel-heading">
         <h3 class="panel-title">Respon SKPD</h3>
       </header>
@@ -204,3 +244,4 @@
       </div>
     </div>
   </div>
+<?php }?>

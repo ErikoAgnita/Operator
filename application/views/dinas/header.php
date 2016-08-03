@@ -5,7 +5,8 @@
 
     if($_SESSION['username'] && $_SESSION['level']=='Operator'){
         //echo $_SESSION['username'];
-//        $id_guru = $_SESSION['userid'];
+        $userid_skpd = $_SESSION['userid_skpd'];
+        echo $userid_skpd ;
         //echo $_SESSION['name'];
     }
     else{

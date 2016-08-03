@@ -41,8 +41,8 @@ class mlogin extends CI_Model
             'username'  => $username,
             //'opepass' => md5($idid[0]->password),
             'userid' => $idid[0]->id_pengguna,
-            /*'opensk' => $idid[0]->id_skpd,
-            'opeku' => $idid[0]->kode_unit,*/
+            'userid_skpd' => $idid[0]->id_skpd,
+            /*'opeku' => $idid[0]->kode_unit,*/
             'level' => $idid[0]->level, 
             'name' => $idid[0]->nama,
             /*'opealamat' => $idid[0]->alamat,
@@ -80,8 +80,8 @@ class mlogin extends CI_Model
             'username'  => $username,
             //'adminpass' => md5($idid[0]->password),
             'userid' => $idid[0]->id_pengguna,
-            /*'adminnsk' => $idid[0]->id_skpd,
-            'adminku' => $idid[0]->kode_unit,*/
+            'userid_skpd' => $idid[0]->id_skpd,
+            /*'adminku' => $idid[0]->kode_unit,*/
             'level' => $idid[0]->level, 
             'name' => $idid[0]->nama,
             /*'adminalamat' => $idid[0]->alamat,

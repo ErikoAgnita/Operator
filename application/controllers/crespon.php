@@ -42,10 +42,14 @@ class crespon extends CI_Controller {
 
 	public function respon($id_saran)
 	{
-		$id_skpd = 129;
+		$userid_skpd = $_SESSION['userid_skpd'];
 		$data['saran'] = $this->mrespon->saran($id_saran);
-		$data['respon'] = $this->mrespon->respon($id_saran, $id_skpd);
-		$data['Idskpd'] = 129; //dari data session
+		if($data['saran']){
+			$data['respon'] = $this->mrespon->respon($id_saran, $userid_skpd);
+		}		
+		$data['Idskpd'] = $userid_skpd;
+		$data['flag'] = 0;
+		$data['id_saran'] = NULL;
 		$this->load->view('dinas/header')->view('dinas/respon/respon', $data)->view('dinas/footer');
 	}
 
@@ -99,6 +103,34 @@ class crespon extends CI_Controller {
 
 	public function kirim_respon($id_respon)
 	{
+		$userid_skpd = $_SESSION['userid_skpd'];
+		$kategori = $this->input->post('kategori');
+		$isi_respon = $this->input->post('isi_respon');
+		$lampiran_respon = $this->input->post('lampiran_respon');
+		$date = date_create();
+		$tanggal_respon = date_format($date, 'Y-m-d H:i:s');
+		$id_saran = $this->input->post('id_saran');
+
+		
+		$data = array(
+			'kategori' => $kategori,
+			'isi_respon' => $isi_respon,
+			'lampiran_respon' => $lampiran_respon,
+			'tanggal_respon' => $tanggal_respon,
+			);
+		$this->mrespon->kirim_respon($id_respon, $data);
+		
+		$data_saran = array(
+			'isStatus' => 'respon baru',
+		);
+		
+		$this->mrespon->respon_saran($id_saran, $data_saran);
+		redirect (base_url().'crespon/respon/'.$id_saran);
+	}
+
+	public function addRespon()
+	{
+		$userid_skpd = $_SESSION['userid_skpd'];
 		$kategori = $this->input->post('kategori');
 		$isi_respon = $this->input->post('isi_respon');
 		$lampiran_respon = $this->input->post('lampiran_respon');
@@ -107,16 +139,18 @@ class crespon extends CI_Controller {
 		$id_saran = $this->input->post('id_saran');
 
 		$data = array(
+			'id_skpd' => $userid_skpd,
+			'id_saran' => $id_saran,
 			'kategori' => $kategori,
 			'isi_respon' => $isi_respon,
 			'lampiran_respon' => $lampiran_respon,
 			'tanggal_respon' => $tanggal_respon,
-		);
+			);
+		$this->mrespon->addRespon($data);
 
 		$data_saran = array(
 			'isStatus' => 'respon baru',
-		);
-		$this->mrespon->kirim_respon($id_respon, $data);
+		);		
 		$this->mrespon->respon_saran($id_saran, $data_saran);
 		redirect (base_url().'crespon/respon/'.$id_saran);
 	}
@@ -128,13 +162,18 @@ class crespon extends CI_Controller {
 			$data = array (
 				'isAktif' => 1,
 				);
+			$this->mrespon->publish($id_respon, $data);
 		}
 		else{
 			$data = array (
 				'isAktif' => 0,
 				);
+
+			$this->mrespon->publish($id_respon, $data);
 		}
-		$this->mrespon->publish($id_respon, $data);
+		if($this->input->post('btn2')=="hapus"){
+			$this->mrespon->hapus_respon($id_respon);
+		}
 		redirect(base_url().'SaranController/detail/'.$id_saran);
 	}
 }
