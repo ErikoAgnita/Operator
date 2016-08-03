@@ -3,7 +3,7 @@
 
     error_reporting(E_ALL & ~E_WARNING);
 
-    if($_SESSION['username']){
+    if($_SESSION['username'] && $_SESSION['level']=='Admin'){
         //echo $_SESSION['username'];
 //        $id_guru = $_SESSION['userid'];
         //echo $_SESSION['name'];
