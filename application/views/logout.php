@@ -1,7 +1,5 @@
 <?php
-function logout() {
 session_destroy();
-redirect('login');
-}
+redirect('clogin/login');
 ?>
 
