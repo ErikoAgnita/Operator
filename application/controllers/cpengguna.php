@@ -39,7 +39,8 @@ class Cpengguna extends CI_Controller {
     {
         $data['pengguna'] = $this->mpengguna->get_profil($id_pengguna);
         $this->load->view('humas/header')->view('humas/pengguna/ganti_pass1', $data)->view('humas/footer');
-    } 
+    }
+
     public function do_update_password() //update profil operator
     {
         $this->load->library('form_validation');
@@ -66,7 +67,7 @@ class Cpengguna extends CI_Controller {
 
     }
 
-     public function tambah()
+    public function tambah()
     {
         $data['skpd'] = $this->mpengguna->data_skpd();
         $this->load->view('humas/header')->view('humas/pengguna/tambah', $data)->view('humas/footer');
@@ -146,11 +147,9 @@ class Cpengguna extends CI_Controller {
 
      public function hapus($id_pengguna)
     {
-        $where = array('id_pengguna' => $id_pengguna);
-        $this->mpengguna->DeletePengguna($id_pengguna, 'pengguna');
+        $this->mskpd->DeletePengguna($id_pengguna);
         redirect('Cpengguna/lihat');
     }
-
     /*public function detail($id_pengguna)
     {
         $data['pengguna'] = $this->mpengguna->DetailPengguna(); 
