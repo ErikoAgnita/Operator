@@ -5,9 +5,11 @@ class Data extends CI_Model {
         parent::__construct();
     }
     
-    function select_data() {
+    function select_data($id_saran) {
+        $this->db->where('id_saran', $id_saran);
         $query = $this->db->get('saran');
         return $query->result();
+        
         //var_dump($query);
     }
 }
