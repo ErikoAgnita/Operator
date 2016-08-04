@@ -156,7 +156,6 @@ class Csaran extends CI_Controller {
                     $this->upload->initialize($config);
                     if($_FILES['image']['name']){
                         if($this->upload->do_upload('image')){
-
                             $gbr= $this->upload->data();
                             $date = date_create();
                             $tglapor =  date_format($date, 'Y-m-d H:i:s');

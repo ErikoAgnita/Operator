@@ -27,7 +27,6 @@ if($saran->result()){?>
               <table class="table is-indent">          
                 <tbody>
                   <?php foreach ($saran->result() as $row){
-                  //$id_saran = $row->id_saran; 
                   ?>
                   <form autocomplete="off" action="" method="post">
                     <tr data-url="panel.tpl" data-toggle="slidePanel">      
@@ -107,7 +106,7 @@ if($saran->result()){?>
                         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon</button>
                           <div id="demo" class="collapse">
                             <div class="col-sm-6">                            
-                              <form autocomplete="off" action="
+                              <form autocomplete="on" enctype="multipart/form-data" action="
                               <?php 
                               if($flag==1){
                                 echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;
@@ -127,7 +126,9 @@ if($saran->result()){?>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                                  <input type="file" class="form-control" value="" name="lampiran_respon">
+                                  <span class="input-group-addon"><i class="fa fa-upload"></i></span>
+                                  <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
+                                  <div id="imagePreview"></div>
                                 </div>
                                 <div>
                                   <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
@@ -144,7 +145,7 @@ if($saran->result()){?>
                         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Ubah Respon</button>
                           <div id="demo" class="collapse">
                             <div class="col-sm-6">                            
-                              <form autocomplete="off" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
+                              <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
                                 <div>      
                                   <label class="control-label" for="inputBasicFirstName">Kategori</label>
                                   <input type="text" class="form-control" value="<?php echo $kategori;?>" name="kategori">
@@ -155,10 +156,10 @@ if($saran->result()){?>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                                  <input type="file" class="form-control" value="<?php echo $lampiran_respon;?>" name="lampiran_respon">
+                                  <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
                                 </div>
                                 <div>
-                                  <input type="hidden" class="form-control" value="<?php echo $id_saran_row;?>" name="id_saran">
+                                  <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
                                 </div>
                                 <div>
                                   <input type="hidden" class="form-control" value="<?php echo $flag;?>" name="flag">

@@ -53,8 +53,9 @@ class crespon extends CI_Controller {
 		$this->load->view('dinas/header')->view('dinas/respon/respon', $data)->view('dinas/footer');
 	}
 
-	public function kirim_respon2($id_respon)
+	public function kirim_respon($id_respon)
 	{
+		$id_saran = $this->input->post('id_saran');
 		$last=$this->mrespon->ambil_id();
 		$random_number = substr(number_format(time() * rand(),0,'',''),0,4);
         if($last==0){
@@ -67,19 +68,18 @@ class crespon extends CI_Controller {
             $nmfile = $nm.$random_number;
         }}
         $config = array(
-        'upload_path' => "./uploads/respon",
-        'allowed_types' => "gif|jpg|png|jpeg|bmp",
-        'overwrite' => TRUE,
-        'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-        //'max_height' => "3000",
-        //'max_width' => "3000",
-        'file_name'=> $nmfile
+	        'upload_path' => "./uploads/respon",
+	        'allowed_types' => "gif|jpg|png|jpeg|bmp",
+	        'overwrite' => TRUE,
+	        'max_size' => "2048000",
+	        'file_name'=> $nmfile
         );
         
+		$this->load->library('upload');
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        if($_FILES['image']['name']){
-            if($this->upload->do_upload('lampiran_respon')){
+        if($nmfile){
+            if($this->upload->do_upload('image')){
 
                 $gbr= $this->upload->data();
                 $date = date_create();
@@ -99,9 +99,26 @@ class crespon extends CI_Controller {
 	            redirect (base_url().'crespon/respon/'.$id_saran);
             }
         }
+        else{
+           	$gbr= $this->upload->data();
+            $date = date_create();
+            $tglapor =  date_format($date, 'Y-m-d H:i:s');
+            $data=array('kategori' => $this->input->post('kategori'),
+                        'isi_respon' => $this->input->post('isi_respon'),
+                        'tanggal_respon' => $tglapor,);
+
+            $data_saran = array(
+            	'isStatus' => 'respon baru',
+            	);
+
+              //  var_dump($data);
+            $this->mrespon->kirim_respon($id_respon, $data);
+            $this->mrespon->respon_saran($id_saran, $data_saran);
+            redirect (base_url().'crespon/respon/'.$id_saran);
+        }
 	}
 
-	public function kirim_respon($id_respon)
+	public function kirim_respon2($id_respon)
 	{
 		$userid_skpd = $_SESSION['userid_skpd'];
 		$kategori = $this->input->post('kategori');
