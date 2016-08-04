@@ -1,6 +1,16 @@
   <!-- Page -->
 <div class="page">
-  <div class="page-content">
+<div class="page-content">
+        <form role="form" method="POST" action="<?php echo base_url();?>SaranController/search/" >
+         <div class="input-group input-group-sm">
+            <input type="text" class="form-control" value="<?php echo set_value('cari'); ?>" name="cari" placeholder="Cari . . .">
+            <span class="input-group-btn">
+              <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+            </span>
+          </div>
+     </form>
+</br>
+      <?php echo $this->session->flashdata('pesan'); ?>
     <div class="panel">
       <header class="panel-heading">
         <div class="panel-actions"></div>
