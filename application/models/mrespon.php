@@ -83,7 +83,8 @@ class mrespon extends CI_Model
     function saran($id_saran)
     {
         $this->db->where('id_saran', $id_saran);
-        $this->db->where('isSpam', '1');
+        $this->db->where('isSpam', '0');
+        $this->db->where('isAktif', '1');
         $query = $this->db->get('saran');
         return $query;
     }
@@ -93,7 +94,7 @@ class mrespon extends CI_Model
         $this->db->where('id_saran', $id_saran);
         $query = $this->db->query("SELECT respon.id_respon, respon.id_saran, respon.id_skpd, respon.kategori, 
             respon.isi_respon, respon.lampiran_respon, respon.tanggal_respon, skpd.nama 
-            FROM respon INNER JOIN skpd ON respon.id_skpd=skpd.id_skpd AND respon.id_saran=$id_saran and 
+            FROM respon INNER JOIN skpd ON respon.id_skpd=skpd.id_skpd AND respon.id_saran=$id_saran and
             (respon.isAktif=1 or respon.id_skpd=$id_skpd)
             order by respon.tanggal_respon desc;");
         return $query;
