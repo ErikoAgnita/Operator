@@ -1,53 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-  <div class="page">
-    <div class="page-header">
-      <h1 class="page-title">Ubah Respon</h1>
-      <ol class="breadcrumb">
-        <li>Respon</li>
-        <li>Ubah</li>
-      </ol>
+<script type="text/javascript">
+  $(function() {
+
+  var $active = true;
+
+  $('.panel-title > a').click(function(e) {
+    e.preventDefault();
+  });
+
+  $('.collapse-init').on('click', function() {
+    if(!$active) {
+      $active = true;
+      $('.panel-title > a').attr('data-toggle', 'collapse');
+      $('.panel-collapse').collapse({'toggle': true, 'parent': '#accordion'});
+      $(this).html('Click to disable accordion behavior');
+    } else {
+      $active = false;
+      $('.panel-collapse').collapse({'toggle': true, 'parent': '#accordion'});
+      $('.panel-title > a').removeAttr('data-toggle');
+      $(this).html('Click to enable accordion behavior');
+    }
+  });
+
+});
+</script>
+
+<button class="collapse-init">Click to disable accordion behavior</button>
+<br><br>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
     </div>
-    <div class="page-content">
-      <div class="panel">
-        <div class="panel-body container-fluid">
-          <div class="row row-lg">
-            <div class="col-sm-6">
-              <!-- Example Basic Form -->
-              <div class="example-wrap">
-                <h4 class="example-title">Ubah Respon</h4>
-                <div class="example">
-                <?php foreach ($respon->result() as $row){?>
-                  <form autocomplete="off" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $row->id_respon;}?>" method="post">
-                    <div class="form-group">      
-                        <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                        <input type="text" class="form-control" value="<?php echo $row->kategori;?>" name="kategori">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicEmail">Respon</label>
-                      <input type="text" class="form-control" value="<?php echo $row->isi_respon;?>" name="isi_respon">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                      <input type="file" class="form-control" value="<?php echo $row->lampiran_respon;?>" name="lampiran_respon">
-                    </div>
-
-                    <div class="form-group">
-                      <input type="hidden" class="form-control" value="<?php echo $row->id_saran;?>" name="id_saran">
-                    </div>
-
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                      <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
-                    </div>
-                  </form>
-                  
-                </div>
-              </div>
-              <!-- End Example Basic Form -->
-            </div>
-          </div>
-        </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
       </div>
     </div>
   </div>
-  <!-- End Page -->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

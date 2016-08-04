@@ -78,7 +78,7 @@ class crespon extends CI_Controller {
 		$this->load->library('upload');
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        if($nmfile){
+        if($_FILES['image']['name']){
             if($this->upload->do_upload('image')){
 
                 $gbr= $this->upload->data();
@@ -92,8 +92,7 @@ class crespon extends CI_Controller {
                 $data_saran = array(
                 	'isStatus' => 'respon baru',
                 	);
-
-	              //  var_dump($data);
+	              
 	            $this->mrespon->kirim_respon($id_respon, $data);
 	            $this->mrespon->respon_saran($id_saran, $data_saran);
 	            redirect (base_url().'crespon/respon/'.$id_saran);
@@ -111,7 +110,6 @@ class crespon extends CI_Controller {
             	'isStatus' => 'respon baru',
             	);
 
-              //  var_dump($data);
             $this->mrespon->kirim_respon($id_respon, $data);
             $this->mrespon->respon_saran($id_saran, $data_saran);
             redirect (base_url().'crespon/respon/'.$id_saran);
@@ -192,5 +190,10 @@ class crespon extends CI_Controller {
 			$this->mrespon->hapus_respon($id_respon);
 		}
 		redirect(base_url().'SaranController/detail/'.$id_saran);
+	}
+
+	public function tes()
+	{
+		$this->load->view('dinas/respon/balas');
 	}
 }

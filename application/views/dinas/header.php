@@ -6,7 +6,6 @@
     if($_SESSION['username'] && $_SESSION['level']=='Operator'){
         //echo $_SESSION['username'];
         $userid_skpd = $_SESSION['userid_skpd'];
-        echo $userid_skpd ;
         //echo $_SESSION['name'];
     }
     else{
@@ -58,6 +57,11 @@
   <link rel="stylesheet" href="<?php  echo base_url(); ?>assets/fonts/brand-icons/brand-icons.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <!-- Inline -->
   <style>
     @media (min-width: 768px) and (max-width: 992px) {
@@ -70,6 +74,7 @@
       }
     }
   </style>
+
 
   <!--[if lt IE 9]>
     <script src="../../assets/vendor/html5shiv/html5shiv.min.js"></script>
@@ -86,6 +91,31 @@
   <script>
     Breakpoints();
   </script>
+  
+  <script type="text/javascript">
+    $(function() {
+        $("#uploadFile").on("change", function()
+        {
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+            if (/^image/.test( files[0].type)){ // only image file
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[0]); // read the local file
+
+                reader.onloadend = function(){ // set image data as background of div
+                    $("#imagePreview").css("display", "inherit");
+                    $("#imagePreview").css("background-image", "url("+this.result+")");
+                }
+            }
+        });
+        
+        $("#delImg").onClick(function(){
+            $("#imagePreview").css("display", "none");
+        });
+    });
+    </script> 
+  
 </head>
 <body>
   <!--[if lt IE 8]>

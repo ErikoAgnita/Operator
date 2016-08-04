@@ -1,8 +1,21 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  function readURL(input) {
 
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+              $('#bla').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+
+  $("#uploadFile").change(function(){
+      readURL(this);
+  });
+</script>
 
 <style type="text/css">
   strong { 
@@ -10,6 +23,7 @@
   }
 
 </style>
+
 
 <?php
 if($saran->result()){?>
@@ -59,7 +73,7 @@ if($saran->result()){?>
                             <span class="">
                               <?php if($row->lampiran_saran){
                               echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
-                              alt='Photo'> <?php ";
+                              alt='Photo' width=600 heigt=600> <?php ";
                             } ?>
                             </span>
                           </div>
@@ -79,12 +93,12 @@ if($saran->result()){?>
                       foreach ($saran->result() as $row){                        
                         $id_saran = $row->id_saran; 
                       }
-                      $id_respon=NULL;
-                      $id_skpd=NULL;
-                      $kategori=NULL;
-                      $isi_respon=NULL;
-                      $lampiran_respon=NULL;
-                      $tanggal_respon=NULL;
+                      $id_respon;
+                      $id_skpd;
+                      $kategori;
+                      $isi_respon;
+                      $lampiran_respon;
+                      $tanggal_respon;
 
                       foreach ($respon->result() as $row2){
                       if($row2->id_skpd == $Idskpd){
@@ -126,8 +140,8 @@ if($saran->result()){?>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                                  <span class="input-group-addon"><i class="fa fa-upload"></i></span>
                                   <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
+                                  <!-- <img id="bla"/> -->
                                   <div id="imagePreview"></div>
                                 </div>
                                 <div>
@@ -145,7 +159,7 @@ if($saran->result()){?>
                         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Ubah Respon</button>
                           <div id="demo" class="collapse">
                             <div class="col-sm-6">                            
-                              <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
+                              <form runat="server" autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
                                 <div>      
                                   <label class="control-label" for="inputBasicFirstName">Kategori</label>
                                   <input type="text" class="form-control" value="<?php echo $kategori;?>" name="kategori">
@@ -157,7 +171,9 @@ if($saran->result()){?>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
                                   <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
-                                </div>
+                                  <!-- <img id="bla"/> -->
+                                  <div id="imagePreview"></div>
+                                </div>                                
                                 <div>
                                   <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
                                 </div>
@@ -211,18 +227,18 @@ if($saran->result()){?>
                                 <div class="metas">                        
                                   <span class="started"><?php echo $row2->kategori;?></span>
                                 </div>
-                                <div class="title">
-                                  <?php echo $row2->isi_respon; ?>
-                                </div>
                                 <?php if($row2->lampiran_respon){?>
                                   <div class="metas">                 
                                     <span class="tags">
                                       <?php if($row->lampiran_saran!=NULL){
                                         echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$row2->lampiran_respon."' 
-                                        alt='Photo'> <?php ";
+                                        alt='Photo' width=600 height=600> <?php ";
                                       } ?>
                                     </span>
-                                  </div>
+                                  </div>                                  
+                                <div class="title">
+                                  <?php echo $row2->isi_respon; ?>
+                                </div>
                                 <?php } ?>
                               <?php }
                               else{?>                                                                 
