@@ -32,8 +32,22 @@ class Mskpd extends CI_Model {
 		$this->db->update($table, $data);
 	}
 
-	public function DeleteSKPD($where, $table){
-		$this->db->where($where);
-		$this->db->delete($table);
+	public function pencarian($cari, $limit, $id_skpd){
+        $query = $this->db->query("SELECT * FROM skpd WHERE nama LIKE '%$cari%' or kodeUnit LIKE '%$cari%' LIMIT $limit OFFSET $id_skpd");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
+    public function record_count_search($cari) {
+        $condition = "nama LIKE '%$cari%' or kodeUnit LIKE '%$cari%'";
+        $this->db->where($condition);
+        return $this->db->count_all_results('skpd');
+            //return $query->result();
+    }
+
+	public function DeleteSKPD($id_skpd){
+		$this->db->where('id_skpd', $id_skpd);
+		$this->db->delete('skpd');
 	}
 }

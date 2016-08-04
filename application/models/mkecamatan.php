@@ -30,9 +30,22 @@ class Mkecamatan extends CI_Model {
 		$this->db->update('kecamatan', $data);	
 	}
 
-	public function DeleteKecamatan($where, $table){
-		$this->db->where($where);
-		$this->db->delete($table);
+	public function DeleteKecamatan($kode_kecamatan){
+		$this->db->where('kode_kecamatan', $kode_kecamatan);
+		$this->db->delete('kecamatan');
 	}
+
+	public function pencarian($cari, $limit, $kode_kecamatan){
+        $query = $this->db->query("SELECT * FROM kecamatan WHERE nama_kecamatan LIKE '%$cari%' LIMIT $limit OFFSET $kode_kecamatan");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
+    public function record_count_search($cari) {
+        $condition = "nama_kecamatan LIKE '%$cari%' ";
+        $this->db->where($condition);
+        return $this->db->count_all_results('kecamatan');
+    }
 
  }

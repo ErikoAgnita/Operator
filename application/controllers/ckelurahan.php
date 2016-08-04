@@ -34,6 +34,53 @@ class Ckelurahan extends CI_Controller {
         $this->load->view('humas/header')->view('humas/kelurahan/lihat', $data)->view('humas/footer');
     } 
 
+    public function search()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
+        $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
+            
+        if ($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->lihat();
+            
+        }
+        else{
+            $this->load->database();
+            $cari = $this->input->post('cari');
+            $this->load->library('pagination');
+            $config = array();
+            $config['base_url'] = base_url() . "Ckelurahan/search";
+            $total_row = $this->mkelurahan->record_count_search($cari);
+                //var_dump($total_row);
+            $config['total_rows'] = $total_row;
+            $config['per_page'] = 5;
+            $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+            $config['cur_tag_close'] = '</a>';
+            $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
+            $config['next_link'] = '<i class="fa fa-caret-right"></i>';
+            $config['last_link'] = '<i class="fa fa-forward"></i>';
+            $config['first_link'] = '<i class="fa fa-backward"></i>';
+            $config['uri_segment'] = 3;
+            
+            $this->pagination->initialize($config);
+            $strpage = $this->uri->segment(3,0);
+                
+            $data['kelurahan'] = $this->mkelurahan->pencarian($cari,$config['per_page'],$strpage);
+            //$data['data_kecamatan'] = $this->mkelurahan->data_kecamatan();
+            //$data['kecamatan'] = $this->mkelurahan->GetKelurahan1();
+            $data['links'] = $this->pagination->create_links();
+                
+            if($data['kelurahan'] == NULL || $cari==''){
+                $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                $this->lihat();
+            }
+            else{   
+                $this->load->view('humas/header')->view('humas/kelurahan/lihat', $data)->view('humas/footer');
+            }   
+        }
+    }
+
     public function tambah()
     {
         $data['data_kecamatan'] = $this->mkelurahan->data_kecamatan();
@@ -42,18 +89,33 @@ class Ckelurahan extends CI_Controller {
 
     public function do_tambah()
     {
-   		$kode_kecamatan = $this->input->post('kode_kecamatan');
-        $kode_kelurahan = $this->input->post('kode_kelurahan');
-        $nama_kelurahan = $this->input->post('nama_kelurahan');
+        $this->load->library('form_validation');
+        $this->load->library('session');
+        $this->form_validation->set_rules('kode_kelurahan', 'Kode Kelurahan', 'trim|max_length[20]|regex_match[/^[a-z]{0,20}$/]|required');
+        $this->form_validation->set_rules('nama_kelurahan', 'Nama Kelurahan', 'trim|max_length[50]|required');
 
-        $data = array(
-            'kode_kecamatan' => $kode_kecamatan,
-            'kode_kelurahan' => $kode_kelurahan,
-            'nama_kelurahan' => $nama_kelurahan
-        	);
+        $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter');
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+        $this->form_validation->set_message('regex_match', '{field} harus terdiri dari huruf kecil');
+
+        if ($this->form_validation->run() == FALSE){
+            $this->tambah();
+        }
+        else{   
+            $kode_kecamatan = $this->input->post('kode_kecamatan');
+            $kode_kelurahan = $this->input->post('kode_kelurahan');
+            $nama_kelurahan = $this->input->post('nama_kelurahan');
+
+            $data = array(
+                'kode_kecamatan' => $kode_kecamatan,
+                'kode_kelurahan' => $kode_kelurahan,
+                'nama_kelurahan' => $nama_kelurahan
+                );
 
         $this->mkelurahan->AddKelurahan($data, 'kelurahan');
+        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data Kelurahan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Ckelurahan/lihat');
+        }
     }
 
     public function update($kode_kelurahan)
@@ -88,8 +150,7 @@ class Ckelurahan extends CI_Controller {
 
     public function hapus($kode_kelurahan)
     {
-    	$where = array('kode_kelurahan' => $kode_kelurahan);
-        $this->mkelurahan->DeleteKelurahan($kode_kelurahan, 'kelurahan');
+        $this->mkelurahan->DeleteKelurahan($kode_kelurahan);
         redirect('Ckelurahan/lihat');
     }
 

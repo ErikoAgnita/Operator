@@ -30,16 +30,25 @@
                         <input type="text" class="form-control" id="inputBasicKodeKecamatan" value="<?php echo $kec->kode_kecamatan ?>" name="kode_kecamatan"
                          autocomplete="off" />
                     </div>
+                    <?php
+                      echo form_error('kode_kecamatan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                      ?>
                      <div class="form-group">
                       <label class="control-label" for="inputBasicKecamatan">Nama Kecamatan</label>
                       <input type="text" class="form-control" id="inputBasicKecamatan" value="<?php echo $kec->nama_kecamatan ?>" name="nama_kecamatan"
                        autocomplete="off" />
                     </div>
+                    <?php
+                      echo form_error('nama_kecamatan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                      ?>
                       <div class="form-group">
                      <label class="control-label" for="inputBasicisAktif">isAktif</label>
                       <input type="text" class="form-control" id="inputBasicisAktif" value="<?php echo $kec->isAktif ?>" name="isAktif"
                        autocomplete="off" />
                     </div>
+                    <?php
+                      echo form_error('isAktif','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                      ?>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>

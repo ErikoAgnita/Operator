@@ -34,9 +34,23 @@ class Mkelurahan extends CI_Model {
 		$this->db->update($table, $data);
 	}
 
-	public function DeleteKelurahan($where, $table){
-		$this->db->where($where);
-		$this->db->delete($table);
+	public function DeleteKelurahan($kode_kelurahan){
+		$this->db->where('kode_kelurahan', $kode_kelurahan);
+		$this->db->delete('kelurahan');
 	}
+
+	public function pencarian($cari, $limit, $kode_kelurahan){
+        $query = $this->db->query("SELECT * FROM kelurahan WHERE nama_kelurahan LIKE '%$cari%' LIMIT $limit OFFSET $kode_kelurahan");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
+    public function record_count_search($cari) {
+        $condition = "nama_kelurahan LIKE '%$cari%' ";
+        $this->db->where($condition);
+        return $this->db->count_all_results('kelurahan');
+            //return $query->result();
+    }
 
  }

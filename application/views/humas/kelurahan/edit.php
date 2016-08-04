@@ -40,21 +40,30 @@
                         </div>
                     </div>
 
-                       <div class="form-group">
-                        <label class="control-label" for="inputBasicKodeKelurahan<">Kode Kelurahan</label>
-                        <input type="text" class="form-control" id="inputBasicKodeKecamatan" value="<?php echo $kel->kode_kelurahan ?>" name="kode_kelurahan"
+                    <div class="form-group">
+                        <label class="control-label" for="inputBasicKodeKelurahan">Kode Kelurahan</label>
+                        <input type="text" class="form-control" id="inputBasicKodeKelurahan" value="<?php echo $kel->kode_kelurahan ?>" name="kode_kelurahan"
                          autocomplete="off" />
                     </div>
-                     <div class="form-group">
+                    <?php
+                      echo form_error('kode_kelurahan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                      ?>
+                    <div class="form-group">
                       <label class="control-label" for="inputBasicKelurahan<">Nama Kelurahan</label>
                       <input type="text" class="form-control" id="inputBasicKelurahan<" value="<?php echo $kel->nama_kelurahan ?>" name="nama_kelurahan"
                        autocomplete="off" />
                     </div>
-                      <div class="form-group">
+                    <?php
+                      echo form_error('nama_kelurahan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                      ?>
+                    <div class="form-group">
                      <label class="control-label" for="inputBasicisAktif">isAktif</label>
                       <input type="text" class="form-control" id="inputBasicisAktif" value="<?php echo $kel->isAktif ?>" name="isAktif"
                        autocomplete="off" />
                     </div>
+                    <?php
+                      echo form_error('isAktif','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                      ?>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
