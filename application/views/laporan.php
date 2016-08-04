@@ -11,7 +11,7 @@
           </div>
      </form>
      
-    <?php echo $this->session->flashdata('pesan'); ?>
+    <?php echo $this->session->flashdata('pesancari'); ?>
     <div class="row" style="margin-top:20px;">
         <?php if($aspirasi!=0){foreach($aspirasi as $as){ ?>
         <div class="col-sm-3">

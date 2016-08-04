@@ -37,7 +37,7 @@ class Csaran extends CI_Controller {
         $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
         
         if ($this->form_validation->run() == FALSE){
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
                 $this->aspirasi();
             //echo "asda";
         }else{
@@ -64,8 +64,8 @@ class Csaran extends CI_Controller {
             $data['balasan'] = $this->msaran->balasan();
             $data['links'] = $this->pagination->create_links();
             
-            if($data['aspirasi'] == NULL){
-                $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            if($data['aspirasi'] == NULL || $cari == ''){
+                $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
                 $this->aspirasi();
             }
             else{   
