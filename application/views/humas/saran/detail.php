@@ -125,9 +125,9 @@
                 ?>
                 <span><button type="submit" class="btn btn-success" name="btn" value="<?php echo $valspam;?>"><i class="<?php echo $icospam; ?>"></i><?php echo " ".$valspam; ?></button></span>
                 <span><button type="submit" class="btn btn-primary" name="btn" value="<?php echo $valtif;?>"><i class="<?php echo $icotif; ?>"></i><?php echo " ".$valtif; ?></button></span>
-                <span><button type="submit" class="btn btn-danger" name="btn" value="hapus"><i class="icon wb-trash"></i> Hapus</button></span>             
+                <span><button type="submit" class="btn btn-danger" name="btn" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i> Hapus</button></span>             
             </form>
-            <span><a  href="<?php echo base_url();?>csaran/cetak/<?php echo $row->id_saran;?>" type="button" class="btn btn-default active"><i class="icon wb-print"></i> Cetak</a></span> 
+            <span><a  type="button" class="btn btn-default active" onclick="window.open('<?php echo base_url();?>csaran/cetak/<?php echo $row->id_saran;?>')"><i class="icon wb-print"></i> Cetak</a></span> 
           </div>
       </div>
       
@@ -185,18 +185,19 @@
                     <div class="form-group">
                       <input type="hidden" value="<?php echo $row2->id_saran ?>" name="id_saran"/>
                     </div>
-                    <div class="form-group">
-                      <span><button type="submit" class="btn btn-primary" name="btn2"
                       <?php 
-                      if($row2->isAktif == "0"){
-                        echo "value = 'publish'>";
-                        echo "Publish";
-                      }
-                      else{
-                        echo "value = 'unpublish'>";
-                        echo "Unpublish";
-                      }?></button></span>
-                      <span><button type="submit" class="btn btn-primary" name="btn2" value="hapus"><?php echo "Hapus"; ?></button></span>
+                          if($row2->isAktif == "0"){
+                                $val = "Publish";
+                                $ico = "icon wb-check";
+                            }
+                            else {
+                                $val = "Unpublish";
+                                $ico = "icon wb-close";
+                            }
+                      ?>
+                    <div class="form-group">
+                      <span><button type="submit" class="btn btn-success" name="btn2" value="<?php echo $val;?>"><i class="<?php echo $ico; ?>"></i><?php echo " ".$val?></button></span>
+                      <span><button type="submit" class="btn btn-danger" name="btn2" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i><?php echo " Hapus"; ?></button></span>
                     </div>
                 </tr>
                 </form>

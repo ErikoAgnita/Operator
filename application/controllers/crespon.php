@@ -173,7 +173,7 @@ class crespon extends CI_Controller {
 	public function publish($id_respon)
 	{
 		$id_saran = $this->input->post('id_saran');
-		if($this->input->post('btn2')=="publish"){
+		if($this->input->post('btn2')=="Publish"){
 			$data = array (
 				'isAktif' => 1,
 				);
