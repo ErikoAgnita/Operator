@@ -71,7 +71,7 @@ class SaranController extends CI_Controller {
             $data['saran'] = $this->SaranModel->pencarian($cari,$config['per_page'],$strpage);
             $data['links'] = $this->pagination->create_links();
             
-            if($data['saran'] == NULL){
+            if($data['saran'] == NULL || $cari == ''){
                 $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
                 $this->lihat();
             }
