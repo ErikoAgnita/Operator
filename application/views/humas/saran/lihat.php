@@ -10,7 +10,7 @@
           </div>
      </form>
 </br>
-      <?php echo $this->session->flashdata('pesan'); ?>
+      <?php echo $this->session->flashdata('pesancari'); ?>
     <div class="panel">
       <header class="panel-heading">
         <div class="panel-actions"></div>
