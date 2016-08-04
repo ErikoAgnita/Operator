@@ -163,7 +163,7 @@ class Cpengguna extends CI_Controller {
     }
 
     public function lihatawal(){
-        $id = $_SESSION['opeid'];
+        $id = $_SESSION['userid'];
         $data['adata']  = $this->mpengguna->get_profil($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
         $this->load->view('dinas/header');
         $this->load->view('dinas/akun/lihatawal',$data);
@@ -171,7 +171,7 @@ class Cpengguna extends CI_Controller {
     }
 
     public function operator_lihat(){   //
-        $id = $_SESSION['opeid'];
+        $id = $_SESSION['userid'];
         $data['adata']  = $this->mpengguna->get_profil($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
         $this->load->view('dinas/header');
         $this->load->view('dinas/akun/lihat',$data);
@@ -254,7 +254,7 @@ class Cpengguna extends CI_Controller {
 
     //profil admin
     public function lihatawaladmin(){
-        $id = $_SESSION['adminid'];
+        $id = $_SESSION['userid'];
         $data['adata']  = $this->mpengguna->get_profiladmin($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
         $this->load->view('humas/header');
         $this->load->view('humas/akun/lihatawal',$data);
@@ -262,7 +262,7 @@ class Cpengguna extends CI_Controller {
     }
 
     public function admin_lihat(){   //
-        $id = $_SESSION['adminid'];
+        $id = $_SESSION['userid'];
         $data['adata']  = $this->mpengguna->get_profiladmin($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
         $this->load->view('humas/header');
         $this->load->view('humas/akun/lihat',$data);
