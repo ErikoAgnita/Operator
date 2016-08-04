@@ -137,7 +137,6 @@
         <!--<button type="button" class="btn btn-info">-->
           <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cskpd/update/<?php echo $row->id_skpd;?>">Update</a>
         <!--</button>-->
-          <a type="button" class="btn btn-success" href="<?php echo base_url(); ?>Cskpd/do_ganti_password/<?php echo $row->id_skpd;?>">Ganti Password</a>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
       </div>
     </div>

@@ -1,37 +1,29 @@
  <!-- Page -->
   <div class="page">
+      <?php foreach($pengguna as $p){ ?>
     <div class="page-header">
       <h1 class="page-title">Pengguna</h1>
       <ol class="breadcrumb">
         <li>Pengguna</li>
         <li>Edit Data Pengguna</li>
+        <li><small><?php echo $p->nama; ?></small></li>
       </ol>
     </div>
      <div class="page-content">
       <div class="panel">
         <div class="panel-body container-fluid">
-          <div class="row row-lg">
-            <div class="col-sm-6">
-              <!-- Example Basic Form -->
+		<!-- Example Basic Form -->
               <div class="example-wrap">
-
-                 <?php foreach($pengguna as $p){ ?>
-                     <div class='user-block'>
-                 <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
-                  <span class='username'><h4><label><?php echo $p->nama; ?></label></h4></span>
-                 </div>
-                 <br>
-                  <h4 class="example-title"><b>Edit Akun</b></h4>   
                 <div class="example">
-
-                  <form action="<?php echo base_url(). 'Cpengguna/do_update'; ?>" method="post" autocomplete="off">
+          <div class="row row-lg">
+              <form action="<?php echo base_url(). 'Cpengguna/do_update'; ?>" method="post" autocomplete="off">
+				<div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicUsername">Username</label>
                         <input type="hidden" name="id_pengguna" value="<?php echo $p->id_pengguna ?>">
                         <input type="text" class="form-control" id="inputBasicUsername" value="<?php echo $p->username ?>" name="username"
                          autocomplete="off" />
                     </div>
-
                     <div class="form-group">
                         <label class="control-label" for="inputBasicLevel">SKPD</label>
                         <div>
@@ -46,7 +38,6 @@
                           </select>
                         </div>
                     </div>
-                 
                     <div class="form-group">
                         <label class="control-label" for="inputBasicLevel">Level</label>
                         <div>
@@ -61,7 +52,7 @@
                           </select>
                         </div>
                     </div>
-                      <div class="form-group">
+                    <div class="form-group">
                      <label class="control-label" for="inputBasicNama">Nama Pengguna</label>
                       <input type="text" class="form-control" id="inputBasicNama" value="<?php echo $p->nama ?>" name="nama"
                        autocomplete="off" />
@@ -71,6 +62,9 @@
                       <input type="text" class="form-control" id="inputBasicAlamat" value="<?php echo $p->alamat ?>" name="alamat"
                        autocomplete="off" />
                     </div>
+				</div>
+				<div class="col-sm-6">
+                    
                     <div class="form-group">
                       <label class="control-label" for="inputBasicTelepon">Telepon</label>
                       <input type="text" class="form-control" id="inputBasicTelepon" value="<?php echo $p->telepon ?>" name="telepon"
@@ -81,32 +75,35 @@
                       <input type="text" class="form-control" id="inputBasicHandphone" value="<?php echo $p->handphone ?>" name="handphone"
                         autocomplete="off" />
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                       <label class="control-label" for="inputBasicEmail">Email</label>
                       <input type="email" class="form-control" id="inputBasicEmail" value="<?php echo $p->email ?>" name="email"
                        autocomplete="off" />
                     </div>
+					<div class="form-group">
                      <label class="control-label" for="inputBasicKeterangan">Keterangan</label>
                       <input type="text" class="form-control" id="inputBasicKeterangan" value="<?php echo $p->keterangan ?>" name="keterangan"
                        autocomplete="off" />
                     </div>
-                       <div class="form-group">
+                    <div class="form-group">
                       <label class="control-label" for="inputBasicTema">isAktif</label>
                       <input type="text" class="form-control" id="inputBasicTema" value="<?php echo $p->isAktif ?>" name="isAktif"
                        autocomplete="off" />
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Simpan</button>
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                        </div>
                     </div>
-                  </form>
-                 <?php } ?>
-                </div>
+				</div>
+			</form>
+          </div>
+		  </div>
               </div>
               <!-- End Example Basic Form -->
-            </div>
-          </div>
         </div>
       </div>
     </div>
+<?php } ?>
   </div>
   <!-- End Page -->

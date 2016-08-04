@@ -1,24 +1,23 @@
   <!-- Page -->
   <div class="page">
+      <?php foreach($skpd as $s){ ?>
     <div class="page-header">
-      <h1 class="page-title">Admin</h1>
+      <h1 class="page-title">Satuan Kerja Perangkat Daerah (SKPD)</h1>
       <ol class="breadcrumb">
-        <li>Admin</li>
+        <li>SKPD</li>
         <li>Edit Data SKPD</li>
+        <li><small><?php echo $s->nama; ?></small></li>
       </ol>
     </div>
      <div class="page-content">
       <div class="panel">
         <div class="panel-body container-fluid">
+            <!-- Example Basic Form -->
+            <div class="example-wrap">
+                <div class="example">
+                    <form action="<?php echo base_url(). 'Cskpd/do_update'; ?>" method="post" autocomplete="off">
           <div class="row row-lg">
             <div class="col-sm-6">
-              <!-- Example Basic Form -->
-              <div class="example-wrap">
-                <h4 class="example-title">Edit Akun</h4>
-                <div class="example">
-                  <?php foreach($skpd as $s){ ?>
-                  <span class='username'><h4><b><?php echo $s->nama; ?></b></h4></span>
-                  <form action="<?php echo base_url(). 'Cskpd/do_update'; ?>" method="post" autocomplete="off">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicKodeUnit">Kode Unit</label>
                         <input type="hidden" name="id_skpd" value="<?php echo $s->id_skpd ?>">
@@ -50,6 +49,10 @@
                       <input type="text" class="form-control" id="inputBasicTelepon" value="<?php echo $s->telepon ?>" name="telepon"
                        autocomplete="off" />
                     </div>
+                
+                    
+            </div>
+              <div class="col-sm-6">
                     <div class="form-group">
                       <label class="control-label" for="inputBasicFax">Fax</label>
                       <input type="text" class="form-control" id="inputBasicFax" value="<?php echo $s->fax ?>" name="fax"
@@ -75,28 +78,65 @@
                       <input type="text" class="form-control" id="inputBasicTema" value="<?php echo $s->tema ?>" name="tema"
                        autocomplete="off" />
                     </div>
-                       <div class="form-group">
-                      <label class="control-label" for="inputBasicisLink">isLink</label>
-                      <input type="text" class="form-control" id="inputBasicisLink" value="<?php echo $s->isLink ?>" name="isLink"
-                       autocomplete="off" />
-                    </div>
-                       <div class="form-group">
-                      <label class="control-label" for="inputBasicisAktif">isAktif</label>
-                      <input type="text" class="form-control" id="inputBasicisAktif" value="<?php echo $s->isAktif ?>" name="isAktif"
-                       autocomplete="off" />
-                    </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                            <?php if($s->isLink == '1'){
+                                        $cekA = "checked";
+                                        $cekP = "";
+                                    }
+                                     else {$cekP = "checked";
+                                           $cekA = "";
+                                          }
+                            ?>
+                          <label class="control-label" for="inputBasicisLink">isLink</label>
+                            <div class="radio-custom radio-primary">
+                              <input type="radio" id="inputRadios1" name="isLink" value="1" <?php echo $cekA; ?>/>
+                              <label for="inputRadios1">Aktif</label>
+                            </div>
+                            <div class="radio-custom radio-primary">
+                              <input type="radio" id="inputRadios1" name="isLink" value="0" <?php echo $cekP; ?> />
+                              <label for="inputRadios1">Pasif</label>
+                            </div>
+                        </div>
+                          </div>
+                      <div class="col-sm-6">
+                      
+                        <div class="form-group">
+                            <?php if($s->isAktif == '1'){
+                                        $cekA = "checked";
+                                        $cekP = "";
+                                    }
+                                     else {$cekP = "checked";
+                                           $cekA = "";
+                                          }
+                            ?>
+                          <label class="control-label" for="inputBasicisAktif">isAktif</label>
+                          <div class="radio-custom radio-primary">
+                              <input type="radio" id="inputRadios1" name="isAktif" value="1" <?php echo $cekA; ?>/>
+                              <label for="inputRadios1">Aktif</label>
+                            </div>
+                            <div class="radio-custom radio-primary">
+                              <input type="radio" id="inputRadios1" name="isAktif" value="0" <?php echo $cekP; ?> />
+                              <label for="inputRadios1">Pasif</label>
+                            </div>
+                        </div>
+                          </div>
+                  </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Simpan</button>
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                        </div>
                     </div>
-                  </form>
-                  <?php } ?>
-                </div>
-              </div>
-              <!-- End Example Basic Form -->
             </div>
           </div>
+                    </form>
         </div>
       </div>
+            </div>
+              </div>
+              <!-- End Example Basic Form -->
     </div>
+      <?php } ?>
   </div>
   <!-- End Page -->

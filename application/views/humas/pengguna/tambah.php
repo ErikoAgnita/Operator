@@ -4,20 +4,19 @@
       <h1 class="page-title">Pengguna</h1>
       <ol class="breadcrumb">
         <li>Pengguna</li>
-        <li>Tambah Pengguna</li>
+        <li>Buat Pengguna</li>
       </ol>
     </div>
      <div class="page-content">
       <div class="panel">
         <div class="panel-body container-fluid">
+            <form action="<?php echo base_url()?>Cpengguna/do_tambah" method="post" enctype="multipart/form-data" autocomplete="off">
           <div class="row row-lg">
-            <div class="col-sm-6">
-           <!-- Example Basic Form -->
+              <!-- Example Basic Form -->
               <div class="example-wrap">
-                <h4 class="example-title">Tambah Pengguna</h4>
+                
                 <div class="example">
-                  <form action="<?php echo base_url()?>Cpengguna/do_tambah" method="post" enctype="multipart/form-data" autocomplete="off">
-
+            <div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicUsername">Username</label>
                         <input type="text" class="form-control" id="inputBasicUsername" name="username"
@@ -54,6 +53,8 @@
                       <input type="text" class="form-control" id="inputBasicNama" name="nama"
                        placeholder="VIRA WIENA" autocomplete="off" />
                     </div>
+            </div>
+                    <div class="col-sm-6">
                     <div class="form-group">
                       <label class="control-label" for="inputBasicAlamat">Alamat Pengguna</label>
                       <input type="text" class="form-control" id="inputBasicAlamat" name="alamat" 
@@ -80,14 +81,17 @@
                        autocomplete="off" />
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Tambah</button>
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                        </div>
                     </div>
-                  </form>
-                </div>
+                
+            </div>
+                  </div>
               </div>
               <!-- End Example Basic Form -->
-            </div>
           </div>
+            </form>
         </div>
       </div>
     </div>
