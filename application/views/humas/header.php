@@ -106,11 +106,11 @@
       data-toggle="collapse">
         <i class="icon wb-more-horizontal" aria-hidden="true"></i>
       </button>
-      <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
+  <!--    <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
       data-toggle="collapse">
         <span class="sr-only">Toggle Search</span>
         <i class="icon wb-search" aria-hidden="true"></i>
-      </button>
+      </button> -->
       <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="">
         <img class="navbar-brand-logo" src="<?php  echo base_url(); ?>assets/images/logo.png" title="Kotak Saran Salatiga">
         <span class="navbar-brand-text">Kotak Saran Salatiga</span>
@@ -135,11 +135,11 @@
               <span class="sr-only">Toggle fullscreen</span>
             </a>
           </li>
-          <li class="hidden-float">
+      <!--    <li class="hidden-float">
             <a class="icon wb-search" data-toggle="collapse" href="#site-navbar-search" role="button">
               
             </a>
-          </li>
+          </li> -->
         </ul>
         <!-- End Navbar Toolbar -->
 
@@ -154,7 +154,7 @@
       <!-- End Navbar Collapse -->
 
       <!-- Site Navbar Seach -->
-      <div class="collapse navbar-search-overlap" id="site-navbar-search">
+  <!--    <div class="collapse navbar-search-overlap" id="site-navbar-search">
         <form role="search">
           <div class="form-group">
             <div class="input-search">
@@ -181,14 +181,14 @@
             <li class="site-menu-category">Admin</li>
             <li class="site-menu-item">
               <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/lihatawaladmin" data-slug="uikit">
-                <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
+                <i class="site-menu-icon wb-user" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
                 <span class="site-menu "></span>
              </a>              
             </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
-                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <i class="site-menu-icon wb-book" aria-hidden="true"></i>
                 <span class="site-menu-title">Laporan</span>
                 <span class="site-menu-arrow"></span>
               </a>
@@ -203,7 +203,7 @@
             </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
-                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <i class="site-menu-icon wb-library" aria-hidden="true"></i>
                 <span class="site-menu-title">SKPD</span>
                 <span class="site-menu-arrow"></span>
               </a>
@@ -222,7 +222,7 @@
             </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
-                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <i class="site-menu-icon wb-home" aria-hidden="true"></i>
                 <span class="site-menu-title">Kecamatan</span>
                 <span class="site-menu-arrow"></span>
               </a>
@@ -241,7 +241,7 @@
             </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
-                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <i class="site-menu-icon wb-order" aria-hidden="true"></i>
                 <span class="site-menu-title">Kelurahan</span>
                 <span class="site-menu-arrow"></span>
               </a>
@@ -260,7 +260,7 @@
             </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
-                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <i class="site-menu-icon wb-users" aria-hidden="true"></i>
                 <span class="site-menu-title">Pengguna</span>
                 <span class="site-menu-arrow"></span>
               </a>

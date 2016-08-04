@@ -44,7 +44,9 @@
           </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp; Simpan</button>
+            <a type="button" class="btn btn-danger" href="<?php echo base_url(); ?>Cpengguna/lihatawaladmin"><i class="icon wb-chevron-left"></i>&nbsp;&nbsp;Keluar</a>
+
          </div>
       </form>
        </div>

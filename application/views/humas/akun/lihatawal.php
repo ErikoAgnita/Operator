@@ -54,7 +54,7 @@
               </tbody>
             </table>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary"><?php echo "Ubah"; ?></button>
+              <button type="submit" class="btn btn-primary"><i class="icon wb-settings"></i>&nbsp;&nbsp;<?php echo "Ubah"; ?></button>
             </div>
             </form>
           </div>
