@@ -119,7 +119,7 @@ if($saran->result()){?>
                       if($flag==0 or $flag==1){?>
                         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon</button>
                           <div id="demo" class="collapse">
-                            <div class="col-sm-6">                            
+                            <div>                            
                               <form autocomplete="on" enctype="multipart/form-data" action="
                               <?php 
                               if($flag==1){
@@ -132,11 +132,11 @@ if($saran->result()){?>
                               " method="post">
                                 <div>      
                                   <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                  <input type="text" class="form-control" value="" name="kategori">
+                                  <textarea type="text" class="form-control" value="" name="kategori"></textarea> 
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Respon</label>
-                                  <input type="text" class="form-control" value="" name="isi_respon">
+                                  <textarea rows="8" type="text" class="form-control" value="" name="isi_respon"> </textarea>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
@@ -158,15 +158,15 @@ if($saran->result()){?>
                         else{?>
                         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Ubah Respon</button>
                           <div id="demo" class="collapse">
-                            <div class="col-sm-6">                            
+                            <div>                            
                               <form runat="server" autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
                                 <div>      
                                   <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                  <input type="text" class="form-control" value="<?php echo $kategori;?>" name="kategori">
+                                  <textarea cols="50" type="text" class="form-control" value="<?php echo $kategori;?>" name="kategori"></textarea> 
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Respon</label>
-                                  <input type="text" class="form-control" value="<?php echo $isi_respon;?>" name="isi_respon">
+                                  <textarea rows="8" type="text" class="form-control" value="<?php echo $isi_respon;?>" name="isi_respon"></textarea>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
@@ -230,16 +230,16 @@ if($saran->result()){?>
                                 <?php if($row2->lampiran_respon){?>
                                   <div class="metas">                 
                                     <span class="tags">
-                                      <?php if($row->lampiran_saran!=NULL){
+                                      <?php if($row2->lampiran_respon!=NULL){
                                         echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$row2->lampiran_respon."' 
                                         alt='Photo' width=600 height=600> <?php ";
                                       } ?>
                                     </span>
-                                  </div>                                  
+                                  </div>  
+                                <?php } ?>                                                                
                                 <div class="title">
                                   <?php echo $row2->isi_respon; ?>
                                 </div>
-                                <?php } ?>
                               <?php }
                               else{?>                                                                 
                                 <div class="metas">                 
