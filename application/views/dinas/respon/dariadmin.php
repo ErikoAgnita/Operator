@@ -30,19 +30,24 @@
                     <div>
                       <div class="metas">
                         <span class="username">
-                          <?php echo $row->nama;?>
+                          <span><?php echo $row->nama;?></span>
                           <span class="started">(<?php echo $row->alamat;?>)</span>
                           <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</span>
                         </span>
                       </div>
                       <div class="title">
                            <span> Topik : <?php echo $row->topik;?></span>
-                          </div>
-                      <div class="title">
-                           <span><?php echo $row->saran;?></span>
-                          </div>
+                           <div class="title">
+                              <div>
+                                <?php                           
+                                echo substr($row->saran, 0,500); 
+                                if(strlen($row->saran) > 500){
+                                  echo ' . . .';
+                                }?>
+                              </div>
+                            </div>
                           <div class="title">
-                            <a href="<?php echo base_url(); ?>crespon/respon/<?php echo $row->id_saran;?>">Balas</a>
+                            <a href="<?php echo base_url(); ?>crespon/respon/<?php echo $row->id_saran;?>">Detail</a>
                           </div>                    
                     </div>
                   </td>

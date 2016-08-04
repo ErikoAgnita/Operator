@@ -18,16 +18,33 @@ class mrespon extends CI_Model
     public function record_count() {
         $this->db->select('id_saran');
         $this->db->from('saran');
-        $this->db->where('isSpam=1');
+        $this->db->where('isSpam=0');
+        $this->db->where('isAktif=1');      
         $num_results = $this->db->count_all_results();
         return $num_results;
     }
 
-    //adhgasj
+    public function record_count_skpd($userid_skpd)
+    {
+        $this->db->select('id_saran');
+        $this->db->from('respon');
+        $this->db->where('id_skpd', $userid_skpd);      
+        $num_results = $this->db->count_all_results();
+        return $num_results;
+    }
+
     public function fetch_data($limit, $id) {
         $this->db->limit($limit, $id);
         $this->db->order_by('id_saran','desc');
-        $query = $this->db->query('SELECT * FROM saran where isSpam=1');
+        $query = $this->db->query('SELECT * FROM saran where isSpam=0 and isAktif=1');
+        return $query;
+    }
+
+    public function fetch_data_skpd($limit, $id, $userid_skpd) {
+        $this->db->limit($limit, $id);
+        $this->db->order_by('id_saran','desc');
+        $query = $this->db->query('SELECT * FROM saran JOIN respon 
+            WHERE id_skpd=$userid_skpd AND saran.id_saran=respon.id_saran and saran.isSpam=0 and saran.isAktif=1');
         return $query;
     }
     

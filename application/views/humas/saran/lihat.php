@@ -46,10 +46,10 @@
                         </span>
                       </div>
                       <div class="title">
-                          <div style="width:80%;">
+                          <div>
                             <?php                           
-                            echo substr($row->saran, 0,250); 
-                            if(strlen($row->saran) > 250){
+                            echo substr($row->saran, 0,500); 
+                            if(strlen($row->saran) > 500){
                               echo '...';
                             }?>
                           </div>

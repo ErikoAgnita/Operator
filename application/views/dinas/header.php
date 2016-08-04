@@ -234,9 +234,15 @@
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/1" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Lihat</span>
+                    <span class="site-menu-title">Semua Saran</span>
+                  </a>
+                </li>
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/2" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Saran SKPD</span>
                   </a>
                 </li>
               </ul>

@@ -47,8 +47,6 @@ class SaranModel extends CI_Model
     {
         $this->db->where('id_saran', $id_saran);
         $query = $this->db->get('saran');
-        //$query = $this->db->query("SELECT ")
-        //$query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.id_saran=saran.id_saran");
         return $query;
     }
 

@@ -76,7 +76,7 @@
                     <td>                    
                       <span class="notready">
                         <?php if($row->lampiran_saran!=NULL){
-                          echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
+                          echo "<img width=600 height=600 class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
                           alt='Photo'> <?php ";
                         } ?>
                       </span>
@@ -85,13 +85,27 @@
                   <tr>
                     <td>Spam</td>
                     <td>
-                      <span class="notready"><?php echo $row->isSpam;?></span>
+                      <span class="notready"><?php 
+                        if($row->isSpam==TRUE){
+                          echo "Spam";
+                        }
+                        else{
+                          echo "Bukan Spam";
+                        }
+                      ?></span>
                     </td>
                   </tr>
                   <tr>
                     <td>Aktif</td>
                     <td>
-                      <span class="notready"><?php echo $row->isAktif;?></span>
+                      <span class="notready"><?php 
+                        if($row->isAktif==TRUE){
+                          echo "Aktif";
+                        }
+                        else{
+                          echo "Saran di-Nonaktifkan";
+                        }
+                      ?></span>
                     </td>
                   </tr>
                   <tr>
@@ -105,7 +119,7 @@
             </table>
             <div class="form-group">
               <span><button type="submit" class="btn btn-warning" name="btn" value="disposisi"><i class="icon wb-tag"></i><?php echo " Disposisi"; ?></button></span>
-                <?php if($row->isSpam == "0"){
+                <?php if($row->isSpam == TRUE){
                         $valspam = "Publish";
                         $icospam = "icon wb-check";
                     }
@@ -114,13 +128,13 @@
                         $icospam = "icon wb-close";
                     }
 
-                    if($row->isAktif == "0"){
-                        $valtif = "Aktif";
-                        $icotif = "icon wb-flag";
+                    if($row->isAktif == TRUE){
+                        $valtif = "Non-Aktif";
+                        $icotif = "icon wb-bookmark";
                     }
                     else {
-                        $valtif = "Nonaktif";
-                        $icotif = "icon wb-bookmark";
+                        $valtif = "Aktif";
+                        $icotif = "icon wb-flag";                        
                     }
                 ?>
                 <span><button type="submit" class="btn btn-success" name="btn" value="<?php echo $valspam;?>"><i class="<?php echo $icospam; ?>"></i><?php echo " ".$valspam; ?></button></span>
@@ -169,7 +183,7 @@
                           <div class="metas">                 
                             <span class="tags">
                               <?php if($row->lampiran_saran!=NULL){
-                                echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$row2->lampiran_respon."' 
+                                echo "<img width=600 height=600 class='img-responsive pad' src='".base_url()."uploads/respon/".$row2->lampiran_respon."' 
                                 alt='Photo'> <?php ";
                               } ?>
                             </span>

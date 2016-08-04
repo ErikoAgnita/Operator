@@ -130,14 +130,14 @@ class SaranController extends CI_Controller {
 		}
 		elseif($this->input->post('btn')=="Publish"){
 			$data = array (
-				'isSpam' => 1,
+				'isSpam' => 0,
 				);		
 			$this->SaranModel->publish_saran($id_saran, $data);
 			redirect(base_url()."SaranController/detail/".$id_saran);
 		}
 		elseif($this->input->post('btn')=="Unpublish"){
 			$data = array (
-				'isSpam' => 0,
+				'isSpam' => 1,
 				);		
 			$this->SaranModel->publish_saran($id_saran, $data);
 			redirect(base_url()."SaranController/detail/".$id_saran);
@@ -149,7 +149,7 @@ class SaranController extends CI_Controller {
 			$this->SaranModel->aktif_saran($id_saran, $data);
 			redirect(base_url()."SaranController/detail/".$id_saran);
 		}
-		elseif($this->input->post('btn')=="Nonaktif"){
+		elseif($this->input->post('btn')=="Non-Aktif"){
 			$data = array (
 				'isAktif' => 0,
 				);		
