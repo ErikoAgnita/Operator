@@ -14,9 +14,9 @@ class Rptpdf extends CI_Controller{
     
     public function index() {
         $this->load->model('rptpdf/data');
-        $id_saran = $this->uri->segment(2);
+        //$id_saran = $this->uri->segment(2);
         //echo $id_saran;
-        $res['data'] = $this->data->select_data(34);
+        $res['data'] = $this->data->select_data(36);
         $this->load->view('rptpdf/index',$res);
     }
 }
