@@ -8,6 +8,7 @@ class Csaran extends CI_Controller {
         $this->load->helper(array('url','form','captcha'));
         $this->load->model('msaran');
         $this->load->helper('security');
+        $this->load->library('fpdf');
         }
         public function index()
         {
@@ -201,6 +202,11 @@ class Csaran extends CI_Controller {
           $this->form_validation->set_message('check_captcha', 'Kode keamanan tidak sesuai!');
           return false;
         }
+    }
+    public function cetak($ctk){
+        $this->load->model('SaranModel');
+        $res['data'] = $this->SaranModel->detail_saran($ctk);
+        $this->load->view('humas/saran/saran_pdf',$res);
     }
     
 }

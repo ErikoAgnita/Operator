@@ -7,7 +7,7 @@ class PDF extends FPDF
         $this->Ln(5);
         $this->Image(base_url().'assets/images/logo-bw.jpg', 15, 15,'20','25','jpeg');
 
-        $this->Ln(3);
+        $this->Ln(-7);
         $this->setFont('times','B',20);
         $this->setFillColor(255,255,255);
             $this->cell(33,6,'',0,0,'C',0); 
@@ -22,12 +22,13 @@ class PDF extends FPDF
         $this->Line(10,$this->GetY()+7,200,$this->GetY()+7);
         $this->SetLineWidth(1);
         $this->Line(10,$this->GetY()+6,200,$this->GetY()+6);
+        $this->Ln(15);
     }
  
 	function Content($data)
 	{    
-        foreach ($data as $key) {
-            $this->Ln(13);
+        foreach ($data->result() as $key) {
+            //$this->Ln(13);
             $this->setFont('courier','',12);
             $this->setFillColor(255,255,255);
             $this->cell(10);
@@ -57,10 +58,10 @@ class PDF extends FPDF
 	}
 	function Footer()
 	{
-        $this->SetFont('TIMES','I',9);
-        $this->Cell(0,315,'*Isi pesan sesuai masukan dari masyarakat melalui website',0,0,'R');
 		//atur posisi 1.5 cm dari bawah
-		$this->SetY(-15);
+		$this->SetY(-25);
+        $this->SetFont('TIMES','I',9);
+        $this->Cell(0,10,'*Isi pesan sesuai masukan dari masyarakat melalui website',0,1,'R');
 		//buat garis horizontal
 		$this->Line(10,$this->GetY(),200,$this->GetY());
 		//Arial italic 9
@@ -72,10 +73,12 @@ class PDF extends FPDF
 }
 
 $pdf = new PDF('P','mm','A4');
+$pdf->SetTopMargin(20);
 $pdf->SetTitle('Kotak Saran Pemkot Salatiga');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->Content($data);
+
 $pdf->Output();
 
 ?>

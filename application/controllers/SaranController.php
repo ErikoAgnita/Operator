@@ -80,28 +80,28 @@ class SaranController extends CI_Controller {
 			$data['saran'] = $this->SaranModel->detail_saran($id_saran);	
 			$this->load->view('humas/header')->view('humas/saran/disposisi', $data)->view('humas/footer');
 		}
-		elseif($this->input->post('btn')=="publish"){
+		elseif($this->input->post('btn')=="Publish"){
 			$data = array (
 				'isSpam' => 1,
 				);		
 			$this->SaranModel->publish_saran($id_saran, $data);
 			redirect(base_url()."SaranController/detail/".$id_saran);
 		}
-		elseif($this->input->post('btn')=="unpublish"){
+		elseif($this->input->post('btn')=="Unpublish"){
 			$data = array (
 				'isSpam' => 0,
 				);		
 			$this->SaranModel->publish_saran($id_saran, $data);
 			redirect(base_url()."SaranController/detail/".$id_saran);
 		}
-		elseif($this->input->post('btn')=="aktif"){
+		elseif($this->input->post('btn')=="Aktif"){
 			$data = array (
 				'isAktif' => 1,
 				);		
 			$this->SaranModel->aktif_saran($id_saran, $data);
 			redirect(base_url()."SaranController/detail/".$id_saran);
 		}
-		elseif($this->input->post('btn')=="nonaktif"){
+		elseif($this->input->post('btn')=="Nonaktif"){
 			$data = array (
 				'isAktif' => 0,
 				);		

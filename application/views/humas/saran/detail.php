@@ -104,31 +104,30 @@
               </tbody>
             </table>
             <div class="form-group">
-              <span><button type="submit" class="btn btn-primary" name="btn" value="disposisi"><?php echo "Disposisi"; ?></button></span>
-              <span><button type="submit" class="btn btn-primary" name="btn"
-              <?php 
-              if($row->isSpam == "0"){
-                echo "value = 'publish'>";
-                echo "Publish";
-              }
-              else{
-                echo "value = 'unpublish'>";
-                echo "Unpublish";
-              }?></button></span>
+              <span><button type="submit" class="btn btn-warning" name="btn" value="disposisi"><i class="icon wb-tag"></i><?php echo " Disposisi"; ?></button></span>
+                <?php if($row->isSpam == "0"){
+                        $valspam = "Publish";
+                        $icospam = "icon wb-check";
+                    }
+                    else {
+                        $valspam = "Unpublish";
+                        $icospam = "icon wb-close";
+                    }
 
-              <span><button type="submit" class="btn btn-primary" name="btn"
-              <?php 
-              if($row->isAktif == "0"){
-                echo "value = 'aktif'>";
-                echo "Aktif";
-              }
-              else{
-                echo "value = 'nonaktif'>";
-                echo "Nonaktif";
-              }?></button></span>
-
-              <span><button type="submit" class="btn btn-primary" name="btn" value="hapus"><?php echo "Hapus"; ?></button></span>              
+                    if($row->isAktif == "0"){
+                        $valtif = "Aktif";
+                        $icotif = "icon wb-flag";
+                    }
+                    else {
+                        $valtif = "Nonaktif";
+                        $icotif = "icon wb-bookmark";
+                    }
+                ?>
+                <span><button type="submit" class="btn btn-success" name="btn" value="<?php echo $valspam;?>"><i class="<?php echo $icospam; ?>"></i><?php echo " ".$valspam; ?></button></span>
+                <span><button type="submit" class="btn btn-primary" name="btn" value="<?php echo $valtif;?>"><i class="<?php echo $icotif; ?>"></i><?php echo " ".$valtif; ?></button></span>
+                <span><button type="submit" class="btn btn-danger" name="btn" value="hapus"><i class="icon wb-trash"></i> Hapus</button></span>             
             </form>
+            <span><a  href="<?php echo base_url();?>csaran/cetak/<?php echo $row->id_saran;?>" type="button" class="btn btn-default active"><i class="icon wb-print"></i> Cetak</a></span> 
           </div>
       </div>
       
