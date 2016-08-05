@@ -159,7 +159,9 @@ class Cpengguna extends CI_Controller {
     //profil operator
     public function indexoperator()
     {
-        $this->load->view('dinas/header')->view('dinas/indexoperator')->view('dinas/footer');
+        $id = $_SESSION['userid'];
+        $data['adata']  = $this->mpengguna->get_profil($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
+        $this->load->view('dinas/header')->view('dinas/indexoperator',$data)->view('dinas/footer');
     }
 
     public function lihatawal(){
