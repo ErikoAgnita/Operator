@@ -112,7 +112,7 @@ class Ckelurahan extends CI_Controller {
                 'nama_kelurahan' => $nama_kelurahan
                 );
 
-        $this->mkelurahan->AddKelurahan($data, 'kelurahan');
+        $this->mkelurahan->AddKelurahan($data);
         $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data Kelurahan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Ckelurahan/lihat');
         }

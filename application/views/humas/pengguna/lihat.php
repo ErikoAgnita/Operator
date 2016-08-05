@@ -51,7 +51,7 @@
                     <a href="<?php //echo base_url(); ?>Cpengguna/update/<?php //echo $row->id_pengguna;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
                   </button>-->
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
-                    <a href="<?php echo base_url(); ?>Cpengguna/hapus/<?php echo $row->id_pengguna;?>"><i class="icon wb-trash" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Cpengguna/hapus/<?php echo $row->id_pengguna;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
                   </button>
                 </td>
             
@@ -131,10 +131,10 @@
       </div>
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-info">-->
-          <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>"><i class="icon fa fa-edit"></i>&nbsp;Ubah</a>
+          <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>">Update</a>
         <!--</button>-->
-          <a type="button" class="btn btn-success" href="<?php echo base_url(); ?>Cpengguna/ganti_password/<?php echo $row->id_pengguna;?>"><i class="icon wb-wrench"></i>&nbsp;Ganti Password</a>
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon wb-close"></i>&nbsp;Tutup</button>
+          <a type="button" class="btn btn-success" href="<?php echo base_url(); ?>Cpengguna/ganti_password/<?php echo $row->id_pengguna;?>">Ganti Password</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
       </div>
     </div>
 

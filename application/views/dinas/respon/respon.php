@@ -162,11 +162,11 @@ if($saran->result()){?>
                               <form runat="server" autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
                                 <div>      
                                   <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                  <textarea cols="50" type="text" class="form-control" value="<?php echo $kategori;?>" name="kategori"></textarea> 
+                                  <textarea cols="50" type="text" class="form-control" value="<?php echo $kategori;?>" name="kategori"><?php echo $kategori;?></textarea> 
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Respon</label>
-                                  <textarea rows="8" type="text" class="form-control" value="<?php echo $isi_respon;?>" name="isi_respon"></textarea>
+                                  <textarea rows="8" type="text" class="form-control" value="<?php echo $isi_respon;?>" name="isi_respon"><?php echo $isi_respon;?></textarea>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>

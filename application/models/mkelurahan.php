@@ -10,14 +10,17 @@ class Mkelurahan extends CI_Model {
     }
 
    public function GetKelurahan($number, $offset){
-		return $this->db->query(('SELECT kel.kode_kelurahan, kel.nama_kelurahan, kel.isAktif, kel.kode_kecamatan, kec.nama_kecamatan from kecamatan kec, kelurahan kel where kel.kode_kecamatan=kec.kode_kecamatan'), $number, $offset);
+		$query = $this->db->query(('SELECT kel.kode_kelurahan, kel.nama_kelurahan, kel.isAktif, kel.kode_kecamatan, kec.nama_kecamatan 
+			from kecamatan kec, kelurahan kel where kel.kode_kecamatan=kec.kode_kecamatan'), $number, $offset);
+		//$query = $this->db->query(('SELECT * FROM kelurahan'), $number, $offset);
+		return $query->result();
 	}
 
     public function jumlah_data(){
         return $this->db->get('kelurahan')->num_rows();
     }
 
-	public function AddKelurahan($data, $table){
+	public function AddKelurahan($data){
 		$this->db->insert('kelurahan', $data);
 	}
 
