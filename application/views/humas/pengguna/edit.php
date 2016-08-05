@@ -86,9 +86,27 @@
                        autocomplete="off" />
                     </div>
                     <div class="form-group">
-                      <label class="control-label" for="inputBasicTema">isAktif</label>
-                      <input type="text" class="form-control" id="inputBasicTema" value="<?php echo $p->isAktif ?>" name="isAktif"
-                       autocomplete="off" />
+                        <?php if($p->isAktif == '1'){
+                                    $cekA = "checked";
+                                    $cekP = "";
+                                }
+                                 else {$cekP = "checked";
+                                       $cekA = "";
+                                      }
+                        ?>
+                      <label class="control-label" for="inputBasicisAktif">isAktif</label>
+                      <div class="radio-custom radio-primary">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                  <input type="radio" id="inputRadios1" name="isAktif" value="1" <?php echo $cekA; ?>/>
+                                  <label for="inputRadios1">Aktif</label>
+                                </div>
+                                <div class="col-lg-4">
+                                  <input type="radio" id="inputRadios1" name="isAktif" value="0" <?php echo $cekP; ?> />
+                                  <label for="inputRadios1">Pasif</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="pull-right">

@@ -45,7 +45,7 @@
                     <a href="<?php //echo base_url(); ?>Cskpd/update/<?php //echo $row->id_skpd;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
                   </button> -->
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
-                    <a href="<?php echo base_url(); ?>Cskpd/hapus/<?php echo $row->id_skpd;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Cskpd/hapus/<?php echo $row->id_skpd;?>"><i class="icon wb-trash" aria-hidden="true"></i></a>
                   </button>
                 </td>
               </tr>
@@ -135,9 +135,9 @@
       </div>
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-info">-->
-          <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cskpd/update/<?php echo $row->id_skpd;?>">Update</a>
+          <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cskpd/update/<?php echo $row->id_skpd;?>"><i class="icon fa fa-edit"></i>&nbsp;Ubah</a>
         <!--</button>-->
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon wb-close"></i>&nbsp;Tutup</button>
       </div>
     </div>
 
