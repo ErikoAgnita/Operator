@@ -6,6 +6,8 @@
     if($_SESSION['username'] && $_SESSION['level']=='Operator'){
         //echo $_SESSION['username'];
         $userid_skpd = $_SESSION['userid_skpd'];
+        $userid_nama = $_SESSION['name'];
+
         //echo $_SESSION['name'];
     }
     else{
@@ -57,7 +59,9 @@
   <link rel="stylesheet" href="<?php  echo base_url(); ?>assets/fonts/brand-icons/brand-icons.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
-
+ <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
   <!-- Inline -->
   <style>
     @media (min-width: 768px) and (max-width: 992px) {
@@ -130,12 +134,12 @@
       data-toggle="collapse">
         <i class="icon wb-more-horizontal" aria-hidden="true"></i>
       </button>
-      <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
+  <!--    <button type="button" class="navbar-toggle collapsed" data-target="#site-navbar-search"
       data-toggle="collapse">
         <span class="sr-only">Toggle Search</span>
         <i class="icon wb-search" aria-hidden="true"></i>
-      </button>
-      <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="">
+      </button> -->
+      <div class="navbar-brand navbar-brand-center" style="cursor:default">
         <img class="navbar-brand-logo" src="<?php  echo base_url(); ?>assets/images/logo.png" title="Kotak Saran Salatiga">
         <span class="navbar-brand-text" data-slug="uikit"> Kotak Saran Salatiga</span>
       </div>
@@ -159,11 +163,11 @@
               <span class="sr-only">Toggle fullscreen</span>
             </a>
           </li>
-          <li class="hidden-float">
+    <!--      <li class="hidden-float">
             <a class="icon wb-search" data-toggle="collapse" href="#site-navbar-search" role="button">
               <span class="sr-only">Toggle Search</span>
             </a>
-          </li>
+          </li> -->
         </ul>
         <!-- End Navbar Toolbar -->
 
@@ -173,12 +177,19 @@
             <a href="<?php echo base_url(); ?>clogin/logout" role="menuitem" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')"><i class="icon wb-power" aria-hidden="true"></i> Keluar</a>
           </li>    
         </ul>
+
+         <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+          <li role="presentation">
+            <a class="icon wb-user"  href="<?php echo base_url(); ?>cpengguna/lihatawal" role="menuitem">&nbsp; <?php echo $userid_nama; ?>
+            </a>
+          </li>
+        </ul>
         <!-- End Navbar Toolbar Right -->
       </div>
       <!-- End Navbar Collapse -->
 
       <!-- Site Navbar Seach -->
-      <div class="collapse navbar-search-overlap" id="site-navbar-search">
+  <!--     <div class="collapse navbar-search-overlap" id="site-navbar-search">
         <form role="search">
           <div class="form-group">
             <div class="input-search">
@@ -207,7 +218,7 @@
             <li class="site-menu-category">Operator</li> </a>
             <li class="site-menu-item">
               <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/lihatawal" data-slug="uikit">
-                <i class="site-menu-icon wb-bookmark" aria-hidden="true"></i>
+                <i class="site-menu-icon wb-user" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
                 <span class="site-menu "></span>
              </a>
@@ -228,7 +239,7 @@
               </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
-                <i class="site-menu-icon wb-hammer" aria-hidden="true"></i>
+                <i class="site-menu-icon wb-book" aria-hidden="true"></i>
                 <span class="site-menu-title">Laporan</span>
                 <span class="site-menu-arrow"></span>
               </a>

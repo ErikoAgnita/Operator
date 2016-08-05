@@ -92,13 +92,14 @@
                       echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                       ?>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Simpan</button>
+                      <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
+                      <a type="button" class="btn btn-success" href="<?php echo base_url(); ?>Cpengguna/ganti_password_op/<?php echo $row->id_pengguna;?>"><i class="icon wb-wrench"></i>&nbsp;&nbsp;Ganti Password</a>
+              <!--    <button class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left" onClick="return redirect(' <?php echo base_url();?>password/ganti_passwordprofil');"> Ganti Password</button> -->
+                  <a type="button" class="btn btn-danger" href="<?php echo base_url(); ?>Cpengguna/lihatawal"><i class="icon wb-chevron-left"></i>&nbsp;&nbsp; Keluar</a>
                     </div>
                   </form>
                   <?php } ?>
-                  <a type="button" class="btn btn-success" href="<?php echo base_url(); ?>Cpengguna/ganti_password_op/<?php echo $row->id_pengguna;?>">Ganti Password</a>
-              <!--    <button class="btn btn-primary"><i class="glyphicon glyphicon-chevron-left" onClick="return redirect(' <?php echo base_url();?>password/ganti_passwordprofil');"> Ganti Password</button> -->
-                  <button onclick="goBack()" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i> Kembali</button>
+                  
                 </div>
               </div>
               <!-- End Example Basic Form -->
