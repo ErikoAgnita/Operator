@@ -69,14 +69,18 @@ if($saran->result()){?>
                           <div class="metas">
                             <span class=""><?php echo $row->topik ?></span>
                           </div>
-                          <div class="metas">
-                            <span class="">
-                              <?php if($row->lampiran_saran){
-                              echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
-                              alt='Photo' width=600 heigt=600> <?php ";
-                            } ?>
-                            </span>
-                          </div>
+
+                          <?php if($row->lampiran_saran){?>
+                            <div class="metas">                 
+                              <span class="tags">
+                                <?php
+                                  echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$row->lampiran_saran."' 
+                                  alt='Photo' width=600 height=600> <?php ";
+                                ?>
+                              </span>
+                            </div>  
+                          <?php } ?>
+
                           <div class="metas">
                             <span class=""><?php echo $row->saran ?></span>
                           </div>                        
@@ -230,10 +234,10 @@ if($saran->result()){?>
                                 <?php if($row2->lampiran_respon){?>
                                   <div class="metas">                 
                                     <span class="tags">
-                                      <?php //if($row2->lampiran_respon!=NULL){
+                                      <?php
                                         echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$row2->lampiran_respon."' 
                                         alt='Photo' width=600 height=600> <?php ";
-                                      //} ?>
+                                      ?>
                                     </span>
                                   </div>  
                                 <?php } ?>                                                                

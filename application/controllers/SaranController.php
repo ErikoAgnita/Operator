@@ -11,12 +11,18 @@ class SaranController extends CI_Controller {
 
 	}
 	
-	public function lihat()
+	public function lihat($ktgr)
 	{	
 		$this->load->library('pagination');
         $config = array();
         $config['base_url'] = base_url() . "SaranController/lihat";
-        $total_row = $this->SaranModel->record_count();
+        if($ktgr=="new"){
+        	$total_row = $this->SaranModel->record_count_new();
+        }
+        else{
+        	$total_row = $this->SaranModel->record_count();	
+        }
+        
         //echo $total_row;
         $config['total_rows'] = $total_row;
         $config['per_page'] = 7;
@@ -159,8 +165,7 @@ class SaranController extends CI_Controller {
 		elseif($this->input->post('btn')=="hapus"){	
 			$this->SaranModel->hapus_saran($id_saran);
 			redirect(base_url()."SaranController/lihat/");
-		}
-		
+		}	
 	}
 
 	public function disposisikan($id_saran)

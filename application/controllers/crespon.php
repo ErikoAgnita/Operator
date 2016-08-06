@@ -16,11 +16,14 @@ class crespon extends CI_Controller {
         $config['base_url'] = base_url() . "crespon/dariadmin";
         
         $userid_skpd = $_SESSION['userid_skpd'];
-        if($all==1){
+        if($all=="all"){
         	$total_row = $this->mrespon->record_count();
         }
-        elseif($all==2){
+        elseif($all=="skpd"){
         	$total_row = $this->mrespon->record_count_skpd($userid_skpd);
+        }
+        elseif($all=="belum"){
+        	$total_row = $this->mrespon->record_count_unrespon($userid_skpd);
         }
         
         //echo $total_row;
@@ -37,11 +40,14 @@ class crespon extends CI_Controller {
     
         $this->pagination->initialize($config);
         $strpage = $this->uri->segment(4,0);
-        if($all==1){
+        if($all=="all"){
         	$data['saran'] = $this->mrespon->fetch_data($config['per_page'],$strpage)->result();
         }        
-        elseif($all==2){
+        elseif($all=="skpd"){
         	$data['saran'] = $this->mrespon->fetch_data_skpd($config['per_page'],$strpage, $userid_skpd)->result();
+        }
+        elseif($all=="belum"){
+        	$data['saran'] = $this->mrespon->fetch_data_unrespon($config['per_page'],$strpage, $userid_skpd)->result();
         }
         
         $data['links'] = $this->pagination->create_links();

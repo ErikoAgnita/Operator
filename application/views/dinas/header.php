@@ -245,15 +245,21 @@
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/1" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/all" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Semua Saran</span>
                   </a>
                 </li>
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/2" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/skpd" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Saran SKPD</span>
+                  </a>
+                </li>
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/belum" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Belum Direspon</span>
                   </a>
                 </li>
               </ul>

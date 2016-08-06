@@ -194,7 +194,13 @@
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>SaranController/lihat" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>SaranController/lihat/new" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Saran Baru</span>
+                  </a>
+                </li>
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>SaranController/lihat/all" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Lihat</span>
                   </a>
