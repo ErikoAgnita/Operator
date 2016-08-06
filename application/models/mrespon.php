@@ -34,17 +34,26 @@ class mrespon extends CI_Model
     }
 
     public function fetch_data($limit, $id) {
+        $this->db->select('*');
+        $this->db->from('saran');
+        $this->db->where('isSpam=0');
+        $this->db->where('isAktif=1');
         $this->db->limit($limit, $id);
-        $this->db->order_by('id_saran','desc');
-        $query = $this->db->query('SELECT * FROM saran where isSpam=0 and isAktif=1');
+        $this->db->order_by('id_saran', 'desc');
+        $query = $this->db->get();
         return $query;
     }
 
     public function fetch_data_skpd($limit, $id, $userid_skpd) {
+        $this->db->select('*');
+        $this->db->from('saran');
+        $this->db->join('respon', 'saran.id_saran=respon.id_saran');
+        $this->db->where('respon.id_skpd', $userid_skpd);
+        $this->db->where('saran.isSpam', 0);
+        $this->db->where('saran.isAktif', 1);
         $this->db->limit($limit, $id);
-        $this->db->order_by('id_saran','desc');
-        $query = $this->db->query('SELECT * FROM saran JOIN respon 
-            WHERE id_skpd=$userid_skpd AND saran.id_saran=respon.id_saran and saran.isSpam=0 and saran.isAktif=1');
+        $this->db->order_by('saran.id_saran', 'desc');        
+        $query = $this->db->get();
         return $query;
     }
     

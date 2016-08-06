@@ -25,7 +25,7 @@
                       <label class="control-label" for="inputBasicEmail">Topik</label>
                       <?php
                       foreach ($saran->result() as $row) {?>
-                      <input type="text" class="form-control" value="<?php echo $row->topik;?>" name="topik">
+                        <input type="text" class="form-control" value="<?php echo $row->topik;?>" name="topik">
                       <?php } ?>  
                     </div>
 
@@ -42,6 +42,7 @@
                         </select>
                       </div>
                     </div>
+
 
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>

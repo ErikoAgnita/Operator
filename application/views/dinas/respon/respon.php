@@ -230,10 +230,10 @@ if($saran->result()){?>
                                 <?php if($row2->lampiran_respon){?>
                                   <div class="metas">                 
                                     <span class="tags">
-                                      <?php if($row2->lampiran_respon!=NULL){
+                                      <?php //if($row2->lampiran_respon!=NULL){
                                         echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$row2->lampiran_respon."' 
                                         alt='Photo' width=600 height=600> <?php ";
-                                      } ?>
+                                      //} ?>
                                     </span>
                                   </div>  
                                 <?php } ?>                                                                

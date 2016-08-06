@@ -20,10 +20,11 @@ class crespon extends CI_Controller {
         	$total_row = $this->mrespon->record_count();
         }
         elseif($all==2){
-        	$total_row = $this->mrespon->record_count($userid_skpd);
+        	$total_row = $this->mrespon->record_count_skpd($userid_skpd);
         }
         
         //echo $total_row;
+        $config['base_url'] = site_url('crespon/dariadmin/'.$all.'/');
         $config['total_rows'] = $total_row;
         $config['per_page'] = 7;
         $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
@@ -32,10 +33,10 @@ class crespon extends CI_Controller {
         $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
         $config['last_link'] = '<b>>></b>';
         $config['first_link'] = '<b><<</b>';
-        $config['uri_segment'] = 3;
+        $config['uri_segment'] = 4;
     
         $this->pagination->initialize($config);
-        $strpage = $this->uri->segment(3,0);
+        $strpage = $this->uri->segment(4,0);
         if($all==1){
         	$data['saran'] = $this->mrespon->fetch_data($config['per_page'],$strpage)->result();
         }        
