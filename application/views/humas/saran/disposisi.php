@@ -6,14 +6,32 @@
   <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
   <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
 
-  <div class="page">
-    <div class="page-header">
-    </div>
+  <script type="text/javascript">
+   function myFunction(){
+    document.getElementById("myDropdown").classList.toggle("show");
+   }
+
+   window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+  </script>
+
+    <div class="page animsition" style="animation-duration: 800ms; opacity: 1;">
     <div class="page-content">
       <div class="panel">
         <div class="panel-body container-fluid">
           <div class="row row-lg">
-            <div class="col-sm-6">
+            <div class="col-sm-7">
               <!-- Example Basic Form -->
               <div class="example-wrap">
                 <h4 class="example-title">Disposisi Saran</h4>
@@ -29,10 +47,11 @@
                       <?php } ?>  
                     </div>
 
+                    
                     <div class="form-group">
                       <label >SKPD</label>
                       <div>
-                        <select class="form-control" name="id_skpd[]" required="off" multiple="multiple" id="clist">
+                        <select class="form-control" name="id_skpd[]" required="off" size="15" multiple="multiple" id="clist">
                           <option value="" disabled="disabled" selected="selected">Pilih SKPD</option>
                           <?php
                             foreach ($skpd->result() as $row) {
@@ -41,12 +60,10 @@
                           ?>
                         </select>
                       </div>
-                    </div>
-
+                    </div>                 
 
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                      <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
                     </div>
                     </div>
                     </div>

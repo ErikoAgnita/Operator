@@ -128,13 +128,7 @@ class SaranController extends CI_Controller {
 	//isAktif => 1 -> saran bukan spam, dapat dilihat oleh skpd dan masyarakat sekaligus disposisi
 	public function disposisi($id_saran)
 	{
-		if($this->input->post('btn')=="disposisi"){
-			$data['skpd'] = $this->SaranModel->getskpd();
-			$data['id_saran'] = $id_saran;
-			$data['saran'] = $this->SaranModel->detail_saran($id_saran);	
-			$this->load->view('humas/header')->view('humas/saran/disposisi', $data)->view('humas/footer');
-		}
-		elseif($this->input->post('btn')=="Publish"){
+		if($this->input->post('btn')=="Publish"){
 			$data = array (
 				'isSpam' => 0,
 				);		
@@ -165,7 +159,13 @@ class SaranController extends CI_Controller {
 		elseif($this->input->post('btn')=="hapus"){	
 			$this->SaranModel->hapus_saran($id_saran);
 			redirect(base_url()."SaranController/lihat/");
-		}	
+		}			
+		else{
+			$data['skpd'] = $this->SaranModel->getskpd();
+			$data['id_saran'] = $id_saran;
+			$data['saran'] = $this->SaranModel->detail_saran($id_saran);	
+			$this->load->view('humas/header')->view('humas/saran/disposisi', $data)->view('humas/footer');
+		}
 	}
 
 	public function disposisikan($id_saran)
@@ -196,7 +196,10 @@ class SaranController extends CI_Controller {
 	}
 
     public function coba()
-    {
-    	$this->load->view('humas/saran/coba');
+    {	
+    	$data['skpd'] = $this->SaranModel->getskpd();
+    	//$this->load->view('humas/header');
+    	$this->load->view('humas/saran/coba', $data);
+    	//$this->load->view('humas/footer');
     }
 }

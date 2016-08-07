@@ -80,7 +80,10 @@ class SaranModel extends CI_Model
 
     function getskpd()
     {
-        $query = $this->db->get('skpd');
+        $this->db->select('*');
+        $this->db->from('skpd');
+        $this->db->order_by('nama', 'asc');
+        $query = $this->db->get();
         return $query;
     }
 
