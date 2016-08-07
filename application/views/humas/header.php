@@ -7,6 +7,7 @@
         //echo $_SESSION['username'];
 //        $id_guru = $_SESSION['userid'];
         //echo $_SESSION['name'];
+      $userid_nama = $_SESSION['name'];
     }
     else{
         redirect('clogin/login');
@@ -111,7 +112,7 @@
         <span class="sr-only">Toggle Search</span>
         <i class="icon wb-search" aria-hidden="true"></i>
       </button> -->
-      <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="">
+      <div class="navbar-brand navbar-brand-center" style="cursor:default">
         <img class="navbar-brand-logo" src="<?php  echo base_url(); ?>assets/images/logo.png" title="Kotak Saran Salatiga">
         <span class="navbar-brand-text">Kotak Saran Salatiga</span>
       </div>
@@ -148,6 +149,13 @@
           <li role="presentation">
             <a href="<?php echo base_url(); ?>clogin/logout" role="menuitem" onclick="return confirm('Apakah Anda Yakin Ingin Keluar?')"><i class="icon wb-power" aria-hidden="true"></i> Keluar</a>
           </li>    
+        </ul>
+
+        <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+          <li role="presentation">
+            <a class="icon wb-user"  href="<?php echo base_url(); ?>cpengguna/lihatawaladmin" role="menuitem">&nbsp; <?php echo $userid_nama; ?>
+            </a>
+          </li>
         </ul>
         <!-- End Navbar Toolbar Right -->
       </div>

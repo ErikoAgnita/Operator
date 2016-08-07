@@ -12,7 +12,7 @@
                 <?php foreach ($adata as $row){?>
                 <h3 class="intro-text text-center">Satuan Kerja Perangkat Daerah</h3>
                      <h3 class="intro-text text-center"><?php echo strtoupper ($row->kode_unit);?></h3><br>
-                       <p><?=$this->session->flashdata('pesan')?> </p>
+                       <p><?=$this->session->flashdata('pesanprofil')?> </p>
                   <form action="<?php echo base_url();?>cpengguna/admin_lihat" method="post">
                    <tr>
                     <td>Username</td>
@@ -54,7 +54,7 @@
               </tbody>
             </table>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary"><i class="icon wb-settings"></i>&nbsp;&nbsp;<?php echo "Ubah"; ?></button>
+              <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i>&nbsp;&nbsp;<?php echo "Ubah"; ?></button>
             </div>
             </form>
           </div>

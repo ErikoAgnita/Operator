@@ -214,7 +214,7 @@ class Cpengguna extends CI_Controller {
         );
 //var_dump($data);
         $this->mpengguna->get_update_profil($id, $data);
-        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+        $this->session->set_flashdata("pesanprofil","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('cpengguna/lihatawal');
         }
     }
@@ -304,7 +304,7 @@ class Cpengguna extends CI_Controller {
         );
 //var_dump($data);
         $this->mpengguna->get_update_profiladmin($id, $data);
-        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+        $this->session->set_flashdata("pesanprofil","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('cpengguna/lihatawaladmin');
         }
     }

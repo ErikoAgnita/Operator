@@ -12,7 +12,7 @@
                 <?php foreach ($adata as $row){?>
                 <h3 class="intro-text text-center">Satuan Kerja Perangkat Daerah</h3>
                      <h3 class="intro-text text-center"><?php echo strtoupper ($row->kode_unit);?></h3><br>
-                       <p><?=$this->session->flashdata('pesan')?> </p>
+                       <p><?=$this->session->flashdata('pesanprofil')?> </p>
                   <form action="<?php echo base_url();?>cpengguna/operator_lihat" method="post">
                    <tr>
                     <td>Username</td>

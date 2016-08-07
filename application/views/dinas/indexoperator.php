@@ -11,7 +11,7 @@
 
               
       <img src="<?php  echo base_url(); ?>assets/images/logo.png" 
-      style="width:220px; height:300px; display: block; margin-left: auto; margin-right: auto">
+      style="width:180px; height:250px; display: block; margin-left: auto; margin-right: auto"><br>
 
       <h1 class="intro-text text-center"><b>SELAMAT DATANG</b></h1> 
       <?php foreach ($adata as $row){?>
