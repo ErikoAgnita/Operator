@@ -23,31 +23,49 @@
                         <input type="hidden" name="id_skpd" value="<?php echo $s->id_skpd ?>">
                         <input type="text" class="form-control" id="inputBasicKodeUnit" value="<?php echo $s->kodeUnit ?>" name="kodeUnit"
                          autocomplete="off" />
+                         <?php
+                          echo form_error('kodeUnit','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
                      <div class="form-group">
                       <label class="control-label" for="inputBasicBagian">Bagian</label>
                       <input type="text" class="form-control" id="inputBasicAlamat" value="<?php echo $s->bagian ?>" name="bagian"
                        autocomplete="off" />
+                        <?php
+                        echo form_error('bagian','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                        ?>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="inputBasicBentuk">Bentuk</label>
                         <input type="text" class="form-control" id="inputBasicEmail" value="<?php echo $s->bentuk ?>" name="bentuk"
                         autocomplete="off" />
+                        <?php
+                         echo form_error('bentuk','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                        ?>
                     </div>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicNama">Nama SKPD</label>
                       <input type="text" class="form-control" id="inputBasicNama" value="<?php echo $s->nama ?>" name="nama"
                        autocomplete="off" />
+                       <?php
+                        echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                        ?>
                     </div>
                       <div class="form-group">
                       <label class="control-label" for="inputBasicAlamat">Alamat</label>
                       <input type="text" class="form-control" id="inputBasicAlamat" value="<?php echo $s->alamat ?>" name="alamat"
                        autocomplete="off" />
+                       <?php
+                         echo form_error('alamat','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                        ?>
                     </div>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicTelepon">Telepon</label>
                       <input type="text" class="form-control" id="inputBasicTelepon" value="<?php echo $s->telepon ?>" name="telepon"
                        autocomplete="off" />
+                       <?php
+                         echo form_error('telepon','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                        ?>
                     </div>
                 
                     
@@ -57,16 +75,25 @@
                       <label class="control-label" for="inputBasicFax">Fax</label>
                       <input type="text" class="form-control" id="inputBasicFax" value="<?php echo $s->fax ?>" name="fax"
                        autocomplete="off" />
+                       <?php
+                        echo form_error('fax','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                         ?>
                     </div>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicEmail">Email</label>
                       <input type="email" class="form-control" id="inputBasicEmail" value="<?php echo $s->email ?>" name="email"
                         autocomplete="off" />
+                        <?php
+                        echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                        ?>
                     </div>
                      <div class="form-group">
                       <label class="control-label" for="inputBasicWebsite">Website</label>
                       <input type="text" class="form-control" id="inputBasicWebsite" value="<?php echo $s->website ?>" name="website"
                        autocomplete="off" />
+                       <?php
+                        echo form_error('website','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                        ?>
                     </div>
                      <div class="form-group">
                       <label class="control-label" for="inputBasicUrut">Urut</label>
@@ -77,6 +104,9 @@
                       <label class="control-label" for="inputBasicTema">Tema</label>
                       <input type="text" class="form-control" id="inputBasicTema" value="<?php echo $s->tema ?>" name="tema"
                        autocomplete="off" />
+                       <?php
+                        echo form_error('tema','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                        ?>
                     </div>
                   <div class="row">
                       <div class="col-sm-6">

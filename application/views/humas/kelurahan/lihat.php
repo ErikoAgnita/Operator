@@ -52,7 +52,7 @@
                     <a href="<?php echo base_url(); ?>Ckelurahan/update/<?php echo $row->kode_kelurahan;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
                   </button>
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
-                    <a href="<?php echo base_url(); ?>Ckelurahan/hapus/<?php echo $row->kode_kelurahan;?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus <?php echo $row->nama_kelurahan;?>')"><i class="icon wb-close" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Ckelurahan/hapus/<?php echo $row->kode_kelurahan;?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus <?php echo $row->nama_kelurahan;?>')"><i class="icon wb-trash" aria-hidden="true"></i></a>
                   </button>
                 </td>
               </tr>

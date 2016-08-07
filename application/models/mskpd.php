@@ -27,9 +27,9 @@ class Mskpd extends CI_Model {
 		return $this->db->get_where($table, $where);
 	}
 
-	public function UpdateAkun1($where, $data, $table){
-		$this->db->where($where);
-		$this->db->update($table, $data);
+	public function UpdateAkun1($id_skpd, $data){
+		$this->db->where('id_skpd', $id_skpd);
+		$this->db->update('skpd', $data);
 	}
 
 	public function pencarian($cari, $limit, $id_skpd){

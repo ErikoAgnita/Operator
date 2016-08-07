@@ -8,6 +8,7 @@
       </ol>
     </div>
     <div class="page-content">
+      <?php echo $this->session->flashdata('pesan'); ?>
       <!-- Panel Basic -->
       <div class="panel">
         <header class="panel-heading">
@@ -51,7 +52,7 @@
                     <a href="<?php //echo base_url(); ?>Cpengguna/update/<?php //echo $row->id_pengguna;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
                   </button>-->
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
-                    <a href="<?php echo base_url(); ?>Cpengguna/hapus/<?php echo $row->id_pengguna;?>"><i class="icon wb-close" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Cpengguna/hapus/<?php echo $row->id_pengguna;?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus <?php echo $row->nama_pengguna;?>')"><i class="icon wb-trash" aria-hidden="true"></i></a>
                   </button>
                 </td>
             

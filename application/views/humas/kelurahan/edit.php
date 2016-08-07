@@ -1,10 +1,12 @@
 <!-- Page -->
   <div class="page">
     <div class="page-header">
+      <?php foreach($kelurahan as $kel){ ?>
       <h1 class="page-title">Kecamatan Kota Salatiga</h1>
       <ol class="breadcrumb">
         <li>Kecamatan</li>
         <li>Edit Data Kecamatan</li>
+        <li><small><?php echo $kel->nama_kelurahan; ?></small></li>
       </ol>
     </div>
      <div class="page-content">
@@ -13,15 +15,7 @@
           <div class="row row-lg">
             <div class="col-sm-6">
               <!-- Example Basic Form -->
-              <div class="example-wrap">
-                 <?php foreach($kelurahan as $kel){ ?>
-
-                 <div class='user-block'>
-                  <img src='<?php echo base_url(); ?>assets/images/logo.png' alt='logo' width="42" height="50">
-                  <span class='username'><h4><label><?php echo $kel->nama_kelurahan; ?></label></h4></span>
-                 </div>
-                 <br>
-                  <h4 class="example-title"><b>Edit Akun</b></h4>     
+              <div class="example-wrap">  
                 <div class="example">
                   <form action="<?php echo base_url(). 'Ckelurahan/do_update'; ?>" method="post" autocomplete="off">
                     
@@ -57,15 +51,27 @@
                       echo form_error('nama_kelurahan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                       ?>
                     <div class="form-group">
-                     <label class="control-label" for="inputBasicisAktif">isAktif</label>
-                      <input type="text" class="form-control" id="inputBasicisAktif" value="<?php echo $kel->isAktif ?>" name="isAktif"
-                       autocomplete="off" />
-                    </div>
-                    <?php
-                      echo form_error('isAktif','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
-                      ?>
+                            <?php if($kel->isAktif == '1'){
+                                        $cekA = "checked";
+                                        $cekP = "";
+                                    }
+                                     else {$cekP = "checked";
+                                           $cekA = "";
+                                          }
+                            ?>
+                          <label class="control-label" for="inputBasicisAktif">isAktif</label>
+                          <div class="radio-custom radio-primary">
+                              <input type="radio" id="inputRadios1" name="isAktif" value="1" <?php echo $cekA; ?>/>
+                              <label for="inputRadios1">Aktif</label>
+                            </div>
+                            <div class="radio-custom radio-primary">
+                              <input type="radio" id="inputRadios1" name="isAktif" value="0" <?php echo $cekP; ?> />
+                              <label for="inputRadios1">Pasif</label>
+                            </div>
+                        </div>
+                          </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
                     </div>
                   </form>
                  <?php } ?>

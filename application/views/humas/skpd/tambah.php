@@ -18,27 +18,45 @@
                                     <!-- Example Basic Form -->
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicKodeUnit">Kode Unit</label>
-                                            <input type="text" class="form-control" id="inputBasicKodeUnit" name="kodeUnit" placeholder="humas" autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicKodeUnit" name="kodeUnit" value="<?php echo set_value('kodeUnit'); ?>" placeholder="humas" autocomplete="off" />
+                                         <?php
+                                          echo form_error('kodeUnit','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                          ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicBagian">Bagian</label>
-                                            <input type="text" class="form-control" id="inputBasicBagian" name="bagian" placeholder="00" autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicBagian" name="bagian" value="<?php echo set_value('bagian'); ?>" placeholder="00" autocomplete="off" />
+                                        <?php
+                                          echo form_error('bagian','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                          ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicBentuk">Bentuk</label>
-                                            <input type="email" class="form-control" id="inputBasicBentuk" name="bentuk" autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicBentuk" name="bentuk" value="<?php echo set_value('bentuk'); ?>" autocomplete="off" />
+                                        <?php
+                                        echo form_error('bentuk','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                        ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicNama">Nama SKPD</label>
-                                            <input type="text" class="form-control" id="inputBasicNama" name="nama" placeholder="Bagian Hubungan Masyarakat Setda" autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicNama" name="nama" value="<?php echo set_value('nama'); ?>" placeholder="Bagian Hubungan Masyarakat Setda" autocomplete="off" />
+                                        <?php
+                                        echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                        ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicAlamat">Alamat</label>
-                                            <input type="text" class="form-control" id="inputBasicAlamat" name="alamat" placeholder="Jl. Letjend. Sukowati No. 51, Salatiga, Jawa Tengah 50724" autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicAlamat" name="alamat" value="<?php echo set_value('alamat'); ?>" placeholder="Jl. Letjend. Sukowati No. 51, Salatiga, Jawa Tengah 50724" autocomplete="off" />
+                                        <?php
+                                        echo form_error('alamat','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                        ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicTelepon">Telepon</label>
-                                            <input type="text" class="form-control" id="inputBasicTelepon" name="telepon" placeholder="(0298) 326767"autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicTelepon" name="telepon" value="<?php echo set_value('telepon'); ?>" placeholder="(0298) 326767"autocomplete="off" />
+                                        <?php
+                                        echo form_error('telepon','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                        ?>
                                         </div>
                                     <!-- End Example Basic Form -->
                                     </div>
@@ -46,24 +64,39 @@
                                     <!-- Example Basic Form -->
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicFax">Fax</label>
-                                            <input type="text" class="form-control" id="inputBasicFax" name="fax" autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicFax" value="<?php echo set_value('fax'); ?>" name="fax" autocomplete="off" />
+                                        <?php
+                                        echo form_error('fax','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                        ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicEmail">Email</label>
-                                            <input type="email" class="form-control" id="inputBasicEmail" name="email" placeholder="humas@salatigakota.go.id" autocomplete="off" />
+                                            <input type="email" class="form-control" id="inputBasicEmail" name="email" value="<?php echo set_value('email'); ?>" placeholder="humas@salatigakota.go.id" autocomplete="off" />
+                                        <?php
+                                        echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                        ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicWebsite">Website</label>
-                                            <input type="text" class="form-control" id="inputBasicWebsite" name="website" placeholder="http://www.salatigakota.go.id" autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicWebsite" name="website" value="<?php echo set_value('website'); ?>" placeholder="http://www.salatigakota.go.id" autocomplete="off" />
+                                        <?php
+                                        echo form_error('website','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                        ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicUrut">Urut</label>
-                                            <input type="text" class="form-control" id="inputBasicUrut" name="urut" autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicUrut" name="urut" value="<?php echo set_value('urut'); ?>" autocomplete="off" />
+                                        <?php
+                                        echo form_error('urut','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                        ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicTema">Tema</label>
-                                            <input type="text" class="form-control" id="inputBasicTema" name="tema" placeholder="Kuning" autocomplete="off" />
+                                            <input type="text" class="form-control" id="inputBasicTema" name="tema" value="<?php echo set_value('tema'); ?>" placeholder="Kuning" autocomplete="off" />
                                         </div>
+                                        <?php
+                                        echo form_error('tema','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                                        ?>
                                         <div class="form-group">
                                             <div class="pull-right">
                                                 <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>

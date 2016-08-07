@@ -54,7 +54,7 @@ class Cpengguna extends CI_Controller {
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
         
         $id= $this->input->post('id_pengguna');
-        $pass = $this->input->post('password');
+        $pass = md5($this->input->post('password'));
         
         if ($this->form_validation->run() == FALSE){    
             $this->ganti_password($id);
@@ -75,31 +75,56 @@ class Cpengguna extends CI_Controller {
 
     public function do_tambah()
     {
-        $id_skpd = $this->input->post('id_skpd');
-        $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
-        $level = $this->input->post('level');
-        $nama = $this->input->post('nama');
-        $alamat = $this->input->post('alamat');
-        $telepon = $this->input->post('telepon');
-        $handphone = $this->input->post('handphone');
-        $email = $this->input->post('email');
-        $keterangan = $this->input->post('keterangan');
+        $this->load->library('form_validation');
+        $this->load->library('session');
+        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z]{0,25}$/]');
+        $this->form_validation->set_rules('password', 'Password', 'trim|max_length[50]|required');
+        $this->form_validation->set_rules('level', 'Level', 'trim|max_length[25]|required');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|max_length[100]|required|regex_match[/^[a-zA-Z .]{1,100}$/]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|max_length[255]');
+        $this->form_validation->set_rules('telepon', 'Telepon', 'trim|max_length[15]|regex_match[/^[+0-9 ()-]{3,15}$/]');
+        $this->form_validation->set_rules('handphone', 'Handphone', 'trim|min_length[10]|max_length[20]|regex_match[/^[+0-9 ()-]{10,20}$/]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|max_length[70]|valid_email');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|max_length[255]');
+        
+        $this->form_validation->set_message('min_length', '{field} minimal {param} karakter');
+        $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter');
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+        $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
+        $this->form_validation->set_message('valid_email', '{field} tidak sesuai format penulisan yang benar');
 
-        $data = array(
-            'id_skpd' => $id_skpd,
-            'username' => $username,
-            'password' => $password,
-            'level' => $level,
-            'nama' => $nama,
-            'alamat' => $alamat,
-            'telepon' => $telepon,
-            'handphone' => $handphone,
-            'email' => $email,
-            'keterangan' => $keterangan
-            );
+        if ($this->form_validation->run() == FALSE){
+            $this->tambah();
+        }
+        else{
+            $id_skpd = $this->input->post('id_skpd');
+            $username = $this->input->post('username');
+            $password = md5($this->input->post('password'));
+            $level = $this->input->post('level');
+            $nama = $this->input->post('nama');
+            $alamat = $this->input->post('alamat');
+            $telepon = $this->input->post('telepon');
+            $handphone = $this->input->post('handphone');
+            $email = $this->input->post('email');
+            $keterangan = $this->input->post('keterangan');
+
+            $data = array(
+                'id_skpd' => $id_skpd,
+                'username' => $username,
+                'password' => $password,
+                'level' => $level,
+                'nama' => $nama,
+                'alamat' => $alamat,
+                'telepon' => $telepon,
+                'handphone' => $handphone,
+                'email' => $email,
+                'keterangan' => $keterangan
+                );
+
         $this->mpengguna->AddPengguna($data, 'pengguna');
+        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data SKPD<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Cpengguna/lihat');
+        }
     }
 
     public function update($id_pengguna)
@@ -112,37 +137,58 @@ class Cpengguna extends CI_Controller {
 
     public function do_update($id_pengguna)
     {
+        $this->load->library('form_validation');
+        $this->load->library('session');
+        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z]{0,25}$/]');
+        $this->form_validation->set_rules('level', 'Level', 'trim|max_length[25]|required');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|max_length[100]|required|regex_match[/^[a-zA-Z .]{1,100}$/]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|max_length[255]');
+        $this->form_validation->set_rules('telepon', 'Telepon', 'trim|max_length[15]|regex_match[/^[+0-9 ()-]{3,15}$/]');
+        $this->form_validation->set_rules('handphone', 'Handphone', 'trim|min_length[10]|max_length[20]|regex_match[/^[+0-9 ()-]{10,20}$/]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|max_length[70]|valid_email');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|max_length[255]');
+        
+        $this->form_validation->set_message('min_length', '{field} minimal {param} karakter');
+        $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter');
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+        $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
+        $this->form_validation->set_message('valid_email', '{field} tidak sesuai format penulisan yang benar');
+
         $id_pengguna = $this->input->post('id_pengguna');
-        $username = $this->input->post('username');
-        $id_skpd = $this->input->post('id_skpd');
-        $level = $this->input->post('level');
-        $nama = $this->input->post('nama');
-        $alamat = $this->input->post('alamat');
-        $telepon = $this->input->post('telepon');
-        $handphone = $this->input->post('handphone');
-        $email = $this->input->post('email');
-        $keterangan = $this->input->post('keterangan');
-        $isAktif = $this->input->post('isAktif');
+        
+        if ($this->form_validation->run() == FALSE){
+            $this->update($id_pengguna);
+        }
+        else{
+        
+            $username = $this->input->post('username');
+            $id_skpd = $this->input->post('id_skpd');
+            $level = $this->input->post('level');
+            $nama = $this->input->post('nama');
+            $alamat = $this->input->post('alamat');
+            $telepon = $this->input->post('telepon');
+            $handphone = $this->input->post('handphone');
+            $email = $this->input->post('email');
+            $keterangan = $this->input->post('keterangan');
+            $isAktif = $this->input->post('isAktif');
 
-        $data = array(
-           'username' => $username,
-            'id_skpd' => $id_skpd,
-            'level' => $level,
-            'nama' => $nama,
-            'alamat' => $alamat,
-            'telepon' => $telepon,
-            'handphone' => $handphone,
-            'email' => $email,
-            'keterangan' => $keterangan,
-            'isAktif' => $isAktif
-        );
+            $data = array(
+               'username' => $username,
+                'id_skpd' => $id_skpd,
+                'level' => $level,
+                'nama' => $nama,
+                'alamat' => $alamat,
+                'telepon' => $telepon,
+                'handphone' => $handphone,
+                'email' => $email,
+                'keterangan' => $keterangan,
+                'isAktif' => $isAktif
+            );
 
-        /*$where = array(
-            'id_pengguna' => $id_pengguna
-        );*/
-
-        $this->mpengguna->UpdatePengguna1($id_pengguna, $data);
-        redirect('Cpengguna/lihat');
+            $this->mpengguna->UpdatePengguna1($id_pengguna, $data);
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            redirect('Cpengguna/lihat');
+        }
     }
 
      public function hapus($id_pengguna)

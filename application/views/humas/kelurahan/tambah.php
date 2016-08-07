@@ -14,7 +14,6 @@
             <div class="col-sm-6">
            <!-- Example Basic Form -->
               <div class="example-wrap">
-                <h4 class="example-title">Tambah Kelurahan</h4>
                 <div class="example">
                   <form action="<?php echo base_url()?>Ckelurahan/do_tambah" method="post" enctype="multipart/form-data" autocomplete="off">
 
@@ -46,7 +45,7 @@
                       echo form_error('nama_kelurahan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                       ?>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Tambah</button>
+                      <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
                     </div>
                   </form>
                 </div>

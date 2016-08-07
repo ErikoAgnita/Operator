@@ -19,13 +19,19 @@
             <div class="col-sm-6">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicUsername">Username</label>
-                        <input type="text" class="form-control" id="inputBasicUsername" name="username"
+                        <input type="text" class="form-control" id="inputBasicUsername" name="username" value="<?php echo set_value('username'); ?>"
                         placeholder="vira" autocomplete="off" />
+                     <?php
+                          echo form_error('username','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
                      <div class="form-group">
                       <label class="control-label" for="inputBasicPassword">Password</label>
-                      <input type="password" class="form-control" id="inputBasicPassword" name="password"
+                      <input type="password" class="form-control" id="inputBasicPassword" name="password" value="<?php echo set_value('password'); ?>"
                        autocomplete="off" />
+                        <?php
+                          echo form_error('password','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
                       <div class="form-group">
                         <label class="control-label" for="inputBasicKodeUnit">SKPD</label>
@@ -47,38 +53,59 @@
                             <option value="Operator">Operator</option>
                           </select>
                         </div>
+                         <?php
+                          echo form_error('level','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicNama">Nama Pengguna</label>
-                      <input type="text" class="form-control" id="inputBasicNama" name="nama"
+                      <input type="text" class="form-control" id="inputBasicNama" name="nama" value="<?php echo set_value('nama'); ?>"
                        placeholder="VIRA WIENA" autocomplete="off" />
+                        <?php
+                          echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
             </div>
                     <div class="col-sm-6">
                     <div class="form-group">
                       <label class="control-label" for="inputBasicAlamat">Alamat Pengguna</label>
-                      <input type="text" class="form-control" id="inputBasicAlamat" name="alamat" 
+                      <input type="text" class="form-control" id="inputBasicAlamat" name="alamat" value="<?php echo set_value('alamat'); ?>"
                        placeholder="Jl. Letjend. Sukowati No. 51, Salatiga, Jawa Tengah 50724" autocomplete="off" />
+                     <?php
+                          echo form_error('alamat','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
                      <div class="form-group">
                       <label class="control-label" for="inputBasicTelepon">Telepon</label>
-                      <input type="text" class="form-control" id="inputBasicTelepon" name="telepon"
+                      <input type="text" class="form-control" id="inputBasicTelepon" name="telepon" value="<?php echo set_value('telepon'); ?>"
                        placeholder="(0298) 326767" autocomplete="off" />
+                     <?php
+                          echo form_error('telepon','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
                         <div class="form-group">
                       <label class="control-label" for="inputBasicHandphone">Handphone</label>
-                      <input type="text" class="form-control" id="inputBasicHandphone" name="handphone"
+                      <input type="text" class="form-control" id="inputBasicHandphone" name="handphone" value="<?php echo set_value('handphone'); ?>"
                        placeholder="085747123456" autocomplete="off" />
+                     <?php
+                          echo form_error('handphone','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicEmail">Email</label>
-                      <input type="email" class="form-control" id="inputBasicEmail" name="email"
+                      <input type="email" class="form-control" id="inputBasicEmail" name="email" value="<?php echo set_value('email'); ?>"
                        placeholder="devira13@mhs.if.its.ac.id" autocomplete="off" />
+                        <?php
+                          echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
                      <div class="form-group">
                       <label class="control-label" for="inputBasicKeterangan">Keterangan</label>
-                      <input type="text" class="form-control" id="inputBasicKeterangan" name="keterangan"
+                      <input type="text" class="form-control" id="inputBasicKeterangan" name="keterangan" value="<?php echo set_value('keterangan'); ?>"
                        autocomplete="off" />
+                        <?php
+                          echo form_error('keterangan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                          ?>
                     </div>
                     <div class="form-group">
                         <div class="pull-right">

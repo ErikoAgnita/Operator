@@ -48,7 +48,7 @@
                     <a href="<?php echo base_url(); ?>Ckecamatan/update/<?php echo $row->kode_kecamatan;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
                   </button>
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
-                    <a href="<?php echo base_url(); ?>Ckecamatan/hapus/<?php echo $row->kode_kecamatan;?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus <?php echo $row->nama_kecamatan;?>')"><i class="icon wb-close" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Ckecamatan/hapus/<?php echo $row->kode_kecamatan;?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus <?php echo $row->nama_kecamatan;?>')"><i class="icon wb-trash" aria-hidden="true"></i></a>
                   </button>
                 </td>
               </tr>
