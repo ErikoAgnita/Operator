@@ -82,7 +82,7 @@ class clogin extends CI_Controller {
              redirect('cpengguna/indexoperator');
         }
         else if (!empty($cek1) == 2){
-            redirect('SaranController/lihat');
+            redirect('SaranController/lihat/all');
         }
     }
 

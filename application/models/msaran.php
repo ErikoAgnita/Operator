@@ -43,10 +43,12 @@ class msaran extends CI_Model {
     }
     public function record_count() {
         $this->db->where('IsAktif','1');
+        $this->db->where('isSpam', '0');
         return $this->db->count_all_results('saran');
     }
     public function fetch_data($limit, $id) {
         $this->db->where('IsAktif','1');
+        $this->db->where('isSpam', '0');
         $this->db->limit($limit, $id);
         $this->db->order_by('id_saran','desc');
         //$query = $this->db->query("SELECT * FROM respon INNER JOIN saran ON respon.ID_SARAN=saran.ID_SARAN");

@@ -16,11 +16,11 @@ class SaranController extends CI_Controller {
 		$this->load->library('pagination');
         $config = array();
         $config['base_url'] = base_url() . "SaranController/lihat";
-        if($ktgr=="new"){
-        	$total_row = $this->SaranModel->record_count_new();
+        if($ktgr=="all"){
+        	$total_row = $this->SaranModel->record_count();
         }
         else{
-        	$total_row = $this->SaranModel->record_count();	
+        	$total_row = $this->SaranModel->record_count_new();	
         }
         
         //echo $total_row;

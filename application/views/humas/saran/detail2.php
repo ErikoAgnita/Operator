@@ -1,38 +1,45 @@
-  <div class="page animsition" style="animation-duration: 800ms; opacity: 1;">
-    <div class="page-header">
-      <h1 class="page-title">Detail Saran</h1>
-      <ol class="breadcrumb">
-        <li><a href="../index.html">Saran</a></li>
-        <li class="active">Detail</li>
-      </ol>
-    </div>
-    <div class="page-content">
-      <!-- Panel X-Editable -->
-      <div class="panel">
-        <header class="panel-heading">
-          <h3 class="panel-title">Detail Saran</h3>
-        </header>
-        <div class="panel-body">
-          <div class="table-responsive">
+<style type="text/css">
+  strong { 
+    color: black;
+  }
+</style>
+
+<script type="text/javascript">
+  window.onload = function()
+  {
+    document.myform.action = publish();
+  }
+
+  function publish()
+  {
+    document.myform.action = '<?php echo base_url();?>SaranController/publish/'.$row->id_saran.;
+  }
+
+
+  /*function disposisi(){
+    document.myform.action = '<?php echo base_url();?>SaranController/disposisi/'.$row->id_saran.;
+  }
+  function publish(){
+    document.myform.action = '<?php echo base_url();?>SaranController/publish/'.$row->id_saran.;
+  }
+  function aktif(){
+    document.myform.action = '<?php echo base_url();?>SaranController/publish'.$row->id_saran;
+  }*/
+</script>
+
+<div class="page animsition" style="animation-duration: 800ms; opacity: 1;">
+  <div class="page-content">
+    <!-- Panel X-Editable -->
+    <div class="panel">
+      <header class="panel-heading">
+        <h3 class="panel-title">Detail Saran</h3>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
             <table class="table table-bordered table-striped" id="editableUser">
               <tbody>
                 <?php foreach ($saran->result() as $row){?>
-                <form autocomplete="off" action="
-                  <?php
-                  $isStatus = $row->isStatus;
-                  if($isStatus=='laporan baru' or $isStatus=='disposisi' or $isStatus=='publish'){
-                    echo base_url();?>SaranController/disposisi/<?php echo $row->id_saran;
-                  }
-                  elseif($isStatus == 'respon baru'){
-                    echo base_url();?>SaranController/nonAktif/<?php echo $row->id_saran;
-                  }?>" 
-                  method="post">
-                  <tr>
-                    <td style="width:20%">Topik</td>
-                    <td>
-                      <span class="notready"><?php echo $row->topik;?></span>
-                    </td>
-                  </tr>
+                <form autocomplete="off" name="myform" method="post">
                   <tr>
                     <td>Nama</td>
                     <td>
@@ -72,7 +79,13 @@
                   <tr>
                     <td>Tanggal Saran</td>
                     <td>
-                      <span class="notready"><?php echo $row->tanggal_saran;?></span>
+                      <span class="notready"><?php echo $row->tanggal_saran;?> WIB</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="width:20%">Topik</td>
+                    <td>
+                      <span class="notready"><?php echo $row->topik;?></span>
                     </td>
                   </tr>
                   <tr>
@@ -83,20 +96,39 @@
                   </tr>                
                   <tr>
                     <td>Lampiran Saran</td>
-                    <td>
-                      <span class="notready"><?php echo $row->lampiran_saran;?></span>
+                    <td>                    
+                      <span class="notready">
+                        <?php if($row->lampiran_saran!=NULL){
+                          echo "<img width=600 height=600 class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
+                          alt='Photo'> <?php ";
+                        } ?>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <td>Spam</td>
                     <td>
-                      <span class="notready"><?php echo $row->isSpam;?></span>
+                      <span class="notready"><?php 
+                        if($row->isSpam==TRUE){
+                          echo "Spam";
+                        }
+                        else{
+                          echo "Bukan Spam";
+                        }
+                      ?></span>
                     </td>
                   </tr>
                   <tr>
                     <td>Aktif</td>
                     <td>
-                      <span class="notready"><?php echo $row->isAktif;?></span>
+                      <span class="notready"><?php 
+                        if($row->isAktif==TRUE){
+                          echo "Aktif";
+                        }
+                        else{
+                          echo "Saran di-Nonaktifkan";
+                        }
+                      ?></span>
                     </td>
                   </tr>
                   <tr>
@@ -109,118 +141,108 @@
               </tbody>
             </table>
             <div class="form-group">
-              <?php
-              $isStatus = $row->isStatus;
-              if($isStatus=='laporan baru' or $isStatus=='disposisi' or $isStatus='publish'){
-                ?><button type="submit" class="btn btn-primary"><?php echo "Disposisi"; ?></button><?php
-              }
-              elseif($isStatus == 'respon baru'){
-                ?><button type="submit" class="btn btn-primary"><?php echo "Publish"; ?></button><?php
-              }
-              ?>
-            </div>
-          </div>
+              <span><button type="submit" class="btn btn-warning" name="btn" value="disposisi" onclick="disposisi();return true;"><i class="icon wb-tag"></i><?php echo " Disposisi"; ?></button></span>
+                <?php if($row->isSpam == TRUE){
+                        $valspam = "Publish";
+                        $icospam = "icon wb-check";
+                    }
+                    else {
+                        $valspam = "Unpublish";
+                        $icospam = "icon wb-close";
+                    }
 
-      
-                      
-          <div class="table-responsive">
-          <header class="panel-heading">
-            <h3 class="panel-title">Respon</h3>
-          </header>
-          <?php foreach ($respon->result() as $row2){?>
-            <table class="table table-bordered table-striped" id="editableUser">
-              <tbody>                
-                <form autocomplete="off" action="" method="post">
-                  <tr>
-                    <td style="width:20%">SKPD</td>
-                    <td>
-                      <span class="notready"><?php echo $row2->id_skpd;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Kategori</td>
-                    <td>
-                      <span class="notready"><?php echo $row2->kategori;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Respon</td>
-                    <td>
-                      <span class="notready"><?php echo $row2->isi_respon;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Lampiran Respon</td>
-                    <td>
-                      <span class="notready"><?php echo $row2->lampiran_respon;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Tanggal Respon</td>
-                    <td>
-                      <span class="notready"><?php echo $row2->tanggal_respon;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>isAktif</td>
-                    <td>
-                      <span class="notready"><?php echo $row2->isAktif;?></span>
-                    </td>
-                  </tr>
-                </form>                
-              </tbody>
-            </table>
-            <?php } ?>
+                    if($row->isAktif == TRUE){
+                        $valtif = "Non-Aktif";
+                        $icotif = "icon wb-bookmark";
+                    }
+                    else {
+                        $valtif = "Aktif";
+                        $icotif = "icon wb-flag";                        
+                    }
+                ?>
+                <span><button type="submit" class="btn btn-success" name="btn" value="<?php echo $valspam;?>" onclick="publish();return true;"><i class="<?php echo $icospam; ?>"></i><?php echo " ".$valspam; ?></button></span>
+                <span><button type="submit" class="btn btn-primary" name="btn" value="<?php echo $valtif;?>" onclick="aktif();return true;"><i class="<?php echo $icotif; ?>"></i><?php echo " ".$valtif; ?></button></span>
+                <span><button type="submit" class="btn btn-danger" name="btn" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i> Hapus</button></span>
+            </form>
+            <span><a  type="button" class="btn btn-default active" onclick="window.open('<?php echo base_url();?>csaran/cetak/<?php echo $row->id_saran;?>')"><i class="icon wb-print"></i> Cetak</a></span> 
           </div>
       </div>
-      <!-- End Panel X-Editable -->
-
+      
+      <header class="panel-heading">
+        <h3 class="panel-title">Respon SKPD</h3>
+      </header>
+      <div class="page-content tab-content page-content-table nav-tabs-animate">
+        <div class="tab-pane animation-fade active" id="forum-newest" role="tabpanel">
+          <table class="table is-indent">          
+            <tbody>
+              <?php foreach ($respon->result() as $row2){?>
+                <form autocomplete="off" action="<?php echo base_url();?>crespon/publish/<?php echo $row2->id_respon;?>" method="post">
+                <tr data-url="panel.tpl" data-toggle="slidePanel">
+                  <td class="cell-60 responsive-hide">
+                    <a>
+                      <img class="" width="50px" src="<?php  echo base_url(); ?>assets/images/logo.png" alt="...">
+                    </a>
+                  </td>
+                  <td>
+                    <div>
+                      <div class="metas">
+                        <span class="username">
+                          <strong><?php echo $row2->nama;?></strong>
+                          <?php 
+                          if($row2->isi_respon){?>
+                            <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row2->tanggal_respon));?> WIB</span> 
+                          <?php } ?>
+                        </span>
+                      </div>
+                      <?php 
+                      if($row2->isi_respon){?>
+                        <div class="metas">                        
+                          <span class="started"><?php echo $row2->kategori;?></span>
+                        </div>
+                        <div class="title">
+                          <?php echo $row2->isi_respon; ?>
+                        </div>
+                        <?php if($row2->lampiran_respon){?>
+                          <div class="metas">                 
+                            <span class="tags">
+                              <?php if($row->lampiran_saran!=NULL){
+                                echo "<img width=600 height=600 class='img-responsive pad' src='".base_url()."uploads/respon/".$row2->lampiran_respon."' 
+                                alt='Photo'> <?php ";
+                              } ?>
+                            </span>
+                          </div>
+                        <?php } ?>
+                      <?php }
+                      else{?>                                                                 
+                        <div class="metas">                 
+                          <span class="tags">(Belum ada Respon)</span>
+                        </div>
+                      <?php } ?>       
+                    </div>
+                    <div class="form-group">
+                      <input type="hidden" value="<?php echo $row2->id_saran ?>" name="id_saran"/>
+                    </div>
+                      <?php 
+                          if($row2->isAktif == "0"){
+                                $val = "Publish";
+                                $ico = "icon wb-check";
+                            }
+                            else {
+                                $val = "Unpublish";
+                                $ico = "icon wb-close";
+                            }
+                      ?>
+                    <div class="form-group">
+                      <span><button type="submit" class="btn btn-success" name="btn2" value="<?php echo $val;?>"><i class="<?php echo $ico; ?>"></i><?php echo " ".$val?></button></span>
+                      <span><button type="submit" class="btn btn-danger" name="btn2" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i><?php echo " Hapus"; ?></button></span>
+                    </div>
+                </tr>
+                </form>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-  <script src="../../global/vendor/jquery/jquery.min.js"></script>
-  <script src="../../global/vendor/bootstrap/bootstrap.min.js"></script>
-  <script src="../../global/vendor/animsition/animsition.min.js"></script>
-  <script src="../../global/vendor/asscroll/jquery-asScroll.min.js"></script>
-  <script src="../../global/vendor/mousewheel/jquery.mousewheel.min.js"></script>
-  <script src="../../global/vendor/asscrollable/jquery.asScrollable.all.min.js"></script>
-  <script src="../../global/vendor/switchery/switchery.min.js"></script>
-  <script src="../../global/vendor/intro-js/intro.min.js"></script>
-  <script src="../../global/vendor/screenfull/screenfull.min.js"></script>
-  <script src="../../global/vendor/slidepanel/jquery-slidePanel.min.js"></script>
-  <script src="../../global/vendor/x-editable/bootstrap-editable.min.js"></script>
-  <script src="../../global/vendor/typeahead-js/bloodhound.min.js"></script>
-  <script src="../../global/vendor/typeahead-js/typeahead.jquery.min.js"></script>
-  <script src="../../global/vendor/x-editable/address.js"></script>
-  <script src="../../global/vendor/select2/select2.min.js"></script>
-  <script src="../../global/vendor/moment/moment.min.js"></script>
-  <script src="../../global/js/core.min.js"></script>
-  <script src="../assets/js/site.min.js"></script>
-  <script src="../assets/js/sections/menu.min.js"></script>
-  <script src="../assets/js/sections/menubar.min.js"></script>
-  <script src="../assets/js/sections/gridmenu.min.js"></script>
-  <script src="../assets/js/sections/sidebar.min.js"></script>
-  <script src="../../global/js/configs/config-colors.min.js"></script>
-  <script src="../assets/js/configs/config-tour.min.js"></script>
-  <script src="../../global/js/components/asscrollable.min.js"></script>
-  <script src="../../global/js/components/animsition.min.js"></script>
-  <script src="../../global/js/components/slidepanel.min.js"></script>
-  <script src="../../global/js/components/switchery.min.js"></script>
-  <script src="../assets/examples/js/forms/editable.min.js"></script>
-
-  <script>
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js',
-      'ga');
-
-    ga('create', 'UA-65522665-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+</div>
