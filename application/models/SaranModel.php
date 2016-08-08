@@ -30,7 +30,7 @@ class SaranModel extends CI_Model
 
     function pencarian($cari, $limit, $id){
         
-        $query = $this->db->query("SELECT * FROM saran WHERE IsAktif = '1' and (nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%') LIMIT $limit OFFSET $id");
+        $query = $this->db->query("SELECT * FROM saran WHERE nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%' LIMIT $limit OFFSET $id");
         if ($query->num_rows() > 0) {
             return $query->result();
         }

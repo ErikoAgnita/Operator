@@ -21,7 +21,7 @@ class SaranController extends CI_Controller {
 
         //echo $total_row;
         $config['total_rows'] = $total_row;
-        $config['per_page'] = 1;
+        $config['per_page'] = 7;
         $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
         $config['cur_tag_close'] = '</a>';
         $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
@@ -41,7 +41,8 @@ class SaranController extends CI_Controller {
 		
 	}
 
-	public function search(){
+	public function search(){		
+        $cari = $this->input->post('cari');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
         $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
@@ -51,7 +52,6 @@ class SaranController extends CI_Controller {
                 $this->lihat();
             //echo "asda";
         }else{
-            $cari = $this->input->post('cari');
             $this->load->library('pagination');
             $config = array();
             $config['base_url'] = base_url() . "SaranController/search";
