@@ -74,7 +74,7 @@ if($saran->result()){?>
                             <div class="metas">                 
                               <span class="tags">
                                 <?php
-                                  echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$row->lampiran_saran."' 
+                                  echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
                                   alt='Photo' width=600 height=600> <?php ";
                                 ?>
                               </span>

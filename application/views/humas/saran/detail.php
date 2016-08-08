@@ -4,145 +4,144 @@
   }
 </style>
 
-<div class="page animsition" style="animation-duration: 800ms; opacity: 1;">
-  <div class="page-content">
-    <!-- Panel X-Editable -->
+<div class="page">
+<div class="page-content">
     <div class="panel">
       <header class="panel-heading">
         <h3 class="panel-title">Detail Saran</h3>
       </header>
       <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-striped" id="editableUser">
-              <tbody>
-                <?php foreach ($saran->result() as $row){?>
-                <form autocomplete="off" action="<?php echo base_url();?>SaranController/disposisi/<?php echo $row->id_saran;?>" method="post">
-                  <tr>
-                    <td>Nama</td>
-                    <td>
-                      <span class="notready"><?php echo $row->nama;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Alamat</td>
-                    <td>
-                      <span class="notready"><?php echo $row->alamat;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Email</td>
-                    <td>
-                      <span class="notready"><?php echo $row->email;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Telepon</td>
-                    <td>
-                      <span class="notready"><?php echo $row->telepon;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>IP</td>
-                    <td>
-                      <span class="notready"><?php echo $row->ip;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Host</td>
-                    <td>
-                      <span class="notready"><?php echo $row->host;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Tanggal Saran</td>
-                    <td>
-                      <span class="notready"><?php echo $row->tanggal_saran;?> WIB</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="width:20%">Topik</td>
-                    <td>
-                      <span class="notready"><?php echo $row->topik;?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Saran</td>
-                    <td>
-                      <span class="notready"><?php echo $row->saran;?></span>
-                    </td>
-                  </tr>                
-                  <tr>
-                    <td>Lampiran Saran</td>
-                    <td>                    
-                      <span class="notready">
-                        <?php if($row->lampiran_saran!=NULL){
-                          echo "<img width=600 height=600 class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
-                          alt='Photo'> <?php ";
-                        } ?>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Spam</td>
-                    <td>
-                      <span class="notready"><?php 
-                        if($row->isSpam==TRUE){
-                          echo "Spam";
-                        }
-                        else{
-                          echo "Bukan Spam";
-                        }
-                      ?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Aktif</td>
-                    <td>
-                      <span class="notready"><?php 
-                        if($row->isAktif==TRUE){
-                          echo "Aktif";
-                        }
-                        else{
-                          echo "Saran di-Nonaktifkan";
-                        }
-                      ?></span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Status</td>
-                    <td>
-                      <span class="notready"><?php echo $row->isStatus;?></span>
-                    </td>
-                  </tr>
-                <?php } ?>
-              </tbody>
-            </table>
-            <div class="form-group">
-              <span><button type="submit" class="btn btn-warning" name="btn" value="disposisi"><i class="icon wb-tag"></i><?php echo " Disposisi"; ?></button></span>
-                <?php if($row->isSpam == TRUE){
-                        $valspam = "Publish";
-                        $icospam = "icon wb-check";
-                    }
-                    else {
-                        $valspam = "Unpublish";
-                        $icospam = "icon wb-close";
-                    }
+          <table class="table table-bordered table-striped" id="editableUser">
+            <tbody>
+              <?php foreach ($saran->result() as $row){?>
+              <form autocomplete="off" action="<?php echo base_url();?>SaranController/disposisi/<?php echo $row->id_saran;?>" method="post">
+                <tr>
+                  <td>Nama</td>
+                  <td>
+                    <span class="notready"><?php echo $row->nama;?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Alamat</td>
+                  <td>
+                    <span class="notready"><?php echo $row->alamat;?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>
+                    <span class="notready"><?php echo $row->email;?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Telepon</td>
+                  <td>
+                    <span class="notready"><?php echo $row->telepon;?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IP</td>
+                  <td>
+                    <span class="notready"><?php echo $row->ip;?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Host</td>
+                  <td>
+                    <span class="notready"><?php echo $row->host;?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tanggal Saran</td>
+                  <td>
+                    <span class="notready"><?php echo $row->tanggal_saran;?> WIB</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width:20%">Topik</td>
+                  <td>
+                    <span class="notready"><?php echo $row->topik;?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Saran</td>
+                  <td>
+                    <span class="notready"><?php echo $row->saran;?></span>
+                  </td>
+                </tr>                
+                <tr>
+                  <td>Lampiran Saran</td>
+                  <td>                    
+                    <span class="notready">
+                      <?php if($row->lampiran_saran!=NULL){
+                        echo "<img width=600 height=600 class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
+                        alt='Photo'> <?php ";
+                      } ?>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Spam</td>
+                  <td>
+                    <span class="notready"><?php 
+                      if($row->isSpam==TRUE){
+                        echo "Spam";
+                      }
+                      else{
+                        echo "Bukan Spam";
+                      }
+                    ?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Aktif</td>
+                  <td>
+                    <span class="notready"><?php 
+                      if($row->isAktif==TRUE){
+                        echo "Aktif";
+                      }
+                      else{
+                        echo "Saran di-Nonaktifkan";
+                      }
+                    ?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Status</td>
+                  <td>
+                    <span class="notready"><?php echo $row->isStatus;?></span>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+          <div class="form-group">
+            <span><button type="submit" class="btn btn-warning" name="btn" value="disposisi"><i class="icon wb-tag"></i><?php echo " Disposisi"; ?></button></span>
+              <?php if($row->isSpam == TRUE){
+                      $valspam = "Publish";
+                      $icospam = "icon wb-check";
+                  }
+                  else {
+                      $valspam = "Unpublish";
+                      $icospam = "icon wb-close";
+                  }
 
-                    if($row->isAktif == TRUE){
-                        $valtif = "Non-Aktif";
-                        $icotif = "icon wb-bookmark";
-                    }
-                    else {
-                        $valtif = "Aktif";
-                        $icotif = "icon wb-flag";                        
-                    }
-                ?>
-                <span><button type="submit" class="btn btn-success" name="btn" value="<?php echo $valspam;?>"><i class="<?php echo $icospam; ?>"></i><?php echo " ".$valspam; ?></button></span>
-                <span><button type="submit" class="btn btn-primary" name="btn" value="<?php echo $valtif;?>"><i class="<?php echo $icotif; ?>"></i><?php echo " ".$valtif; ?></button></span>
-                <span><button type="submit" class="btn btn-danger" name="btn" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i> Hapus</button></span>             
-            </form>
-            <span><a  type="button" class="btn btn-default active" onclick="window.open('<?php echo base_url();?>csaran/cetak/<?php echo $row->id_saran;?>')"><i class="icon wb-print"></i> Cetak</a></span> 
-          </div>
+                  if($row->isAktif == TRUE){
+                      $valtif = "Non-Aktif";
+                      $icotif = "icon wb-bookmark";
+                  }
+                  else {
+                      $valtif = "Aktif";
+                      $icotif = "icon wb-flag";                        
+                  }
+              ?>
+              <span><button type="submit" class="btn btn-success" name="btn" value="<?php echo $valspam;?>"><i class="<?php echo $icospam; ?>"></i><?php echo " ".$valspam; ?></button></span>
+              <span><button type="submit" class="btn btn-primary" name="btn" value="<?php echo $valtif;?>"><i class="<?php echo $icotif; ?>"></i><?php echo " ".$valtif; ?></button></span>
+              <span><button type="submit" class="btn btn-danger" name="btn" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i> Hapus</button></span>             
+        </form>
+          <span><a  type="button" class="btn btn-default active" onclick="window.open('<?php echo base_url();?>csaran/cetak/<?php echo $row->id_saran;?>')"><i class="icon wb-print"></i> Cetak</a></span> 
+        </div>
       </div>
       
       <header class="panel-heading">
@@ -222,4 +221,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

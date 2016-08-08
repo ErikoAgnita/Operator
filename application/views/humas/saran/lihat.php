@@ -1,6 +1,6 @@
   <!-- Page -->
 <div class="page">
-<div class="page-content">
+  <div class="page-content">
         <form role="form" method="POST" action="<?php echo base_url();?>SaranController/search/" >
          <div class="input-group input-group-sm">
             <input type="text" class="form-control" value="<?php echo set_value('cari'); ?>" name="cari" placeholder="Cari . . .">

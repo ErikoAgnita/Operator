@@ -11,21 +11,17 @@ class SaranController extends CI_Controller {
 
 	}
 	
-	public function lihat($ktgr)
+	public function lihat()
 	{	
 		$this->load->library('pagination');
         $config = array();
         $config['base_url'] = base_url() . "SaranController/lihat";
-        if($ktgr=="all"){
-        	$total_row = $this->SaranModel->record_count();
-        }
-        else{
-        	$total_row = $this->SaranModel->record_count_new();	
-        }
-        
+
+       	$total_row = $this->SaranModel->record_count();
+
         //echo $total_row;
         $config['total_rows'] = $total_row;
-        $config['per_page'] = 7;
+        $config['per_page'] = 1;
         $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
         $config['cur_tag_close'] = '</a>';
         $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
@@ -198,8 +194,8 @@ class SaranController extends CI_Controller {
     public function coba()
     {	
     	$data['skpd'] = $this->SaranModel->getskpd();
-    	//$this->load->view('humas/header');
+    	$this->load->view('humas/header');
     	$this->load->view('humas/saran/coba', $data);
-    	//$this->load->view('humas/footer');
+    	$this->load->view('humas/footer');
     }
 }
