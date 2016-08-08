@@ -193,7 +193,7 @@ class Cpengguna extends CI_Controller {
 
      public function hapus($id_pengguna)
     {
-        $this->mskpd->DeletePengguna($id_pengguna);
+        $this->mpengguna->DeletePengguna($id_pengguna);
         redirect('Cpengguna/lihat');
     }
     /*public function detail($id_pengguna)

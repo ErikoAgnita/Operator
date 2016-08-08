@@ -46,8 +46,8 @@ class Mpengguna extends CI_Model {
 	}
 
 	public function DeletePengguna($where, $table){
-		$this->db->where($where);
-		$this->db->delete($table);
+		$this->db->where('id_pengguna', $where);
+		$this->db->delete('pengguna');
 	}
 
 	/*public function DetailPengguna(){
