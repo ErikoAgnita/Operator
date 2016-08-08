@@ -67,7 +67,6 @@ class Ckelurahan extends CI_Controller {
             $strpage = $this->uri->segment(3,0);
                 
             $data['kelurahan'] = $this->mkelurahan->pencarian($cari,$config['per_page'],$strpage);
-            //$data['data_kecamatan'] = $this->mkelurahan->data_kecamatan();
             //$data['kecamatan'] = $this->mkelurahan->GetKelurahan1();
             $data['links'] = $this->pagination->create_links();
                 

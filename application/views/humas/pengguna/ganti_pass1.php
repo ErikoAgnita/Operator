@@ -24,6 +24,7 @@
               <img class='img-circle' src='<?php echo base_url(); ?>assets/images/people.png' alt='masyarakat'>
               <span class='username'><label><?php echo $p->nama; ?></label></span>
               <span class='description'>Level: <?php echo $p->level; ?></span>
+              <br>
           </div>
             <input type="hidden" name="id_pengguna" value="<?php echo $p->id_pengguna; ?>"/>
           <div class="form-group">
@@ -44,7 +45,7 @@
           </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
          </div>
       </form>
        </div>

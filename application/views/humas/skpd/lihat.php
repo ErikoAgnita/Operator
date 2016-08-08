@@ -145,9 +145,9 @@
       </div>
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-info">-->
-          <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cskpd/update/<?php echo $row->id_skpd;?>">Update</a>
+          <a type="button" class="btn btn-info btn-primary" href="<?php echo base_url(); ?>Cskpd/update/<?php echo $row->id_skpd;?>"><i class="fa fa-edit"></i>&nbsp;&nbsp;Ubah</a>
         <!--</button>-->
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon wb-chevron-left"></i>&nbsp;&nbsp;Keluar</button>
       </div>
     </div>
 

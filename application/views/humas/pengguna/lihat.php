@@ -132,10 +132,10 @@
       </div>
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-info">-->
-          <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>">Update</a>
+          <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>"><i class="fa fa-edit"></i>&nbsp;&nbsp;Ubah</a>
         <!--</button>-->
-          <a type="button" class="btn btn-success" href="<?php echo base_url(); ?>Cpengguna/ganti_password/<?php echo $row->id_pengguna;?>">Ganti Password</a>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
+          <a type="button" class="btn btn-success" href="<?php echo base_url(); ?>Cpengguna/ganti_password/<?php echo $row->id_pengguna;?>"><i class="icon wb-wrench"></i>&nbsp;&nbsp;Ganti Password</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon wb-chevron-left"></i>&nbsp;&nbsp;Keluar</button>
       </div>
     </div>
 

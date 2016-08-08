@@ -115,7 +115,7 @@ class Ckecamatan extends CI_Controller {
         }
     }
 
-    public function update($kode_kecamatan)
+    /*public function update($kode_kecamatan)
     {
     	$where = array('kode_kecamatan' => $kode_kecamatan);
         $data['kecamatan'] = $this->mkecamatan->UpdateKecamatan($where, 'kecamatan')->result();
@@ -136,12 +136,22 @@ class Ckecamatan extends CI_Controller {
 
         $this->mkecamatan->UpdateKecamatan1($kode_kecamatan, $data);
         redirect('Ckecamatan/lihat');
-    }
+    }*/
 
     public function hapus($kode_kecamatan)
     {
         $this->mkecamatan->DeleteKecamatan($kode_kecamatan);
         redirect('Ckecamatan/lihat');
     }
+
+    public function update_data($id_kode_kecamatan){
+        if($this->input->post('submit')){
+            $this->mkecamatan->update($id_kode_kecamatan);
+            redirect('Ckecamatan/update_data');
+            }
+            $data['kecamatan']=$this->mkecamatan->getById($id_kode_kecamatan);
+            $this->load->view('humas/header')->view('humas/kecamatan/edit', $data)->view('humas/footer');
+
+        }
 
 }

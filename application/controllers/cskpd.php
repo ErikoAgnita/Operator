@@ -48,11 +48,11 @@ class Cskpd extends CI_Controller {
 	        $cari = $this->input->post('cari');
 	        $this->load->library('pagination');
 	        $config = array();
-	        $config['base_url'] = base_url() . "cskpd/search";
+	        $config['base_url'] = base_url() . "Cskpd/search";
 	        $total_row = $this->mskpd->record_count_search($cari);
 	            //var_dump($total_row);
 	        $config['total_rows'] = $total_row;
-	        $config['per_page'] = 10;
+	        $config['per_page'] = 1;
 	        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
 	   	    $config['cur_tag_close'] = '</a>';
 	        $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
@@ -116,6 +116,9 @@ class Cskpd extends CI_Controller {
 			$email = $this->input->post('email');
 			$website = $this->input->post('website');
 			$urut = $this->input->post('urut');
+			if ($urut==NULL) {
+				$urut=99;
+			}
 			$tema = $this->input->post('tema');
 
 			$data = array(

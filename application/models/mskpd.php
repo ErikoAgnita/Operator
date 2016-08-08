@@ -38,12 +38,26 @@ class Mskpd extends CI_Model {
             return $query->result();
         }
         else return 0;
+
+        /*$this->db->select('*');
+        $this->db->from('skpd');
+        $this->db->where('nama LIKE '%$cari%' ');
+        $this->db->limit($limit, $id_skpd);
+        $query = $this->db->get();
+        return $query;*/
     }
     public function record_count_search($cari) {
-        $condition = "nama LIKE '%$cari%' or kodeUnit LIKE '%$cari%'";
-        $this->db->where($condition);
-        return $this->db->count_all_results('skpd');
+        $condition = "nama LIKE '%$cari%' or kodeUnit like '%cari'";
+        //$this->db->where($condition);
+        //return $this->db->count_all_results('skpd');
             //return $query->result();
+
+        $this->db->select('id_skpd');
+        $this->db->from('skpd');
+        $this->db->where($condition);
+        $num = $this->db->count_all_results();
+        return $num;
+
     }
 
 	public function DeleteSKPD($id_skpd){

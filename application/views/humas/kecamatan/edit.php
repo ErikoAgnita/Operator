@@ -18,7 +18,7 @@
               <div class="example-wrap">
                 <div class="example">
                   
-                  <form action="<?php echo base_url(). 'Ckecamatan/do_update'; ?>" method="post" autocomplete="off">
+                  <form action="<?php echo base_url(). 'Ckecamatan/update_data/'.$kec->kode_kecamatan; ?>" method="post" autocomplete="off">
                     <div class="form-group">
                         <label class="control-label" for="inputBasicKodeKecamatan">Kode Kecamatan</label>
                         <input type="text" class="form-control" id="inputBasicKodeKecamatan" value="<?php echo $kec->kode_kecamatan ?>" name="kode_kecamatan"

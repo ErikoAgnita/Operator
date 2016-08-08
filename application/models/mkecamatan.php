@@ -48,4 +48,25 @@ class Mkecamatan extends CI_Model {
         return $this->db->count_all_results('kecamatan');
     }
 
+    public function update($id_kode_kecamatan){
+        $kode_kecamatan=$this->input->post('kode_kecamatan');
+        $nama_kecamatan=$this->input->post('nama_kecamatan');
+        $isAktif=$this->input->post('isAktif');
+
+        $data=array(
+            'kode_kecamatan'=>$kode_kecamatan,
+            'nama_kecamatan' =>$nama_kecamatan,
+            'isAktif'=>$isAktif);
+        $this->db->where('kode_kecamatan', $kode_kecamatan);
+        $this->db->update('kecamatan', $data);
+    }
+
+    public function getById($id_kode_kecamatan){
+        $query = $this->db->get_where('kecamatan', array('kode_kecamatan' =>$id_kode_kecamatan));
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
  }
