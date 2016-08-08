@@ -26,7 +26,6 @@
                 </div>
                 <!-- /.box-header -->
                 <div class='box-body'>
-                  <?php if($as->lampiran_saran!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$as->lampiran_saran."' alt='Photo'> <?php ";} ?>
                   <p><?php $baris= $as->saran;
     echo substr($baris, 0, 150); echo "<b> . . .</b>"; ?> <br></p>
                     <input type="hidden" name="saranid" value="<?php echo $as->id_saran; ?>" >
@@ -69,9 +68,11 @@
                         <?php echo $rply->snama;?>
                         <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($rply->tanggal_respon)); ?></span>
                       </span><!-- /.username -->
-                        <p><?php echo $rply->isi_respon; ?> <br></p>
-                    </div><!-- /.comment-text -->
-                  </div><!-- /.box-comment -->                    
+                  </div><!-- /.comment-text -->
+                  </div><!-- /.box-comment --> 
+                       <?php if($rply->lampiran_respon!=NULL){echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$rply->lampiran_respon."' alt='Foto Respon'> <?php ";} ?>
+                        <p><?php echo $rply->isi_respon; ?> <br></p><div></div>
+
                 <?php }} ?>
               </div>
           <?php } ?>
