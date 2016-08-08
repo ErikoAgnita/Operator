@@ -258,48 +258,49 @@
                       <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>csaran/add_saran/" >
                         <div class="form-group" style="color:#62a8ea;">
                             <label class="col-sm-2 control-label">Nama</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <div class="input-group"style="width:80%">
+                                <span class="input-group-addon"style="width:15%"><i class="fa fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?php echo set_value('nama'); ?>" required>
                             </div>
                             <?php
                                 echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">Alamat</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                            <div class="input-group"style="width:80%">
+                                <span class="input-group-addon"style="width:15%"><i class="fa fa-home"></i></span>
                                 <input type="text" class="form-control" placeholder="alamat" name="almt" value="<?php echo set_value('almt'); ?>" required>
                             </div>
                             <?php
                                 echo form_error('almt','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">HP</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            <div class="input-group"style="width:80%">
+                                <span class="input-group-addon"style="width:15%"><i class="fa fa-phone"></i></span>
                                 <input type="text" class="form-control" placeholder="HP" value="<?php echo set_value('telp'); ?>" name="telp" required>
                             </div>
                             <?php
                                 echo form_error('telp','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">Email</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <div class="input-group"style="width:80%">
+                                <span class="input-group-addon"style="width:15%"><i class="fa fa-envelope"></i></span>
                                 <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" required>
                             </div>
                             <?php
                                 echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">Laporan</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-comments"></i></span>
-                                <input name="aspr" class="textarea" placeholder="Salurkan kritik dan saran anda" style="width: 100%; font-size: 14px; line-height: 50px; color: #4F4F4F; border: 1px solid #dddddd; padding: 10px;" value="<?php echo set_value('aspr'); ?>" required></input>
+                            <div class="input-group"style="width:80%">
+                                <span class="input-group-addon"style="width:15%"><i class="fa fa-comments"></i></span>
+                                <textarea name="aspr" class="form-control" rows="5" class="text" placeholder="Salurkan kritik dan saran anda" style="width: 100%; font-size: 14px; line-height: 
+                                14px; color: #4F4F4F; border: 1px solid #dddddd; padding: 10px;" value="<?php echo set_value('aspr'); ?>" required></textarea>
                             </div>
                           <?php
                                 echo form_error('aspr','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">Lampirkan Foto</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-upload"></i></span>
+                            <div class="input-group"style="width:80%">
+                                <span class="input-group-addon"style="width:15%"><i class="fa fa-upload"></i></span>
                                 <!--<input type="file" class="form-control" name="foto">-->
                                 <input id="uploadFile" type="file" name="image" class="form-control" data-provides="uploadFile"/>
                                 <!--div id="imagePreview"><a type="button btn-danger" class="close" data-dismiss="uploadFile">×</a></div-->
@@ -308,8 +309,8 @@
                         </div>
                       <div class="form-group" style="color:#62a8ea;">
                       <label class="col-sm-2 control-label">Kode Keamanan</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><?php echo $captcha['image']; ?></span>
+                            <div class="input-group"style="width:80%">
+                                <span class="input-group-addon"style="width:15%"><?php echo $captcha['image']; ?></span>
                                 <input name="userCaptcha" style="height: 50px; font-size: 14px;  padding: 10px;" class="form-control" autocomplete="off" placeholder="Kode Keamanan"  value="<?php if(!empty($userCaptcha)){ echo $userCaptcha;} ?>" required></input>
                             </div>
                       <?php
