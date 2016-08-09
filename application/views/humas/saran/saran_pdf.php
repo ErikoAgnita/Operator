@@ -5,18 +5,18 @@ class PDF extends FPDF
 	function Header()
 	{
         $this->Ln(5);
-        $this->Image(base_url().'assets/images/logo-bw.jpg', 15, 15,'20','25','jpeg');
+        //$this->Image(base_url().'assets/images/logo-bw.jpg', 15, 15,'20','25','jpeg');
 
         $this->Ln(-7);
         $this->setFont('times','B',20);
         $this->setFillColor(255,255,255);
-            $this->cell(33,6,'',0,0,'C',0); 
+            $this->cell(7,6,'',0,0,'C',0); 
             $this->cell(100,6,'Kotak Saran Website',0,1,'L',1); 
         $this->setFont('times','B',16);
-            $this->cell(33,6,'',0,0,'C',0); 
+            $this->cell(7,6,'',0,0,'C',0); 
             $this->cell(100,6,"Pemerintah Kota Salatiga",0,1,'L',1); 
         $this->setFont('times','B',12);
-            $this->cell(33,6,'',0,0,'C',0); 
+            $this->cell(7,6,'',0,0,'C',0); 
             $this->cell(100,6,'http://saran.salatiga.go.id/',0,1,'L',1); 
         
         $this->Line(10,$this->GetY()+7,200,$this->GetY()+7);

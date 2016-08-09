@@ -1,4 +1,4 @@
-<div class="container" style="background-color:#525252;">
+<div class="container" style="background-color:#525252; min-height:600px;">
     <h1 class="page-header" style="text-aligntment:center; color:#62a8ea;">
             <b>Laporan Masyarakat</b>
           </h1>

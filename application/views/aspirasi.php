@@ -1,5 +1,5 @@
 
-    <div class="container" style="background-color:#525252;">
+    <div class="container" style="background-color:#525252; padding-top:10px; padding-bottom:10px">
 
      
       <!-- Content Wrapper. Contains page content -->
