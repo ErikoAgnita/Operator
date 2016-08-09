@@ -1,7 +1,7 @@
   <!-- Page -->
 <div class="page">
   <div class="page-content">
-        <form role="form" method="POST" action="<?php echo base_url();?>SaranController/search/" >
+        <form role="form" method="POST" action="<?php echo base_url();?>csaran/search_saran/" >
          <div class="input-group input-group-sm">
             <input type="text" class="form-control" value="<?php echo set_value('cari'); ?>" name="cari" placeholder="Cari . . .">
             <span class="input-group-btn">
@@ -55,7 +55,7 @@
                           </div>
                       </div>
                       <div class="title">
-                        <a type="button" href="<?php echo base_url(); ?>SaranController/detail/<?php echo $row->id_saran;?>">Detail</a>
+                        <a type="button" href="<?php echo base_url(); ?>csaran/detail/<?php echo $row->id_saran;?>">Detail</a>
                       </div>                        
                     </div>
                   </td>

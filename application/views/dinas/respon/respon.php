@@ -158,39 +158,8 @@ if($saran->result()){?>
                               </form>
                             </div>
                           </div>
-                        <?php }
-                        else{?>
-                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Ubah Respon</button>
-                          <div id="demo" class="collapse">
-                            <div>                            
-                              <form runat="server" autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
-                                <div>      
-                                  <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                  <textarea cols="50" type="text" class="form-control" value="<?php echo $kategori;?>" name="kategori"><?php echo $kategori;?></textarea> 
-                                </div>
-                                <div>
-                                  <label class="control-label" for="inputBasicEmail">Respon</label>
-                                  <textarea rows="8" type="text" class="form-control" value="<?php echo $isi_respon;?>" name="isi_respon"><?php echo $isi_respon;?></textarea>
-                                </div>
-                                <div>
-                                  <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                                  <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
-                                  <!-- <img id="bla"/> -->
-                                  <div id="imagePreview"></div>
-                                </div>                                
-                                <div>
-                                  <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
-                                </div>
-                                <div>
-                                  <input type="hidden" class="form-control" value="<?php echo $flag;?>" name="flag">
-                                </div>
-                                <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                                  <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
-                              </form>
-                            </div>
-                          </div>
-                        <?php
-                      }?>
+                        <?php } ?>
+                      }
                 </tbody>
               </table>            
             </div>
@@ -266,3 +235,4 @@ if($saran->result()){?>
     </div>
   </div>
 <?php }?>
+</div>

@@ -16,19 +16,19 @@ class SaranModel extends CI_Model
     }
 
     //sadbsajhd
-    public function record_count() {
+    public function record_count_saran() {
         return $this->db->count_all('saran');
     }
 
     //adhgasj
-    public function fetch_data($limit, $id) {
+    public function fetch_data_saran($limit, $id) {
         $this->db->limit($limit, $id);
         $this->db->order_by('id_saran','desc');
         $query = $this->db->get('saran');
         return $query;
     }
 
-    function pencarian($cari, $limit, $id){
+    function pencarian_saran($cari, $limit, $id){
         
         $query = $this->db->query("SELECT * FROM saran WHERE nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%' LIMIT $limit OFFSET $id");
         if ($query->num_rows() > 0) {
@@ -36,7 +36,7 @@ class SaranModel extends CI_Model
         }
         else return 0;
     }
-    public function record_count_search($cari) {
+    public function record_count_search_saran($cari) {
         $condition = "IsAktif = '1' and (nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%')";
         $this->db->where($condition);
         return $this->db->count_all_results('saran');

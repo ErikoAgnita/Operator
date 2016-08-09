@@ -37,7 +37,7 @@
                 <h4 class="example-title">Disposisi Saran</h4>
                 <p><?php echo $this->session->flashdata('message');?></p>
                 <div class="example">
-                  <form autocomplete="off" action="<?php echo base_url();?>SaranController/disposisikan/<?php echo $id_saran;?>" method="post">
+                  <form autocomplete="off" action="<?php echo base_url();?>csaran/disposisikan/<?php echo $id_saran;?>" method="post">
                     
                     <div class="form-group">
                       <label class="control-label" for="inputBasicEmail">Topik</label>

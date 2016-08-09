@@ -209,7 +209,7 @@ class crespon extends CI_Controller {
 		if($this->input->post('btn2')=="hapus"){
 			$this->mrespon->hapus_respon($id_respon);
 		}
-		redirect(base_url().'SaranController/detail/'.$id_saran);
+		redirect(base_url().'csaran/detail/'.$id_saran);
 	}
 
 	public function tes()

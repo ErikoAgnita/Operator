@@ -54,7 +54,7 @@ class clogin extends CI_Controller {
             $session_data['user'] = $user;
             $this->session->set_userdata("masuk", $session_data);
             $data['admin'] = $this->mpengguna->GetAkun();
-            redirect('SaranController/lihat');
+            redirect('csaran/lihat');
         }
 
         else
@@ -82,7 +82,7 @@ class clogin extends CI_Controller {
              redirect('cpengguna/indexoperator');
         }
         else if (!empty($cek1) == 2){
-            redirect('SaranController/lihat/all');
+            redirect('csaran/lihat');
         }
     }
 

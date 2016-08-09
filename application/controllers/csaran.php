@@ -208,5 +208,165 @@ class Csaran extends CI_Controller {
         $res['data'] = $this->SaranModel->detail_saran($ctk);
         $this->load->view('humas/saran/saran_pdf',$res);
     }
+
+
+    //Admin
+    public function lihat()
+    {   
+        $this->load->library('pagination');
+        $config = array();
+        $config['base_url'] = base_url() . "csaran/lihat";
+
+        $total_row = $this->msaran->record_count_saran();
+
+        //echo $total_row;
+        $config['total_rows'] = $total_row;
+        $config['per_page'] = 7;
+        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+        $config['cur_tag_close'] = '</a>';
+        $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
+        $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
+        $config['last_link'] = '<b>>></b>';
+        $config['first_link'] = '<b><<</b>';
+        $config['uri_segment'] = 3;
+    
+        $this->pagination->initialize($config);
+        $strpage = $this->uri->segment(3,0);
+        $data['saran'] = $this->msaran->fetch_data_saran($config['per_page'],$strpage)->result();
+        
+        $data['links'] = $this->pagination->create_links();
+
+        //$data['saran'] = $this->msaran->lihat_saran();
+        $this->load->view('humas/header')->view('humas/saran/lihat', $data)->view('humas/footer');
+        
+    }
+
+    public function search_saran(){     
+        $cari = $this->input->post('cari');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
+        $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
+        
+        if ($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                $this->lihat();
+            //echo "asda";
+        }else{
+            $this->load->library('pagination');
+            $config = array();
+            $config['base_url'] = base_url() . "csaran/search";
+            $total_row = $this->msaran->record_count_search_saran($cari);
+            //var_dump($total_row);
+            $config['total_rows'] = $total_row;
+            $config['per_page'] = 7;
+            $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+            $config['cur_tag_close'] = '</a>';
+            $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
+            $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
+            $config['last_link'] = '<b>>></b>';
+            $config['first_link'] = '<b><<</b>';
+            $config['uri_segment'] = 3;
+        
+            $this->pagination->initialize($config);
+            $strpage = $this->uri->segment(3,0);
+            
+            $data['saran'] = $this->msaran->pencarian_saran($cari,$config['per_page'],$strpage);
+            $data['links'] = $this->pagination->create_links();
+            
+            if($data['saran'] == NULL || $cari == ''){
+                $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                $this->lihat();
+            }
+            else{   
+                $this->load->view('humas/header');
+                $this->load->view('humas/saran/lihat',$data);
+                $this->load->view('humas/footer');
+            }
+        }
+        
+    }
+
+    public function detail($id_saran)
+    {
+        $data['saran'] = $this->msaran->detail_saran($id_saran);
+        $data['respon'] = $this->msaran->respon($id_saran);
+        $this->load->view('humas/header')->view('humas/saran/detail', $data)->view('humas/footer');
+    }
+
+    public function hapus($id_saran)
+    {
+        $this->msaran->hapus_saran($id_saran);
+        redirect(base_url()."csaran/lihat");
+    }
+
+    public function disposisi($id_saran)
+    {
+        if($this->input->post('btn')=="Publish"){
+            $data = array (
+                'isSpam' => 0,
+                );      
+            $this->msaran->publish_saran($id_saran, $data);
+            redirect(base_url()."csaran/detail/".$id_saran);
+        }
+        elseif($this->input->post('btn')=="Unpublish"){
+            $data = array (
+                'isSpam' => 1,
+                );      
+            $this->msaran->publish_saran($id_saran, $data);
+            redirect(base_url()."csaran/detail/".$id_saran);
+        }
+        elseif($this->input->post('btn')=="Aktif"){
+            $data = array (
+                'isAktif' => 1,
+                );      
+            $this->msaran->aktif_saran($id_saran, $data);
+            redirect(base_url()."csaran/detail/".$id_saran);
+        }
+        elseif($this->input->post('btn')=="Non-Aktif"){
+            $data = array (
+                'isAktif' => 0,
+                );      
+            $this->msaran->aktif_saran($id_saran, $data);
+            redirect(base_url()."csaran/detail/".$id_saran);
+        }
+        elseif($this->input->post('btn')=="hapus"){ 
+            $this->msaran->hapus_saran($id_saran);
+            redirect(base_url()."csaran/lihat/");
+        }           
+        else{
+            $data['skpd'] = $this->msaran->getskpd();
+            $data['id_saran'] = $id_saran;
+            $data['saran'] = $this->msaran->detail_saran($id_saran);    
+            $this->load->view('humas/header')->view('humas/saran/disposisi', $data)->view('humas/footer');
+        }
+    }
+
+    public function disposisikan($id_saran)
+    {
+        $id_skpd_list = $this->input->post('id_skpd');
+        $topik = $this->input->post('topik');
+        $isStatus = 'disposisi';
+        //update saran
+        $data = array (
+            'topik' => $topik,
+            'isStatus' => $isStatus,
+            );      
+        $this->msaran->disposisikan_saran($id_saran, $data);
+        $flag;
+        //membuat respon
+        foreach($id_skpd_list as $id_skpd) {
+            $data_respon = array(
+                'id_skpd' => $id_skpd,
+                'id_saran' => $id_saran,
+                );
+            //work here
+            $sudah_disposisi = $this->msaran->cekDisposisi($id_saran, $id_skpd);
+            if(!$sudah_disposisi->result()){
+                $this->msaran->addRespon($data_respon);
+            }
+        }
+        redirect(base_url()."csaran/detail/".$id_saran);
+    }
+
     
 }

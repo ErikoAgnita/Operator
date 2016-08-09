@@ -15,7 +15,7 @@
           <table class="table table-bordered table-striped" id="editableUser">
             <tbody>
               <?php foreach ($saran->result() as $row){?>
-              <form autocomplete="off" action="<?php echo base_url();?>SaranController/disposisi/<?php echo $row->id_saran;?>" method="post">
+              <form autocomplete="off" action="<?php echo base_url();?>csaran/disposisi/<?php echo $row->id_saran;?>" method="post">
                 <tr>
                   <td>Nama</td>
                   <td>
