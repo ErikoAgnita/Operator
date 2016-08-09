@@ -3,7 +3,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <strong>Copyright &copy; 2016 </strong> All rights reserved
+                        <strong>Copyright &copy; 2016 </strong> Kotak Saran Salatiga
                     </div>
                 </div>
             </div>

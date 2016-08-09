@@ -111,19 +111,24 @@
         </tr>
         <tr>
           <td>Terakhir Login</td>
-          <td><?php echo $row->last_login; ?></td>
+          <td><?php echo date("d/m/Y  H:i:s",strtotime($row->last_login)); ?></td>
         </tr>
         <tr>
           <td>Terakhir di Ubah</td>
-          <td><?php echo $row->last_update; ?></td>
+          <td><?php echo date("d/m/Y  H:i:s",strtotime($row->last_update)); ?></td>
         </tr>
         <tr>
           <td>Level</td>
           <td><?php echo $row->level; ?></td>
         </tr>
         <tr>
-          <td>isAktif</td>
-          <td><?php echo $row->isAktif; ?></td>
+          <td>Keterangan</td>
+          <td><?php if($row->isAktif==1){
+                        echo "<span class=\"label label-success\">Aktif</span>";
+                    }
+                    else echo "<span class=\"label label-default\">Tidak Aktif</span>";
+              
+              ?></td>
         </tr>
         <br>
 </table>
@@ -135,7 +140,7 @@
           <a type="button" class="btn btn-info" href="<?php echo base_url(); ?>Cpengguna/update/<?php echo $row->id_pengguna;?>"><i class="fa fa-edit"></i>&nbsp;&nbsp;Ubah</a>
         <!--</button>-->
           <a type="button" class="btn btn-success" href="<?php echo base_url(); ?>Cpengguna/ganti_password/<?php echo $row->id_pengguna;?>"><i class="icon wb-wrench"></i>&nbsp;&nbsp;Ganti Password</a>
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon wb-chevron-left"></i>&nbsp;&nbsp;Keluar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon wb-close"></i>&nbsp;&nbsp;Tutup</button>
       </div>
     </div>
 

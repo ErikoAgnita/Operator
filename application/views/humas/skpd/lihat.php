@@ -135,9 +135,13 @@
           <td><?php echo $row->isLink; ?></td>
         </tr>
         <tr>
-          <td>isAktif</td>
-          <td><?php echo $row->isAktif; ?></td>
-        </tr>
+          <td>Keterangan</td>
+          <td><?php if($row->isAktif==1){
+                        echo "<span class=\"label label-success\">Aktif</span>";
+                    }
+                    else echo "<span class=\"label label-default\">Tidak Aktif</span>";
+              
+              ?></td>
         <br>
 </table>
         
@@ -147,7 +151,7 @@
         <!--<button type="button" class="btn btn-info">-->
           <a type="button" class="btn btn-info btn-primary" href="<?php echo base_url(); ?>Cskpd/update/<?php echo $row->id_skpd;?>"><i class="fa fa-edit"></i>&nbsp;&nbsp;Ubah</a>
         <!--</button>-->
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon wb-chevron-left"></i>&nbsp;&nbsp;Keluar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon wb-close"></i>&nbsp;&nbsp;Tutup</button>
       </div>
     </div>
 

@@ -46,7 +46,7 @@
                         </span>
                       </div>
                       <div class="title">
-                          <div>
+                          <div style="width:90%;">
                             <?php                           
                             echo substr($row->saran, 0,500); 
                             if(strlen($row->saran) > 500){
@@ -56,6 +56,41 @@
                       </div>
                       <div class="title">
                         <a type="button" href="<?php echo base_url(); ?>csaran/detail/<?php echo $row->id_saran;?>">Detail</a>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <?php 
+                                        if($row->isStatus=='laporan baru'){
+                                            $wrnB = "badge-warning";       $titleB = "Ada pesan baru";
+                                            $wrnD = "badge-default";    $titleD = "Belum didisposisikan";
+                                            $wrnR = "badge-default";    $titleR = "Belum ada respon";
+                                            $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
+                                        }
+                                        else if($row->isStatus=='disposisi'){
+                                            $wrnD = "badge-warning";       $titleD = "Sudah didisposisikan";
+                                            $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
+                                            $wrnR = "badge-default";    $titleR = "Belum ada respon dari SKPD";
+                                            $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
+                                        }
+                                        else if($row->isStatus=='respon baru'){
+                                            $wrnR = "badge-warning";       $titleR = "Ada respon dari SKPD";
+                                            $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
+                                            $wrnD = "badge-default";    $titleD = "Sudah didisposisikan";
+                                            $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
+                                        }
+                                        if($row->isAktif==1){
+                                            $wrnP = "badge-warning";       $titleP = "Sudah dipublikasikan";
+                                            $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
+                                            $wrnR = "badge-default";    $titleR = "Ada respon dari SKPD";
+                                            $wrnD = "badge-default";    $titleD = "Sudah didisposisikan";
+                                        }
+                                ?>
+                                <span class="badge badge-radius <?php echo $wrnB; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleB; ?>">&#9679;</span>
+                                <span class="badge badge-radius <?php echo $wrnD; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleD; ?>">&#9679;</span>
+                                <span class="badge badge-radius <?php echo $wrnR; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleR; ?>">&#9679;</span>
+                                <span class="badge badge-radius <?php echo $wrnP; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleP; ?>">&#9679;</span>
+                    </div>
+                            
+                        </div>
                       </div>                        
                     </div>
                   </td>
