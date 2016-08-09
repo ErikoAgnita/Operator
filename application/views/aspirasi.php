@@ -233,7 +233,7 @@
             <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
             <div style="position:absolute;display:block;background:url('<?php echo base_url(); ?>assets/images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
         </div>
-        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px;overflow: hidden;  width: 860px;height: 640px;">
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px;overflow: hidden;  width: 860px;height: 540px;">
             <?php if($aspirasi!=0){
                 foreach($aspirasi as $as){ ?>
             

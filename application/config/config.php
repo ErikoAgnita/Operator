@@ -17,8 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/Operator/trunk/';
-//$config['base_url'] = 'http://localhost/operator/';
+//$config['base_url'] = 'http://localhost/Operator/trunk/';
+$config['base_url'] = 'http://localhost/operator/';
 //$config['base_url'] = 'http://localhost/laporan/trunk/';
 /*
 |--------------------------------------------------------------------------
