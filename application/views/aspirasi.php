@@ -204,10 +204,18 @@
             .input-group{
                 width:100%;
             }
+            .navbar-brand img{
+                width:300px;
+                height:auto;
+            }
         }
         @media(min-width:975px) {
             .input-group{
                 width:83%;
+            }
+            .navbar-brand img{
+                width:400px;
+                height:auto;
             }
         }
         /*@media(min-width:314px){

@@ -21,7 +21,20 @@
     <script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>  
     <script src="<?php echo base_url();?>assets/js/jquery1-12-4.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
-      
+    <style>
+        @media(max-width:975px) {
+            .navbar-brand img{
+                width:300px;
+                height:auto;
+            }
+        }
+        @media(min-width:975px) {
+            .navbar-brand img{
+                width:400px;
+                height:auto;
+            }
+        }
+    </style>
   </head>
   <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
   <body class="hold-transition skin-blue layout-boxed sidebar-mini">
