@@ -69,18 +69,14 @@ if($saran->result()){?>
                           <div class="metas">
                             <span class=""><?php echo $row->topik ?></span>
                           </div>
-
-                          <?php if($row->lampiran_saran){?>
-                            <div class="metas">                 
-                              <span class="tags">
-                                <?php
-                                  echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
-                                  alt='Photo' width=600 height=600> <?php ";
-                                ?>
-                              </span>
-                            </div>  
-                          <?php } ?>
-
+                          <div class="metas">
+                            <span class="">
+                              <?php if($row->lampiran_saran){
+                              echo "<img class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
+                              alt='Photo' width=600 heigt=600> <?php ";
+                            } ?>
+                            </span>
+                          </div>
                           <div class="metas">
                             <span class=""><?php echo $row->saran ?></span>
                           </div>                        
@@ -94,85 +90,78 @@ if($saran->result()){?>
               <table class="table is-indent">   
                 <tbody>
                   <?php
-                      foreach ($saran->result() as $row){                        
-                        $id_saran = $row->id_saran; 
+                      foreach ($saran->result() as $sar){                        
+                        $id_saran = $sar->id_saran; 
                       }
-                      $id_respon;
-                      $id_skpd;
-                      $kategori;
-                      $isi_respon;
-                      $lampiran_respon;
-                      $tanggal_respon;
-
-                      //flag=0 artinya saran tidak didisposisikan
-                      //flag=1 artinya saran telah didisposisikan namun belum dibalas
-                      foreach ($respon->result() as $row2){
-                      if($row2->id_skpd == $Idskpd){
-                        if($row2->isi_respon==null){
-                          $flag=1;
+                      foreach ($respon->result() as $res){
+                        if($res->id_skpd == $Idskpd and $res->id_saran=$id_saran and $res->isi_respon==NULL){
+                          $flag=TRUE;
+                          $id_respon = $res->id_respon;
+                          $id_skpd = $res->id_skpd;
+                          $id_saran = $res->id_saran;
+                          $kategori = $res->kategori;
+                          $isi_respon = $res->isi_respon;
                         }
-                        $id_respon = $row2->id_respon;
-                        $id_skpd = $row2->id_skpd;
-                        $kategori = $row2->kategori;
-                        $isi_respon = $row2->isi_respon;
-                        $lampiran_respon = $row2->lampiran_respon;
-                        $tanggal_respon = $row2->tanggal_respon;
-                      }
                       }?>
-                  <?php //jika tidak di disposisi
-                  if($flag==0) {?>
-                  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#addrespon">Respon</button>
-                    <div id="addrespon" class="collapse">
-                      <div>                            
-                        <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/addRespon" method="post">
-                          <div>      
-                            <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                            <textarea type="text" class="form-control" value="" name="kategori"></textarea> 
+
+                      <?php
+                      if($flag==FALSE){?>
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon</button>
+                          <div id="demo" class="collapse">
+                            <div>                            
+                              <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/addRespon" method="post">
+                                <div>      
+                                  <label class="control-label" for="inputBasicFirstName">Kategori</label>
+                                  <textarea type="text" class="form-control" value="" name="kategori"></textarea> 
+                                </div>
+                                <div>
+                                  <label class="control-label" for="inputBasicEmail">Respon</label>
+                                  <textarea rows="8" type="text" class="form-control" value="" name="isi_respon"> </textarea>
+                                </div>
+                                <div>
+                                  <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
+                                  <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
+                                  <!-- <img id="bla"/> -->
+                                  <div id="imagePreview"></div>
+                                </div>
+                                <div>
+                                  <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
+                                </div>
+                                <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
+                              </form>
+                            </div>
                           </div>
-                          <div>
-                            <label class="control-label" for="inputBasicEmail">Respon</label>
-                            <textarea rows="8" type="text" class="form-control" value="" name="isi_respon"> </textarea>
+                        <?php }
+
+                        //SUKSES
+                        elseif($flag==TRUE) {?>
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon2</button>
+                          <div id="demo" class="collapse">
+                            <div>                            
+                              <form runat="server" autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
+                                <div>      
+                                  <label class="control-label" for="inputBasicFirstName">Kategori</label>
+                                  <textarea cols="50" type="text" class="form-control" value="" name="kategori"><?php echo $kategori;?></textarea> 
+                                </div>
+                                <div>
+                                  <label class="control-label" for="inputBasicEmail">Respon</label>
+                                  <textarea rows="8" type="text" class="form-control" value="" name="isi_respon"><?php echo $isi_respon;?></textarea>
+                                </div>
+                                <div>
+                                  <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
+                                  <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
+                                  <!-- <img id="bla"/> -->
+                                  <div id="imagePreview"></div>
+                                </div>                                
+                                <div>
+                                  <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
+                                </div>
+                                <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
+                                  <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
+                              </form>
+                            </div>
                           </div>
-                          <div>
-                            <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                            <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
-                            <div id="imagePreview"></div>
-                          </div>
-                          <div>
-                            <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
-                          </div>
-                          <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                        </form>
-                      </div>
-                    </div>
-                  <?php }
-                  //Membalas Saran yang telah didisposisikan namun belum dibalas
-                  elseif($flag==1) { ?>
-                  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#blsrespon">Respon</button>
-                    <div id="blsrespon" class="collapse">
-                      <div>                            
-                        <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
-                          <div>      
-                            <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                            <textarea type="text" class="form-control" value="" name="kategori"></textarea> 
-                          </div>
-                          <div>
-                            <label class="control-label" for="inputBasicEmail">Respon</label>
-                            <textarea rows="8" type="text" class="form-control" value="" name="isi_respon"></textarea>
-                          </div>
-                          <div>
-                            <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                            <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
-                            <div id="imagePreview"></div>
-                          </div>
-                          <div>
-                            <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
-                          </div>
-                          <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                        </form>
-                      </div>
-                    </div>
-                  <?php } ?>
+                        <?php } ?>
                 </tbody>
               </table>            
             </div>
@@ -188,7 +177,7 @@ if($saran->result()){?>
               <table class="table is-indent">   
                 <tbody>
                   <?php
-                    foreach ($respon->result() as $row2){?>
+                    foreach ($respon->result() as $row2){ ?>
                       <form autocomplete="off" action="" method="post">
                         <tr data-url="panel.tpl" data-toggle="slidePanel">
                           <td class="cell-60 responsive-hide">
@@ -215,10 +204,10 @@ if($saran->result()){?>
                                 <?php if($row2->lampiran_respon){?>
                                   <div class="metas">                 
                                     <span class="tags">
-                                      <?php
+                                      <?php if($row2->lampiran_respon!=NULL){
                                         echo "<img class='img-responsive pad' src='".base_url()."uploads/respon/".$row2->lampiran_respon."' 
                                         alt='Photo' width=600 height=600> <?php ";
-                                      ?>
+                                      } ?>
                                     </span>
                                   </div>  
                                 <?php } ?>                                                                
@@ -231,39 +220,33 @@ if($saran->result()){?>
                                   <span class="tags">(Belum ada Respon)</span>
                                 </div>
                               <?php } ?>       
-                            </div>
-                              <?php if ($row2->id_skpd == $Idskpd and $row2->isi_respon!=NULL) {?>
-                                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ubah">Ubah Respon</button>
-                                <div id="ubah" class="collapse">
-                                  <div>                            
-                                    <form runat="server" autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url().'crespon/UbahRespon/'.$row2->id_respon;?>" method="post">
+                              </div>
+                              <?php if($row2->id_skpd==$Idskpd and $row2->isi_respon!=NULL) {?>
+                                <div class="metas">
+                                  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<?php echo $row2->id_respon;?>">Ubah Respon</button>
+                                  <div id="<?php echo $row2->id_respon;?>" class="collapse">                        
+                                    <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $row2->id_respon;?>" method="post">
                                       <div>      
                                         <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                        <textarea cols="50" type="text" class="form-control" value="<?php echo $row2->kategori;?>" name="kategori"><?php echo $row2->kategori;?></textarea> 
+                                        <textarea cols="50" type="text" class="form-control" value="" name="kategori"><?php echo $row2->kategori;?></textarea> 
                                       </div>
                                       <div>
                                         <label class="control-label" for="inputBasicEmail">Respon</label>
-                                        <textarea rows="8" type="text" class="form-control" value="<?php echo $row2->isi_respon;?>" name="isi_respon"><?php echo $row2->isi_respon;?></textarea>
+                                        <textarea rows="8" type="text" class="form-control" value="" name="isi_respon"><?php echo $row2->isi_respon;?></textarea>
                                       </div>
                                       <div>
                                         <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
                                         <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
-                                        <!-- <img id="bla"/> -->
                                         <div id="imagePreview"></div>
-                                      </div>                                
-                                      <div>
-                                        <input type="hidden" class="form-control" value="<?php echo $row2->id_saran;?>" name="id_saran">
                                       </div>
                                       <div>
-                                        <input type="hidden" class="form-control" value="<?php echo $flag;?>" name="flag">
+                                        <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
                                       </div>
                                       <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
                                         <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
                                     </form>
                                   </div>
-                                </div>
                               <?php } ?>
-                            </div>
                             </div>
                           </td>
                         </tr>
@@ -279,4 +262,3 @@ if($saran->result()){?>
     </div>
   </div>
 <?php }?>
-</div>
