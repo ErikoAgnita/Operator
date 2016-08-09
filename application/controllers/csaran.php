@@ -48,7 +48,7 @@ class Csaran extends CI_Controller {
             $total_row = $this->msaran->record_count_search($cari);
             //var_dump($total_row);
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 4;
+            $config['per_page'] = 8;
             $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
             $config['cur_tag_close'] = '</a>';
             $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
@@ -84,7 +84,7 @@ class Csaran extends CI_Controller {
             $total_row = $this->msaran->record_count();
             //echo $total_row;
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 4;
+            $config['per_page'] = 8;
             $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
             $config['cur_tag_close'] = '</a>';
             $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
@@ -204,8 +204,8 @@ class Csaran extends CI_Controller {
         }
     }
     public function cetak($ctk){
-        $this->load->model('SaranModel');
-        $res['data'] = $this->SaranModel->detail_saran($ctk);
+        $this->load->model('msaran');
+        $res['data'] = $this->msaran->detail_saran($ctk);
         $this->load->view('humas/saran/saran_pdf',$res);
     }
 

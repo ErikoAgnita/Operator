@@ -13,7 +13,7 @@ class clogin extends CI_Controller {
         $this->load->helper(array('url','form'));
     }
 
-    public function login()
+    public function index()
     {
         $this->load->view('login');
     }
@@ -21,7 +21,7 @@ class clogin extends CI_Controller {
     public function logout()
     {
         $this->load->view('logout');
-        redirect('clogin/login');
+        redirect('clogin');
     }
 
 /*   public function masuk_login()
@@ -67,7 +67,7 @@ class clogin extends CI_Controller {
     public function masuk_login() {
         $this->load->helper('security');
         $this->form_validation->set_rules('username','username','required');
-        $this->form_validation->set_rules('password','password','required|callback_verify');
+        $this->form_validation->set_rules('password','password','required');
 
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
    
@@ -80,31 +80,15 @@ class clogin extends CI_Controller {
         if($this->form_validation->run() == false){
             $this->login();
         }
-        else if (!empty($cek) == 1){
+        else if (!empty($cek)){
              redirect('cpengguna/indexoperator');
         }
-        else if (!empty($cek1) == 2){
+        else if (!empty($cek1)){
             redirect('csaran/lihat');
         }
-    }
-
-    public function verify(){
-        $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
-    
-        $cek = $this->mlogin->loginoperator($username,$password);
-        $cek1 = $this->mlogin->loginadmin($username,$password);
-
-        if (!empty($cek)){
-            return 1;
-        //    echo var_dump(query);
-        }
-        else if (!empty($cek1)){
-            return 2;
-        }
         else{
-           $this->form_validation->set_message('verify','Username atau Password Anda tidak sesuai');
-            return false;
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-danger\" id=\"alert\">Password atau Username Anda tidak sesuai<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->login();
         }
     }
 }

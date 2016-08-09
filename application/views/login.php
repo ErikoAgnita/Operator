@@ -73,6 +73,8 @@
         <h2 class="brand-text">Pemerintah Kota Salatiga</h2>
       </div>
       <p>Silahkan isi Username dan Password Anda</p>
+
+      <p><?=$this->session->flashdata('pesan')?> </p>
       
       <?php
 if(validation_errors()!=NULL){
