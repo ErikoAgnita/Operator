@@ -45,7 +45,7 @@ class Cskpd extends CI_Controller {
 	    }
 	    else{
 	    	$this->load->database();
-	        $cari = $this->input->post('cari');
+	        $cari = $this->input->POST('cari');
 	        $this->load->library('pagination');
 	        $config = array();
 	        $config['base_url'] = base_url() . "Cskpd/search";
@@ -69,7 +69,7 @@ class Cskpd extends CI_Controller {
 	            
 	   	    if($data['skpd'] == NULL || $cari==''){
 	            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-	            $this->lihat();
+	            //$this->lihat();
 	        }
 	        else{   
 	            $this->load->view('humas/header')->view('humas/skpd/lihat', $data)->view('humas/footer');
@@ -95,7 +95,6 @@ class Cskpd extends CI_Controller {
         $this->form_validation->set_rules('fax', 'Fax', 'trim|max_length[20]');
         $this->form_validation->set_rules('email', 'Email', 'trim|max_length[255]|valid_email');
         $this->form_validation->set_rules('website', 'Website', 'trim|max_length[255]');
-        $this->form_validation->set_rules('tema', 'Tema', 'trim|max_length[25]|');
 
         $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
@@ -161,7 +160,7 @@ class Cskpd extends CI_Controller {
         $this->form_validation->set_rules('email', 'Email', 'trim|max_length[255]|valid_email');
         $this->form_validation->set_rules('website', 'Website', 'trim|max_length[255]');
         //$this->form_validation->set_rules('urut', 'Urut', 'trim|max_length[6]|');
-        $this->form_validation->set_rules('tema', 'Tema', 'trim|max_length[25]|');
+        //$this->form_validation->set_rules('tema', 'Tema', 'trim|max_length[25]|');
 
         $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');

@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label class="control-label" for="inputBasicKodeKecamatan">Kode Kecamatan</label>
                         <input type="text" class="form-control" id="inputBasicKodeKecamatan" name="kode_kecamatan"
-                        placeholder="argomulyo" autocomplete="off" />
+                        value="<?php echo set_value('kode_kecamatan'); ?>" placeholder="argomulyo" autocomplete="off" />
                     </div>
                     <?php
                       echo form_error('kode_kecamatan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -28,7 +28,7 @@
                      <div class="form-group">
                       <label class="control-label" for="inputBasicKecamatan">Nama Kecamatan</label>
                       <input type="text" class="form-control" id="inputBasicKecamatan" name="nama_kecamatan"
-                       placeholder="KECAMATAN ARGOMULYO" autocomplete="off" />
+                       value="<?php echo set_value('nama_kecamatan'); ?>" placeholder="KECAMATAN ARGOMULYO" autocomplete="off" />
                     </div>
                     <?php
                       echo form_error('nama_kecamatan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');

@@ -31,7 +31,7 @@
                       <div class="form-group">
                         <label class="control-label" for="inputBasicKodeKelurahan">Kode Kelurahan</label>
                         <input type="text" class="form-control" id="inputBasicKodeKelurahan" name="kode_kelurahan"
-                        placeholder="ledok" autocomplete="off" />
+                        value="<?php echo set_value('kode_kelurahan'); ?>" placeholder="ledok" autocomplete="off" />
                     </div>
                     <?php
                       echo form_error('kode_kelurahan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -39,7 +39,7 @@
                      <div class="form-group">
                       <label class="control-label" for="inputBasicKecamatan">Nama Kelurahan</label>
                       <input type="text" class="form-control" id="inputBasicKecamatan" name="nama_kelurahan"
-                       placeholder="KELURAHAN LEDOK" autocomplete="off" />
+                       value="<?php echo set_value('nama_kelurahan'); ?>" placeholder="KELURAHAN LEDOK" autocomplete="off" />
                     </div>
                     <?php
                       echo form_error('nama_kelurahan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
