@@ -15,13 +15,7 @@
         <!-- Main content -->
         <section class="content">
             <?php echo $this->session->flashdata('pesan'); ?>
-            <?php
-/*if(validation_errors()!=NULL){
-    echo'<div class="alert alert-warning"><button href="#" class="close" data-dismiss="alert">&times;</button>';
-    echo validation_errors();
-    echo '</div>';
-}*/
-?>
+            
           <div class="row">
                 <!--==========-->
                 <div class="col-md-6">
@@ -206,16 +200,40 @@
         margin-bottom:-15px
         }
         
+        @media(max-width:975px) {
+            .input-group{
+                width:100%;
+            }
+        }
+        @media(min-width:975px) {
+            .input-group{
+                width:83%;
+            }
+        }
+        /*@media(min-width:314px){
+            #jssor_1{
+                width: 860px;
+                height: 640px;
+            }
+        }
+        @media(max-width:314px){
+            #jssor_1{
+                width: 80px;
+                height: 60px;
+            }
+        }*/
+        
     </style>
 
 
-    <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 800px; height: 456px; overflow: hidden; background-color: #24262e;">
+    <div id="jssor_1" style="position: relative;margin: 0 auto;top: 0px;left: 0px;overflow: hidden;background-color: #24262e; width: 860px;
+                height: 640px;">
         <!-- Loading Screen -->
         <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
             <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
             <div style="position:absolute;display:block;background:url('<?php echo base_url(); ?>assets/images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
         </div>
-        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 456px; overflow: hidden;">
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px;overflow: hidden;  width: 860px;height: 640px;">
             <?php if($aspirasi!=0){
                 foreach($aspirasi as $as){ ?>
             
@@ -258,7 +276,7 @@
                       <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>csaran/add_saran/" >
                         <div class="form-group" style="color:#62a8ea;">
                             <label class="col-sm-2 control-label">Nama</label>
-                            <div class="input-group"style="width:80%">
+                            <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?php echo set_value('nama'); ?>" required>
                             </div>
@@ -266,7 +284,7 @@
                                 echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">Alamat</label>
-                            <div class="input-group"style="width:80%">
+                            <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-home"></i></span>
                                 <input type="text" class="form-control" placeholder="alamat" name="almt" value="<?php echo set_value('almt'); ?>" required>
                             </div>
@@ -274,7 +292,7 @@
                                 echo form_error('almt','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">HP</label>
-                            <div class="input-group"style="width:80%">
+                            <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-phone"></i></span>
                                 <input type="text" class="form-control" placeholder="HP" value="<?php echo set_value('telp'); ?>" name="telp" required>
                             </div>
@@ -282,24 +300,24 @@
                                 echo form_error('telp','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">Email</label>
-                            <div class="input-group"style="width:80%">
+                            <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-envelope"></i></span>
                                 <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" required>
                             </div>
                             <?php
                                 echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
-                            <label class="col-sm-2 control-label">Laporan</label>
-                            <div class="input-group"style="width:80%">
+                            <label class="col-sm-2 control-label">Saran</label>
+                            <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-comments"></i></span>
-                                <textarea name="aspr" class="form-control" rows="5" class="text" placeholder="Salurkan kritik dan saran anda" style="width: 100%; font-size: 14px; line-height: 
+                                <textarea name="aspr" class="form-control" rows="5" class="text" placeholder="Salurkan kritik atau saran anda" style="width: 100%; font-size: 14px; line-height: 
                                 14px; color: #4F4F4F; border: 1px solid #dddddd; padding: 10px;" value="<?php echo set_value('aspr'); ?>" required></textarea>
                             </div>
                           <?php
                                 echo form_error('aspr','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">Lampirkan Foto</label>
-                            <div class="input-group"style="width:80%">
+                            <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-upload"></i></span>
                                 <!--<input type="file" class="form-control" name="foto">-->
                                 <input id="uploadFile" type="file" name="image" class="form-control" data-provides="uploadFile"/>
@@ -309,7 +327,7 @@
                         </div>
                       <div class="form-group" style="color:#62a8ea;">
                       <label class="col-sm-2 control-label">Kode Keamanan</label>
-                            <div class="input-group"style="width:80%">
+                            <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><?php echo $captcha['image']; ?></span>
                                 <input name="userCaptcha" style="height: 50px; font-size: 14px;  padding: 10px;" class="form-control" autocomplete="off" placeholder="Kode Keamanan"  value="<?php if(!empty($userCaptcha)){ echo $userCaptcha;} ?>" required></input>
                             </div>
