@@ -129,7 +129,7 @@ class mrespon extends CI_Model
             respon.isi_respon, respon.lampiran_respon, respon.tanggal_respon, skpd.nama 
             FROM respon INNER JOIN skpd ON respon.id_skpd=skpd.id_skpd AND respon.id_saran=$id_saran and
             (respon.isAktif=1 or respon.id_skpd=$id_skpd)
-            order by respon.tanggal_respon desc;");
+            order by respon.tanggal_respon desc");
         return $query;
     }
 
@@ -142,5 +142,11 @@ class mrespon extends CI_Model
     {
         $this->db->where("id_respon", $id_respon);
         $this->db->delete('respon');
+    }
+
+    function UbahRespon($id_respon, $data)
+    {
+        $this->db->where('id_respon', $id_respon);
+        $this->db->update('respon', $data);
     }
 }

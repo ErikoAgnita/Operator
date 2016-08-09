@@ -73,12 +73,13 @@ class crespon extends CI_Controller {
 		$this->load->view('dinas/header')->view('dinas/respon/respon', $data)->view('dinas/footer');
 	}
 
+	
 	public function kirim_respon($id_respon)
 	{
 		$id_saran = $this->input->post('id_saran');
 		$last=$this->mrespon->ambil_id();
 		$random_number = substr(number_format(time() * rand(),0,'',''),0,4);
-        if($last==0){
+        /*if($last==0){
             $nm = 0;
             $nmfile = $nm.$random_number;
         }
@@ -133,36 +134,25 @@ class crespon extends CI_Controller {
             $this->mrespon->kirim_respon($id_respon, $data);
             $this->mrespon->respon_saran($id_saran, $data_saran);
             redirect (base_url().'crespon/respon/'.$id_saran);
-        }
+        }*/
 	}
 
-	public function kirim_respon2($id_respon)
+	public function UbahRespon($id_respon)
 	{
-		$userid_skpd = $_SESSION['userid_skpd'];
 		$kategori = $this->input->post('kategori');
 		$isi_respon = $this->input->post('isi_respon');
-		$lampiran_respon = $this->input->post('lampiran_respon');
 		$date = date_create();
-		$tanggal_respon = date_format($date, 'Y-m-d H:i:s');
-		$id_saran = $this->input->post('id_saran');
-
-		
-		$data = array(
+		$tglapor =  date_format($date, 'Y-m-d H:i:s');
+		$data = array (
 			'kategori' => $kategori,
 			'isi_respon' => $isi_respon,
-			'lampiran_respon' => $lampiran_respon,
-			'tanggal_respon' => $tanggal_respon,
+			'tanggal_respon' => $tglapor
 			);
-		$this->mrespon->kirim_respon($id_respon, $data);
-		
-		$data_saran = array(
-			'isStatus' => 'respon baru',
-		);
-		
-		$this->mrespon->respon_saran($id_saran, $data_saran);
-		redirect (base_url().'crespon/respon/'.$id_saran);
+		$this->mrespon->UbahRespon($id_respon, $data);
+		redirect(base_url().'crespon/dariadmin/all');
 	}
 
+	//Tidak mengupload lampiran -	MASALAH
 	public function addRespon()
 	{
 		$userid_skpd = $_SESSION['userid_skpd'];
