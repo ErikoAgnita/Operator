@@ -67,7 +67,6 @@ class Ckelurahan extends CI_Controller {
             $strpage = $this->uri->segment(3,0);
                 
             $data['kelurahan'] = $this->mkelurahan->pencarian($cari,$config['per_page'],$strpage);
-            //$data['kecamatan'] = $this->mkelurahan->GetKelurahan1();
             $data['links'] = $this->pagination->create_links();
                 
             if($data['kelurahan'] == NULL || $cari==''){
@@ -117,16 +116,29 @@ class Ckelurahan extends CI_Controller {
         }
     }
 
-    public function update($kode_kelurahan)
+    public function update($id_kode_kelurahan)
     {
-        $where = array('kode_kelurahan' => $kode_kelurahan);
+        $where = array('kode_kelurahan' => $id_kode_kelurahan);
         $data['kelurahan'] = $this->mkelurahan->UpdateKelurahan($where, 'kelurahan')->result();
         $data['data_kecamatan'] = $this->mkelurahan->data_kecamatan();
         $this->load->view('humas/header')->view('humas/kelurahan/edit', $data)->view('humas/footer');
     }
 
-   public function do_update($kode_kelurahan)
+    public function do_update($id_kode_kelurahan)
     {
+        $this->load->library('form_validation');
+        $this->load->library('session');
+        $this->form_validation->set_rules('kode_kelurahan', 'Kode Kelurahan', 'trim|max_length[20]|regex_match[/^[a-z]{0,20}$/]|required');
+        $this->form_validation->set_rules('nama_kelurahan', 'Nama Kelurahan', 'trim|max_length[50]|required');
+
+        $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter');
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+        $this->form_validation->set_message('regex_match', '{field} harus terdiri dari huruf kecil');
+
+        if ($this->form_validation->run() == FALSE){
+            $this->update($id_kode_kelurahan);
+        }
+        else{
         $kode_kecamatan = $this->input->post('kode_kecamatan');
         $kode_kelurahan = $this->input->post('kode_kelurahan');
         $nama_kelurahan = $this->input->post('nama_kelurahan');
@@ -139,12 +151,10 @@ class Ckelurahan extends CI_Controller {
             'isAktif' => $isAktif
         );
 
-        $where = array(
-            'kode_kelurahan' => $kode_kelurahan
-        );
-
-        $this->mkelurahan->UpdateKelurahan1($where, $data, 'kelurahan');
+        $this->mkelurahan->UpdateKelurahan1($id_kode_kelurahan, $data);
+        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Ckelurahan/lihat');
+        }
     }
 
     public function hapus($kode_kelurahan)

@@ -32,9 +32,9 @@ class Mkelurahan extends CI_Model {
 		return $this->db->get_where($table, $where);
 	}
 
-	public function UpdateKelurahan1($where, $data, $table){
-		$this->db->where($where);
-		$this->db->update($table, $data);
+	public function UpdateKelurahan1($id_kode_kelurahan, $data){
+		$this->db->where('kode_kelurahan', $id_kode_kelurahan);
+		$this->db->update('kelurahan', $data);
 	}
 
 	public function DeleteKelurahan($kode_kelurahan){
@@ -43,14 +43,15 @@ class Mkelurahan extends CI_Model {
 	}
 
 	public function pencarian($cari, $limit, $kode_kelurahan){
-        $query = $this->db->query("SELECT * FROM kelurahan WHERE nama_kelurahan LIKE '%$cari%' LIMIT $limit OFFSET $kode_kelurahan");
+        //$query = $this->db->query("SELECT * FROM kelurahan WHERE kelurahan.nama_kelurahan LIKE '%$cari%' LIMIT $limit OFFSET $kode_kelurahan");
+        $query = $this->db->query("SELECT * FROM kelurahan LEFT JOIN kecamatan ON kelurahan.kode_kecamatan=kecamatan.kode_kecamatan WHERE kelurahan.nama_kelurahan like '%$cari%' LIMIT $limit OFFSET $kode_kelurahan");
         if ($query->num_rows() > 0) {
             return $query->result();
         }
         else return 0;
     }
     public function record_count_search($cari) {
-        $condition = "nama_kelurahan LIKE '%$cari%' ";
+        $condition = "kelurahan.nama_kelurahan LIKE '%$cari%' ";
         $this->db->where($condition);
         return $this->db->count_all_results('kelurahan');
             //return $query->result();

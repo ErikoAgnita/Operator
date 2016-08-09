@@ -7,8 +7,17 @@
         <li>Data Pengguna</li>
       </ol>
     </div>
-    <div class="page-content">
-      <?php echo $this->session->flashdata('pesan'); ?>
+     <div class="page-content">
+       <form role="form" method="POST" action="<?php echo base_url();?>Cpengguna/search/" >
+         <div class="input-group input-group-sm">
+            <input type="text" class="form-control" value="<?php echo set_value('cari'); ?>" name="cari" placeholder="Cari Nama Pengguna ...">
+            <span class="input-group-btn">
+              <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+            </span>
+          </div>
+     </form>
+   </br>
+     <?php echo $this->session->flashdata('pesan'); ?>
       <!-- Panel Basic -->
       <div class="panel">
         <header class="panel-heading">
@@ -32,7 +41,7 @@
             </thead>            
             <tbody>
              <?php $no = $this->uri->segment('3') + 1; ?>
-              <?php foreach ($pengguna->result() as $row){?>
+              <?php foreach ($pengguna as $row){?>
               <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $row->nama_pengguna;?></td>
@@ -66,7 +75,7 @@
               <?php }?>
               </tbody>
             </table> 
-<?php foreach ($pengguna->result() as $row){?> 
+<?php foreach ($pengguna as $row){?> 
             <!-- Modal -->
 <div id="myModal<?php echo $row->id_pengguna;?>" class="modal fade" role="dialog">
   <div class="modal-dialog">

@@ -17,7 +17,7 @@
               <!-- Example Basic Form -->
               <div class="example-wrap">  
                 <div class="example">
-                  <form action="<?php echo base_url(). 'Ckelurahan/do_update'; ?>" method="post" autocomplete="off">
+                  <form action="<?php echo base_url(). 'Ckelurahan/do_update/'.$kel->kode_kelurahan; ?>" method="post" autocomplete="off">
                     
                     <div class="form-group">
                         <label class="control-label" for="inputBasicLevel">Kecamatan</label>

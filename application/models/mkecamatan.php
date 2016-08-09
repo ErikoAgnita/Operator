@@ -25,8 +25,8 @@ class Mkecamatan extends CI_Model {
 		return $this->db->get_where($table, $where);
 	}
 
-	public function UpdateKecamatan1($kode_kecamatan, $data){
-		$this->db->where('kode_kecamatan', $kode_kecamatan);
+	public function UpdateKecamatan1($id_kode_kecamatan, $data){
+		$this->db->where('kode_kecamatan', $id_kode_kecamatan);
 		$this->db->update('kecamatan', $data);	
 	}
 

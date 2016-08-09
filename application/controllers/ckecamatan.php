@@ -115,28 +115,43 @@ class Ckecamatan extends CI_Controller {
         }
     }
 
-    /*public function update($kode_kecamatan)
+    public function update($id_kode_kecamatan)
     {
-    	$where = array('kode_kecamatan' => $kode_kecamatan);
+    	$where = array('kode_kecamatan' => $id_kode_kecamatan);
         $data['kecamatan'] = $this->mkecamatan->UpdateKecamatan($where, 'kecamatan')->result();
         $this->load->view('humas/header')->view('humas/kecamatan/edit', $data)->view('humas/footer');
     }
 
-    public function do_update($kode_kecamatan)
+    public function do_update($id_kode_kecamatan)
     {
-    	$kode_kecamatan = $this->input->post('kode_kecamatan');
-        $nama_kecamatan = $this->input->post('nama_kecamatan');
-        $isAktif = $this->input->post('isAktif');
+    	$this->load->library('form_validation');
+        $this->load->library('session');
+        $this->form_validation->set_rules('kode_kecamatan', 'Kode Kecamatan', 'trim|max_length[20]|regex_match[/^[a-z]{0,20}$/]|required');
+        $this->form_validation->set_rules('nama_kecamatan', 'Nama Kecamatan', 'trim|max_length[50]|required');
 
-        $data = array(
-           'kode_kecamatan' => $kode_kecamatan,
-            'nama_kecamatan' => $nama_kecamatan,
-            'isAktif' => $isAktif
-        );
+        $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+        $this->form_validation->set_message('regex_match', '{field} harus terdiri dari huruf kecil');
 
-        $this->mkecamatan->UpdateKecamatan1($kode_kecamatan, $data);
-        redirect('Ckecamatan/lihat');
-    }*/
+        if ($this->form_validation->run() == FALSE){
+            $this->update($id_kode_kecamatan);
+        }
+        else{
+            $kode_kecamatan = $this->input->post('kode_kecamatan');
+            $nama_kecamatan = $this->input->post('nama_kecamatan');
+            $isAktif = $this->input->post('isAktif');
+
+            $data = array(
+               'kode_kecamatan' => $kode_kecamatan,
+                'nama_kecamatan' => $nama_kecamatan,
+                'isAktif' => $isAktif
+            );
+
+            $this->mkecamatan->UpdateKecamatan1($id_kode_kecamatan, $data);
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            redirect('Ckecamatan/lihat');
+        }
+    }
 
     public function hapus($kode_kecamatan)
     {
@@ -144,7 +159,7 @@ class Ckecamatan extends CI_Controller {
         redirect('Ckecamatan/lihat');
     }
 
-    public function update_data($id_kode_kecamatan){
+    /*public function update_data($id_kode_kecamatan){
         if($this->input->post('submit')){
             $this->mkecamatan->update($id_kode_kecamatan);
             redirect('Ckecamatan/update_data');
@@ -152,6 +167,6 @@ class Ckecamatan extends CI_Controller {
             $data['kecamatan']=$this->mkecamatan->getById($id_kode_kecamatan);
             $this->load->view('humas/header')->view('humas/kecamatan/edit', $data)->view('humas/footer');
 
-        }
+        }*/
 
 }

@@ -34,6 +34,51 @@ class Cpengguna extends CI_Controller {
         $this->load->view('humas/header')->view('humas/pengguna/lihat', $data)->view('humas/footer');
 
     } 
+
+    public function search()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
+        $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
+            
+        if ($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->lihat();
+            
+        }
+        else{
+            $this->load->database();
+            $cari = $this->input->POST('cari');
+            $this->load->library('pagination');
+            $config = array();
+            $config['base_url'] = base_url() . "Cpengguna/search";
+            $total_row = $this->mpengguna->record_count_search($cari);
+                //var_dump($total_row);
+            $config['total_rows'] = $total_row;
+            $config['per_page'] = 5;
+            $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+            $config['cur_tag_close'] = '</a>';
+            $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
+            $config['next_link'] = '<i class="fa fa-caret-right"></i>';
+            $config['last_link'] = '<i class="fa fa-forward"></i>';
+            $config['first_link'] = '<i class="fa fa-backward"></i>';
+            $config['uri_segment'] = 3;
+            
+            $this->pagination->initialize($config);
+            $strpage = $this->uri->segment(3,0);
+                
+            $data['pengguna'] = $this->mpengguna->pencarian($cari,$config['per_page'],$strpage);
+            $data['links'] = $this->pagination->create_links();
+                
+            if($data['pengguna'] == NULL || $cari==''){
+                $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                //$this->lihat();
+            }
+            else{   
+                $this->load->view('humas/header')->view('humas/pengguna/lihat', $data)->view('humas/footer');
+            }   
+        }
+    }
     
     public function ganti_password($id_pengguna)
     {
@@ -61,7 +106,7 @@ class Cpengguna extends CI_Controller {
         }else{
             
             $this->mpengguna->get_update_pass($id, $pass);
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Password baru berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesan_password","<div class=\"alert alert-success\" id=\"alert\">Password baru berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             $this->ganti_password($id);
         }
 
@@ -100,6 +145,7 @@ class Cpengguna extends CI_Controller {
             $id_skpd = $this->input->post('id_skpd');
             $username = $this->input->post('username');
             $password = md5($this->input->post('password'));
+            $kode_unit = $this->input->post('kode_unit');
             $level = $this->input->post('level');
             $nama = $this->input->post('nama');
             $alamat = $this->input->post('alamat');
@@ -112,6 +158,7 @@ class Cpengguna extends CI_Controller {
                 'id_skpd' => $id_skpd,
                 'username' => $username,
                 'password' => $password,
+                'kode_unit'=> $kode_unit,
                 'level' => $level,
                 'nama' => $nama,
                 'alamat' => $alamat,
@@ -135,7 +182,7 @@ class Cpengguna extends CI_Controller {
         $this->load->view('humas/header')->view('humas/pengguna/edit', $data)->view('humas/footer');
     }
 
-    public function do_update($id_pengguna)
+    public function do_update()
     {
         $this->load->library('form_validation');
         $this->load->library('session');

@@ -45,7 +45,7 @@
                 <td><?php echo $re->isAktif;?></td>
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
-                    <a href="<?php echo base_url(); ?>Ckecamatan/update_data/<?php echo $re->kode_kecamatan;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url(); ?>Ckecamatan/update/<?php echo $re->kode_kecamatan;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>
                   </button>
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Hapus">
                     <a href="<?php echo base_url(); ?>Ckecamatan/hapus/<?php echo $re->kode_kecamatan;?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus <?php echo $re->nama_kecamatan;?>')"><i class="icon wb-trash" aria-hidden="true"></i></a>

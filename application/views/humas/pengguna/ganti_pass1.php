@@ -15,7 +15,7 @@
               <!-- Example Basic Form -->
               <div class="example-wrap">
                 <h4 class="example-title">Ganti Password</h4>
-                  <?php echo $this->session->flashdata('pesan'); ?>
+                  <?php echo $this->session->flashdata('pesan_password'); ?>
                 <div class="example">
                    <?php foreach($pengguna as $p){ ?>
                    <?php echo form_open('Cpengguna/do_update_password'); ?>

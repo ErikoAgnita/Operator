@@ -16,8 +16,9 @@ class Mpengguna extends CI_Model {
 	}
 
 	public function GetPengguna($number, $offset){
-		return $this->db->query(('SELECT p.id_pengguna, p.username, p.password, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas, p.level, p.keterangan from pengguna p, skpd s where p.id_skpd=s.id_skpd'), $number, $offset);
-	}
+	   $query = $this->db->query(('SELECT p.id_pengguna, p.username, p.password, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas, p.level, p.keterangan from pengguna p, skpd s where p.id_skpd=s.id_skpd order by nama_pengguna ASC'), $number, $offset);
+	   return $query->result();
+    }
 
     public function jumlah_data(){
         return $this->db->get('pengguna')->num_rows();
@@ -50,9 +51,19 @@ class Mpengguna extends CI_Model {
 		$this->db->delete('pengguna');
 	}
 
-	/*public function DetailPengguna(){
-		return $this->db->query('SELECT p.id_pengguna, p.username, p.password, p.level, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas from pengguna p, skpd s where p.id_skpd=s.id_skpd');
-	}*/
+	public function pencarian($cari, $limit, $id_pengguna){
+        $query = $this->db->query("SELECT * FROM pengguna LEFT JOIN skpd ON pengguna.id_skpd=skpd.id_skpd WHERE pengguna.nama as nama_pengguna like '%$cari%' LIMIT $limit OFFSET $id_pengguna");
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
+    public function record_count_search($cari) {
+        $condition = "nama_pengguna LIKE '%$cari%' ";
+        $this->db->where($condition);
+        return $this->db->count_all_results('pengguna');
+            //return $query->result();
+    }
 
 	//profil operator
 	public function get_profil($id) {
