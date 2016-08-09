@@ -62,7 +62,7 @@ class crespon extends CI_Controller {
 		}		
 		$data['Idskpd'] = $userid_skpd;
 		$data['flag'] = FALSE;
-		$data['id_saran'] = NULL; //???
+		$data['id_saran'] = NULL;
 		$this->load->view('dinas/header')->view('dinas/respon/respon', $data)->view('dinas/footer');
 	}
 
@@ -198,30 +198,6 @@ class crespon extends CI_Controller {
             $this->mrespon->respon_saran($id_saran, $data_saran);
             redirect (base_url().'crespon/respon/'.$id_saran);
         }
-
-		/*$userid_skpd = $_SESSION['userid_skpd'];
-		$kategori = $this->input->post('kategori');
-		$isi_respon = $this->input->post('isi_respon');
-		$lampiran_respon = $this->input->post('lampiran_respon');
-		$date = date_create();
-		$tanggal_respon = date_format($date, 'Y-m-d H:i:s');
-		$id_saran = $this->input->post('id_saran');
-
-		$data = array(
-			'id_skpd' => $userid_skpd,
-			'id_saran' => $id_saran,
-			'kategori' => $kategori,
-			'isi_respon' => $isi_respon,
-			'lampiran_respon' => $lampiran_respon,
-			'tanggal_respon' => $tanggal_respon,
-			);
-		$this->mrespon->addRespon($data);
-
-		$data_saran = array(
-			'isStatus' => 'respon baru',
-		);		
-		$this->mrespon->respon_saran($id_saran, $data_saran);
-		redirect (base_url().'crespon/respon/'.$id_saran);*/
 	}
 
 	public function publish($id_respon)
