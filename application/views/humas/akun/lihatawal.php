@@ -13,9 +13,11 @@
                 <h3 class="intro-text text-center">Satuan Kerja Perangkat Daerah</h3>
                      <h3 class="intro-text text-center"><?php echo strtoupper ($row->kode_unit);?></h3><br>
                        <p><?=$this->session->flashdata('pesanprofil')?> </p>
+                       <p><?=$this->session->flashdata('pesanpass')?> </p>
+
                   <form action="<?php echo base_url();?>cpengguna/admin_lihat" method="post">
                    <tr>
-                    <td>Username</td>
+                    <td style="width:20%">Username</td>
                     <td>
                       <span class="notready"><?php echo $row->username;?></span>
                     </td>

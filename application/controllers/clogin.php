@@ -68,7 +68,9 @@ class clogin extends CI_Controller {
         $this->load->helper('security');
         $this->form_validation->set_rules('username','username','required');
         $this->form_validation->set_rules('password','password','required|callback_verify');
-        
+
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+   
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
 

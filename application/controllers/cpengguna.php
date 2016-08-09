@@ -272,29 +272,36 @@ class Cpengguna extends CI_Controller {
     } 
     public function do_update_password_op() //update profil operator
     {
+        $passid = $_SESSION['passid'];
         $this->load->library('form_validation');
         $this->load->helper('security');
         
         $this->form_validation->set_rules('password','Password','trim|required|min_length[6]');
         $this->form_validation->set_rules('konfir_password', 'Konfirmasi Password', 'trim|required|matches[password]');
+        $this->form_validation->set_rules('passwordlama','Password Lama','trim|required');
+
         
         $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
         $this->form_validation->set_message('matches', 'password tidak sesuai');
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
 
-        
+        $passlama = md5($this->input->post('passwordlama'));
+
         $id= $this->input->post('id_pengguna');
         $pass = md5($this->input->post('password'));
         
         if ($this->form_validation->run() == FALSE){
             $this->ganti_password_op($id);
 
-        }else{
+        }else if ($passlama == $passid){
             
-            $this->mpengguna->get_update_pass($id, $pass);
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Password baru berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-            $this->ganti_password_op($id);
+            $this->mpengguna->get_update_password($id, $pass);
+            $this->session->set_flashdata("pesanpass","<div class=\"alert alert-success\" id=\"alert\">Password baru berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            redirect('cpengguna/lihatawal');
 
+        }else if ($passlama !== $passid){
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-danger\" id=\"alert\">Password lama yang anda gunakaan saat login salah<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->ganti_password_op($id);
         }
 
     }
@@ -362,30 +369,34 @@ class Cpengguna extends CI_Controller {
     } 
     public function do_update_password_ad() //update profil operator
     {
+        $passid = $_SESSION['passid'];
         $this->load->library('form_validation');
         $this->load->helper('security');
         
         $this->form_validation->set_rules('password','Password','trim|required|min_length[6]');
         $this->form_validation->set_rules('konfir_password', 'Konfirmasi Password', 'trim|required|matches[password]');
-        
+        $this->form_validation->set_rules('passwordlama','Password Lama','trim|required');
+
+
         $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
         $this->form_validation->set_message('matches', 'password tidak sesuai');
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
-
+    
+        $passlama = md5($this->input->post('passwordlama'));
         
         $id= $this->input->post('id_pengguna');
         $pass = md5($this->input->post('password'));
         
         if ($this->form_validation->run() == FALSE){
             $this->ganti_password_ad($id);
-        }else{
+        }else if ($passlama == $passid){
             
-            $this->mpengguna->get_update_pass($id, $pass);
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Password baru berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->mpengguna->get_update_password($id, $pass);
+            $this->session->set_flashdata("pesanpass","<div class=\"alert alert-success\" id=\"alert\">Password baru berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            redirect('cpengguna/lihatawaladmin');
+        }else if ($passlama !== $passid){
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-danger\" id=\"alert\">Password lama yang anda gunakaan saat login salah<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             $this->ganti_password_ad($id);
         }
-
     }
-
-
 }

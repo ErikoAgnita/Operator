@@ -39,7 +39,7 @@ class mlogin extends CI_Model
         if($query->num_rows() == 1){
            $newdata = array(
             'username'  => $username,
-            //'opepass' => md5($idid[0]->password),
+            'passid' => $idid[0]->password,
             'userid' => $idid[0]->id_pengguna,
             'userid_skpd' => $idid[0]->id_skpd,
             /*'opeku' => $idid[0]->kode_unit,*/
@@ -78,7 +78,7 @@ class mlogin extends CI_Model
         if($query->num_rows() == 1){
             $newdata = array(
             'username'  => $username,
-            //'adminpass' => md5($idid[0]->password),
+            'passid' => $idid[0]->password,
             'userid' => $idid[0]->id_pengguna,
             'userid_skpd' => $idid[0]->id_skpd,
             /*'adminku' => $idid[0]->kode_unit,*/
