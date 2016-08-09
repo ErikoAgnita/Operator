@@ -78,7 +78,7 @@ class clogin extends CI_Controller {
         $cek1 = $this->mlogin->loginadmin($username,$password);
 
         if($this->form_validation->run() == false){
-            $this->login();
+            $this->index();
         }
         else if (!empty($cek)){
              redirect('cpengguna/indexoperator');
@@ -88,7 +88,7 @@ class clogin extends CI_Controller {
         }
         else{
             $this->session->set_flashdata("pesan","<div class=\"alert alert-danger\" id=\"alert\">Password atau Username Anda tidak sesuai<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-            $this->login();
+            $this->index();
         }
     }
 }

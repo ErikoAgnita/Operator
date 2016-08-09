@@ -25,6 +25,9 @@
 
   <title>Kotak Saran Salatiga</title>
 
+<link rel="apple-touch-icon" href="<?php  echo base_url(); ?>assets/images/apple-touch-icon.png">
+  <link rel="shortcut icon" href="<?php  echo base_url(); ?>assets/images/favicon.ico">
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/css/AdminLTE.min.css">
   
