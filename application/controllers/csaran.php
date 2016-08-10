@@ -301,14 +301,14 @@ class Csaran extends CI_Controller {
 
     public function disposisi($id_saran)
     {
-        if($this->input->post('btn')=="Publish"){
+        if($this->input->post('btn')=="Bukan Spam"){
             $data = array (
                 'isSpam' => 0,
                 );      
             $this->msaran->publish_saran($id_saran, $data);
             redirect(base_url()."csaran/detail/".$id_saran);
         }
-        elseif($this->input->post('btn')=="Unpublish"){
+        elseif($this->input->post('btn')=="Spam"){
             $data = array (
                 'isSpam' => 1,
                 );      

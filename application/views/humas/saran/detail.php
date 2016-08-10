@@ -86,23 +86,23 @@
                   <td>
                     <span class="notready"><?php 
                       if($row->isSpam==TRUE){
-                        echo "Spam";
+                        echo "<span class=\"label label-danger label-lg\">Spam</span>";
                       }
                       else{
-                        echo "Bukan Spam";
+                        echo "<span class=\"label label-success label-lg\">Bukan Spam</span>";
                       }
                     ?></span>
                   </td>
                 </tr>
                 <tr>
-                  <td>Aktif</td>
+                  <td>Keterangan</td>
                   <td>
                     <span class="notready"><?php 
-                      if($row->isAktif==TRUE){
-                        echo "Aktif";
+                      if($row->isAktif==1 && $row->isSpam == 0){
+                        echo "<span class=\"label label-info label-lg\">Sudah dipublikasikan</span>";
                       }
                       else{
-                        echo "Saran di-Nonaktifkan";
+                        echo "<span class=\"label label-default label-lg\">Belum dipublikasikan</span>";
                       }
                     ?></span>
                   </td>
@@ -118,12 +118,12 @@
           </table>
           <div class="form-group">
             <span><button type="submit" class="btn btn-warning" name="btn" value="disposisi"><i class="icon wb-tag"></i><?php echo " Disposisi"; ?></button></span>
-              <?php if($row->isSpam == TRUE){
-                      $valspam = "Publish";
+              <?php if($row->isSpam == 1){
+                      $valspam = "Bukan Spam";
                       $icospam = "icon wb-check";
                   }
                   else {
-                      $valspam = "Unpublish";
+                      $valspam = "Spam";
                       $icospam = "icon wb-close";
                   }
 

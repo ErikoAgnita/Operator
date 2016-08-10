@@ -64,30 +64,43 @@
                                             $wrnD = "badge-default";    $titleD = "Belum didisposisikan";
                                             $wrnR = "badge-default";    $titleR = "Belum ada respon";
                                             $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
+                                            $wrnS = "badge-default";    $titleS = "Bukan Spam";
                                         }
                                         else if($row->isStatus=='disposisi'){
                                             $wrnD = "badge-warning";       $titleD = "Sudah didisposisikan";
                                             $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
                                             $wrnR = "badge-default";    $titleR = "Belum ada respon dari SKPD";
                                             $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
+                                            $wrnS = "badge-default";    $titleS = "Bukan Spam";
                                         }
                                         else if($row->isStatus=='respon baru'){
                                             $wrnR = "badge-warning";       $titleR = "Ada respon dari SKPD";
                                             $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
                                             $wrnD = "badge-default";    $titleD = "Sudah didisposisikan";
                                             $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
+                                            $wrnS = "badge-default";    $titleS = "Bukan Spam";
                                         }
-                                        if($row->isAktif==1){
-                                            $wrnP = "badge-warning";       $titleP = "Sudah dipublikasikan";
+                                        if($row->isAktif==1 && $row->isSpam==0){
+                                            $wrnP = "badge-success";    $titleP = "Sudah dipublikasikan";
                                             $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
                                             $wrnR = "badge-default";    $titleR = "Ada respon dari SKPD";
                                             $wrnD = "badge-default";    $titleD = "Sudah didisposisikan";
+                                            $wrnS = "badge-default";    $titleS = "Bukan Spam";
+                                        }
+                                        if($row->isSpam==1){
+                                            $wrnS = "badge-danger";     $titleS = "Pesan Spam";
+                                            $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
+                                            $wrnR = "badge-default";    $titleR = "Tidak ada respon dari SKPD";
+                                            $wrnD = "badge-default";    $titleD = "Tidak didisposisikan";
+                                            $wrnP = "badge-default";    $titleP = "Tidak dipublikasikan";
                                         }
                                 ?>
                                 <span class="badge badge-radius <?php echo $wrnB; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleB; ?>">&#9679;</span>
                                 <span class="badge badge-radius <?php echo $wrnD; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleD; ?>">&#9679;</span>
                                 <span class="badge badge-radius <?php echo $wrnR; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleR; ?>">&#9679;</span>
                                 <span class="badge badge-radius <?php echo $wrnP; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleP; ?>">&#9679;</span>
+                                <span class="badge badge-radius <?php echo $wrnS; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleS; ?>">&#9679;</span>
+
                     </div>
                             
                         </div>
