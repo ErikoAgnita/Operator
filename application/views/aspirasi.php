@@ -294,7 +294,7 @@
                             <label class="col-sm-2 control-label">Alamat</label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-home"></i></span>
-                                <input type="text" class="form-control" placeholder="alamat" name="almt" value="<?php echo set_value('almt'); ?>" required>
+                                <input type="text" class="form-control" placeholder="alamat" name="almt" value="<?php echo set_value('almt'); ?>" >
                             </div>
                             <?php
                                 echo form_error('almt','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -310,7 +310,7 @@
                             <label class="col-sm-2 control-label">Email</label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" required>
+                                <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" >
                             </div>
                             <?php
                                 echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
