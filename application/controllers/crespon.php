@@ -7,6 +7,7 @@ class crespon extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('mrespon');
+        $this->load->library(array('form_validation', 'session'));
 	}
 
 	public function dariadmin($all)
@@ -20,7 +21,10 @@ class crespon extends CI_Controller {
         	$total_row = $this->mrespon->record_count();
         }
         elseif($all=='skpd'){
-        	$total_row = $this->mrespon->record_count($userid_skpd);
+        	$total_row = $this->mrespon->record_count_skpd($userid_skpd);
+        }
+        elseif($all=='belum'){
+            $total_row = $this->mrespon->record_count_unrespon($userid_skpd);
         }
         
         //echo $total_row;
@@ -41,6 +45,9 @@ class crespon extends CI_Controller {
         }        
         elseif($all=='skpd'){
         	$data['saran'] = $this->mrespon->fetch_data_skpd($config['per_page'],$strpage, $userid_skpd)->result();
+        }
+        elseif($all=='belum'){
+            $data['saran'] = $this->mrespon->fetch_data_unrespon($config['per_page'],$strpage, $userid_skpd)->result();
         }
         
         $data['links'] = $this->pagination->create_links();
@@ -69,17 +76,15 @@ class crespon extends CI_Controller {
 	public function kirim_respon($id_respon)
 	{
 		$id_saran = $this->input->post('id_saran');
-		$last=$this->mrespon->ambil_id();
+		$last=$id_respon;
 		$random_number = substr(number_format(time() * rand(),0,'',''),0,4);
         if($last==0){
             $nm = 0;
             $nmfile = $nm.$random_number;
         }
         else{
-            foreach ($last as $l ){
-            $nm = $l->id_respon;
-            $nmfile = $nm.$random_number;
-        }}
+            $nmfile = $last.$random_number;
+        }
         $config = array(
 	        'upload_path' => "./uploads/respon",
 	        'allowed_types' => "gif|jpg|png|jpeg|bmp",
@@ -116,9 +121,10 @@ class crespon extends CI_Controller {
            	$gbr= $this->upload->data();
             $date = date_create();
             $tglapor =  date_format($date, 'Y-m-d H:i:s');
-            $data=array('kategori' => $this->input->post('kategori'),
-                        'isi_respon' => $this->input->post('isi_respon'),
-                        'tanggal_respon' => $tglapor,);
+            $data=array(
+                'kategori' => $this->input->post('kategori'),
+                'isi_respon' => $this->input->post('isi_respon'),
+                'tanggal_respon' => $tglapor,);
 
             $data_saran = array(
             	'isStatus' => 'respon baru',
@@ -132,72 +138,88 @@ class crespon extends CI_Controller {
 
 	public function addRespon()
 	{
-		$userid_skpd = $_SESSION['userid_skpd'];
-		$id_saran = $this->input->post('id_saran');
-		$last=$this->mrespon->ambil_id();
-		$random_number = substr(number_format(time() * rand(),0,'',''),0,4);
-        if($last==0){
-            $nm = 0;
-            $nmfile = $nm.$random_number;
-        }
-        else{
-            foreach ($last as $l ){
-            $nm = $l->id_respon;
-            $nmfile = $nm.$random_number;
-        }}
-        $config = array(
-	        'upload_path' => "./uploads/respon",
-	        'allowed_types' => "gif|jpg|png|jpeg|bmp",
-	        'overwrite' => TRUE,
-	        'max_size' => "2048000",
-	        'file_name'=> $nmfile
-        );
-        
-		$this->load->library('upload');
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
-        if($_FILES['image']['name']){
-            if($this->upload->do_upload('image')){
+        $id_saran = $this->input->post('id_saran');
 
+        $this->load->library('form_validation');
+        $this->load->library('session');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('isi_respon', 'Isi', 'required');
+        
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+        
+
+        if ($this->form_validation->run() == FALSE){
+            $this->respon($id_saran);
+        }        
+        else{
+            $userid_skpd = $_SESSION['userid_skpd'];
+            $id_saran = $this->input->post('id_saran');
+            $last=$this->mrespon->ambil_id();
+            $random_number = substr(number_format(time() * rand(),0,'',''),0,4);
+            if($last==0){
+                $nm = 0;
+                $nmfile = $nm.$random_number;
+            }
+            else{
+                foreach ($last as $l ){
+                    $nm = $l->id_respon;
+                    $nmfile = $nm.$random_number;
+                }
+            }
+            $config = array(
+                'upload_path' => "./uploads/respon",
+                'allowed_types' => "gif|jpg|png|jpeg|bmp",
+                'overwrite' => TRUE,
+                'max_size' => "2048000",
+                'file_name'=> $nmfile);
+            
+            $this->load->library('upload');
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if($_FILES['image']['name']){
+                if($this->upload->do_upload('image')){
+
+                    $gbr= $this->upload->data();
+                    $date = date_create();
+                    $tglapor =  date_format($date, 'Y-m-d H:i:s');
+                    $data=array(
+                        'id_saran' => $id_saran,
+                        'id_skpd' => $userid_skpd,
+                        'kategori' => $this->input->post('kategori'),
+                        'isi_respon' => $this->input->post('isi_respon'),
+                        'tanggal_respon' => $tglapor,
+                        'lampiran_respon'=>$gbr['file_name']);
+
+                    $data_saran = array(
+                        'isStatus' => 'respon baru',
+                        );
+                      
+                    $this->mrespon->addRespon($data);
+                    $this->mrespon->respon_saran($id_saran, $data_saran);
+                    redirect (base_url().'crespon/respon/'.$id_saran);
+                }
+            }
+            else{
                 $gbr= $this->upload->data();
                 $date = date_create();
                 $tglapor =  date_format($date, 'Y-m-d H:i:s');
                 $data=array(
-                	'id_saran' => $id_saran,
-                	'id_skpd' => $userid_skpd,
-                	'kategori' => $this->input->post('kategori'),
+                    'id_saran' => $id_saran,
+                    'id_skpd' => $userid_skpd,
+                    'kategori' => $this->input->post('kategori'),
                     'isi_respon' => $this->input->post('isi_respon'),
-                    'tanggal_respon' => $tglapor,
-                    'lampiran_respon'=>$gbr['file_name']);
+                    'tanggal_respon' => $tglapor,);
 
                 $data_saran = array(
-                	'isStatus' => 'respon baru',
-                	);
-	              
-	            $this->mrespon->addRespon($data);
-	            $this->mrespon->respon_saran($id_saran, $data_saran);
-	            redirect (base_url().'crespon/respon/'.$id_saran);
+                    'isStatus' => 'respon baru',
+                    );
+
+                $this->mrespon->addRespon($data);
+                $this->mrespon->respon_saran($id_saran, $data_saran);
+                redirect (base_url().'crespon/respon/'.$id_saran);
             }
         }
-        else{
-           	$gbr= $this->upload->data();
-            $date = date_create();
-            $tglapor =  date_format($date, 'Y-m-d H:i:s');
-            $data=array(
-            	'id_saran' => $id_saran,
-            	'id_skpd' => $userid_skpd,
-            	'kategori' => $this->input->post('kategori'),
-                'isi_respon' => $this->input->post('isi_respon'),
-                'tanggal_respon' => $tglapor,);
-
-            $data_saran = array(
-            	'isStatus' => 'respon baru',
-            	);
-
-            $this->mrespon->addRespon($data);
-            $this->mrespon->respon_saran($id_saran, $data_saran);
-            redirect (base_url().'crespon/respon/'.$id_saran);
-        }
+		
 	}
 
 	public function publish($id_respon)

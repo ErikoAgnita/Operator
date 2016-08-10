@@ -107,16 +107,34 @@ if($saran->result()){?>
                       <?php
                       if($flag==FALSE){?>
                         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon</button>
+                        <?php 
+                          echo form_error('kategori','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
+                          echo form_error('isi_respon','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
+                        ?>
                           <div id="demo" class="collapse">
                             <div>                            
                               <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/addRespon" method="post">
                                 <div>      
                                   <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                  <textarea type="text" class="form-control" value="" name="kategori"></textarea> 
+                                  <?php $kategori = array(
+                                    'name' => 'kategori',
+                                    'value' => set_value('kategori'),
+                                    'rows' => 2,                                     
+                                    'cols' => 100,
+                                    'class' => 'form-control',
+                                    );
+                                  echo form_textarea($kategori);?>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Respon</label>
-                                  <textarea rows="8" type="text" class="form-control" value="" name="isi_respon"> </textarea>
+                                  <?php $isi_respon = array(
+                                    'name' => 'isi_respon',
+                                    'value' => set_value('isi_respon'),
+                                    'rows' => 7,                                     
+                                    'cols' => 100,
+                                    'class' => 'form-control',
+                                    );
+                                  echo form_textarea($isi_respon);?>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
@@ -135,17 +153,35 @@ if($saran->result()){?>
 
                         //SUKSES
                         elseif($flag==TRUE) {?>
-                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon2</button>
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon</button>
+                        <?php 
+                          echo form_error('kategori','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
+                          echo form_error('isi_respon','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
+                        ?>
                           <div id="demo" class="collapse">
                             <div>                            
                               <form runat="server" autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $id_respon;?>" method="post">
                                 <div>      
                                   <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                  <textarea cols="50" type="text" class="form-control" value="" name="kategori"><?php echo $kategori;?></textarea> 
+                                  <?php $kategori = array(
+                                    'name' => 'kategori',
+                                    'value' => set_value('kategori'),
+                                    'rows' => 2,                                     
+                                    'cols' => 100,
+                                    'class' => 'form-control',
+                                    );
+                                  echo form_textarea($kategori);?>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Respon</label>
-                                  <textarea rows="8" type="text" class="form-control" value="" name="isi_respon"><?php echo $isi_respon;?></textarea>
+                                  <?php $isi_respon = array(
+                                    'name' => 'isi_respon',
+                                    'value' => set_value('isi_respon'),
+                                    'rows' => 7,                                     
+                                    'cols' => 100,
+                                    'class' => 'form-control',
+                                    );
+                                  echo form_textarea($isi_respon);?>
                                 </div>
                                 <div>
                                   <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
@@ -222,17 +258,34 @@ if($saran->result()){?>
                               <?php } ?>       
                               </div>
                               <?php if($row2->id_skpd==$Idskpd and $row2->isi_respon!=NULL) {?>
-                                <div class="metas">
-                                  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<?php echo $row2->id_respon;?>">Ubah Respon</button>
+                                  <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<?php echo $row2->id_respon;?>">Ubah Respon</button>-->
+                                  <?php 
+                                    echo form_error('kategori','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
+                                    echo form_error('isi_respon','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
+                                  ?>
                                   <div id="<?php echo $row2->id_respon;?>" class="collapse">                        
                                     <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $row2->id_respon;?>" method="post">
                                       <div>      
                                         <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                        <textarea cols="50" type="text" class="form-control" value="" name="kategori"><?php echo $row2->kategori;?></textarea> 
+                                        <?php $kategori = array(
+                                          'name' => 'kategori',
+                                          'value' => $row2->kategori,
+                                          'rows' => 2,                                     
+                                          'cols' => 100,
+                                          'class' => 'form-control',
+                                          );
+                                        echo form_textarea($kategori);?>
                                       </div>
                                       <div>
                                         <label class="control-label" for="inputBasicEmail">Respon</label>
-                                        <textarea rows="8" type="text" class="form-control" value="" name="isi_respon"><?php echo $row2->isi_respon;?></textarea>
+                                        <?php $isi_respon = array(
+                                          'name' => 'isi_respon',
+                                          'value' => $row2->isi_respon,
+                                          'rows' => 7,                                     
+                                          'cols' => 100,
+                                          'class' => 'form-control',
+                                          );
+                                        echo form_textarea($isi_respon);?>
                                       </div>
                                       <div>
                                         <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
@@ -240,12 +293,11 @@ if($saran->result()){?>
                                         <div id="imagePreview"></div>
                                       </div>
                                       <div>
-                                        <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran">
+                                        <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran2">
                                       </div>
                                       <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
                                         <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
                                     </form>
-                                  </div>
                               <?php } ?>
                             </div>
                           </td>
