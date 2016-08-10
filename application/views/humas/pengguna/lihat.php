@@ -25,6 +25,7 @@
           <h3 class="panel-title">Lihat Daftar Pengguna</h3>
         </header>
         <div class="panel-body">
+          <div class="table-responsive">
           <table class="table table-hover dataTable table-striped width-full" data-plugin="dataTable">
             <thead>
               <tr>
@@ -166,6 +167,7 @@
       </div>            
         </div>
       </div>
+    </div>
       <!-- End Panel Basic -->
     </div>
   </div>

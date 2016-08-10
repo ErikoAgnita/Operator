@@ -25,29 +25,30 @@
           <h3 class="panel-title">Lihat Daftar SKPD</h3>
         </header>
         <div class="panel-body">
-          <table class="table table-hover dataTable table-striped width-full" data-plugin="dataTable">
+          <div class="table-responsive">
+          <table class="table table-hover dataTable table-striped width-full table-responsive" data-plugin="dataTable">
             <thead>
               <tr>
-                <th>No</th>
-                <th>Kode Unit</th>
-                <th>Nama Dinas</th>
-                <th>Alamat Dinas</th>
-                <th>Telepon</th>
-                <th>Email</th>
-                <th>Aksi</th>
+                <th scope="col">No</th>
+                <th scope="col">Kode Unit</th>
+                <th scope="col">Nama Dinas</th>
+                <th scope="col">Alamat Dinas</th>
+                <th scope="col">Telepon</th>
+                <th scope="col">Email</th>
+                <th scope="col">Aksi</th>
               </tr>
             </thead>            
             <tbody>
               <?php $no = $this->uri->segment('3') + 1; ?>
               <?php foreach ($skpd as $row){?>
               <tr>
-                <td><?php echo $no++ ?></td>
-                <td><?php echo $row->kodeUnit;?></td>
-                <td><?php echo $row->nama;?></td>
-                <td><?php echo $row->alamat;?></td>
-                <td><?php echo $row->telepon;?></td>                
-                <td><?php echo $row->email;?></td>
-                <td class="text-nowrap">
+                <td scope="row"><?php echo $no++ ?></td>
+                <td scope="row"><?php echo $row->kodeUnit;?></td>
+                <td scope="row"><?php echo $row->nama;?></td>
+                <td scope="row"><?php echo $row->alamat;?></td>
+                <td scope="row"><?php echo $row->telepon;?></td>                
+                <td scope="row"><?php echo $row->email;?></td>
+                <td class="text-nowrap" scope="row">
                    <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Detail">
                     <a href="#myModal<?php echo $row->id_skpd;?>" data-toggle="modal"><i class="icon wb-eye" aria-hidden="true"></i></a>
                   </button>
@@ -169,6 +170,7 @@
         </div>
         </div>
       </div>
+    </div>
       <!-- End Panel Basic -->
     </div>
   </div>

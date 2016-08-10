@@ -52,16 +52,17 @@ class Mpengguna extends CI_Model {
 	}
 
 	public function pencarian($cari, $limit, $id_pengguna){
-        $query = $this->db->query("SELECT * FROM pengguna LEFT JOIN skpd ON pengguna.id_skpd=skpd.id_skpd WHERE pengguna.nama as nama_pengguna like '%$cari%' LIMIT $limit OFFSET $id_pengguna");
+        $query = $this->db->query("SELECT p.id_pengguna, p.username, p.password, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas, p.level, p.keterangan FROM pengguna p RIGHT JOIN skpd s ON p.id_skpd=s.id_skpd WHERE p.nama like '%$cari%' LIMIT $limit OFFSET $id_pengguna");
         if ($query->num_rows() > 0) {
             return $query->result();
         }
         else return 0;
     }
     public function record_count_search($cari) {
-        $condition = "nama_pengguna LIKE '%$cari%' ";
+        $condition = "p.nama like '%$cari%'";
         $this->db->where($condition);
-        return $this->db->count_all_results('pengguna');
+        $this->db->join('skpd s', 'p.id_skpd=s.id_skpd');
+        return $this->db->count_all_results('pengguna p');
             //return $query->result();
     }
 
