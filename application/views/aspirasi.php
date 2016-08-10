@@ -318,8 +318,17 @@
                             <label class="col-sm-2 control-label">Saran</label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-comments"></i></span>
-                                <textarea name="aspr" class="form-control" rows="5" class="text" placeholder="Salurkan kritik atau saran anda" style="width: 100%; font-size: 14px; line-height: 
-                                14px; color: #4F4F4F; border: 1px solid #dddddd; padding: 10px;" value="<?php echo set_value('aspr'); ?>" required></textarea>
+                               
+                                <?php
+                                    $aspr = array('name' => 'aspr',
+                                                    'value' => set_value('aspr'),
+                                                    'class' => 'form-control',
+                                                    'placeholder' => 'Salurkan kritik atau saran anda',
+                                                    'rows' => 5,
+                                                    'required' => 'required'
+                                     );
+                                    echo form_textarea($aspr);
+                                ?>
                             </div>
                           <?php
                                 echo form_error('aspr','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');

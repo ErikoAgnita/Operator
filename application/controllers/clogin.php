@@ -72,7 +72,7 @@ class clogin extends CI_Controller {
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
    
         $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
+        $password = md5(md5($this->input->post('password'))."UnS1h6e@hXh");
 
         $cek = $this->mlogin->loginoperator($username,$password);
         $cek1 = $this->mlogin->loginadmin($username,$password);

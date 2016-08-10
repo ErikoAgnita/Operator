@@ -99,7 +99,7 @@ class Cpengguna extends CI_Controller {
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
         
         $id= $this->input->post('id_pengguna');
-        $pass = md5($this->input->post('password'));
+        $pass = md5(md5($this->input->post('password'))."UnS1h6e@hXh");
         
         if ($this->form_validation->run() == FALSE){    
             $this->ganti_password($id);
@@ -144,7 +144,7 @@ class Cpengguna extends CI_Controller {
         else{
             $id_skpd = $this->input->post('id_skpd');
             $username = $this->input->post('username');
-            $password = md5($this->input->post('password'));
+            $password = md5(md5($this->input->post('password'))."UnS1h6e@hXh");
             $kode_unit = $this->input->post('kode_unit');
             $level = $this->input->post('level');
             $nama = $this->input->post('nama');
@@ -333,10 +333,10 @@ class Cpengguna extends CI_Controller {
         $this->form_validation->set_message('matches', 'password tidak sesuai');
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
 
-        $passlama = md5($this->input->post('passwordlama'));
+        $passlama = md5(md5($this->input->post('passwordlama'))."UnS1h6e@hXh");
 
         $id= $this->input->post('id_pengguna');
-        $pass = md5($this->input->post('password'));
+        $pass = md5(md5($this->input->post('password'))."UnS1h6e@hXh");
         
         if ($this->form_validation->run() == FALSE){
             $this->ganti_password_op($id);
@@ -431,10 +431,10 @@ class Cpengguna extends CI_Controller {
         $this->form_validation->set_message('matches', 'password tidak sesuai');
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
     
-        $passlama = md5($this->input->post('passwordlama'));
+        $passlama = md5(md5($this->input->post('passwordlama'))."UnS1h6e@hXh");
         
         $id= $this->input->post('id_pengguna');
-        $pass = md5($this->input->post('password'));
+        $pass = md5(md5($this->input->post('password'))."UnS1h6e@hXh");
         
         if ($this->form_validation->run() == FALSE){
             $this->ganti_password_ad($id);
