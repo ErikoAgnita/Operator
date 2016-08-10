@@ -36,14 +36,6 @@
                         ?>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicBentuk">Bentuk</label>
-                        <input type="text" class="form-control" id="inputBasicEmail" value="<?php echo $s->bentuk ?>" name="bentuk"
-                        autocomplete="off" />
-                        <?php
-                         echo form_error('bentuk','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
-                        ?>
-                    </div>
-                    <div class="form-group">
                       <label class="control-label" for="inputBasicNama">Nama SKPD</label>
                       <input type="text" class="form-control" id="inputBasicNama" value="<?php echo $s->nama ?>" name="nama"
                        autocomplete="off" />
@@ -95,41 +87,8 @@
                         echo form_error('website','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                         ?>
                     </div>
-                     <div class="form-group">
-                      <label class="control-label" for="inputBasicUrut">Urut</label>
-                      <input type="text" class="form-control" id="inputBasicUrut" value="<?php echo $s->urut ?>" name="urut"
-                       autocomplete="off" />
-                    </div>
-                     <div class="form-group">
-                      <label class="control-label" for="inputBasicTema">Tema</label>
-                      <input type="text" class="form-control" id="inputBasicTema" value="<?php echo $s->tema ?>" name="tema"
-                       autocomplete="off" />
-                       <?php
-                        echo form_error('tema','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
-                        ?>
-                    </div>
+                    
                   <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                            <?php if($s->isLink == '1'){
-                                        $cekA = "checked";
-                                        $cekP = "";
-                                    }
-                                     else {$cekP = "checked";
-                                           $cekA = "";
-                                          }
-                            ?>
-                          <label class="control-label" for="inputBasicisLink">isLink</label>
-                            <div class="radio-custom radio-primary">
-                              <input type="radio" id="inputRadios1" name="isLink" value="1" <?php echo $cekA; ?>/>
-                              <label for="inputRadios1">Aktif</label>
-                            </div>
-                            <div class="radio-custom radio-primary">
-                              <input type="radio" id="inputRadios1" name="isLink" value="0" <?php echo $cekP; ?> />
-                              <label for="inputRadios1">Pasif</label>
-                            </div>
-                        </div>
-                          </div>
                       <div class="col-sm-6">
                       
                         <div class="form-group">

@@ -92,10 +92,6 @@
           <td><?php echo $row->bagian; ?></td>
         </tr>
         <tr>
-          <td>Bentuk</td>
-          <td><?php echo $row->kodeUnit; ?></td>
-        </tr>
-        <tr>
           <td>Nama SKPD</td>
           <td><?php echo $row->nama; ?></td>
         </tr>
@@ -122,18 +118,6 @@
         <tr>
           <td>Terakhir di Ubah</td>
           <td><?php echo $row->last_update; ?></td>
-        </tr>
-        <tr>
-          <td>Urut</td>
-          <td><?php echo $row->urut; ?></td>
-        </tr>
-        <tr>
-          <td>Tema</td>
-          <td><?php echo $row->tema; ?></td>
-        </tr>
-        <tr>
-          <td>isLink</td>
-          <td><?php echo $row->isLink; ?></td>
         </tr>
         <tr>
           <td>Keterangan</td>

@@ -16,7 +16,6 @@
 <!DOCTYPE html>
 <html class="no-js before-run" lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -58,9 +57,9 @@
   <link rel="stylesheet" href="<?php  echo base_url(); ?>assets/fonts/brand-icons/brand-icons.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
-    <!-- Font Awesome -->
+ <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
+    
   <!-- Inline -->
   <style>
     @media (min-width: 768px) and (max-width: 992px) {
@@ -73,6 +72,7 @@
       }
     }
   </style>
+
 
   <!--[if lt IE 9]>
     <script src="../../assets/vendor/html5shiv/html5shiv.min.js"></script>
@@ -89,6 +89,7 @@
   <script>
     Breakpoints();
   </script>
+  
 </head>
 <body>
   <!--[if lt IE 8]>
@@ -114,7 +115,7 @@
       </button> -->
       <div class="navbar-brand navbar-brand-center" style="cursor:default">
         <img class="navbar-brand-logo" src="<?php  echo base_url(); ?>assets/images/logo.png" title="Kotak Saran Salatiga">
-        <span class="navbar-brand-text">Kotak Saran Salatiga</span>
+        <span class="navbar-brand-text" data-slug="uikit"> Kotak Saran Salatiga</span>
       </div>
     </div>
 
@@ -136,9 +137,9 @@
               <span class="sr-only">Toggle fullscreen</span>
             </a>
           </li>
-      <!--    <li class="hidden-float">
+    <!--      <li class="hidden-float">
             <a class="icon wb-search" data-toggle="collapse" href="#site-navbar-search" role="button">
-              
+              <span class="sr-only">Toggle Search</span>
             </a>
           </li> -->
         </ul>
@@ -151,9 +152,9 @@
           </li>    
         </ul>
 
-        <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+         <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
           <li role="presentation">
-            <a class="icon wb-user"  href="<?php echo base_url(); ?>cpengguna/lihatawaladmin" role="menuitem">&nbsp; <?php echo $userid_nama; ?>
+            <a class="icon wb-user"  href="<?php echo base_url(); ?>cpengguna/lihatawal" role="menuitem">&nbsp; <?php echo $userid_nama; ?>
             </a>
           </li>
         </ul>
@@ -162,7 +163,7 @@
       <!-- End Navbar Collapse -->
 
       <!-- Site Navbar Seach -->
-  <!--    <div class="collapse navbar-search-overlap" id="site-navbar-search">
+  <!--     <div class="collapse navbar-search-overlap" id="site-navbar-search">
         <form role="search">
           <div class="form-group">
             <div class="input-search">
@@ -180,20 +181,35 @@
   </nav>
   
 <!-- End Header -->
+
 <!-- Menu -->
 <div class="site-menubar">
     <div class="site-menubar-body">
       <div>
         <div>
           <ul class="site-menu">
-            <li class="site-menu-category">Admin</li>
+            <li class="site-menu-category">Admin</li> </a>
             <li class="site-menu-item">
-              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/lihatawaladmin" data-slug="uikit">
+              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/lihatawal" data-slug="uikit">
                 <i class="site-menu-icon wb-user" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
                 <span class="site-menu "></span>
-             </a>              
-            </li>
+             </a>
+         <!--         <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/dinas_lihat" data-slug="uikit">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Lihat</span>
+                  </a>
+                </li>
+          <!--      <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>/dinas_ubah" data-slug="uikit">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Ubah</span>
+                  </a>
+                </li> 
+              </ul> -->
+              </li>
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-book" aria-hidden="true"></i>
@@ -209,6 +225,7 @@
                 </li>
               </ul>
             </li>
+
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-library" aria-hidden="true"></i>
@@ -221,13 +238,16 @@
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Data SKPD</span>
                   </a>
+                </li>
+                <li class="site-menu-item">
                   <a class="animsition-link" href="<?php echo base_url(); ?>Cskpd/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                  <span class="site-menu-title">Tambah SKPD</span>
-                </a>
+                    <span class="site-menu-title">Buat SKPD</span>
+                  </a>
                 </li>
               </ul>
             </li>
+
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-home" aria-hidden="true"></i>
@@ -240,14 +260,17 @@
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Data Kecamatan</span>
                   </a>
+                </li>
+                <li class="site-menu-item">
                   <a class="animsition-link" href="<?php echo base_url(); ?>Ckecamatan/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                  <span class="site-menu-title">Tambah Kecamatan</span>
-                </a>
+                    <span class="site-menu-title">Buat Kecamatan</span>
+                  </a>
                 </li>
               </ul>
             </li>
-            <li class="site-menu-item has-sub">
+
+          <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-order" aria-hidden="true"></i>
                 <span class="site-menu-title">Kelurahan</span>
@@ -259,14 +282,17 @@
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Data Kelurahan</span>
                   </a>
+                </li>
+                <li class="site-menu-item">
                   <a class="animsition-link" href="<?php echo base_url(); ?>Ckelurahan/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                  <span class="site-menu-title">Tambah Kelurahan</span>
-                </a>
+                    <span class="site-menu-title">Buat Kelurahan</span>
+                  </a>
                 </li>
               </ul>
-            </li>
-            <li class="site-menu-item has-sub">
+            </li>            
+
+          <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-users" aria-hidden="true"></i>
                 <span class="site-menu-title">Pengguna</span>
@@ -278,16 +304,19 @@
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Data Pengguna</span>
                   </a>
+                </li>
+                <li class="site-menu-item">
                   <a class="animsition-link" href="<?php echo base_url(); ?>Cpengguna/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                  <span class="site-menu-title">Tambah Pengguna</span>
-                </a>
+                    <span class="site-menu-title">Buat Pengguna</span>
+                  </a>
                 </li>
               </ul>
-            </li>
+            </li>  
+
+          <!--</li>-->
         </div>
       </div>
     </div>
   </div>
   <!-- End Menu -->
-

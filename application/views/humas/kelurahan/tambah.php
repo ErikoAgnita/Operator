@@ -4,7 +4,7 @@
       <h1 class="page-title">Kelurahan Kota Salatiga</h1>
       <ol class="breadcrumb">
         <li>Kelurahan</li>
-        <li>Tambah Kelurahan</li>
+        <li>Buat Kelurahan</li>
       </ol>
     </div>
      <div class="page-content">

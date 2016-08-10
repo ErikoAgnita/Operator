@@ -31,13 +31,6 @@
                                           ?>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="inputBasicBentuk">Bentuk</label>
-                                            <input type="text" class="form-control" id="inputBasicBentuk" name="bentuk" value="<?php echo set_value('bentuk'); ?>" autocomplete="off" />
-                                        <?php
-                                        echo form_error('bentuk','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
-                                        ?>
-                                        </div>
-                                        <div class="form-group">
                                             <label class="control-label" for="inputBasicNama">Nama SKPD</label>
                                             <input type="text" class="form-control" id="inputBasicNama" name="nama" value="<?php echo set_value('nama'); ?>" placeholder="Bagian Hubungan Masyarakat Setda" autocomplete="off" />
                                         <?php
@@ -51,17 +44,17 @@
                                         echo form_error('alamat','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                         ?>
                                         </div>
-                                        <div class="form-group">
+                                    <!-- End Example Basic Form -->
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <!-- Example Basic Form -->
+                                    <div class="form-group">
                                             <label class="control-label" for="inputBasicTelepon">Telepon</label>
                                             <input type="text" class="form-control" id="inputBasicTelepon" name="telepon" value="<?php echo set_value('telepon'); ?>" placeholder="(0298) 326767"autocomplete="off" />
                                         <?php
                                         echo form_error('telepon','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                         ?>
                                         </div>
-                                    <!-- End Example Basic Form -->
-                                    </div>
-                                    <div class="col-sm-6">
-                                    <!-- Example Basic Form -->
                                         <div class="form-group">
                                             <label class="control-label" for="inputBasicFax">Fax</label>
                                             <input type="text" class="form-control" id="inputBasicFax" value="<?php echo set_value('fax'); ?>" name="fax" autocomplete="off" />
@@ -83,20 +76,6 @@
                                         echo form_error('website','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                         ?>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="inputBasicUrut">Urut</label>
-                                            <input type="text" class="form-control" id="inputBasicUrut" name="urut" value="<?php echo set_value('urut'); ?>" autocomplete="off" />
-                                        <?php
-                                        echo form_error('urut','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
-                                        ?>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="inputBasicTema">Tema</label>
-                                            <input type="text" class="form-control" id="inputBasicTema" name="tema" value="<?php echo set_value('tema'); ?>" placeholder="Kuning" autocomplete="off" />
-                                        </div>
-                                        <?php
-                                        echo form_error('tema','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
-                                        ?>
                                         <div class="form-group">
                                             <div class="pull-right">
                                                 <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
