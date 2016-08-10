@@ -14,10 +14,10 @@ class Csaran extends CI_Controller {
         {
             $data['aspirasi'] = $this->msaran->preview_asp();
             
-           // $random_number = substr(number_format(time() * rand(),0,'',''),0,6);
+            $random_number = substr(number_format(time() * rand(),0,'',''),0,6);
               // setting up captcha config
             $vals = array(
-                   //  'word' => $random_number,
+                     'word' => $random_number,
                      'img_path' => './captcha/',
                      'img_url' => base_url().'captcha/',
                      'img_width' => 140,

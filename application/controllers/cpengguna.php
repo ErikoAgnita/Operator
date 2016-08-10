@@ -122,13 +122,13 @@ class Cpengguna extends CI_Controller {
     {
         $this->load->library('form_validation');
         $this->load->library('session');
-        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z]{0,25}$/]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z0-9]{0,25}$/]');
         $this->form_validation->set_rules('password', 'Password', 'trim|max_length[50]|required');
-        $this->form_validation->set_rules('level', 'Level', 'trim|max_length[25]|required');
+        $this->form_validation->set_rules('level', 'Level', 'trim|required');
         $this->form_validation->set_rules('nama', 'Nama', 'trim|max_length[100]|required|regex_match[/^[a-zA-Z .]{1,100}$/]');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|max_length[255]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|max_length[255]|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
         $this->form_validation->set_rules('telepon', 'Telepon', 'trim|max_length[15]|regex_match[/^[+0-9 ()-]{3,15}$/]');
-        $this->form_validation->set_rules('handphone', 'Handphone', 'trim|min_length[10]|max_length[20]|regex_match[/^[+0-9 ()-]{10,20}$/]');
+        $this->form_validation->set_rules('handphone', 'Handphone', 'trim|min_length[10]|max_length[20]|regex_match[/^[+0-9 -]{10,20}$/]');
         $this->form_validation->set_rules('email', 'Email', 'trim|max_length[70]|valid_email');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|max_length[255]');
         
@@ -186,12 +186,12 @@ class Cpengguna extends CI_Controller {
     {
         $this->load->library('form_validation');
         $this->load->library('session');
-        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z]{0,25}$/]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z0-9]{0,25}$/]');
         $this->form_validation->set_rules('level', 'Level', 'trim|max_length[25]|required');
         $this->form_validation->set_rules('nama', 'Nama', 'trim|max_length[100]|required|regex_match[/^[a-zA-Z .]{1,100}$/]');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|max_length[255]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|max_length[255]|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
         $this->form_validation->set_rules('telepon', 'Telepon', 'trim|max_length[15]|regex_match[/^[+0-9 ()-]{3,15}$/]');
-        $this->form_validation->set_rules('handphone', 'Handphone', 'trim|min_length[10]|max_length[20]|regex_match[/^[+0-9 ()-]{10,20}$/]');
+        $this->form_validation->set_rules('handphone', 'Handphone', 'trim|min_length[10]|max_length[20]|regex_match[/^[+0-9 -]{10,20}$/]');
         $this->form_validation->set_rules('email', 'Email', 'trim|max_length[70]|valid_email');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|max_length[255]');
         
@@ -277,15 +277,16 @@ class Cpengguna extends CI_Controller {
     {
         $this->load->library('form_validation');
                         
-            $this->form_validation->set_rules('username','username','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
-            $this->form_validation->set_rules('nama','nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
+            $this->form_validation->set_rules('username','username','trim|min_length[4]|max_length[50]|required|regex_match[/^[a-zA-Z0-9]{0,100}$/]');
+            $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
             $this->form_validation->set_rules('alamat','alamat','trim|min_length[1]|max_length[255]|required|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
-            $this->form_validation->set_rules('telepon', 'telepon', 'trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
-            $this->form_validation->set_rules('handphone','handphone','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
+            $this->form_validation->set_rules('telepon', 'telepon', 'trim|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
+            $this->form_validation->set_rules('handphone','handphone','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 -]{4,20}$/]');
             $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
 
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
             $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
+            $this->form_validation->set_message('required', '{field} tidak boleh kosong');
             $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
             $this->form_validation->set_message('valid_email', '{field} tidak sesuai format penulisan yang benar');
 
@@ -375,15 +376,16 @@ class Cpengguna extends CI_Controller {
     {
         $this->load->library('form_validation');
                         
-            $this->form_validation->set_rules('username','username','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
-            $this->form_validation->set_rules('nama','nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
+            $this->form_validation->set_rules('username','username','trim|required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z0-9]{0,100}$/]');
+            $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
             $this->form_validation->set_rules('alamat','alamat','trim|min_length[1]|max_length[255]|required|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
-            $this->form_validation->set_rules('telepon', 'telepon', 'trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
-            $this->form_validation->set_rules('handphone','handphone','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
+            $this->form_validation->set_rules('telepon', 'telepon', 'trim|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
+            $this->form_validation->set_rules('handphone','handphone','trim|required|min_length[4]|max_length[20]|regex_match[/^[+0-9 -]{4,20}$/]');
             $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
 
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
             $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
+            $this->form_validation->set_message('required', '{field} tidak boleh kosong');
             $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
             $this->form_validation->set_message('valid_email', '{field} tidak sesuai format penulisan yang benar');
 

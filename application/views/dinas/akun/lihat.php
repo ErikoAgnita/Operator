@@ -29,9 +29,9 @@
                <!--         <p><?=$this->session->flashdata('pesan')?> </p> -->
                     <div class="form-group">
                       <label class="control-label" for="inputBasicPassword">Username</label>
-                      <input type="hidden" name="id_pengguna" value="<?php echo $row->id_pengguna ?>" required>
+                      <input type="hidden" name="id_pengguna" value="<?php echo $row->id_pengguna ?>">
                       <input type="text" class="form-control" name="username"
-                      value="<?php echo $row->username;?>" required>
+                      value="<?php echo $row->username;?>">
                     </div>
                     <?php
                       echo form_error('username','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -54,15 +54,15 @@
                     <div class="form-group">
                       <label class="control-label" for="inputBasicEmail">Nama</label>
                       <input type="text" class="form-control" name="nama"
-                      value="<?php echo $row->nama;?>" required>
+                      value="<?php echo $row->nama;?>">
                     </div>
                     <?php
-                      echo form_error('usernama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
+                      echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                       ?>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicEmail">Alamat</label>
                       <input type="text" class="form-control" name="alamat"
-                      value="<?php echo $row->alamat;?>" required>
+                      value="<?php echo $row->alamat;?>">
                     </div>
                     <?php
                       echo form_error('alamat','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -70,7 +70,7 @@
                     <div class="form-group">
                       <label class="control-label" for="inputBasicEmail">Telepon</label>
                       <input type="text" class="form-control" name="telepon"
-                      value="<?php echo $row->telepon;?>" required>
+                      value="<?php echo $row->telepon;?>">
                     </div>
                     <?php
                       echo form_error('telepon','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -78,7 +78,7 @@
                     <div class="form-group">
                       <label class="control-label" for="inputBasicEmail">Handphone</label>
                       <input type="text" class="form-control" name="handphone"
-                      value="<?php echo $row->handphone;?>" required>
+                      value="<?php echo $row->handphone;?>">
                     </div>
                     <?php
                       echo form_error('handphone','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -86,7 +86,7 @@
                     <div class="form-group">
                       <label class="control-label" for="inputBasicEmail">Email</label>
                       <input type="email" class="form-control" name="email"
-                      value="<?php echo $row->email;?>" required>
+                      value="<?php echo $row->email;?>">
                     </div>
                     <?php
                       echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');

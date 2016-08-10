@@ -19,7 +19,7 @@ class msaran extends CI_Model {
     }
     
     function preview_asp(){
-        $query = $this->db->query("SELECT * FROM saran WHERE isAktif = 1 and lampiran_saran IS NOT NULL ORDER BY id_saran ASC"); 
+        $query = $this->db->query("SELECT * FROM saran WHERE isAktif = 1 and isSpam=0 and lampiran_saran IS NOT NULL ORDER BY id_saran ASC"); 
         if ($query->num_rows() > 0) {
             return $query->result();
         }
