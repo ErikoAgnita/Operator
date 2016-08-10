@@ -56,6 +56,7 @@ class msaran extends CI_Model {
         return $query;
     }
     
+    //search di masyarakat
     function pencarian($cari, $limit, $id){
         
         $query = $this->db->query("SELECT * FROM saran WHERE IsAktif = '1' and IsSpam = '0' and (nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%') LIMIT $limit OFFSET $id");
@@ -70,18 +71,22 @@ class msaran extends CI_Model {
         return $this->db->count_all_results('saran');
             //return $query->result();
     }
-    /*function hapus_produk($id)       
-    {
-        $this->db->reconnect();
-        $query=$this->db->query("DELETE FROM produk WHERE id_produk = '$id'");
-        if($query){
-            return 0;
-        }else{
-            return -1;
+
+    //search di operator
+    function pencarianop($cari, $limit, $id){
+        
+        $query = $this->db->query("SELECT * FROM saran WHERE IsSpam = '0' and (nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%') LIMIT $limit OFFSET $id");
+        if ($query->num_rows() > 0) {
+            return $query->result();
         }
-    }*/
-
-
+        else return 0;
+    }
+    public function record_count_searchop($cari) {
+        $condition = "IsSpam = '0' and (nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%')";
+        $this->db->where($condition);
+        return $this->db->count_all_results('saran');
+            //return $query->result();
+    }
     //Admin
 
     function lihat_saran()
@@ -103,6 +108,7 @@ class msaran extends CI_Model {
         return $query;
     }
 
+    //search di admin
     function pencarian_saran($cari, $limit, $id){
         
         $query = $this->db->query("SELECT * FROM saran WHERE nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%' LIMIT $limit OFFSET $id");

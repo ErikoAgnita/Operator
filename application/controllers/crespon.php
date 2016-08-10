@@ -14,7 +14,7 @@ class crespon extends CI_Controller {
 	{
 		$this->load->library('pagination');
         $config = array();
-        $config['base_url'] = base_url() . "crespon/dariadmin";
+        $config['base_url'] = base_url() . "crespon/dariadmin/".$this->uri->segment(3);
         
         $userid_skpd = $_SESSION['userid_skpd'];
         if($all=='all'){
@@ -36,10 +36,10 @@ class crespon extends CI_Controller {
         $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
         $config['last_link'] = '<b>>></b>';
         $config['first_link'] = '<b><<</b>';
-        $config['uri_segment'] = 3;
+        $config['uri_segment'] = 4;
     
         $this->pagination->initialize($config);
-        $strpage = $this->uri->segment(3,0);
+        $strpage = $this->uri->segment(4,0);
         if($all=='all'){
         	$data['saran'] = $this->mrespon->fetch_data($config['per_page'],$strpage)->result();
         }        
