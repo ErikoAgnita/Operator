@@ -154,7 +154,7 @@
 
          <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
           <li role="presentation">
-            <a class="icon wb-user"  href="<?php echo base_url(); ?>cpengguna/lihatawal" role="menuitem">&nbsp; <?php echo $userid_nama; ?>
+            <a class="icon wb-user"  href="<?php echo base_url(); ?>cpengguna/lihatawaladmin" role="menuitem">&nbsp; <?php echo $userid_nama; ?>
             </a>
           </li>
         </ul>
