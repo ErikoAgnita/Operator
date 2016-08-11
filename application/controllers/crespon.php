@@ -12,6 +12,7 @@ class crespon extends CI_Controller {
 
 	public function dariadmin($all)
 	{
+        $jenis = $this->uri->segment(3);
 		$this->load->library('pagination');
         $config = array();
         $config['base_url'] = base_url() . "crespon/dariadmin/".$this->uri->segment(3);
@@ -26,10 +27,11 @@ class crespon extends CI_Controller {
         elseif($all=='belum'){
             $total_row = $this->mrespon->record_count_unrespon($userid_skpd);
         }
-        
-        //echo $total_row;
+                
         $config['total_rows'] = $total_row;
-        $config['per_page'] = 7;
+        $config['base_url'] = base_url().'crespon/dariadmin/'.$jenis;
+
+        $config['per_page'] = 1;
         $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
         $config['cur_tag_close'] = '</a>';
         $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
@@ -54,7 +56,7 @@ class crespon extends CI_Controller {
 
         //echo $total_row;
         $config['total_rows'] = $total_row;
-        $config['per_page'] = 7;
+        $config['per_page'] = 1;
 
 		//$data['saran'] = $this->mrespon->lihat_saran();
 		$this->load->view('dinas/header')->view('dinas/respon/dariadmin', $data)->view('dinas/footer');
