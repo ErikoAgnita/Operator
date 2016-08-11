@@ -30,7 +30,7 @@
             <table class="table is-indent">  
               <tbody>
                 <?php foreach ($saran as $row){?>
-                <tr data-url="panel.tpl" data-toggle="slidePanel">
+                <tr data-url="panel.tpl" data-toggle="slidePanel" >
                   <td class="cell-60 responsive-hide">
                     <a class="avatar" href="javascript:void(0)">
                       <img class="img-responsive" src="<?php  echo base_url(); ?>assets/images/comment.png" alt="...">
@@ -40,7 +40,7 @@
                     <div>
                       <div class="metas">
                         <span class="username">
-                          <span><?php echo $row->nama;?></span>
+                          <span><b><?php echo $row->nama;?></b></span>
                           <span class="started">(<?php echo $row->alamat;?>)</span>
                           <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</span>
                         </span>
@@ -56,10 +56,24 @@
                                 }?>
                               </div>
                             </div>
+                            <br>
+                         <a type="button" class="btn btn-round btn-info" href="<?php echo base_url(); ?>crespon/respon/<?php echo $row->sis;?>">Detail</a>
                           <div class="title">
-                            <a href="<?php echo base_url(); ?>crespon/respon/<?php echo $row->id_saran;?>">Detail</a>
-                          </div>                    
-                    </div>
+                          </div>
+                          <div class="pull-right">
+                            <div class="btn-group">
+                                <?php 
+                                        if($row->sia==1 && $row->isSpam==0){
+                                            $wrnP = "badge-success";    $titleP = "Sudah dipublikasikan";
+                                        }
+                                        else{
+                                          $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
+                                        }
+                                ?>
+                                <span class="badge badge-radius <?php echo $wrnP; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleP; ?>">&#9679;</span>
+
+                      </div>                    
+                      </div>
                   </td>
                 </tr>
                 <?php }?>   

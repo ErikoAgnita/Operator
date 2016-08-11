@@ -54,7 +54,7 @@ if($saran->result()){?>
                           <div class="metas">
                             <span class="">
                               <strong><?php echo $row->nama ?></strong>
-                              <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</span>
+                              <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?></span>
                             </span>
                           </div>
                           <div class="metas">
@@ -228,8 +228,22 @@ if($saran->result()){?>
                                   <strong><?php echo $row2->nama;?></strong>
                                   <?php 
                                   if($row2->isi_respon){?>
-                                    <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row2->tanggal_respon));?> WIB</span> 
-                                  <?php } ?>
+                                  <div class="pull-right"> 
+                                      <div class="btn-group">
+                                        <?php 
+                                            if($row->isAktif==1){
+                                                $wrnP = "badge-success";    $titleP = "Sudah dipublikasikan";
+                                            }
+                                            else{
+                                                $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
+                                            }
+                                        ?> 
+                                        <span class="badge badge-radius <?php echo $wrnP; ?>" data-toggle="tooltip" data-placement="bottom" data-original-title="<?php echo $titleP; ?>">&#9679;</span>
+                                      </div>
+                                    </div>
+                                  <?php } ?> 
+                                    <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row2->tanggal_respon));?>&nbsp;&nbsp;</span> 
+                                    
                                 </span>
                               </div>
                               <?php 

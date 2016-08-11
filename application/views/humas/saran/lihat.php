@@ -54,13 +54,13 @@
                             }?>
                           </div>
                       </div>
-                      <div class="title">
-                        <a type="button" href="<?php echo base_url(); ?>csaran/detail/<?php echo $row->id_saran;?>">Detail</a>
+                      <div class="title"><br>
+                        <a type="button" class="btn btn-round btn-info" href="<?php echo base_url(); ?>csaran/detail/<?php echo $row->id_saran;?>">Detail</a>
                         <div class="pull-right">
                             <div class="btn-group">
                                 <?php 
                                         if($row->isStatus=='laporan baru'){
-                                            $wrnB = "badge-warning";       $titleB = "Ada pesan baru";
+                                            $wrnB = "badge-warning";    $titleB = "Ada pesan baru";
                                             $wrnD = "badge-default";    $titleD = "Belum didisposisikan";
                                             $wrnR = "badge-default";    $titleR = "Belum ada respon";
                                             $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
@@ -80,19 +80,19 @@
                                             $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
                                             $wrnS = "badge-default";    $titleS = "Bukan Spam";
                                         }
+                                        if($row->isSpam==1 && $row->isStatus!='laporan baru'){
+                                            $wrnS = "badge-danger";     $titleS = "Pesan Spam";
+                                            $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
+                                            $wrnR = "badge-default";    $titleR = "Tidak ada respon dari SKPD";
+                                            $wrnD = "badge-default";    $titleD = "Tidak didisposisikan";
+                                            $wrnP = "badge-default";    $titleP = "Tidak dipublikasikan";
+                                        }
                                         if($row->isAktif==1 && $row->isSpam==0){
                                             $wrnP = "badge-success";    $titleP = "Sudah dipublikasikan";
                                             $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
                                             $wrnR = "badge-default";    $titleR = "Ada respon dari SKPD";
                                             $wrnD = "badge-default";    $titleD = "Sudah didisposisikan";
                                             $wrnS = "badge-default";    $titleS = "Bukan Spam";
-                                        }
-                                        if($row->isSpam==1){
-                                            $wrnS = "badge-danger";     $titleS = "Pesan Spam";
-                                            $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
-                                            $wrnR = "badge-default";    $titleR = "Tidak ada respon dari SKPD";
-                                            $wrnD = "badge-default";    $titleD = "Tidak didisposisikan";
-                                            $wrnP = "badge-default";    $titleP = "Tidak dipublikasikan";
                                         }
                                 ?>
                                 <span class="badge badge-radius <?php echo $wrnB; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleB; ?>">&#9679;</span>

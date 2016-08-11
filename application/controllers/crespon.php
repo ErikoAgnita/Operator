@@ -29,7 +29,7 @@ class crespon extends CI_Controller {
                 
         $config['total_rows'] = $total_row;
 
-        $config['per_page'] = 1;
+        $config['per_page'] = 7;
         $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
         $config['cur_tag_close'] = '</a>';
         $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
@@ -54,7 +54,7 @@ class crespon extends CI_Controller {
 
         //echo $total_row;
         $config['total_rows'] = $total_row;
-        $config['per_page'] = 1;
+        $config['per_page'] = 7;
 
 		//$data['saran'] = $this->mrespon->lihat_saran();
 		$this->load->view('dinas/header')->view('dinas/respon/dariadmin', $data)->view('dinas/footer');

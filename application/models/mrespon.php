@@ -54,7 +54,7 @@ class mrespon extends CI_Model
     }
 
     public function fetch_data($limit, $id) {
-        $this->db->select('*');
+        $this->db->select('saran.id_saran as sis,nama,saran,alamat,tanggal_saran,topik,isSpam,saran.isAktif as sia');
         $this->db->from('saran');
         $this->db->where('isSpam=0');
         $this->db->limit($limit, $id);
@@ -64,8 +64,9 @@ class mrespon extends CI_Model
     }
 
     public function fetch_data_skpd($limit, $id, $userid_skpd) {
+
+        $this->db->select('saran.id_saran as sis,nama,saran,alamat,tanggal_saran,topik,isSpam,saran.isAktif as sia');
         $this->db->distinct();
-        $this->db->select('*');
         $this->db->from('saran');
         $this->db->where('saran.isSpam', 0);
         $this->db->join('respon', 'saran.id_saran=respon.id_saran');
@@ -78,8 +79,9 @@ class mrespon extends CI_Model
     }
 
     public function fetch_data_unrespon($limit, $id, $userid_skpd) {
+
+        $this->db->select('saran.id_saran as sis,nama,saran,alamat,tanggal_saran,topik,isSpam,saran.isAktif as sia');
         $this->db->distinct();
-        $this->db->select('*');
         $this->db->from('saran');
         $this->db->where('saran.isSpam', 0);
         $this->db->join('respon', 'saran.id_saran=respon.id_saran');
