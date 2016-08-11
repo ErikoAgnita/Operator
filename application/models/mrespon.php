@@ -19,7 +19,8 @@ class mrespon extends CI_Model
         $this->db->select('id_saran');
         $this->db->from('saran');
         $this->db->where('isSpam=0');     
-        
+        $this->db->where('saran.isStatus!=', 'laporan baru');
+
         $num_results = $this->db->count_all_results();
         return $num_results;
     }
@@ -30,6 +31,7 @@ class mrespon extends CI_Model
         $this->db->select('saran.id_saran');
         $this->db->from('saran');
         $this->db->where('saran.isSpam=0');
+        $this->db->where('saran.isStatus!=', 'laporan baru');
         $this->db->join('respon', 'saran.id_saran=respon.id_saran');
         $this->db->where('respon.id_skpd', $userid_skpd); 
         $this->db->group_by('saran.id_saran');
@@ -44,6 +46,7 @@ class mrespon extends CI_Model
         $this->db->select('saran.id_saran');
         $this->db->from('saran');
         $this->db->where('saran.isSpam=0');
+        $this->db->where('saran.isStatus!=', 'laporan baru');
         $this->db->join('respon', 'saran.id_saran=respon.id_saran');
         $this->db->where('respon.id_skpd', $userid_skpd);
         $this->db->where('respon.isi_respon', NULL);        
@@ -57,6 +60,7 @@ class mrespon extends CI_Model
         $this->db->select('saran.id_saran as sis,nama,saran,alamat,tanggal_saran,topik,isSpam,saran.isAktif as sia');
         $this->db->from('saran');
         $this->db->where('isSpam=0');
+        $this->db->where('saran.isStatus!=', 'laporan baru');
         $this->db->limit($limit, $id);
         $this->db->order_by('id_saran', 'desc');
         $query = $this->db->get();
@@ -69,6 +73,7 @@ class mrespon extends CI_Model
         $this->db->distinct();
         $this->db->from('saran');
         $this->db->where('saran.isSpam', 0);
+        $this->db->where('saran.isStatus!=', 'laporan baru');
         $this->db->join('respon', 'saran.id_saran=respon.id_saran');
         $this->db->where('respon.id_skpd', $userid_skpd);
         $this->db->limit($limit, $id);
@@ -84,6 +89,7 @@ class mrespon extends CI_Model
         $this->db->distinct();
         $this->db->from('saran');
         $this->db->where('saran.isSpam', 0);
+        $this->db->where('saran.isStatus!=', 'laporan baru');
         $this->db->join('respon', 'saran.id_saran=respon.id_saran');
         $this->db->where('respon.id_skpd', $userid_skpd);
         $this->db->where('respon.isi_respon', NULL);
