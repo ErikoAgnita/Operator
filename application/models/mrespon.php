@@ -128,7 +128,6 @@ class mrespon extends CI_Model
     {
         $this->db->where('id_saran', $id_saran);
         $this->db->where('isSpam', '0');
-        $this->db->where('isAktif', '1');
         $query = $this->db->get('saran');
         return $query;
     }

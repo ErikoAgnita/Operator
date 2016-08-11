@@ -55,7 +55,7 @@
                 <tr>
                   <td>Tanggal Saran</td>
                   <td>
-                    <span class="notready"><?php echo $row->tanggal_saran;?> WIB</span>
+        <span class='notready'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?></span>
                   </td>
                 </tr>
                 <tr>
@@ -166,7 +166,7 @@
                           <strong><?php echo $row2->nama;?></strong>
                           <?php 
                           if($row2->isi_respon){?>
-                            <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row2->tanggal_respon));?> WIB</span> 
+                            <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row2->tanggal_respon));?></span> 
                           <?php } ?>
                         </span>
                       </div>

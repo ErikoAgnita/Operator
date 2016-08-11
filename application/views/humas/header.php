@@ -190,7 +190,7 @@
           <ul class="site-menu">
             <li class="site-menu-category">Admin</li> </a>
             <li class="site-menu-item">
-              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/lihatawal" data-slug="uikit">
+              <a class="animsition-link" href="<?php echo base_url(); ?>cpengguna/lihatawaladmin" data-slug="uikit">
                 <i class="site-menu-icon wb-user" aria-hidden="true"></i>
                 <span class="site-menu-title">Profil</span>
                 <span class="site-menu "></span>
