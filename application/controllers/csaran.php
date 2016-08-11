@@ -379,6 +379,10 @@ class Csaran extends CI_Controller {
             redirect(base_url()."csaran/lihat/");
         }           
         else{
+            $data = array (
+                'isSpam' => 0,
+                );
+            $this->msaran->publish_saran($id_saran, $data);
             $data['skpd'] = $this->msaran->getskpd();
             $data['id_saran'] = $id_saran;
             $data['saran'] = $this->msaran->detail_saran($id_saran);    

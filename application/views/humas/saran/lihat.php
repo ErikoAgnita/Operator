@@ -59,28 +59,28 @@
                         <div class="pull-right">
                             <div class="btn-group">
                                 <?php 
-                                        if($row->isStatus=='laporan baru'){
+                                        if($row->isStatus=='laporan baru' and $row->isSpam==0 and $row->isAktif==0){
                                             $wrnB = "badge-warning";    $titleB = "Ada pesan baru";
                                             $wrnD = "badge-default";    $titleD = "Belum didisposisikan";
                                             $wrnR = "badge-default";    $titleR = "Belum ada respon";
                                             $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
                                             $wrnS = "badge-default";    $titleS = "Bukan Spam";
                                         }
-                                        else if($row->isStatus=='disposisi'){
-                                            $wrnD = "badge-warning";       $titleD = "Sudah didisposisikan";
+                                        else if($row->isStatus=='disposisi'and $row->isSpam==0){
+                                            $wrnD = "badge-warning";    $titleD = "Sudah didisposisikan";
                                             $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
                                             $wrnR = "badge-default";    $titleR = "Belum ada respon dari SKPD";
                                             $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
                                             $wrnS = "badge-default";    $titleS = "Bukan Spam";
                                         }
-                                        else if($row->isStatus=='respon baru'){
-                                            $wrnR = "badge-warning";       $titleR = "Ada respon dari SKPD";
+                                        else if($row->isStatus=='respon baru'and $row->isSpam==0){
+                                            $wrnR = "badge-warning";    $titleR = "Ada respon dari SKPD";
                                             $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
                                             $wrnD = "badge-default";    $titleD = "Sudah didisposisikan";
                                             $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
                                             $wrnS = "badge-default";    $titleS = "Bukan Spam";
                                         }
-                                        if($row->isSpam==1 && $row->isStatus!='laporan baru'){
+                                        if($row->isSpam==1 ){
                                             $wrnS = "badge-danger";     $titleS = "Pesan Spam";
                                             $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
                                             $wrnR = "badge-default";    $titleR = "Tidak ada respon dari SKPD";
