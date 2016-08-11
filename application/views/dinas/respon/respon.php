@@ -231,7 +231,7 @@ if($saran->result()){?>
                                   <div class="pull-right"> 
                                       <div class="btn-group">
                                         <?php 
-                                            if($row->isAktif==1){
+                                            if($row2->ria==1){
                                                 $wrnP = "badge-success";    $titleP = "Sudah dipublikasikan";
                                             }
                                             else{
