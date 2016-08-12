@@ -71,7 +71,7 @@ class Csaran extends CI_Controller {
             $this->aspirasi();
         }
         else{
-            $this->session->set_flashdata("pesancari","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$cari."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");   
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");   
             $this->load->view('header2');
             $this->load->view('laporan',$data);
             $this->load->view('footer');
@@ -278,7 +278,7 @@ class Csaran extends CI_Controller {
             $this->lihat();
         }
         else{
-            $this->session->set_flashdata("pesancari","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$cari."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             $this->load->view('humas/header');
             $this->load->view('humas/saran/lihat',$data);
             $this->load->view('humas/footer');
@@ -323,7 +323,7 @@ class Csaran extends CI_Controller {
             redirect(base_url()."crespon/dariadmin/all");
         }
         else{   
-            $this->session->set_flashdata("pesancari","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$cari."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             $this->load->view('dinas/header');
             $this->load->view('dinas/respon/dariadmin',$data);
             $this->load->view('dinas/footer');

@@ -34,47 +34,44 @@ class Cskpd extends CI_Controller {
 
 	public function search()
 	{
-	    $this->load->library('form_validation');
-	    $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
-	    $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
-	        
-	    if ($this->form_validation->run() == FALSE){
-	        $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-	        $this->lihat();
-	        
-	    }
-	    else{
-	    	$this->load->database();
-	        $cari = $this->input->POST('cari');
-	        $this->load->library('pagination');
-	        $config = array();
-	        $config['base_url'] = base_url() . "Cskpd/search";
-	        $total_row = $this->mskpd->record_count_search($cari);
-	            //var_dump($total_row);
-	        $config['total_rows'] = $total_row;
-	        $config['per_page'] = 10;
-	        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
-	   	    $config['cur_tag_close'] = '</a>';
-	        $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
-	        $config['next_link'] = '<i class="fa fa-caret-right"></i>';
-	        $config['last_link'] = '<i class="fa fa-forward"></i>';
-	        $config['first_link'] = '<i class="fa fa-backward"></i>';
-	        $config['uri_segment'] = 3;
-	        
-	        $this->pagination->initialize($config);
-	        $strpage = $this->uri->segment(3,0);
-	            
-	        $data['skpd'] = $this->mskpd->pencarian($cari,$config['per_page'],$strpage);
-	        $data['links'] = $this->pagination->create_links();
-	            
-	   	    if($data['skpd'] == NULL || $cari==''){
-	            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-	            //$this->lihat();
-	        }
-	        else{   
-	            $this->load->view('humas/header')->view('humas/skpd/lihat', $data)->view('humas/footer');
-	        }   
-	    }
+    	$this->load->database();
+        $cari = $this->input->POST('cari');
+        $this->load->library('pagination');
+        if (!empty($cari)) {
+            $data['ringkasan'] = $this->input->post('cari');
+            $this->session->set_userdata('sess_ringkasan', $data['ringkasan']);
+        }
+        else {
+            $data['ringkasan'] = $this->session->userdata('sess_ringkasan');
+        }
+        $config = array();
+        $config['base_url'] = base_url() . "Cskpd/search";
+        $total_row = $this->mskpd->record_count_search($data['ringkasan']);
+            //var_dump($total_row);
+        $config['total_rows'] = $total_row;
+        $config['per_page'] = 10;
+        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+   	    $config['cur_tag_close'] = '</a>';
+        $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
+        $config['next_link'] = '<i class="fa fa-caret-right"></i>';
+        $config['last_link'] = '<i class="fa fa-forward"></i>';
+        $config['first_link'] = '<i class="fa fa-backward"></i>';
+        $config['uri_segment'] = 3;
+        
+        $this->pagination->initialize($config);
+        $strpage = $this->uri->segment(3,0);
+            
+        $data['skpd'] = $this->mskpd->pencarian($data['ringkasan'],$config['per_page'],$strpage);
+        $data['links'] = $this->pagination->create_links();
+            
+   	    if($data['skpd'] == NULL){
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            //$this->lihat();
+        }
+        else{   
+        	$this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->load->view('humas/header')->view('humas/skpd/lihat', $data)->view('humas/footer');
+        }   
 	}
 
 	public function tambah()
