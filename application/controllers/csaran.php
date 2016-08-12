@@ -32,49 +32,50 @@ class Csaran extends CI_Controller {
             $this->load->view('footer');
         }
     public function search(){
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
-        $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
         
-        if ($this->form_validation->run() == FALSE){
-            $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-                $this->aspirasi();
-            //echo "asda";
-        }else{
-            $cari = $this->input->post('cari');
-            $this->load->library('pagination');
-            $config = array();
-            $config['base_url'] = base_url() . "csaran/search";
-            $total_row = $this->msaran->record_count_search($cari);
-            //var_dump($total_row);
-            $config['total_rows'] = $total_row;
-            $config['per_page'] = 8;
-            $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
-            $config['cur_tag_close'] = '</a>';
-            $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
-            $config['next_link'] = '<i class="fa fa-caret-right"></i>';
-            $config['last_link'] = '<i class="fa fa-forward"></i>';
-            $config['first_link'] = '<i class="fa fa-backward"></i>';
-            $config['uri_segment'] = 3;
-        
-            $this->pagination->initialize($config);
-            $strpage = $this->uri->segment(3,0);
-            
-            $data['aspirasi'] = $this->msaran->pencarian($cari,$config['per_page'],$strpage);
-            $data['balasan'] = $this->msaran->balasan();
-            $data['links'] = $this->pagination->create_links();
-            
-            if($data['aspirasi'] == NULL || $cari == ''){
-                $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-                $this->aspirasi();
-            }
-            else{   
-                $this->load->view('header2');
-                $this->load->view('laporan',$data);
-                $this->load->view('footer');
-            }
+        $cari = $this->input->post('cari');
+       // echo $cari;
+
+        if (!empty($cari)) {
+            $data['ringkasan'] = $this->input->post('cari');
+            $this->session->set_userdata('sess_ringkasan', $data['ringkasan']);
         }
+        else {
+            $data['ringkasan'] = $this->session->userdata('sess_ringkasan');
+        }
+
+        $this->load->library('pagination');
+        $config = array();
+        $config['base_url'] = base_url() . "csaran/search/";
+        $total_row = $this->msaran->record_count_search($data['ringkasan']);
+        //var_dump($total_row);
+        $config['total_rows'] = $total_row;
+        $config['per_page'] = 8;
+        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+        $config['cur_tag_close'] = '</a>';
+        $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
+        $config['next_link'] = '<i class="fa fa-caret-right"></i>';
+        $config['last_link'] = '<i class="fa fa-forward"></i>';
+        $config['first_link'] = '<i class="fa fa-backward"></i>';
+        $config['uri_segment'] = 3;
+    
+        $this->pagination->initialize($config);
+        $strpage = $this->uri->segment(3,0);
         
+        $data['aspirasi'] = $this->msaran->pencarian($data['ringkasan'],$config['per_page'],$strpage);
+        $data['balasan'] = $this->msaran->balasan();
+        $data['links'] = $this->pagination->create_links();
+        
+        if($data['aspirasi'] == NULL){
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->aspirasi();
+        }
+        else{
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$cari."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");   
+            $this->load->view('header2');
+            $this->load->view('laporan',$data);
+            $this->load->view('footer');
+        }
     }
         public function aspirasi()
         {
@@ -243,92 +244,90 @@ class Csaran extends CI_Controller {
 
     public function search_saran(){     
         $cari = $this->input->post('cari');
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
-        $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
-        
-        if ($this->form_validation->run() == FALSE){
-            $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-                $this->lihat();
-            //echo "asda";
-        }else{
-            $this->load->library('pagination');
-            $config = array();
-            $config['base_url'] = base_url() . "csaran/search_saran";
-            $total_row = $this->msaran->record_count_search_saran($cari);
-            //var_dump($total_row);
-            $config['total_rows'] = $total_row;
-            $config['per_page'] = 7;
-            $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
-            $config['cur_tag_close'] = '</a>';
-            $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
-            $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
-            $config['last_link'] = '<b>>></b>';
-            $config['first_link'] = '<b><<</b>';
-            $config['uri_segment'] = 3;
-        
-            $this->pagination->initialize($config);
-            $strpage = $this->uri->segment(3,0);
-            
-            $data['saran'] = $this->msaran->pencarian_saran($cari,$config['per_page'],$strpage);
-            $data['links'] = $this->pagination->create_links();
-            
-            if($data['saran'] == NULL || $cari == ''){
-                $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-                $this->lihat();
-            }
-            else{   
-                $this->load->view('humas/header');
-                $this->load->view('humas/saran/lihat',$data);
-                $this->load->view('humas/footer');
-            }
+        $this->load->library('pagination');
+        if (!empty($cari)) {
+            $data['ringkasan'] = $this->input->post('cari');
+            $this->session->set_userdata('sess_ringkasan', $data['ringkasan']);
         }
+        else {
+            $data['ringkasan'] = $this->session->userdata('sess_ringkasan');
+        }
+            
+        $config = array();
+        $config['base_url'] = base_url() . "csaran/search_saran";
+        $total_row = $this->msaran->record_count_search_saran($data['ringkasan']);
+        //var_dump($total_row);
+        $config['total_rows'] = $total_row;
+        $config['per_page'] = 7;
+        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+        $config['cur_tag_close'] = '</a>';
+        $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
+        $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
+        $config['last_link'] = '<b>>></b>';
+        $config['first_link'] = '<b><<</b>';
+        $config['uri_segment'] = 3;
+    
+        $this->pagination->initialize($config);
+        $strpage = $this->uri->segment(3,0);
+        
+        $data['saran'] = $this->msaran->pencarian_saran($data['ringkasan'],$config['per_page'],$strpage);
+        $data['links'] = $this->pagination->create_links();
+        
+        if($data['saran'] == NULL){
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->lihat();
+        }
+        else{
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$cari."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->load->view('humas/header');
+            $this->load->view('humas/saran/lihat',$data);
+            $this->load->view('humas/footer');
+        }
+
         
     }
 
     public function search_saranop(){     
-        $cari = $this->input->post('cari');
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
-        $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
-        
-        if ($this->form_validation->run() == FALSE){
-            $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-                $this->lihat();
-            //echo "asda";
-        }else{
-            $this->load->library('pagination');
-            $config = array();
-            $config['base_url'] = base_url() . "csaran/search_saranop";
-            $total_row = $this->msaran->record_count_searchop($cari);
-            //var_dump($total_row);
-            $config['total_rows'] = $total_row;
-            $config['per_page'] = 7;
-            $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
-            $config['cur_tag_close'] = '</a>';
-            $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
-            $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
-            $config['last_link'] = '<b>>></b>';
-            $config['first_link'] = '<b><<</b>';
-            $config['uri_segment'] = 3;
-        
-            $this->pagination->initialize($config);
-            $strpage = $this->uri->segment(3,0);
-           
-            $data['saran'] = $this->msaran->pencarianop($cari,$config['per_page'],$strpage);
-            $data['links'] = $this->pagination->create_links();
-            
-            if($data['saran'] == NULL || $cari == ''){
-                $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-                redirect(base_url()."crespon/dariadmin/all");
-            }
-            else{   
-                $this->load->view('dinas/header');
-                $this->load->view('dinas/respon/dariadmin',$data);
-                $this->load->view('dinas/footer');
-            }
+        $cari = $this->input->post('cari');       
+        $this->load->library('pagination');
+        if (!empty($cari)) {
+            $data['ringkasan'] = $this->input->post('cari');
+            $this->session->set_userdata('sess_ringkasan', $data['ringkasan']);
+        }
+        else {
+            $data['ringkasan'] = $this->session->userdata('sess_ringkasan');
         }
         
+        $config = array();
+        $config['base_url'] = base_url() . "csaran/search_saranop";
+        $total_row = $this->msaran->record_count_searchop($data['ringkasan']);
+        //var_dump($total_row);
+        $config['total_rows'] = $total_row;
+        $config['per_page'] = 7;
+        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+        $config['cur_tag_close'] = '</a>';
+        $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
+        $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
+        $config['last_link'] = '<b>>></b>';
+        $config['first_link'] = '<b><<</b>';
+        $config['uri_segment'] = 3;
+    
+        $this->pagination->initialize($config);
+        $strpage = $this->uri->segment(3,0);
+       
+        $data['saran'] = $this->msaran->pencarianop($data['ringkasan'],$config['per_page'],$strpage);
+        $data['links'] = $this->pagination->create_links();
+        
+        if($data['saran'] == NULL){
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            redirect(base_url()."crespon/dariadmin/all");
+        }
+        else{   
+            $this->session->set_flashdata("pesancari","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$cari."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->load->view('dinas/header');
+            $this->load->view('dinas/respon/dariadmin',$data);
+            $this->load->view('dinas/footer');
+        }
     }
 
     public function detail($id_saran)
@@ -415,7 +414,5 @@ class Csaran extends CI_Controller {
             }
         }
         redirect(base_url()."csaran/detail/".$id_saran);
-    }
-
-    
+    }   
 }
