@@ -76,7 +76,7 @@ class msaran extends CI_Model {
     //search di operator
     function pencarianop($cari, $limit, $id){
         
-        $query = $this->db->query("SELECT * FROM saran WHERE IsSpam = '0' and (nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%') LIMIT $limit OFFSET $id");
+        $query = $this->db->query("SELECT id_saran as sis,nama,saran,alamat,tanggal_saran,topik,isSpam, isAktif as sia FROM saran WHERE IsSpam = '0' and (nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%') LIMIT $limit OFFSET $id");
         if ($query->num_rows() > 0) {
             return $query->result();
         }

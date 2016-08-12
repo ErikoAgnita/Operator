@@ -52,7 +52,7 @@ class Cskpd extends CI_Controller {
 	        $total_row = $this->mskpd->record_count_search($cari);
 	            //var_dump($total_row);
 	        $config['total_rows'] = $total_row;
-	        $config['per_page'] = 1;
+	        $config['per_page'] = 10;
 	        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
 	   	    $config['cur_tag_close'] = '</a>';
 	        $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
