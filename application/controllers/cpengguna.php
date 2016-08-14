@@ -12,10 +12,10 @@ class Cpengguna extends CI_Controller {
 
     public function lihat()
     {
-        $this->load->database();
+       $this->load->database();
         $jumlah_data = $this->mpengguna->jumlah_data();
         $this->load->library('pagination');
-        $config['base_url'] = base_url().'index.php/cpengguna/lihat/';
+        $config['base_url'] = base_url().'Cpengguna/lihat/';
         $config['total_rows'] = $jumlah_data;
         $config['per_page'] = 10;
         
@@ -142,7 +142,7 @@ class Cpengguna extends CI_Controller {
             $id_skpd = $this->input->post('id_skpd');
             $username = $this->input->post('username');
             $password = md5(md5($this->input->post('password'))."UnS1h6e@hXh");
-            $kode_unit = $this->input->post('kode_unit');
+            //$kode_unit = $this->input->post('kode_unit');
             $level = $this->input->post('level');
             $nama = $this->input->post('nama');
             $alamat = $this->input->post('alamat');
@@ -155,7 +155,7 @@ class Cpengguna extends CI_Controller {
                 'id_skpd' => $id_skpd,
                 'username' => $username,
                 'password' => $password,
-                'kode_unit'=> $kode_unit,
+               // 'kode_unit'=> $kode_unit,
                 'level' => $level,
                 'nama' => $nama,
                 'alamat' => $alamat,
@@ -238,6 +238,7 @@ class Cpengguna extends CI_Controller {
      public function hapus($id_pengguna)
     {
         $this->mpengguna->DeletePengguna($id_pengguna);
+        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Data pengguna berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Cpengguna/lihat');
     }
     /*public function detail($id_pengguna)

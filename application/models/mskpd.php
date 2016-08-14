@@ -64,4 +64,12 @@ class Mskpd extends CI_Model {
 		$this->db->where('id_skpd', $id_skpd);
 		$this->db->delete('skpd');
 	}
+
+    public function HapusSKPD($id){
+        $query = $this->db->query("SELECT skpd.id_skpd FROM skpd RIGHT JOIN pengguna on skpd.id_skpd = pengguna.id_skpd WHERE skpd.id_skpd = '$id' ");
+         if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
 }

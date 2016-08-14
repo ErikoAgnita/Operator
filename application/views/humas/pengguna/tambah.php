@@ -34,6 +34,7 @@
                           ?>
                     </div>
                       <div class="form-group">
+                        <input type="hidden" name="kode_unit">
                         <label class="control-label" for="inputBasicKodeUnit">SKPD</label>
                         <div>
                           <select class="form-control" name="id_skpd" required="off">

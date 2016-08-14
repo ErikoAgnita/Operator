@@ -44,8 +44,10 @@ class Mkecamatan extends CI_Model {
     }
     public function record_count_search($cari) {
         $condition = "nama_kecamatan LIKE '%$cari%' ";
+        $this->db->select('kode_kecamatan');
+        $this->db->from('kecamatan');
         $this->db->where($condition);
-        return $this->db->count_all_results('kecamatan');
+        return $this->db->count_all_results();
     }
 
     public function update($id_kode_kecamatan){
@@ -64,6 +66,14 @@ class Mkecamatan extends CI_Model {
     public function getById($id_kode_kecamatan){
         $query = $this->db->get_where('kecamatan', array('kode_kecamatan' =>$id_kode_kecamatan));
 
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
+
+    public function hapuskec($kodeKec){
+        $query = $this->db->query("SELECT kecamatan.kode_kecamatan FROM kecamatan RIGHT JOIN kelurahan on kecamatan.kode_kecamatan = kelurahan.kode_kecamatan WHERE kecamatan.kode_kecamatan = '$kodeKec' ");
         if ($query->num_rows() > 0) {
             return $query->result();
         }

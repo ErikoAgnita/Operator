@@ -18,6 +18,7 @@
      </form>
    </br>
      <?php echo $this->session->flashdata('pengpesan'); ?>
+     <?php echo $this->session->flashdata('pesan'); ?>
       <!-- Panel Basic -->
       <div class="panel">
         <header class="panel-heading">

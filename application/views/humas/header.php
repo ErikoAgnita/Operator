@@ -73,7 +73,6 @@
     }
   </style>
 
-
   <!--[if lt IE 9]>
     <script src="../../assets/vendor/html5shiv/html5shiv.min.js"></script>
     <![endif]-->

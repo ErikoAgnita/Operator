@@ -16,12 +16,19 @@ class Mpengguna extends CI_Model {
 	}
 
 	public function GetPengguna($number, $offset){
-	   $query = $this->db->query(('SELECT p.id_pengguna, p.username, p.password, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas, p.level, p.keterangan from pengguna p, skpd s where p.id_skpd=s.id_skpd order by nama_pengguna ASC'), $number, $offset);
-	   return $query->result();
+	   //$query = $this->db->query(('SELECT p.id_pengguna, p.username, p.password, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas, p.level, p.keterangan from pengguna p, skpd s where p.id_skpd=s.id_skpd order by nama_pengguna ASC'), $number, $offset);
+	    $this->db->select('p.id_pengguna, p.username, p.password, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas, p.level, p.keterangan');
+        $this->db->from('pengguna p');
+        $this->db->join('skpd s', 's.id_skpd=p.id_skpd');
+        $this->db->order_by('p.nama', 'ASC');
+        $this->db->limit($number, $offset);
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function jumlah_data(){
-        return $this->db->get('pengguna')->num_rows();
+        $this->db->join('skpd s', 'p.id_skpd=s.id_skpd');
+        return $this->db->count_all_results('pengguna p');
     }
 
 	public function AddPengguna($data, $table){
@@ -31,6 +38,21 @@ class Mpengguna extends CI_Model {
 	public function data_skpd(){
 		return $this->db->get('skpd');
 	}
+
+    public function kodeUnit($id){
+        return $this->db->query("SELECT skpd.kodeUnit FROM skpd RIGHT JOIN pengguna ON skpd.id_skpd=pengguna.id_skpd WHERE pengguna.id_skpd='$id' ")->num_rows();
+        /*if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;*/
+    }
+
+    public function AddKodeUnit($id_pengguna, $data){
+       //$this->db->insert('pengguna', $kode_unit );
+        //$this->db->where('id_pengguna', $id_pengguna);
+        //$this->db->update('pengguna', $data);
+       return $this->db->query("UPDATE pengguna SET kode_unit='$data' WHERE id_pengguna='$id_pengguna' ");
+    }
 
 	public function UpdatePengguna($where, $table){
 		return $this->db->get_where($table, $where);

@@ -15,7 +15,7 @@ class Ckelurahan extends CI_Controller {
         $this->load->database();
         $jumlah_data = $this->mkelurahan->jumlah_data();
         $this->load->library('pagination');
-        $config['base_url'] = base_url().'index.php/Ckelurahan/lihat/';
+        $config['base_url'] = base_url().'Ckelurahan/lihat/';
         $config['total_rows'] = $jumlah_data;
         $config['per_page'] = 10;
         
@@ -36,25 +36,22 @@ class Ckelurahan extends CI_Controller {
 
     public function search()
     {
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('cari','Pencarian','trim|regex_match[/^[a-zA-Z .0-9]{1,100}$/]');
-        $this->form_validation->set_message('regex_match', '{field} tidak ditemukan');
-            
-        if ($this->form_validation->run() == FALSE){
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-            $this->lihat();
-            
+        $this->load->database();
+        $cari = $this->input->POST('cari');
+        if (!empty($cari)) {
+            $data['ringkasan'] = $this->input->post('cari');
+            $this->session->set_userdata('sess_ringkasan', $data['ringkasan']);
         }
-        else{
-            $this->load->database();
-            $cari = $this->input->post('cari');
+        else {
+            $data['ringkasan'] = $this->session->userdata('sess_ringkasan');
+        }
             $this->load->library('pagination');
             $config = array();
             $config['base_url'] = base_url() . "Ckelurahan/search";
-            $total_row = $this->mkelurahan->record_count_search($cari);
+            $total_row = $this->mkelurahan->record_count_search($data['ringkasan']);
                 //var_dump($total_row);
             $config['total_rows'] = $total_row;
-            $config['per_page'] = 5;
+            $config['per_page'] = 10;
             $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
             $config['cur_tag_close'] = '</a>';
             $config['prev_link'] = '<i class="fa fa-caret-left"></i>';
@@ -65,18 +62,18 @@ class Ckelurahan extends CI_Controller {
             
             $this->pagination->initialize($config);
             $strpage = $this->uri->segment(3,0);
-                
-            $data['kelurahan'] = $this->mkelurahan->pencarian($cari,$config['per_page'],$strpage);
+
+            $data['kelurahan'] = $this->mkelurahan->pencarian($data['ringkasan'],$config['per_page'],$strpage);
             $data['links'] = $this->pagination->create_links();
-                
-            if($data['kelurahan'] == NULL || $cari==''){
-                $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+
+            if($data['kelurahan'] == NULL ){
+                $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
                 $this->lihat();
             }
             else{   
+                $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
                 $this->load->view('humas/header')->view('humas/kelurahan/lihat', $data)->view('humas/footer');
             }   
-        }
     }
 
     public function tambah()
@@ -160,6 +157,7 @@ class Ckelurahan extends CI_Controller {
     public function hapus($kode_kelurahan)
     {
         $this->mkelurahan->DeleteKelurahan($kode_kelurahan);
+        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Data kelurahan berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Ckelurahan/lihat');
     }
 
