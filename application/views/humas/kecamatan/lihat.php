@@ -32,7 +32,7 @@
                 <th>No</th>
                 <th>Kode Kecamatan</th>
                 <th>Nama Kecamatan</th>
-                <th>isAktif</th>
+                <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>            
@@ -43,7 +43,12 @@
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $re->kode_kecamatan;?></td>
                 <td><?php echo $re->nama_kecamatan;?></td>
-                <td><?php echo $re->isAktif;?></td>
+                <td><?php if($re->isAktif==1){
+                        echo "<span class=\"label label-success\">Aktif</span>";
+                    }
+                    else echo "<span class=\"label label-default\">Tidak Aktif</span>";
+              
+              ?></td>
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
                     <a href="<?php echo base_url(); ?>Ckecamatan/update/<?php echo $re->kode_kecamatan;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>

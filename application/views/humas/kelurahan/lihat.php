@@ -34,7 +34,7 @@
                 <th>Nama Kecamatan</th>
                 <th>Kode Kelurahan</th>
                 <th>Nama Kelurahan</th>
-                <th>isAktif</th>
+                <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>            
@@ -47,7 +47,12 @@
                 <td><?php echo $row->nama_kecamatan;?></td>
                 <td><?php echo $row->kode_kelurahan;?></td>
                 <td><?php echo $row->nama_kelurahan;?></td>
-                <td><?php echo $row->isAktif;?></td>
+                <td><?php if($row->isAktif==1){
+                        echo "<span class=\"label label-success\">Aktif</span>";
+                    }
+                    else echo "<span class=\"label label-default\">Tidak Aktif</span>";
+              
+              ?></td>
                 <td class="text-nowrap">
                   <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Ubah">
                     <a href="<?php echo base_url(); ?>Ckelurahan/update/<?php echo $row->kode_kelurahan;?>"><i class="icon wb-wrench" aria-hidden="true"></i></a>

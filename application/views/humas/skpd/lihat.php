@@ -34,7 +34,7 @@
                 <th scope="col">Nama Dinas</th>
                 <th scope="col">Alamat Dinas</th>
                 <th scope="col">Telepon</th>
-                <th scope="col">Email</th>
+                <th scope="col">Status</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>            
@@ -47,7 +47,12 @@
                 <td scope="row"><?php echo $row->nama;?></td>
                 <td scope="row"><?php echo $row->alamat;?></td>
                 <td scope="row"><?php echo $row->telepon;?></td>                
-                <td scope="row"><?php echo $row->email;?></td>
+                <td><?php if($row->isAktif==1){
+                        echo "<span class=\"label label-success\">Aktif</span>";
+                    }
+                    else echo "<span class=\"label label-default\">Tidak Aktif</span>";
+              
+              ?></td>
                 <td class="text-nowrap" scope="row">
                    <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Detail">
                     <a href="#myModal<?php echo $row->id_skpd;?>" data-toggle="modal"><i class="icon wb-eye" aria-hidden="true"></i></a>
@@ -120,7 +125,7 @@
           <td><?php echo $row->last_update; ?></td>
         </tr>
         <tr>
-          <td>Keterangan</td>
+          <td>Status</td>
           <td><?php if($row->isAktif==1){
                         echo "<span class=\"label label-success\">Aktif</span>";
                     }

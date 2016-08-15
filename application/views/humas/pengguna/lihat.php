@@ -31,13 +31,11 @@
             <thead>
               <tr>
                 <th>No</th>
+                <th>Username</th>
                 <th>Nama</th>
-                <th>Alamat</th>
-                <th>Handphone</th>
-                <th>Email</th>
                 <th>Bagian SKPD</th>
                 <th>Level</th>
-                <th>Keterangan</th>
+                <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>            
@@ -46,13 +44,16 @@
               <?php foreach ($pengguna as $row){?>
               <tr>
                 <td><?php echo $no++ ?></td>
+                <td><?php echo $row->username; ?></td>
                 <td><?php echo $row->nama_pengguna;?></td>
-                <td><?php echo $row->alamat;?></td>
-                <td><?php echo $row->handphone;?></td>
-                <td><?php echo $row->email;?></td>
                 <td><?php echo $row->nama_dinas;?></td>
-                <td><?php echo $row->level;?></td>                
-                <td><?php echo $row->keterangan;?></td>
+                <td><?php echo $row->level;?></td>
+                <td><?php if($row->isAktif==1){
+                        echo "<span class=\"label label-success\">Aktif</span>";
+                    }
+                    else echo "<span class=\"label label-default\">Tidak Aktif</span>";
+                  ?>
+              </td>               
                  <td class="text-nowrap">
                   <!-- Trigger the modal with a button -->
                   <!-- <button href="#" type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="modal" data-original-title="Detail" data-target="#myModal"><i class="icon wb-eye" aria-hidden="true"></i> -->
@@ -133,7 +134,7 @@
           <td><?php echo $row->level; ?></td>
         </tr>
         <tr>
-          <td>isAktif</td>
+          <td>Status</td>
           <td><?php if($row->isAktif==1){
                         echo "<span class=\"label label-success\">Aktif</span>";
                     }
