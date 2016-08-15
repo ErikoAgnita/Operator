@@ -154,15 +154,12 @@ class Ckecamatan extends CI_Controller {
     {
         $data['kecamatan'] = $this->mkecamatan->hapuskec($kode_kecamatan);
         if($data['kecamatan']==NULL){
-          echo "sukses";
           $this->mkecamatan->DeleteKecamatan($kode_kecamatan);
-          $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Data kecamatan berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-          //alert("Berhasil menghapus");
+          $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Kecamatan dengan kode ".$kode_kecamatan." berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
           redirect('Ckecamatan/lihat');
         }
         else{
-            //alert("Gagal menghapus");
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-danger\" id=\"alert\">Data kecamatan gagal dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesan","<div class=\"alert alert-danger\" id=\"alert\">Kecamatan dengan kode ".$kode_kecamatan." gagal dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             redirect('Ckecamatan/lihat');
         }
         

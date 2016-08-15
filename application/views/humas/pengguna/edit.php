@@ -19,7 +19,7 @@
               <form action="<?php echo base_url(). 'Cpengguna/do_update'; ?>" method="post" autocomplete="off">
 				<div class="col-sm-6">
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicUsername">Username</label>
+                        <label class="control-label" for="inputBasicUsername">Username<span style="color:red">*</span></label>
                         <input type="hidden" name="id_pengguna" value="<?php echo $p->id_pengguna ?>">
                         <input type="text" class="form-control" id="inputBasicUsername" value="<?php echo $p->username ?>" name="username"
                          autocomplete="off" />
@@ -28,7 +28,7 @@
                           ?>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicLevel">SKPD</label>
+                        <label class="control-label" for="inputBasicLevel">SKPD<span style="color:red">*</span></label>
                         <div>
                           <select class="form-control" name="id_skpd" required="off">
                             <?php  foreach ($skpd_data->result() as $row){ 
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicLevel">Level</label>
+                        <label class="control-label" for="inputBasicLevel">Level<span style="color:red">*</span></label>
                         <div>
                           <select class="form-control" name="level" required="off">
                             <?php if( $pengguna->level=='Admin') { ?>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                     <label class="control-label" for="inputBasicNama">Nama Pengguna</label>
+                     <label class="control-label" for="inputBasicNama">Nama Pengguna<span style="color:red">*</span></label>
                       <input type="text" class="form-control" id="inputBasicNama" value="<?php echo $p->nama ?>" name="nama"
                        autocomplete="off" />
                        <?php
@@ -71,6 +71,10 @@
                           echo form_error('alamat','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                           ?>
                     </div>
+                     <div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
 				</div>
 				<div class="col-sm-6">
                     

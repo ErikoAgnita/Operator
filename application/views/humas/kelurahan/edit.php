@@ -20,7 +20,7 @@
                   <form action="<?php echo base_url(). 'Ckelurahan/do_update/'.$kel->kode_kelurahan; ?>" method="post" autocomplete="off">
                     
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicLevel">Kecamatan</label>
+                        <label class="control-label" for="inputBasicLevel">Kecamatan<span style="color:red">*</span></label>
                         <div>
                           <select class="form-control" name="kode_kecamatan" required="off">
                             <?php  foreach ($data_kecamatan->result() as $row){ 
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicKodeKelurahan">Kode Kelurahan</label>
+                        <label class="control-label" for="inputBasicKodeKelurahan">Kode Kelurahan<span style="color:red">*</span></label>
                         <input type="text" class="form-control" id="inputBasicKodeKelurahan" value="<?php echo $kel->kode_kelurahan ?>" name="kode_kelurahan"
                          autocomplete="off" />
                     </div>
@@ -43,7 +43,7 @@
                       echo form_error('kode_kelurahan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                       ?>
                     <div class="form-group">
-                      <label class="control-label" for="inputBasicKelurahan<">Nama Kelurahan</label>
+                      <label class="control-label" for="inputBasicKelurahan<">Nama Kelurahan<span style="color:red">*</span></label>
                       <input type="text" class="form-control" id="inputBasicKelurahan<" value="<?php echo $kel->nama_kelurahan ?>" name="nama_kelurahan"
                        autocomplete="off" />
                     </div>
@@ -73,6 +73,10 @@
                     <div class="form-group">
                             <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
                     </div>
+                     <div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
                   </form>
                  <?php } ?>
                 </div>

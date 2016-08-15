@@ -83,7 +83,7 @@ class Cskpd extends CI_Controller {
 	{
 		$this->load->library('form_validation');
         $this->load->library('session');
-        $this->form_validation->set_rules('kodeUnit', 'kodeUnit', 'trim|max_length[25]|regex_match[/^[a-z]{0,25}$/]');
+        $this->form_validation->set_rules('kodeUnit', 'kodeUnit', 'trim|max_length[25]|regex_match[/^[a-z]{0,25}$/]|required');
         $this->form_validation->set_rules('bagian', 'Bagian', 'trim|max_length[50]');
         $this->form_validation->set_rules('bentuk', 'Bentuk', 'trim|max_length[25]');
         $this->form_validation->set_rules('nama', 'Nama', 'trim|max_length[100]|required|regex_match[/^[a-zA-Z .]{1,100}$/]');
@@ -147,7 +147,7 @@ class Cskpd extends CI_Controller {
 	{
 		$this->load->library('form_validation');
         $this->load->library('session');
-        $this->form_validation->set_rules('kodeUnit', 'kodeUnit', 'trim|max_length[25]|regex_match[/^[a-z]{0,25}$/]');
+        $this->form_validation->set_rules('kodeUnit', 'kodeUnit', 'trim|max_length[25]|regex_match[/^[a-z]{0,25}$/]|required');
         $this->form_validation->set_rules('bagian', 'Bagian', 'trim|max_length[50]');
         $this->form_validation->set_rules('bentuk', 'Bentuk', 'trim|max_length[25]');
         $this->form_validation->set_rules('nama', 'Nama', 'trim|max_length[100]|required|regex_match[/^[a-zA-Z .]{1,100}$/]');
@@ -211,7 +211,7 @@ class Cskpd extends CI_Controller {
          $data['skpd'] = $this->mskpd->HapusSKPD($id_skpd);
         if($data['skpd']==NULL){
           $$this->mskpd->DeleteSKPD($id_skpd);
-          $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Data SKPD berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+          $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Data SKPD dengan berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
           redirect('Cskpd/lihat');
         }
         else{

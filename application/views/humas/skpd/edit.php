@@ -19,7 +19,7 @@
           <div class="row row-lg">
             <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicKodeUnit">Kode Unit</label>
+                        <label class="control-label" for="inputBasicKodeUnit">Kode Unit<span style="color:red">*</span></label>
                         <input type="hidden" name="id_skpd" value="<?php echo $s->id_skpd ?>">
                         <input type="text" class="form-control" id="inputBasicKodeUnit" value="<?php echo $s->kodeUnit ?>" name="kodeUnit"
                          autocomplete="off" />
@@ -36,7 +36,7 @@
                         ?>
                     </div>
                     <div class="form-group">
-                      <label class="control-label" for="inputBasicNama">Nama SKPD</label>
+                      <label class="control-label" for="inputBasicNama">Nama SKPD<span style="color:red">*</span></label>
                       <input type="text" class="form-control" id="inputBasicNama" value="<?php echo $s->nama ?>" name="nama"
                        autocomplete="off" />
                        <?php
@@ -59,7 +59,10 @@
                          echo form_error('telepon','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                         ?>
                     </div>
-                
+                <div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
                     
             </div>
               <div class="col-sm-6">

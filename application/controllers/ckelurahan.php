@@ -157,7 +157,7 @@ class Ckelurahan extends CI_Controller {
     public function hapus($kode_kelurahan)
     {
         $this->mkelurahan->DeleteKelurahan($kode_kelurahan);
-        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Data kelurahan berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Kelurahan dengan kode ".$kode_kelurahan." berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Ckelurahan/lihat');
     }
 

@@ -28,7 +28,7 @@
           </div>
             <input type="hidden" name="id_pengguna" value="<?php echo $p->id_pengguna; ?>"/>
           <div class="form-group">
-            <label class="control-label" for="inputBasicPassword">Masukan Password Baru</label>
+            <label class="control-label" for="inputBasicPassword">Masukan Password Baru<span style="color:red">*</span></label>
             <input type="password" class="form-control" id="inputBasicPassword" name="password"
                    autocomplete="off" value="<?php echo set_value('password'); ?>"/>
               <?php
@@ -36,7 +36,7 @@
                 ?>
           </div>
           <div class="form-group">
-            <label class="control-label" for="inputBasicKonfirmasiPassword">Konfirmasi Password</label>
+            <label class="control-label" for="inputBasicKonfirmasiPassword">Konfirmasi Password<span style="color:red">*</span></label>
             <input type="password" class="form-control" id="inputBasicKonfirmasiPassword" name="konfir_password"
                    autocomplete="off" />
               <?php
@@ -47,6 +47,11 @@
           <div class="form-group">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
          </div>
+
+          <div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
       </form>
        </div>
        <?php } ?>

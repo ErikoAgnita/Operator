@@ -119,7 +119,7 @@ class Cpengguna extends CI_Controller {
     {
         $this->load->library('form_validation');
         $this->load->library('session');
-        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z0-9]{0,25}$/]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z0-9]{0,25}$/]|callback_username_sudah_terpakai');
         $this->form_validation->set_rules('password', 'Password', 'trim|max_length[50]|required');
         $this->form_validation->set_rules('level', 'Level', 'trim|required');
         $this->form_validation->set_rules('nama', 'Nama', 'trim|max_length[100]|required|regex_match[/^[a-zA-Z .]{1,100}$/]');
@@ -183,7 +183,7 @@ class Cpengguna extends CI_Controller {
     {
         $this->load->library('form_validation');
         $this->load->library('session');
-        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z0-9]{0,25}$/]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|max_length[25]|required|regex_match[/^[a-zA-Z0-9]{0,25}$/]|callback_username_terpakai');
         $this->form_validation->set_rules('level', 'Level', 'trim|max_length[25]|required');
         $this->form_validation->set_rules('nama', 'Nama', 'trim|max_length[100]|required|regex_match[/^[a-zA-Z .]{1,100}$/]');
         $this->form_validation->set_rules('alamat', 'Alamat', 'trim|max_length[255]|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
@@ -235,7 +235,20 @@ class Cpengguna extends CI_Controller {
         }
     }
 
-     public function hapus($id_pengguna)
+    public function username_terpakai()
+    {
+        $id = $this->input->post('id_pengguna');
+        $username=$this->input->post('username');
+        $result=$this->mpengguna->check_username_exist($username, $id);
+        if($result){
+            $this->form_validation->set_message('username_terpakai', 'Username sudah digunakan. Silahkan isi username yang lain');
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public function hapus($id_pengguna)
     {
         $this->mpengguna->DeletePengguna($id_pengguna);
         $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Data pengguna berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
@@ -460,4 +473,5 @@ class Cpengguna extends CI_Controller {
             return true;
         }
     }
+
 }

@@ -20,7 +20,7 @@
                   
                   <form action="<?php echo base_url(). 'Ckecamatan/do_update/'.$kec->kode_kecamatan; ?>" method="post" autocomplete="off">
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicKodeKecamatan">Kode Kecamatan</label>
+                        <label class="control-label" for="inputBasicKodeKecamatan">Kode Kecamatan<span style="color:red">*</span></label>
                         <input type="text" class="form-control" id="inputBasicKodeKecamatan" value="<?php echo $kec->kode_kecamatan ?>" name="kode_kecamatan"
                          autocomplete="off" />
                       <?php
@@ -28,7 +28,7 @@
                       ?>
                     </div>
                      <div class="form-group">
-                      <label class="control-label" for="inputBasicKecamatan">Nama Kecamatan</label>
+                      <label class="control-label" for="inputBasicKecamatan">Nama Kecamatan<span style="color:red">*</span></label>
                       <input type="text" class="form-control" id="inputBasicKecamatan" value="<?php echo $kec->nama_kecamatan ?>" name="nama_kecamatan"
                        autocomplete="off" />
                       <?php
@@ -57,6 +57,10 @@
                     <div class="form-group">
                      <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
                     </div>
+                     <div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
                   </form>
                  <?php } ?>
                 </div>

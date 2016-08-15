@@ -47,7 +47,7 @@ class Mskpd extends CI_Model {
         return $query;*/
     }
     public function record_count_search($cari) {
-        $condition = "nama LIKE '%$cari%' or kodeUnit like '%cari'";
+        $condition = "nama LIKE '%$cari%' or kodeUnit like '%$cari%'";
         //$this->db->where($condition);
         //return $this->db->count_all_results('skpd');
             //return $query->result();

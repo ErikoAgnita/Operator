@@ -241,7 +241,7 @@
                 <li class="site-menu-item">
                   <a class="animsition-link" href="<?php echo base_url(); ?>Cskpd/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Buat SKPD</span>
+                    <span class="site-menu-title">Tambah SKPD</span>
                   </a>
                 </li>
               </ul>
@@ -263,7 +263,7 @@
                 <li class="site-menu-item">
                   <a class="animsition-link" href="<?php echo base_url(); ?>Ckecamatan/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Buat Kecamatan</span>
+                    <span class="site-menu-title">Tambah Kecamatan</span>
                   </a>
                 </li>
               </ul>
@@ -285,7 +285,7 @@
                 <li class="site-menu-item">
                   <a class="animsition-link" href="<?php echo base_url(); ?>Ckelurahan/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Buat Kelurahan</span>
+                    <span class="site-menu-title">Tambah Kelurahan</span>
                   </a>
                 </li>
               </ul>
@@ -307,7 +307,7 @@
                 <li class="site-menu-item">
                   <a class="animsition-link" href="<?php echo base_url(); ?>Cpengguna/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Buat Pengguna</span>
+                    <span class="site-menu-title">Tambah Pengguna</span>
                   </a>
                 </li>
               </ul>

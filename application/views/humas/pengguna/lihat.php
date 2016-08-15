@@ -133,13 +133,17 @@
           <td><?php echo $row->level; ?></td>
         </tr>
         <tr>
-          <td>Keterangan</td>
+          <td>isAktif</td>
           <td><?php if($row->isAktif==1){
                         echo "<span class=\"label label-success\">Aktif</span>";
                     }
                     else echo "<span class=\"label label-default\">Tidak Aktif</span>";
               
               ?></td>
+        </tr>
+        <tr>
+          <td>Keterangan</td>
+          <td><?php echo $row->keterangan; ?></td>
         </tr>
         <br>
 </table>

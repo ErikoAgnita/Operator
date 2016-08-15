@@ -18,7 +18,7 @@
                 <div class="example">
             <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicUsername">Username</label>
+                        <label class="control-label" for="inputBasicUsername">Username<span style="color:red">*</span></label>
                         <input type="text" class="form-control" id="inputBasicUsername" name="username" value="<?php echo set_value('username'); ?>"
                         placeholder="vira" autocomplete="off" />
                      <?php
@@ -26,7 +26,7 @@
                           ?>
                     </div>
                      <div class="form-group">
-                      <label class="control-label" for="inputBasicPassword">Password</label>
+                      <label class="control-label" for="inputBasicPassword">Password<span style="color:red">*</span></label>
                       <input type="password" class="form-control" id="inputBasicPassword" name="password" value="<?php echo set_value('password'); ?>"
                        autocomplete="off" />
                         <?php
@@ -35,7 +35,7 @@
                     </div>
                       <div class="form-group">
                         <input type="hidden" name="kode_unit">
-                        <label class="control-label" for="inputBasicKodeUnit">SKPD</label>
+                        <label class="control-label" for="inputBasicKodeUnit">SKPD<span style="color:red">*</span></label>
                         <div>
                           <select class="form-control" name="id_skpd" required="off">
                             <option value="disabled selected">-Pilih SKPD-</option>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="inputBasicLevel">Level</label>
+                        <label class="control-label" for="inputBasicLevel">Level<span style="color:red">*</span></label>
                         <div>
                           <select class="form-control" name="level" required="off">
                             <option value="disabled selected">-Pilih Level-</option>
@@ -59,13 +59,17 @@
                           ?>
                     </div>
                     <div class="form-group">
-                      <label class="control-label" for="inputBasicNama">Nama Pengguna</label>
+                      <label class="control-label" for="inputBasicNama">Nama Pengguna<span style="color:red">*</span></label>
                       <input type="text" class="form-control" id="inputBasicNama" name="nama" value="<?php echo set_value('nama'); ?>"
                        placeholder="VIRA WIENA" autocomplete="off" />
                         <?php
                           echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                           ?>
                     </div>
+                     <div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
             </div>
                     <div class="col-sm-6">
                     <div class="form-group">
@@ -113,7 +117,6 @@
                             <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>
                         </div>
                     </div>
-                
             </div>
                   </div>
               </div>

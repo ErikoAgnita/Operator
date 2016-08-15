@@ -17,7 +17,7 @@
                                     <div class="col-sm-6">
                                     <!-- Example Basic Form -->
                                         <div class="form-group">
-                                            <label class="control-label" for="inputBasicKodeUnit">Kode Unit</label>
+                                            <label class="control-label" for="inputBasicKodeUnit">Kode Unit<span style="color:red">*</span></label>
                                             <input type="text" class="form-control" id="inputBasicKodeUnit" name="kodeUnit" value="<?php echo set_value('kodeUnit'); ?>" placeholder="humas" autocomplete="off" />
                                          <?php
                                           echo form_error('kodeUnit','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -31,7 +31,7 @@
                                           ?>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="inputBasicNama">Nama SKPD</label>
+                                            <label class="control-label" for="inputBasicNama">Nama SKPD<span style="color:red">*</span></label>
                                             <input type="text" class="form-control" id="inputBasicNama" name="nama" value="<?php echo set_value('nama'); ?>" placeholder="Bagian Hubungan Masyarakat Setda" autocomplete="off" />
                                         <?php
                                         echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -44,6 +44,10 @@
                                         echo form_error('alamat','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                         ?>
                                         </div>
+                                        <div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
                                     <!-- End Example Basic Form -->
                                     </div>
                                     <div class="col-sm-6">
