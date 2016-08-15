@@ -164,7 +164,7 @@ class msaran extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('skpd');
-        $this->db->order_by('nama', 'asc');
+        $this->db->order_by('kodeUnit', 'asc');
         $query = $this->db->get();
         return $query;
     }
