@@ -91,15 +91,6 @@
 
     <style>
         
-        /* jssor slider arrow navigator skin 05 css */
-        /*
-        .jssora05l                  (normal)
-        .jssora05r                  (normal)
-        .jssora05l:hover            (normal mouseover)
-        .jssora05r:hover            (normal mouseover)
-        .jssora05l.jssora05ldn      (mousedown)
-        .jssora05r.jssora05rdn      (mousedown)
-        */
         .jssora05l, .jssora05r {
             display: block;
             position: absolute;
@@ -117,13 +108,6 @@
         .jssora05l.jssora05ldn { background-position: -250px -40px; }
         .jssora05r.jssora05rdn { background-position: -310px -40px; }
 
-        /* jssor slider thumbnail navigator skin 01 css */
-        /*
-        .jssort01 .p            (normal)
-        .jssort01 .p:hover      (normal mouseover)
-        .jssort01 .p.pav        (active)
-        .jssort01 .p.pdn        (mousedown)
-        */
         .jssort01 .p {
             position: absolute;
             top: 0;
@@ -218,19 +202,6 @@
                 height:auto;
             }
         }
-        /*@media(min-width:314px){
-            #jssor_1{
-                width: 860px;
-                height: 640px;
-            }
-        }
-        @media(max-width:314px){
-            #jssor_1{
-                width: 80px;
-                height: 60px;
-            }
-        }*/
-        
     </style>
 
 
@@ -248,12 +219,10 @@
                 <div style="display: inline-block;">
                     <div class="slideImg"><p><?php echo substr($as->saran,0,100); echo "<b> . . .</b>" ?></p></div>
                     <img style="z-index:-1;" data-u="image" src="<?php echo base_url(); ?>uploads/saran/<?php echo $as->lampiran_saran; ?>" />
-                    <!--img data-u="thumb" src="img/thumb-02.jpg" /-->
                 </div>
             <?php }} else  {?>
                 <div style="display: inline-block;">
                     <img style="z-index:-1;" data-u="image" src="<?php echo base_url(); ?>assets/images/balaikota_salatiga.jpg" />
-                    <!--img data-u="thumb" src="img/thumb-02.jpg" /-->
                 </div>
             <?php } ?>
         </div>
@@ -283,7 +252,7 @@
                   <div class="col-md-6">
                       <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>csaran/add_saran/" >
                         <div class="form-group" style="color:#62a8ea;">
-                            <label class="col-sm-2 control-label">Nama</label>
+                            <label class="col-sm-2 control-label">Nama<small style="color:red;"> *</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?php echo set_value('nama'); ?>" required>
@@ -299,7 +268,7 @@
                             <?php
                                 echo form_error('almt','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
-                            <label class="col-sm-2 control-label">HP</label>
+                            <label class="col-sm-2 control-label">HP<small style="color:red;"> *</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-phone"></i></span>
                                 <input type="text" class="form-control" placeholder="HP" value="<?php echo set_value('telp'); ?>" name="telp" required>
@@ -315,7 +284,7 @@
                             <?php
                                 echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
-                            <label class="col-sm-2 control-label">Saran</label>
+                            <label class="col-sm-2 control-label">Saran<small style="color:red;"> *</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-comments"></i></span>
                                
@@ -336,14 +305,12 @@
                             <label class="col-sm-2 control-label">Lampirkan Foto</label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-upload"></i></span>
-                                <!--<input type="file" class="form-control" name="foto">-->
                                 <input id="uploadFile" type="file" name="image" class="form-control" data-provides="uploadFile"/>
-                                <!--div id="imagePreview"><a type="button btn-danger" class="close" data-dismiss="uploadFile">×</a></div-->
                                 <div id="imagePreview"></div>
                             </div>
                         </div>
                       <div class="form-group" style="color:#62a8ea;">
-                      <label class="col-sm-2 control-label">Kode Keamanan</label>
+                      <label class="col-sm-2 control-label">Kode Keamanan<small style="color:red;">*</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><?php echo $captcha['image']; ?></span>
                                 <input name="userCaptcha" style="height: 50px; font-size: 14px;  padding: 10px;" class="form-control" autocomplete="off" placeholder="Kode Keamanan"  value="<?php if(!empty($userCaptcha)){ echo $userCaptcha;} ?>" required></input>
@@ -352,9 +319,11 @@
                                 echo form_error('userCaptcha','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                         </div>
-                        
+                        <div class="input-group">
+                            <label class="col-sm-12 control-label" style="color:red;"><small>Keterangan : *harus diisi</small></label>
+                            <label></label>
+                        </div>
                         <div class="pull-right">
-                            <!--button type="reset"class="btn btn-danger btn-sm">Batal</button-->
                             <button type="submit" class="btn btn-sm btn-success btn-flat btn-block" ><i class="fa fa-send"> &nbsp;Kirim</i></button>
                         </div>
                     </form>

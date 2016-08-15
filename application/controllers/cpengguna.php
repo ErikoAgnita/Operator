@@ -275,7 +275,7 @@ class Cpengguna extends CI_Controller {
     {
         $this->load->library('form_validation');
                         
-            $this->form_validation->set_rules('username','username','trim|min_length[4]|max_length[50]|required|regex_match[/^[a-zA-Z0-9]{0,100}$/]');
+            $this->form_validation->set_rules('username','username','trim|min_length[4]|max_length[50]|required|regex_match[/^[a-zA-Z0-9]{0,100}$/]|callback_username_sudah_terpakai');
             $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
             $this->form_validation->set_rules('alamat','alamat','trim|min_length[1]|max_length[255]|required|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
             $this->form_validation->set_rules('telepon', 'telepon', 'trim|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
@@ -310,6 +310,7 @@ class Cpengguna extends CI_Controller {
         redirect('cpengguna/lihatawal');
         }
     }
+
 
     public function ganti_password_op($id_pengguna)
     {
@@ -353,6 +354,7 @@ class Cpengguna extends CI_Controller {
     }
 
 
+
     //profil admin
     public function lihatawaladmin(){
         $id = $_SESSION['userid'];
@@ -374,7 +376,7 @@ class Cpengguna extends CI_Controller {
     {
         $this->load->library('form_validation');
                         
-            $this->form_validation->set_rules('username','username','trim|required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z0-9]{0,100}$/]');
+            $this->form_validation->set_rules('username','username','trim|required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z0-9]{0,100}$/]|callback_username_sudah_terpakai');
             $this->form_validation->set_rules('nama','nama','trim|required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
             $this->form_validation->set_rules('alamat','alamat','trim|min_length[1]|max_length[255]|required|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
             $this->form_validation->set_rules('telepon', 'telepon', 'trim|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
@@ -444,6 +446,18 @@ class Cpengguna extends CI_Controller {
         }else if ($passlama !== $passid){
             $this->session->set_flashdata("pesan","<div class=\"alert alert-danger\" id=\"alert\">Password lama yang anda gunakaan saat login salah<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             $this->ganti_password_ad($id);
+        }
+    }
+
+    public function username_sudah_terpakai(){
+        $id = $_SESSION['userid'];
+        $username=$this->input->post('username');
+        $result=$this->mpengguna->check_username_exist($username, $id);
+        if($result){
+            $this->form_validation->set_message('username_sudah_terpakai', 'Username sudah digunakan. Silahkan isi username yang lain');
+            return false;
+        }else{
+            return true;
         }
     }
 }

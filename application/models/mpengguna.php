@@ -107,6 +107,18 @@ class Mpengguna extends CI_Model {
 
         return TRUE;
     }
+
+    public function check_username_exist($username, $id)
+    {
+        $condition = "username = '$username' and id_pengguna != '$id'";
+        $this->db->where($condition);
+        $query=$this->db->get("pengguna");
+        if($query->num_rows()>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     public function get_update_pass($id, $data) {
         $this->db->query("UPDATE pengguna SET password='$data' where id_pengguna='$id'");
