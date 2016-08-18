@@ -45,9 +45,9 @@
                         <label class="control-label" for="inputBasicLevel">Level<span style="color:red">*</span></label>
                         <div>
                           <select class="form-control" name="level" required="off">
-                            <?php if( $pengguna->level=='Admin') { ?>
-                            <option value='Admin'>Admin</option>
-                            <option value='Operator'>Operator</option>
+                            <?php if( $p->level =='Admin') { ?>
+                            <option value="Admin">Admin</option>
+                            <option value="Operator">Operator</option>
                             <?php } else { ?> 
                             <option value="Operator">Operator</option>
                             <option value="Admin">Admin</option>

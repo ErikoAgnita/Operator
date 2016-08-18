@@ -20,6 +20,8 @@ class Mpengguna extends CI_Model {
 	    $this->db->select('p.id_pengguna, p.username, p.password, p.nama as nama_pengguna, p.alamat, p.telepon, p.handphone, p.email, p.keterangan, p.last_login, p.last_update, p.isAktif, s.nama as nama_dinas, p.level, p.keterangan');
         $this->db->from('pengguna p');
         $this->db->join('skpd s', 's.id_skpd=p.id_skpd');
+	$this->db->order_by('nama_dinas', 'ASC');
+        $this->db->order_by('p.level', 'ASC');
         $this->db->order_by('p.nama', 'ASC');
         $this->db->limit($number, $offset);
         $query = $this->db->get();
@@ -36,23 +38,11 @@ class Mpengguna extends CI_Model {
 	}
 
 	public function data_skpd(){
+		$this->db->where('isAktif',1);
+		$this->db->order_by('nama','asc');
 		return $this->db->get('skpd');
 	}
 
-    public function kodeUnit($id){
-        return $this->db->query("SELECT skpd.kodeUnit FROM skpd RIGHT JOIN pengguna ON skpd.id_skpd=pengguna.id_skpd WHERE pengguna.id_skpd='$id' ")->num_rows();
-        /*if ($query->num_rows() > 0) {
-            return $query->result();
-        }
-        else return 0;*/
-    }
-
-    public function AddKodeUnit($id_pengguna, $data){
-       //$this->db->insert('pengguna', $kode_unit );
-        //$this->db->where('id_pengguna', $id_pengguna);
-        //$this->db->update('pengguna', $data);
-       return $this->db->query("UPDATE pengguna SET kode_unit='$data' WHERE id_pengguna='$id_pengguna' ");
-    }
 
 	public function UpdatePengguna($where, $table){
 		return $this->db->get_where($table, $where);
@@ -67,6 +57,12 @@ class Mpengguna extends CI_Model {
 
         return TRUE;	
 	}
+	
+	public function UpdateStatusPengguna($stat,$id_skpd){
+        $this->db->query("UPDATE pengguna SET isAktif ='$stat' where id_skpd='$id_skpd'");
+        return TRUE;
+	}
+
 
 	public function DeletePengguna($where){
 		$this->db->where('id_pengguna', $where);
@@ -85,7 +81,6 @@ class Mpengguna extends CI_Model {
         $this->db->where($condition);
         $this->db->join('skpd s', 'p.id_skpd=s.id_skpd');
         return $this->db->count_all_results('pengguna p');
-            //return $query->result();
     }
 
 	//profil operator
@@ -97,6 +92,15 @@ class Mpengguna extends CI_Model {
             return $query->result();
         }
 	}
+
+    public function get_profiljoin($id) {
+   //     $this->db->from('pengguna');
+        $this->db->where('id_pengguna', $id);
+        $query = $this->db->query("SELECT pengguna.id_pengguna, pengguna.username, pengguna.password, pengguna.level, pengguna.nama, 
+            pengguna.alamat, pengguna.telepon, pengguna.handphone, pengguna.email, pengguna.keterangan, skpd.nama 
+        FROM pengguna INNER JOIN skpd ON pengguna.id_skpd=skpd.id_skpd where pengguna.id_pengguna='$id';");
+        return $query;
+        }
 
 	public function get_update_profil($id, $data) {
         $this->db->where('id_pengguna', $id);
@@ -141,6 +145,15 @@ class Mpengguna extends CI_Model {
             return $query->result();
         }
 	}
+
+    public function get_profiladminjoin($id) {
+   //     $this->db->from('pengguna');
+        $this->db->where('id_pengguna', $id);
+        $query = $this->db->query("SELECT pengguna.id_pengguna, pengguna.username, pengguna.password, pengguna.level, pengguna.nama, 
+            pengguna.alamat, pengguna.telepon, pengguna.handphone, pengguna.email, pengguna.keterangan, skpd.nama 
+        FROM pengguna INNER JOIN skpd ON pengguna.id_skpd=skpd.id_skpd where pengguna.id_pengguna='$id';");
+        return $query;
+        }
 
 	public function get_update_profiladmin($id, $data) {
         $this->db->where('id_pengguna', $id);

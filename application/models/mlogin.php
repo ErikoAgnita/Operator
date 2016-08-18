@@ -24,7 +24,7 @@ class mlogin extends CI_Model
     public function loginoperator($username, $password)
     {
         date_default_timezone_set("Asia/Jakarta");
-        $this->db->select('username, password, id_pengguna, id_skpd, kode_unit, level, nama, alamat, telepon, handphone, email, keterangan');
+        $this->db->select('username, password, id_pengguna, id_skpd, level, nama, alamat, telepon, handphone, email, keterangan');
         $this->db->from('pengguna');
         $this->db->where('username', $username);
         $this->db->where('password', $password);
@@ -63,7 +63,7 @@ class mlogin extends CI_Model
     public function loginadmin($username, $password)
     {
         date_default_timezone_set("Asia/Jakarta");
-        $this->db->select('username, password, id_pengguna, id_skpd, kode_unit, level, nama, alamat, telepon, handphone, email, keterangan');
+        $this->db->select('username, password, id_pengguna, id_skpd, level, nama, alamat, telepon, handphone, email, keterangan');
         $this->db->from('pengguna');
         $this->db->where('username', $username);
         $this->db->where('password', $password);

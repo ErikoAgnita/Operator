@@ -44,7 +44,7 @@
                                            $cekA = "";
                                           }
                             ?>
-                          <label class="control-label" for="inputBasicisAktif">isAktif</label>
+                          <label class="control-label" for="inputBasicisAktif">Status</label>
                           <div class="radio-custom radio-primary">
                               <input type="radio" id="inputRadios1" name="isAktif" value="1" <?php echo $cekA; ?>/>
                               <label for="inputRadios1">Aktif</label>

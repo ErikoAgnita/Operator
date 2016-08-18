@@ -227,6 +227,22 @@
 
             <li class="site-menu-item has-sub">
               <a href="javascript:void(0)" data-slug="advanced">
+                <i class="site-menu-icon wb-book" aria-hidden="true"></i>
+                <span class="site-menu-title">Respon</span>
+                <span class="site-menu-arrow"></span>
+              </a>
+              <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>csaran/respon" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Belum dipublish</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="site-menu-item has-sub">
+              <a href="javascript:void(0)" data-slug="advanced">
                 <i class="site-menu-icon wb-library" aria-hidden="true"></i>
                 <span class="site-menu-title">SKPD</span>
                 <span class="site-menu-arrow"></span>
@@ -308,6 +324,28 @@
                   <a class="animsition-link" href="<?php echo base_url(); ?>Cpengguna/tambah" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
                     <span class="site-menu-title">Tambah Pengguna</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+<li class="site-menu-item has-sub">
+              <a href="javascript:void(0)" data-slug="advanced">
+                <i class="site-menu-icon wb-stats-bars" aria-hidden="true"></i>
+                <span class="site-menu-title">Statistik</span>
+                <span class="site-menu-arrow"></span>
+              </a>
+              <ul class="site-menu-sub">
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cstatistik/saranmasuk" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Saran Masuk</span>
+                  </a>
+                </li>
+                <li class="site-menu-item">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>Cstatistik/responskpd" data-slug="advanced-lightbox">
+                    <i class="site-menu-icon " aria-hidden="true"></i>
+                    <span class="site-menu-title">Respon SKPD</span>
                   </a>
                 </li>
               </ul>

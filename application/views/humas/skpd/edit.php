@@ -59,10 +59,7 @@
                          echo form_error('telepon','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                         ?>
                     </div>
-                <div class="input-group">
-                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
-                            <label></label>
-                        </div>
+
                     
             </div>
               <div class="col-sm-6">
@@ -103,7 +100,7 @@
                                            $cekA = "";
                                           }
                             ?>
-                          <label class="control-label" for="inputBasicisAktif">isAktif</label>
+                          <label class="control-label" for="inputBasicisAktif">Status</label>
                           <div class="radio-custom radio-primary">
                               <input type="radio" id="inputRadios1" name="isAktif" value="1" <?php echo $cekA; ?>/>
                               <label for="inputRadios1">Aktif</label>
@@ -115,6 +112,10 @@
                         </div>
                           </div>
                   </div>
+                <div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
                     <div class="form-group">
                         <div class="pull-right">
                             <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>

@@ -72,6 +72,32 @@
         vertical-align: baseline;
       }
     }
+@media (min-width: 500px){
+      .navbar-brand-text{
+        font-size: 18px;
+      }
+    }
+    @media (min-width: 420px) and (max-width: 500px){
+      .navbar-brand-text{
+        font-size: 15px;
+      }
+      .navbar-brand-logo{
+        height: 28px;
+      }
+    }
+    @media (max-width: 420px){
+      .navbar-brand-text{
+        font-size: 12px;
+      }
+      .navbar-brand-logo{
+        height: 20px;
+      }
+    }
+    @media (max-width: 515px){
+      .site-footer{
+        font-size: 11px;
+      }
+    }
   </style>
 
 
@@ -244,9 +270,9 @@
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/all" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/belum" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Semua Saran</span>
+                    <span class="site-menu-title">Belum Direspon</span>
                   </a>
                 </li>
                 <li class="site-menu-item">
@@ -256,9 +282,9 @@
                   </a>
                 </li>
                 <li class="site-menu-item">
-                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/belum" data-slug="advanced-lightbox">
+                  <a class="animsition-link" href="<?php echo base_url(); ?>crespon/dariadmin/all" data-slug="advanced-lightbox">
                     <i class="site-menu-icon " aria-hidden="true"></i>
-                    <span class="site-menu-title">Belum Direspon</span>
+                    <span class="site-menu-title">Semua Saran</span>
                   </a>
                 </li>
               </ul>

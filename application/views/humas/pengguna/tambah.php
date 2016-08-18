@@ -4,7 +4,7 @@
       <h1 class="page-title">Pengguna</h1>
       <ol class="breadcrumb">
         <li>Pengguna</li>
-        <li>Buat Pengguna</li>
+        <li>Tambah Pengguna</li>
       </ol>
     </div>
      <div class="page-content">
@@ -66,11 +66,7 @@
                           echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                           ?>
                     </div>
-                     <div class="input-group">
-                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
-                            <label></label>
-                        </div>
-            </div>
+		</div>
                     <div class="col-sm-6">
                     <div class="form-group">
                       <label class="control-label" for="inputBasicAlamat">Alamat Pengguna</label>
@@ -112,6 +108,11 @@
                           echo form_error('keterangan','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                           ?>
                     </div>
+   			<div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
+            
                     <div class="form-group">
                         <div class="pull-right">
                             <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>

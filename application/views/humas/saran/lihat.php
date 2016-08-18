@@ -45,8 +45,65 @@
                           <span class='text-muted pull-right'><?php echo "<i>".date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</i></span>
                         </span>
                       </div>
+                      
+                      <!-- Belum bisa -->
+                      <div class="metas">
+                      <!--   <span class="disposisi">
+                          <?php echo "<b>Disposisi Ke: </b>"; ?>
+                        </span>
+                      </div> -->
+
+                      <div class="metas">
+                        <span class="disposisi">
+                          <?php
+                          if($respon){
+                            echo "<b>Disposisi ke: </b>";
+                            $count=0;
+                            foreach($respon as $res){
+                              if($row->id_saran==$res->id_saran){
+                                $count++;
+                                if($count>1){
+                                  echo ", ";
+                                }                                
+                                echo $res->kodeUnit;
+                              }                              
+                            }
+                          }
+                          else { echo "<b>Disposisi ke: - </b>"; 
+                          } ?>
+                        </span>
+                      </div>
+
+                      <div class="metas">
+                        <span class="direspon">
+                          <?php
+                          if($balasan){
+                            echo "<b>Direspon oleh: </b>";
+                            $count=0;
+                            foreach($balasan as $bls){
+                              if($row->id_saran==$bls->id_saran){
+                                $count++;
+                                if($count>1){
+                                  echo ", ";
+                                }                                
+                                echo $bls->kodeUnit;
+                              }                              
+                            }
+                          }
+                          else { echo "<b>Direspon oleh: - </b>"; 
+                          } ?>
+                        </span>
+                      </div>
+                      
+                      <div class="metas">
+                        <span class="topik">
+                          <?php if($row->topik){ echo "<b>Topik: ".$row->topik."</b>"; } 
+                                else { echo "<b>Topik: - </b>"; }
+                          ?>
+                        </span>
+                      </div>
                       <div class="title">
-                          <div style="width:90%;">
+                          <div>
                             <?php                           
                             echo substr($row->saran, 0,500); 
                             if(strlen($row->saran) > 500){
@@ -59,6 +116,7 @@
                         <div class="pull-right">
                             <div class="btn-group">
                                 <?php 
+                                    //$wrnB=$wrnD=$wrnR=$wrnP=$wrnS= "badge-default";
                                         if($row->isStatus=='laporan baru' and $row->isSpam==0 and $row->isAktif==0){
                                             $wrnB = "badge-warning";    $titleB = "Ada pesan baru";
                                             $wrnD = "badge-default";    $titleD = "Belum didisposisikan";
@@ -88,18 +146,32 @@
                                             $wrnP = "badge-default";    $titleP = "Tidak dipublikasikan";
                                         }
                                         if($row->isAktif==1 && $row->isSpam==0){
+                                                if ($row->isStatus=='disposisi'){
+                                                  $wrnD = "badge-warning";    $titleD = "Sudah didisposisikan lagi";
+                                                  $wrnR = "badge-default";    $titleR = "Belum ada respon dari SKPD";
+                                                  $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
+                                                }
+                                                else if ($row->isStatus=='respon baru'){
+                                                  $wrnD = "badge-default";    $titleD = "Sudah didisposisikan";
+                                                  $wrnR = "badge-warning";    $titleR = "Ada respon dari SKPD";
+                                                  $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
+                                                }
+                                                else{
+                                                  $wrnB = "badge-info";    $titleB = "Pesan belum dibaca";
+                                                  $wrnD = "badge-default";    $titleD = "Belum didisposisikan";
+                                                  $wrnR = "badge-default";    $titleR = "Belum ada respon dari SKPD";
+                                                }
                                             $wrnP = "badge-success";    $titleP = "Sudah dipublikasikan";
-                                            $wrnB = "badge-default";    $titleB = "Pesan sudah dibaca";
-                                            $wrnR = "badge-default";    $titleR = "Ada respon dari SKPD";
-                                            $wrnD = "badge-default";    $titleD = "Sudah didisposisikan";
                                             $wrnS = "badge-default";    $titleS = "Bukan Spam";
                                         }
                                 ?>
-                                <span class="badge badge-radius <?php echo $wrnB; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleB; ?>">&#9679;</span>
-                                <span class="badge badge-radius <?php echo $wrnD; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleD; ?>">&#9679;</span>
-                                <span class="badge badge-radius <?php echo $wrnR; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleR; ?>">&#9679;</span>
-                                <span class="badge badge-radius <?php echo $wrnP; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleP; ?>">&#9679;</span>
-                                <span class="badge badge-radius <?php echo $wrnS; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleS; ?>">&#9679;</span>
+                                
+                                <span class="badge badge-radius badge-lg <?php echo $wrnB; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleB; ?>"><i class="fa fa-envelope"></i></span>
+                                <span class="badge badge-radius badge-lg <?php echo $wrnD; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleD; ?>"><i class="fa fa-tags"></i></span>
+                                <span class="badge badge-radius badge-lg <?php echo $wrnR; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleR; ?>"><i class="fa fa-commenting"></i></span>
+                                <span class="badge badge-radius badge-lg <?php echo $wrnP; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleP; ?>"><i class="fa fa-map-pin"></i></span>
+                                <span class="badge badge-radius badge-lg <?php echo $wrnS; ?>" data-toggle="tooltip" data-original-title="<?php echo $titleS; ?>"><i class="fa fa-ban"></i></span>
+
 
                     </div>
                             

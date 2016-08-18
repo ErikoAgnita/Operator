@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Cskpd extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-		$this->load->model('mskpd');
+		$this->load->model(array('mpengguna','mskpd'));
 		$this->load->helper(array('form', 'url'));
 	}
 
@@ -65,11 +65,11 @@ class Cskpd extends CI_Controller {
         $data['links'] = $this->pagination->create_links();
             
    	    if($data['skpd'] == NULL){
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesanskpd","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             $this->lihat();
         }
         else{   
-        	$this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+        	$this->session->set_flashdata("pesanskpd","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             $this->load->view('humas/header')->view('humas/skpd/lihat', $data)->view('humas/footer');
         }   
 	}
@@ -131,7 +131,7 @@ class Cskpd extends CI_Controller {
 				'tema' => $tema
 				);
 			$this->mskpd->AddAkun1($data, 'skpd');
-			$this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data SKPD<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+			$this->session->set_flashdata("pesanskpd","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data SKPD<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
 			redirect('Cskpd/lihat');
 		}
 	}
@@ -199,9 +199,13 @@ class Cskpd extends CI_Controller {
 				'isLink' => $isLink,
 				'isAktif' => $isAktif
 			);
+			if($isAktif==0){
+				$stat = 0;
+				$this->mpengguna->UpdateStatusPengguna($stat,$id_skpd);
+			}
 			
 			$this->mskpd->UpdateAkun1($id_skpd, $data);
-			$this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+			$this->session->set_flashdata("pesanskpd","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
 			redirect('Cskpd/lihat');
 		}
 	}
@@ -210,12 +214,12 @@ class Cskpd extends CI_Controller {
     {
          $data['skpd'] = $this->mskpd->HapusSKPD($id_skpd);
         if($data['skpd']==NULL){
-          $$this->mskpd->DeleteSKPD($id_skpd);
-          $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Data SKPD dengan berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+          $this->mskpd->DeleteSKPD($id_skpd);
+          $this->session->set_flashdata("pesanskpd","<div class=\"alert alert-success\" id=\"alert\">Data SKPD berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
           redirect('Cskpd/lihat');
         }
         else{
-          $this->session->set_flashdata("pesan","<div class=\"alert alert-danger\" id=\"alert\">Data SKPD gagal dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+          $this->session->set_flashdata("pesanskpd","<div class=\"alert alert-danger\" id=\"alert\">Data SKPD gagal dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
           redirect('Cskpd/lihat');
         }
 

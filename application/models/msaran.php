@@ -12,6 +12,7 @@ class msaran extends CI_Model {
         $this->db->from('respon');
         $this->db->where('respon.IsAktif','1');
         $this->db->join('skpd', 'respon.id_skpd = skpd.id_skpd');
+        $this->db->order_by('tanggal_respon','asc');
         $query = $this->db->get();  
         if ($query->num_rows() > 0) {
             return $query->result();
@@ -20,7 +21,7 @@ class msaran extends CI_Model {
     }
     
     function preview_asp(){
-        $query = $this->db->query("SELECT * FROM saran WHERE isAktif = 1 and isSpam=0 and lampiran_saran IS NOT NULL ORDER BY id_saran ASC"); 
+        $query = $this->db->query("SELECT * FROM saran WHERE isAktif = 1 and isSpam=0 and lampiran_saran IS NOT NULL ORDER BY id_saran ASC LIMIT 15"); 
         if ($query->num_rows() > 0) {
             return $query->result();
         }
@@ -60,7 +61,7 @@ class msaran extends CI_Model {
     //search di masyarakat
     function pencarian($cari, $limit, $id){
         
-        $query = $this->db->query("SELECT * FROM saran WHERE IsAktif = '1' and IsSpam = '0' and (nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%') LIMIT $limit OFFSET $id");
+        $query = $this->db->query("SELECT * FROM saran WHERE IsAktif = '1' and IsSpam = '0' and (nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%') order by id_saran desc LIMIT $limit OFFSET $id");
         if ($query->num_rows() > 0) {
             return $query->result();
         }
@@ -101,6 +102,16 @@ class msaran extends CI_Model {
         return $this->db->count_all('saran');
     }
 
+    public function record_count_respon()
+    {
+        $this->db->select('id_respon');
+        $this->db->from('respon');
+        $this->db->where('isi_respon IS NOT NULL');
+        $this->db->where('isAktif', 0);
+        $num_results = $this->db->count_all_results();
+        return $num_results;
+    }
+
     //adhgasj
     public function fetch_data_saran($limit, $id) {
         $this->db->limit($limit, $id);
@@ -109,10 +120,57 @@ class msaran extends CI_Model {
         return $query;
     }
 
+    public function fetch_data_balasan()
+    {
+        $this->db->distinct();
+        $this->db->select('respon.id_respon, respon.id_saran, respon.id_skpd, skpd.nama, skpd.kodeUnit');
+        $this->db->from('respon');
+        $this->db->join('skpd', 'skpd.id_skpd=respon.id_skpd');
+        $this->db->group_by('id_skpd');
+        $this->db->group_by('id_saran');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
+
+    public function fetch_data_dibalas()
+    {
+        $this->db->distinct();
+        $this->db->select('respon.id_respon, respon.id_saran, respon.isi_respon, respon.id_skpd, skpd.nama, skpd.kodeUnit');
+        $this->db->from('respon');
+        $this->db->where('respon.isi_respon IS NOT NULL');
+        $this->db->join('skpd', 'skpd.id_skpd=respon.id_skpd');
+        $this->db->group_by('id_skpd');
+        $this->db->group_by('id_saran');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+        else return 0;
+    }
+
+   public function fetch_data_respon($limit, $id)
+    {
+        $this->db->select('respon.id_respon, skpd.nama, respon.id_saran, respon.kategori, respon.isi_respon, 
+            respon.tanggal_respon, respon.isAktif');
+        $this->db->from('respon');
+        $this->db->where('respon.isi_respon IS NOT NULL');
+        $this->db->where('respon.isAktif', 0);
+        $this->db->join('skpd', 'respon.id_skpd=skpd.id_skpd');
+        $this->db->limit($limit, $id);
+        $this->db->order_by('id_respon', 'desc');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    
+
     //search di admin
     function pencarian_saran($cari, $limit, $id){
         
-        $query = $this->db->query("SELECT * FROM saran WHERE nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%' LIMIT $limit OFFSET $id");
+        $query = $this->db->query("SELECT * FROM saran WHERE nama LIKE '%$cari%' or topik LIKE '%$cari%' or saran LIKE '%$cari%' order by tanggal_saran desc LIMIT $limit OFFSET $id");
         if ($query->num_rows() > 0) {
             return $query->result();
         }
@@ -127,6 +185,7 @@ class msaran extends CI_Model {
 
     function detail_saran($id_saran)
     {
+        $this->db->select('*');
         $this->db->where('id_saran', $id_saran);
         $query = $this->db->get('saran');
         return $query;
@@ -137,15 +196,21 @@ class msaran extends CI_Model {
         $this->db->where('id_saran', $id_saran);
         $query = $this->db->query("SELECT respon.id_respon, respon.id_saran , respon.kategori, 
             respon.isi_respon, respon.lampiran_respon, respon.tanggal_respon, respon.isAktif, skpd.nama 
-            FROM respon INNER JOIN skpd ON respon.id_skpd=skpd.id_skpd AND respon.id_saran=$id_saran order by respon.tanggal_respon desc;");
+            FROM respon INNER JOIN skpd ON respon.id_skpd=skpd.id_skpd AND respon.id_saran=$id_saran order by respon.tanggal_respon asc;");
         return $query;
     }
-
-    function ubah_saran($id_saran)
+    
+    function getSaran($id_saran)
     {
         $this->db->where('id_saran', $id_saran);
         $query = $this->db->get('saran');
         return $query;
+    }
+
+    function ubah_saran($id_saran, $data)
+    {
+        $this->db->where("id_saran", $id_saran);
+        $this->db->update('saran', $data);
     }
 
     function update_saran($id_saran, $data)

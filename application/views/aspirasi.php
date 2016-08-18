@@ -252,26 +252,26 @@
                   <div class="col-md-6">
                       <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo base_url();?>csaran/add_saran/" >
                         <div class="form-group" style="color:#62a8ea;">
-                            <label class="col-sm-2 control-label">Nama<small style="color:red;"> *</small></label>
+                            <label class="col-sm-2 control-label">Nama<small style="color:yellow;"> *</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nama" name="nama" value="<?php echo set_value('nama'); ?>" required>
-                            </div>
+                                <a data-toggle="tooltip" title="Hanya gunakan abjad untuk mengisi nama"><input type="text" class="form-control" placeholder="Nama" name="nama" value="<?php echo set_value('nama'); ?>">
+                            </div></a>
                             <?php
                                 echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                             <label class="col-sm-2 control-label">Alamat</label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-home"></i></span>
-                                <input type="text" class="form-control" placeholder="alamat" name="almt" value="<?php echo set_value('almt'); ?>" >
+                                <a data-toggle="tooltip" title="Gunakan abjad atau nomor untuk mengisi alamat"><input type="text" class="form-control" placeholder="alamat" name="almt" value="<?php echo set_value('almt'); ?>" ></a>
                             </div>
                             <?php
                                 echo form_error('almt','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
-                            <label class="col-sm-2 control-label">HP<small style="color:red;"> *</small></label>
+                            <label class="col-sm-2 control-label">HP<small style="color:yellow;"> *</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-phone"></i></span>
-                                <input type="text" class="form-control" placeholder="HP" value="<?php echo set_value('telp'); ?>" name="telp" required>
+				<a data-toggle="tooltip" title="Hanya gunakan nomor untuk mengisi HP"><input type="text" class="form-control" placeholder="HP" value="<?php echo set_value('telp'); ?>" name="telp"></a>
                             </div>
                             <?php
                                 echo form_error('telp','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -279,48 +279,47 @@
                             <label class="col-sm-2 control-label">Email</label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" >
+				<input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" >
                             </div>
                             <?php
                                 echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
-                            <label class="col-sm-2 control-label">Saran<small style="color:red;"> *</small></label>
+                            <label class="col-sm-2 control-label">Saran<small style="color:yellow;"> *</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-comments"></i></span>
-                               
+                               <a data-toggle="tooltip" title="Hindari penggunaan tanda baca #*;:$\<>">
                                 <?php
                                     $aspr = array('name' => 'aspr',
                                                     'value' => set_value('aspr'),
                                                     'class' => 'form-control',
                                                     'placeholder' => 'Salurkan kritik atau saran anda',
                                                     'rows' => 5,
-                                                    'required' => 'required'
                                      );
                                     echo form_textarea($aspr);
-                                ?>
+                                ?></a>
                             </div>
                           <?php
                                 echo form_error('aspr','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
-                            <label class="col-sm-2 control-label">Lampirkan Foto</label>
+                            <label class="col-sm-2 control-label">Lampirkan Foto<small style="color:yellow;">**</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-upload"></i></span>
-                                <input id="uploadFile" type="file" name="image" class="form-control" data-provides="uploadFile"/>
+                                <a data-toggle="tooltip" title="Maksimal 2Mb"><input id="uploadFile" type="file" name="image" class="form-control" data-provides="uploadFile"/></a>
                                 <div id="imagePreview"></div>
                             </div>
                         </div>
                       <div class="form-group" style="color:#62a8ea;">
-                      <label class="col-sm-2 control-label">Kode Keamanan<small style="color:red;">*</small></label>
+                      <label class="col-sm-2 control-label">Kode Keamanan<small style="color:yellow;">*</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><?php echo $captcha['image']; ?></span>
-                                <input name="userCaptcha" style="height: 50px; font-size: 14px;  padding: 10px;" class="form-control" autocomplete="off" placeholder="Kode Keamanan"  value="<?php if(!empty($userCaptcha)){ echo $userCaptcha;} ?>" required></input>
+                                <a data-toggle="tooltip" title="Buka kembali halaman http://saran.salatiga.go.id/ apabila kode keamanan tidak berfungsi dan pastikan pengisian form anda sudah benar sebelum menekan tombol kirim"><input name="userCaptcha" style="height: 50px; font-size: 14px;  padding: 10px;" class="form-control" autocomplete="off" placeholder="Kode Keamanan"  value="<?php if(!empty($userCaptcha)){ echo $userCaptcha;} ?>"></input></a>
                             </div>
                       <?php
                                 echo form_error('userCaptcha','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
                         </div>
                         <div class="input-group">
-                            <label class="col-sm-12 control-label" style="color:red;"><small>Keterangan : *harus diisi</small></label>
+                            <label class="col-sm-12 control-label" style="color:white;"><small>Keterangan :<br>&nbsp;&nbsp;<span style="color:yellow;">*</span>harus diisi<br>&nbsp;&nbsp;<span style="color:yellow;">**</span>Foto maksimal 2Mb</small></label>
                             <label></label>
                         </div>
                         <div class="pull-right">

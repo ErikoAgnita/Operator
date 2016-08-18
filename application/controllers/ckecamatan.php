@@ -67,11 +67,11 @@ class Ckecamatan extends CI_Controller {
         $data['links'] = $this->pagination->create_links();
 
          if($data['kecamatan'] == NULL){
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesankec","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             //$this->lihat();
         }
         else{   
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesankec","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             $this->load->view('humas/header')->view('humas/kecamatan/lihat', $data)->view('humas/footer');
         }   
     }
@@ -107,7 +107,7 @@ class Ckecamatan extends CI_Controller {
             );
 
         $this->mkecamatan->AddKecamatan($data, 'kecamatan');
-        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data Kecamatan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+        $this->session->set_flashdata("pesankec","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data Kecamatan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Ckecamatan/lihat');
         }
     }
@@ -145,7 +145,7 @@ class Ckecamatan extends CI_Controller {
             );
 
             $this->mkecamatan->UpdateKecamatan1($id_kode_kecamatan, $data);
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesankec","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             redirect('Ckecamatan/lihat');
         }
     }
@@ -155,11 +155,11 @@ class Ckecamatan extends CI_Controller {
         $data['kecamatan'] = $this->mkecamatan->hapuskec($kode_kecamatan);
         if($data['kecamatan']==NULL){
           $this->mkecamatan->DeleteKecamatan($kode_kecamatan);
-          $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Kecamatan dengan kode ".$kode_kecamatan." berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+          $this->session->set_flashdata("pesankec","<div class=\"alert alert-success\" id=\"alert\">Kecamatan dengan kode ".$kode_kecamatan." berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
           redirect('Ckecamatan/lihat');
         }
         else{
-            $this->session->set_flashdata("pesan","<div class=\"alert alert-danger\" id=\"alert\">Kecamatan dengan kode ".$kode_kecamatan." gagal dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+            $this->session->set_flashdata("pesankec","<div class=\"alert alert-danger\" id=\"alert\">Kecamatan dengan kode ".$kode_kecamatan." gagal dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             redirect('Ckecamatan/lihat');
         }
         

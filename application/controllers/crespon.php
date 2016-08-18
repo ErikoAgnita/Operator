@@ -7,7 +7,8 @@ class crespon extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('mrespon');
-        $this->load->library(array('form_validation', 'session'));
+		$this->load->model('msaran');
+        	$this->load->library(array('form_validation', 'session'));
 	}
 
 	public function dariadmin($all)
@@ -230,19 +231,60 @@ class crespon extends CI_Controller {
 				'isAktif' => 1,
 				);
 			$this->mrespon->publish($id_respon, $data);
+            redirect(base_url().'csaran/detail/'.$id_saran);
 		}
-		else{
+		elseif($this->input->post('btn2')=="Unpublish"){
 			$data = array (
 				'isAktif' => 0,
 				);
 
 			$this->mrespon->publish($id_respon, $data);
+            redirect(base_url().'csaran/detail/'.$id_saran);
 		}
-		if($this->input->post('btn2')=="hapus"){
+		elseif($this->input->post('btn2')=="hapus"){
 			$this->mrespon->hapus_respon($id_respon);
+            redirect(base_url().'csaran/detail/'.$id_saran);
 		}
-		redirect(base_url().'csaran/detail/'.$id_saran);
-	}
+        elseif($this->input->post('btn2')=="ubah"){
+            //$this->ubah($id_respon, $id_saran);
+            redirect(base_url().'crespon/ubah/'.$id_respon);
+        }	
+}
+	public function ubah($id_respon)
+    {
+        $data['respon'] = $this->mrespon->getRespon($id_respon);
+        $idSaran = $this->mrespon->getId($id_respon);
+        foreach($idSaran as $row)
+        {
+            $id_saran = $row->id_saran;
+            $data['saran'] = $this->msaran->getSaran($id_saran);
+        }        
+        $this->load->view('humas/header');
+        $this->load->view('humas/saran/ubahrespon', $data);
+        $this->load->view('humas/footer');
+    }
+
+    public function ubah_respon($id_respon)
+    {
+        $id_saran = $this->input->post('id_saran');
+        /*$this->load->library('form_validation');
+        $this->form_validation->set_rules('isi_respon', 'Respon', 'trim|min_length[1]|required|xss_clean|regex_match[/^[a-zA-Z0-9  &_.~,!"\/@%()+=?-]{1,}$/]');
+        
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong.');
+        $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
+        $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
+            
+        if ($this->form_validation->run() == FALSE){
+            $this->ubah($id_respon);
+        }else{*/
+            $isi_respon = $this->input->post('isi_respon');
+            $data = array (
+                'isi_respon' => $isi_respon,
+                );
+            $this->mrespon->ubah_respon($id_respon, $data);
+            redirect(base_url()."csaran/detail/".$id_saran);
+        /*}*/
+    }
 
 	public function tes()
 	{

@@ -69,7 +69,7 @@ class Cpengguna extends CI_Controller {
             
         if($data['pengguna'] == NULL){
             $this->session->set_flashdata("pengpesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
-            //$this->lihat();
+            $this->lihat();
         }
         else{
             $this->session->set_flashdata("pengpesan","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
@@ -166,7 +166,7 @@ class Cpengguna extends CI_Controller {
                 );
 
         $this->mpengguna->AddPengguna($data, 'pengguna');
-        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data SKPD<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data pengguna<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Cpengguna/lihat');
         }
     }
@@ -271,7 +271,8 @@ class Cpengguna extends CI_Controller {
     public function lihatawal(){
         $id = $_SESSION['userid'];
         $data['adata']  = $this->mpengguna->get_profil($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
-        $this->load->view('dinas/header');
+        $data['jdata']  = $this->mpengguna->get_profiljoin($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session                
+	$this->load->view('dinas/header');
         $this->load->view('dinas/akun/lihatawal',$data);
         $this->load->view('dinas/footer');
     }
@@ -279,7 +280,8 @@ class Cpengguna extends CI_Controller {
     public function operator_lihat(){   //
         $id = $_SESSION['userid'];
         $data['adata']  = $this->mpengguna->get_profil($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
-        $this->load->view('dinas/header');
+        $data['jdata']  = $this->mpengguna->get_profiljoin($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session                        
+	$this->load->view('dinas/header');
         $this->load->view('dinas/akun/lihat',$data);
         $this->load->view('dinas/footer');
     }
@@ -372,7 +374,8 @@ class Cpengguna extends CI_Controller {
     public function lihatawaladmin(){
         $id = $_SESSION['userid'];
         $data['adata']  = $this->mpengguna->get_profiladmin($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
-        $this->load->view('humas/header');
+        $data['jdata']  = $this->mpengguna->get_profiladminjoin($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session           
+	$this->load->view('humas/header');
         $this->load->view('humas/akun/lihatawal',$data);
         $this->load->view('humas/footer');
     }
@@ -380,7 +383,8 @@ class Cpengguna extends CI_Controller {
     public function admin_lihat(){   //
         $id = $_SESSION['userid'];
         $data['adata']  = $this->mpengguna->get_profiladmin($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session
-        $this->load->view('humas/header');
+        $data['jdata']  = $this->mpengguna->get_profiladminjoin($id);   //angka 1 nanti diganti dengan id_guru yang login sesuai session                
+	$this->load->view('humas/header');
         $this->load->view('humas/akun/lihat',$data);
         $this->load->view('humas/footer');
     }

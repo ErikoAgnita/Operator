@@ -58,16 +58,16 @@ if($saran->result()){?>
                             </span>
                           </div>
                           <div class="metas">
-                            <span class=""><?php echo $row->alamat ?></span>
+                            <span class=""><?php echo 'Alamat: '.$row->alamat ?></span>
                           </div>
                           <div class="metas">
-                            <span class=""><?php echo $row->telepon ?></span>
+                            <span class=""><?php echo 'Telepon: '.$row->telepon ?></span>
                           </div>
                           <div class="metas">
-                            <span class=""><?php echo $row->email ?></span>
+                            <span class=""><?php echo 'Email: '.$row->email ?></span>
                           </div>
                           <div class="metas">
-                            <span class=""><?php echo $row->topik ?></span>
+                            <span class=""><?php echo 'Topik: '.$row->topik ?></span>
                           </div>
                           <div class="metas">
                             <span class="">
@@ -241,15 +241,14 @@ if($saran->result()){?>
                                         <span class="badge badge-radius <?php echo $wrnP; ?>" data-toggle="tooltip" data-placement="bottom" data-original-title="<?php echo $titleP; ?>">&#9679;</span>
                                       </div>
                                     </div>
-                                  <?php } ?> 
                                     <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row2->tanggal_respon));?>&nbsp;&nbsp;</span> 
-                                    
+                                  <?php } ?> 
                                 </span>
                               </div>
                               <?php 
                               if($row2->isi_respon){?>
                                 <div class="metas">                        
-                                  <span class="started"><?php echo $row2->kategori;?></span>
+                                  <span class="started"><?php echo 'Kategori: '.$row2->kategori;?></span>
                                 </div>
                                 <?php if($row2->lampiran_respon){?>
                                   <div class="metas">                 

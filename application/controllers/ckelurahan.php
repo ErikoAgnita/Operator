@@ -67,11 +67,11 @@ class Ckelurahan extends CI_Controller {
             $data['links'] = $this->pagination->create_links();
 
             if($data['kelurahan'] == NULL ){
-                $this->session->set_flashdata("pesan","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                $this->session->set_flashdata("pesankel","<div class=\"alert alert-warning\" id=\"alert\">Pencarian ".$cari." tidak ditemukan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
                 $this->lihat();
             }
             else{   
-                $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+                $this->session->set_flashdata("pesankel","<div class=\"alert alert-success\" id=\"alert\">Ada ".$total_row." hasil pencarian ".$data['ringkasan']."<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
                 $this->load->view('humas/header')->view('humas/kelurahan/lihat', $data)->view('humas/footer');
             }   
     }
@@ -108,7 +108,7 @@ class Ckelurahan extends CI_Controller {
                 );
 
         $this->mkelurahan->AddKelurahan($data);
-        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data Kelurahan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+        $this->session->set_flashdata("pesankel","<div class=\"alert alert-success\" id=\"alert\">Berhasil menambah data Kelurahan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Ckelurahan/lihat');
         }
     }
@@ -149,7 +149,7 @@ class Ckelurahan extends CI_Controller {
         );
 
         $this->mkelurahan->UpdateKelurahan1($id_kode_kelurahan, $data);
-        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+        $this->session->set_flashdata("pesankel","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Ckelurahan/lihat');
         }
     }
@@ -157,7 +157,7 @@ class Ckelurahan extends CI_Controller {
     public function hapus($kode_kelurahan)
     {
         $this->mkelurahan->DeleteKelurahan($kode_kelurahan);
-        $this->session->set_flashdata("pesan","<div class=\"alert alert-success\" id=\"alert\">Kelurahan dengan kode ".$kode_kelurahan." berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
+        $this->session->set_flashdata("pesankel","<div class=\"alert alert-success\" id=\"alert\">Kelurahan dengan kode ".$kode_kelurahan." berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
         redirect('Ckelurahan/lihat');
     }
 

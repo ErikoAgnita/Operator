@@ -46,7 +46,7 @@
                         </span>
                       </div>
                       <div class="title">
-                           <span> Topik : <?php echo $row->topik;?></span>
+                           <span>Topik : <?php if($row->topik){echo $row->topik;} else echo "-";?></span>
                            <div class="title">
                               <div>
                                 <?php                           

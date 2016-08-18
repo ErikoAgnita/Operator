@@ -116,19 +116,20 @@ class Csaran extends CI_Controller {
             
             $this->load->library('upload');
             
-            $this->form_validation->set_rules('nama','Nama','trim|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
+            $this->form_validation->set_rules('nama','Nama','trim|required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
             $this->form_validation->set_rules('almt','Alamat','trim|min_length[1]|max_length[255]|xss_clean|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
             $this->form_validation->set_rules('telp','Telepon','trim|required|xss_clean|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
             $this->form_validation->set_rules('email', 'Email', 'trim|valid_email');
-            $this->form_validation->set_rules('aspr','Saran','trim|min_length[1]|required|xss_clean|regex_match[/^[a-zA-Z0-9  &_.~,!"\/@%()+=?-]{1,}$/]');
-            $this->form_validation->set_rules('userCaptcha', 'Captcha', 'required|callback_check_captcha');
+            $this->form_validation->set_rules('aspr','Saran','trim|min_length[1]|required|xss_clean|regex_match[/^[^#*;:$\<>]{1,}$/]');
+            $this->form_validation->set_rules('userCaptcha', 'Kode Keamanan', 'required|callback_check_captcha');
             $userCaptcha = $this->input->post('userCaptcha');
             
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
             $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
             $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
             $this->form_validation->set_message('valid_email', '{field} tidak sesuai format penulisan yang benar');
-            
+            $this->form_validation->set_message('required', '{field} tidak boleh kosong');
+
             if ($this->form_validation->run() == FALSE){
                 $this->index();
             }else{
@@ -234,6 +235,8 @@ class Csaran extends CI_Controller {
         $this->pagination->initialize($config);
         $strpage = $this->uri->segment(3,0);
         $data['saran'] = $this->msaran->fetch_data_saran($config['per_page'],$strpage)->result();
+	$data['respon'] = $this->msaran->fetch_data_balasan();
+        $data['balasan'] = $this->msaran->fetch_data_dibalas();
         
         $data['links'] = $this->pagination->create_links();
 
@@ -376,7 +379,10 @@ class Csaran extends CI_Controller {
         elseif($this->input->post('btn')=="hapus"){ 
             $this->msaran->hapus_saran($id_saran);
             redirect(base_url()."csaran/lihat/");
-        }           
+        }
+        elseif($this->input->post('btn')=="edit"){
+            redirect(base_url()."csaran/ubah/".$id_saran);
+        }
         else{
             $data = array (
                 'isSpam' => 0,
@@ -386,33 +392,107 @@ class Csaran extends CI_Controller {
             $data['id_saran'] = $id_saran;
             $data['saran'] = $this->msaran->detail_saran($id_saran);    
             $this->load->view('humas/header')->view('humas/saran/disposisi', $data)->view('humas/footer');
+        }  
+    }
+
+    public function ubah($id_saran)
+    {
+        $data['saran'] = $this->msaran->getSaran($id_saran);
+        $this->load->view('humas/header');
+        $this->load->view('humas/saran/ubah', $data);
+        $this->load->view('humas/footer');
+    }
+
+    public function ubah_saran($id_saran)
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('saran', 'Saran', 'trim|min_length[1]|required|xss_clean|regex_match[/^[a-zA-Z0-9  &_.~,!"\/@%()+=?-]{1,}$/]');
+
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong.');
+        $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
+        $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
+            
+        if ($this->form_validation->run() == FALSE){
+            $this->ubah($id_saran);
+        }else{
+            $saran = $this->input->post('saran');
+            $data = array (
+                'saran' => $saran,
+                );
+            $this->msaran->ubah_saran($id_saran, $data);
+            redirect(base_url()."csaran/detail/".$id_saran);
         }
     }
 
     public function disposisikan($id_saran)
     {
-        $id_skpd_list = $this->input->post('id_skpd');
-        $topik = $this->input->post('topik');
-        $isStatus = 'disposisi';
-        //update saran
-        $data = array (
-            'topik' => $topik,
-            'isStatus' => $isStatus,
-            );      
-        $this->msaran->disposisikan_saran($id_saran, $data);
-        $flag;
-        //membuat respon
-        foreach($id_skpd_list as $id_skpd) {
-            $data_respon = array(
-                'id_skpd' => $id_skpd,
-                'id_saran' => $id_saran,
-                );
-            //work here
-            $sudah_disposisi = $this->msaran->cekDisposisi($id_saran, $id_skpd);
-            if(!$sudah_disposisi->result()){
-                $this->msaran->addRespon($data_respon);
-            }
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('topik','Topik','trim|required|min_length[1]|max_length[255]|xss_clean|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
+
+        $this->form_validation->set_message('required', '{field} tidak boleh kosong.');
+        $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
+        $this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
+        $this->form_validation->set_message('regex_match', '{field} tidak sesuai format penulisan yang benar');
+
+        if ($this->form_validation->run() == FALSE){
+            $this->disposisi($id_saran);
         }
-        redirect(base_url()."csaran/detail/".$id_saran);
-    }   
+        else{
+            $id_skpd_list = $this->input->post('id_skpd');
+            $topik = $this->input->post('topik');
+            $isStatus = 'disposisi';
+            //update saran
+            $data = array (
+                'topik' => $topik,
+                'isStatus' => $isStatus,
+                );      
+            $this->msaran->disposisikan_saran($id_saran, $data);
+            $flag;
+            //membuat respon
+            if($id_skpd_list){
+                foreach($id_skpd_list as $id_skpd) {
+                    $data_respon = array(
+                        'id_skpd' => $id_skpd,
+                        'id_saran' => $id_saran,
+                        );
+                    //work here
+                    $sudah_disposisi = $this->msaran->cekDisposisi($id_saran, $id_skpd);
+                    if(!$sudah_disposisi->result()){
+                        $this->msaran->addRespon($data_respon);
+                    }
+                }
+            }        
+            redirect(base_url()."csaran/detail/".$id_saran);
+        }
+    }
+
+    public function respon()
+    {
+        $this->load->library('pagination');
+        $config = array();
+        $config['base_url'] = base_url() . "csaran/respon";
+
+        $total_row = $this->msaran->record_count_respon();
+
+        //echo $total_row;
+        $config['total_rows'] = $total_row;
+        $config['per_page'] = 10;
+        $config['cur_tag_open'] = '<a class="current" style="color:#fff; background-color:#358fe4; font-weight: bold;">';
+        $config['cur_tag_close'] = '</a>';
+        $config['prev_link'] = '<i class="icon wb-chevron-left"></i>';
+        $config['next_link'] = '<i class="icon wb-chevron-right"></i>';
+        $config['last_link'] = '<b>>></b>';
+        $config['first_link'] = '<b><<</b>';
+        $config['uri_segment'] = 3;
+    
+        $this->pagination->initialize($config);
+        $strpage = $this->uri->segment(3,0);
+        $data['respon'] = $this->msaran->fetch_data_respon($config['per_page'],$strpage)->result();
+        
+        $data['links'] = $this->pagination->create_links();
+
+        //$data['saran'] = $this->msaran->lihat_saran();
+        $this->load->view('humas/header')->view('humas/respon/unpublish', $data)->view('humas/footer');
+    }
 }

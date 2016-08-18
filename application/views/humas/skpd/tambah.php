@@ -4,7 +4,7 @@
     <h1 class="page-title">Satuan Kerja Perangkat Daerah (SKPD)</h1>
         <ol class="breadcrumb">
             <li>SKPD</li>
-            <li>Buat SKPD</li>
+            <li>Tambah SKPD</li>
         </ol>
     </div>
     <div class="page-content">
@@ -44,10 +44,7 @@
                                         echo form_error('alamat','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                         ?>
                                         </div>
-                                        <div class="input-group">
-                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
-                            <label></label>
-                        </div>
+                                        
                                     <!-- End Example Basic Form -->
                                     </div>
                                     <div class="col-sm-6">
@@ -80,6 +77,10 @@
                                         echo form_error('website','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                         ?>
                                         </div>
+				<div class="input-group">
+                            <label class="control-label" style="color:red;"><small>*harus diisi</small></label>
+                            <label></label>
+                        </div>
                                         <div class="form-group">
                                             <div class="pull-right">
                                                 <button type="submit" class="btn btn-primary "><i class="fa fa-save"></i>&nbsp;&nbsp;Simpan</button>

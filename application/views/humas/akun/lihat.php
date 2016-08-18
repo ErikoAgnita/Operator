@@ -17,7 +17,7 @@
               <!-- Example Basic Form -->
               <div class="example-wrap">
                 <div class="example">
-                  <?php foreach($adata as $row){ ?>
+                  <?php foreach($jdata->result() as $row2){ ?>
                   <form action="<?php echo base_url();?>cpengguna/do_updateadmin" method="post">
               <!--      <div class="form-group">
                         <label class="control-label" for="inputBasicFirstName">ID</label>
@@ -25,8 +25,9 @@
                         value="<?php echo $row->ID_ADMIN;?>" autocomplete="off" disabled />
                     </div> -->
                     <h3 class="intro-text text-center">Satuan Kerja Perangkat Daerah</h3>
-                     <h3 class="intro-text text-center"><?php echo strtoupper ($row->kode_unit);?></h3><br>
+                     <h3 class="intro-text text-center"><?php echo strtoupper ($row2->nama);?></h3><br><?php } ?>
                <!--         <p><?=$this->session->flashdata('pesan')?> </p> -->
+                  <?php foreach($adata as $row){ ?>
                     <div class="form-group">
                       <label class="control-label" for="inputBasicPassword">Username</label>
                       <input type="hidden" name="id_pengguna" value="<?php echo $row->id_pengguna ?>">

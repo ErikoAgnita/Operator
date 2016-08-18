@@ -4,6 +4,8 @@
   }
 </style>
 
+<?php
+if($saran->result()){?>
 <div class="page">
 <div class="page-content">
     <div class="panel">
@@ -49,10 +51,9 @@
                 <tr>
                   <td>Host</td>
                   <td>
-                    <span class="notready"><?php echo $row->host;?></span>
+                    <span class="notready"><?php echo $row->HOST;?></span>
                   </td>
-                </tr>
-                <tr>
+                </tr>                <tr>
                   <td>Tanggal Saran</td>
                   <td>
         <span class='notready'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?></span>
@@ -138,9 +139,11 @@
               ?>
               <span><button type="submit" class="btn btn-success" name="btn" value="<?php echo $valspam;?>"><i class="<?php echo $icospam; ?>"></i><?php echo " ".$valspam; ?></button></span>
               <span><button type="submit" class="btn btn-primary" name="btn" value="<?php echo $valtif;?>"><i class="<?php echo $icotif; ?>"></i><?php echo " ".$valtif; ?></button></span>
-              <span><button type="submit" class="btn btn-danger" name="btn" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i> Hapus</button></span>             
+              <span><button type="submit" class="btn btn-primary" name="btn" value="edit">Ubah</button></span>
+              <span><button type="submit" class="btn btn-danger" name="btn" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i> Hapus</button></span>
         </form>
-          <span><a  type="button" class="btn btn-default active" onclick="window.open('<?php echo base_url();?>csaran/cetak/<?php echo $row->id_saran;?>')"><i class="icon wb-print"></i> Cetak</a></span> 
+          <span><a  type="button" class="btn btn-default active" onclick="window.open('<?php echo base_url();?>csaran/cetak/<?php echo $row->id_saran;?>')"><i class="icon wb-print"></i> Cetak</a></span>
+
         </div>
       </div>
       
@@ -172,12 +175,15 @@
                       </div>
                       <?php 
                       if($row2->isi_respon){?>
-                        <div class="metas">                        
-                          <span class="started"><?php echo $row2->kategori;?></span>
-                        </div>
-                        <div class="title">
-                          <?php echo $row2->isi_respon; ?>
-                        </div>
+                      <div class="metas">
+                          <span class="topik"><?php 
+                          if($row2->kategori){
+                            echo "<b>Kategori: ".$row2->kategori."</b>";
+                          }
+                          else{
+                            echo "<b>Kategori: -</b>"; 
+                          }?>
+                          </span>                        </div>
                         <?php if($row2->lampiran_respon){?>
                           <div class="metas">                 
                             <span class="tags">
@@ -188,6 +194,9 @@
                             </span>
                           </div>
                         <?php } ?>
+                        <div class="title">
+                          <?php echo $row2->isi_respon; ?>
+                        </div>
                       <?php }
                       else{?>                                                                 
                         <div class="metas">                 
@@ -210,6 +219,7 @@
                       ?>
                     <div class="form-group">
                       <span><button type="submit" class="btn btn-success" name="btn2" value="<?php echo $val;?>"><i class="<?php echo $ico; ?>"></i><?php echo " ".$val?></button></span>
+                      <span><button type="submit" class="btn btn-success" name="btn2" value="ubah">Ubah</button></span>
                       <span><button type="submit" class="btn btn-danger" name="btn2" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i><?php echo " Hapus"; ?></button></span>
                     </div>
                 </tr>
@@ -223,3 +233,4 @@
   </div>
 </div>
 </div>
+<?php } ?>

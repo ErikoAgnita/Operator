@@ -9,11 +9,12 @@
         <div class="table-responsive">
             <table class="table table-bordered table-striped" id="editableUser">
               <tbody>
-                <?php foreach ($adata as $row){?>
+                <?php foreach ($jdata->result() as $row2){?>
                 <h3 class="intro-text text-center">Satuan Kerja Perangkat Daerah</h3>
-                     <h3 class="intro-text text-center"><?php echo strtoupper ($row->kode_unit);?></h3><br>
+                     <h3 class="intro-text text-center"><?php echo strtoupper ($row2->nama);?></h3><br><?php } ?>
                        <p><?=$this->session->flashdata('pesanprofil')?> </p>
                       <p><?=$this->session->flashdata('pesanpass')?> </p>
+                <?php foreach ($adata as $row){?>
                   <form action="<?php echo base_url();?>cpengguna/operator_lihat" method="post">
                    <tr>
                     <td style="width:20%">Username</td>
