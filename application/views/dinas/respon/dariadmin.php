@@ -1,3 +1,9 @@
+<style type="text/css">
+  strong { 
+    color: black;
+  }
+</style>
+
   <!-- Page -->
 <div class="page">
   <div class="page-content">
@@ -40,13 +46,13 @@
                     <div>
                       <div class="metas">
                         <span class="username">
-                          <span><b><?php echo $row->nama;?></b></span>
+                          <span><strong><?php echo $row->nama;?></strong></span>
                           <span class="started">(<?php echo $row->alamat;?>)</span>
                           <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</span>
                         </span>
                       </div>
                       <div class="title">
-                           <span>Topik : <?php if($row->topik){echo $row->topik;} else echo "-";?></span>
+                           <span><b>Topik : </b><?php if($row->topik){echo $row->topik;} else echo "-";?></span>
                            <div class="title">
                               <div>
                                 <?php                           

@@ -117,7 +117,7 @@ class Csaran extends CI_Controller {
             $this->load->library('upload');
             
             $this->form_validation->set_rules('nama','Nama','trim|required|min_length[4]|max_length[50]|regex_match[/^[a-zA-Z .]{2,100}$/]');
-            $this->form_validation->set_rules('almt','Alamat','trim|min_length[1]|max_length[255]|xss_clean|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
+            $this->form_validation->set_rules('almt','Alamat','trim|required|min_length[1]|max_length[255]|xss_clean|regex_match[/^[a-zA-Z0-9  _.,\/@()-]{1,}$/]');
             $this->form_validation->set_rules('telp','Telepon','trim|required|xss_clean|min_length[4]|max_length[20]|regex_match[/^[+0-9 ()-]{4,20}$/]');
             $this->form_validation->set_rules('email', 'Email', 'trim|valid_email');
             $this->form_validation->set_rules('aspr','Saran','trim|min_length[1]|required|xss_clean|regex_match[/^[^#*;:$\<>]{1,}$/]');
@@ -353,6 +353,7 @@ class Csaran extends CI_Controller {
                 'isSpam' => 0,
                 );      
             $this->msaran->publish_saran($id_saran, $data);
+	    $this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Saran bukan spam.<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");		
             redirect(base_url()."csaran/detail/".$id_saran);
         }
         elseif($this->input->post('btn')=="Spam"){
@@ -360,6 +361,8 @@ class Csaran extends CI_Controller {
                 'isSpam' => 1,
                 );      
             $this->msaran->publish_saran($id_saran, $data);
+	    $this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Saran spam. Tidak dipublikasikan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");		
+
             redirect(base_url()."csaran/detail/".$id_saran);
         }
         elseif($this->input->post('btn')=="Aktif"){
@@ -367,6 +370,7 @@ class Csaran extends CI_Controller {
                 'isAktif' => 1,
                 );      
             $this->msaran->aktif_saran($id_saran, $data);
+	    $this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Saran aktif<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");		
             redirect(base_url()."csaran/detail/".$id_saran);
         }
         elseif($this->input->post('btn')=="Non-Aktif"){
@@ -374,6 +378,7 @@ class Csaran extends CI_Controller {
                 'isAktif' => 0,
                 );      
             $this->msaran->aktif_saran($id_saran, $data);
+	    $this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Saran non-aktif. Tidak dipublikasikan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");		
             redirect(base_url()."csaran/detail/".$id_saran);
         }
         elseif($this->input->post('btn')=="hapus"){ 
@@ -420,6 +425,7 @@ class Csaran extends CI_Controller {
                 'saran' => $saran,
                 );
             $this->msaran->ubah_saran($id_saran, $data);
+	    $this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Berhasil mengubah isi saran<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             redirect(base_url()."csaran/detail/".$id_saran);
         }
     }
@@ -441,11 +447,15 @@ class Csaran extends CI_Controller {
         else{
             $id_skpd_list = $this->input->post('id_skpd');
             $topik = $this->input->post('topik');
+            $keterangan = $this->input->post('keterangan');
+            $date = date_create();
+            $tglapor =  date_format($date, 'Y-m-d H:i:s');
             $isStatus = 'disposisi';
             //update saran
             $data = array (
                 'topik' => $topik,
                 'isStatus' => $isStatus,
+                'keterangan' => $keterangan,
                 );      
             $this->msaran->disposisikan_saran($id_saran, $data);
             $flag;
@@ -455,6 +465,7 @@ class Csaran extends CI_Controller {
                     $data_respon = array(
                         'id_skpd' => $id_skpd,
                         'id_saran' => $id_saran,
+                        'tanggal_disposisi' => $tglapor,
                         );
                     //work here
                     $sudah_disposisi = $this->msaran->cekDisposisi($id_saran, $id_skpd);
@@ -462,7 +473,8 @@ class Csaran extends CI_Controller {
                         $this->msaran->addRespon($data_respon);
                     }
                 }
-            }        
+            }
+	    $this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Saran berhasil didisposisikan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");     
             redirect(base_url()."csaran/detail/".$id_saran);
         }
     }

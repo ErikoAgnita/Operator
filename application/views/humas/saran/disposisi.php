@@ -70,7 +70,31 @@
                         'value' => $row->topik,
                         );
                         echo form_textarea($data_topik);
+                      //}
+                      echo "</div>";
+                    echo "</div>";
+                    ?>
+                    <div class="col-sm-6"></div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="col-sm-6">
+                    <?php
+                    //foreach ($saran->result() as $row) {
+                      echo "<div class='form-group'>";
+                      echo form_label('Keterangan');
+                      echo form_error('keterangan');
+                      $data_keterangan = array(
+                        'name' => 'keterangan',
+                        'rows' => 2,
+                        'cols' => 100,                            
+                        'id' => 'keterangan_id',
+                        'class' => 'form-control',
+                        'value' => $row->keterangan,
+                        );
+                        echo form_textarea($data_keterangan);
                       }
+                      echo "</div>";
                     echo "</div>";
                     ?>
                     <div class="col-sm-6"></div>

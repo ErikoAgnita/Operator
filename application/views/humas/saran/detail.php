@@ -9,6 +9,7 @@ if($saran->result()){?>
 <div class="page">
 <div class="page-content">
     <div class="panel">
+      <?php echo $this->session->flashdata('pesansaran'); ?>
       <header class="panel-heading">
         <h3 class="panel-title">Detail Saran</h3>
       </header>
@@ -51,7 +52,7 @@ if($saran->result()){?>
                 <tr>
                   <td>Host</td>
                   <td>
-                    <span class="notready"><?php echo $row->HOST;?></span>
+                    <span class="notready"><?php echo $row->host;?></span>
                   </td>
                 </tr>                <tr>
                   <td>Tanggal Saran</td>
@@ -62,9 +63,30 @@ if($saran->result()){?>
                 <tr>
                   <td style="width:20%">Topik</td>
                   <td>
-                    <span class="notready"><?php echo $row->topik;?></span>
+                    <span class="notready">
+                      <?php if($row->topik!=NULL){
+                      	echo "$row->topik";
+                      } 
+                      else{
+                        echo " -  <?php ";
+                      }?>
+                    </span>
                   </td>
                 </tr>
+                <tr>
+                  <td style="width:20%">Keterangan Disposisi</td>
+                  <td>
+                    <span class="notready">
+                      <?php if($row->keterangan!=NULL){
+                      	echo "$row->keterangan";
+                      } 
+                      else{
+                        echo " -  <?php ";
+                      }?>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
                 <tr>
                   <td>Saran</td>
                   <td>
@@ -78,7 +100,10 @@ if($saran->result()){?>
                       <?php if($row->lampiran_saran!=NULL){
                         echo "<img width=600 height=600 class='img-responsive pad' src='".base_url()."uploads/saran/".$row->lampiran_saran."' 
                         alt='Photo'> <?php ";
-                      } ?>
+                      } 
+                      else{
+                      	echo "(Tidak ada lampiran)";
+                      }?>
                     </span>
                   </td>
                 </tr>
@@ -91,6 +116,19 @@ if($saran->result()){?>
                       }
                       else{
                         echo "<span class=\"label label-success label-lg\">Bukan Spam</span>";
+                      }
+                    ?></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Status ke-aktifan</td>
+                  <td>
+                    <span class="notready"><?php 
+                      if($row->isAktif==TRUE){
+                        echo "<span class=\"label label-primary label-lg\">Aktif</span>";
+                      }
+                      else{
+                        echo "<span class=\"label label-warning label-lg\">Non-Aktif</span>";
                       }
                     ?></span>
                   </td>
@@ -139,7 +177,7 @@ if($saran->result()){?>
               ?>
               <span><button type="submit" class="btn btn-success" name="btn" value="<?php echo $valspam;?>"><i class="<?php echo $icospam; ?>"></i><?php echo " ".$valspam; ?></button></span>
               <span><button type="submit" class="btn btn-primary" name="btn" value="<?php echo $valtif;?>"><i class="<?php echo $icotif; ?>"></i><?php echo " ".$valtif; ?></button></span>
-              <span><button type="submit" class="btn btn-primary" name="btn" value="edit">Ubah</button></span>
+              <span><button type="submit" class="btn btn-info" name="btn" value="edit"><i class="icon wb-wrench" aria-hidden="true"></i>Ubah</button></span>
               <span><button type="submit" class="btn btn-danger" name="btn" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i> Hapus</button></span>
         </form>
           <span><a  type="button" class="btn btn-default active" onclick="window.open('<?php echo base_url();?>csaran/cetak/<?php echo $row->id_saran;?>')"><i class="icon wb-print"></i> Cetak</a></span>
@@ -173,12 +211,17 @@ if($saran->result()){?>
                           <?php } ?>
                         </span>
                       </div>
+                      <div class="metas">
+                        <span class="tanggal_disposisi">
+                          <?php echo "<b>Tanggal Disposisi: </b>".$row2->tanggal_disposisi;?>
+                        </span>
+                      </div>
                       <?php 
                       if($row2->isi_respon){?>
                       <div class="metas">
                           <span class="topik"><?php 
                           if($row2->kategori){
-                            echo "<b>Kategori: ".$row2->kategori."</b>";
+                            echo "<b>Kategori: </b>".$row2->kategori;
                           }
                           else{
                             echo "<b>Kategori: -</b>"; 
@@ -219,7 +262,7 @@ if($saran->result()){?>
                       ?>
                     <div class="form-group">
                       <span><button type="submit" class="btn btn-success" name="btn2" value="<?php echo $val;?>"><i class="<?php echo $ico; ?>"></i><?php echo " ".$val?></button></span>
-                      <span><button type="submit" class="btn btn-success" name="btn2" value="ubah">Ubah</button></span>
+                      <span><button type="submit" class="btn btn-info" name="btn2" value="ubah"><i class="icon wb-wrench" aria-hidden="true"></i>Ubah</button></span>
                       <span><button type="submit" class="btn btn-danger" name="btn2" value="hapus" onclick="return confirm('Apakah Anda yakin akan menghapus?')"><i class="icon wb-trash"></i><?php echo " Hapus"; ?></button></span>
                     </div>
                 </tr>

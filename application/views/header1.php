@@ -57,14 +57,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"><img src="<?php echo base_url(); ?>assets/images/TitleHeader.png" alt="salatigakota.go.id">
+        <a class="navbar-brand" href="#"><img href="<?php echo base_url();?>" src="<?php echo base_url(); ?>assets/images/TitleHeader.png" alt="salatigakota.go.id">
         <!--<a class="navbar-brand" href="#"><img src="http://bkd.salatigakota.go.id/other/salatiga-city-of-harmony-2.png" alt="salatigakota.go.id">-->
         </a>
       </div>
       <div id="navbar3" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="<?php echo base_url();?>">Beranda</a></li>
-          <li><a href="<?php echo base_url(); ?>csaran/aspirasi">Laporan Masyarakat</a></li>
+          <li class=""><a href="<?php echo base_url(); ?>csaran/aspirasi">Laporan Masyarakat</a></li>
+          <li class="bb"><a href="<?php echo base_url();?>csaran/panduan">Panduan</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->

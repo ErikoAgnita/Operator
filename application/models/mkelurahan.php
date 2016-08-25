@@ -41,6 +41,11 @@ class Mkelurahan extends CI_Model {
 		$this->db->update('kelurahan', $data);
 	}
 
+	public function UpdateStatusKel($stat,$kode_kecamatan){
+        $this->db->query("UPDATE kelurahan SET isAktif ='$stat' where kode_kecamatan='$kode_kecamatan'");
+        return TRUE;
+    	}
+
 	public function DeleteKelurahan($kode_kelurahan){
 		$this->db->where('kode_kelurahan', $kode_kelurahan);
 		$this->db->delete('kelurahan');

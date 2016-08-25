@@ -107,7 +107,8 @@ class crespon extends CI_Controller {
                 	'kategori' => $this->input->post('kategori'),
                     'isi_respon' => $this->input->post('isi_respon'),
                     'tanggal_respon' => $tglapor,
-                    'lampiran_respon'=>$gbr['file_name']);
+                    'lampiran_respon'=>$gbr['file_name'],
+		    );
 
                 $data_saran = array(
                 	'isStatus' => 'respon baru',
@@ -125,7 +126,8 @@ class crespon extends CI_Controller {
             $data=array(
                 'kategori' => $this->input->post('kategori'),
                 'isi_respon' => $this->input->post('isi_respon'),
-                'tanggal_respon' => $tglapor,);
+                'tanggal_respon' => $tglapor,
+		);
 
             $data_saran = array(
             	'isStatus' => 'respon baru',
@@ -143,7 +145,6 @@ class crespon extends CI_Controller {
 
         $this->load->library('form_validation');
         $this->load->library('session');
-        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
         $this->form_validation->set_rules('isi_respon', 'Isi', 'required');
         
         $this->form_validation->set_message('required', '{field} tidak boleh kosong');
@@ -189,7 +190,9 @@ class crespon extends CI_Controller {
                         'kategori' => $this->input->post('kategori'),
                         'isi_respon' => $this->input->post('isi_respon'),
                         'tanggal_respon' => $tglapor,
-                        'lampiran_respon'=>$gbr['file_name']);
+                        'lampiran_respon' => $gbr['file_name'],
+                        'tanggal_disposisi' => $this->input->post('tanggal_disposisi'),
+			);
 
                     $data_saran = array(
                         'isStatus' => 'respon baru',
@@ -209,7 +212,9 @@ class crespon extends CI_Controller {
                     'id_skpd' => $userid_skpd,
                     'kategori' => $this->input->post('kategori'),
                     'isi_respon' => $this->input->post('isi_respon'),
-                    'tanggal_respon' => $tglapor,);
+                    'tanggal_respon' => $tglapor,
+                    'tanggal_disposisi'=> $this->input->post('tanggal_disposisi'),
+		    );
 
                 $data_saran = array(
                     'isStatus' => 'respon baru',
@@ -231,7 +236,8 @@ class crespon extends CI_Controller {
 				'isAktif' => 1,
 				);
 			$this->mrespon->publish($id_respon, $data);
-            redirect(base_url().'csaran/detail/'.$id_saran);
+			$this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Respon berhasil dipublish<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");		
+	                redirect(base_url().'csaran/detail/'.$id_saran);
 		}
 		elseif($this->input->post('btn2')=="Unpublish"){
 			$data = array (
@@ -239,11 +245,13 @@ class crespon extends CI_Controller {
 				);
 
 			$this->mrespon->publish($id_respon, $data);
-            redirect(base_url().'csaran/detail/'.$id_saran);
+			$this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Respon berhasil di-unpublish<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");		
+	                redirect(base_url().'csaran/detail/'.$id_saran);
 		}
 		elseif($this->input->post('btn2')=="hapus"){
 			$this->mrespon->hapus_respon($id_respon);
-            redirect(base_url().'csaran/detail/'.$id_saran);
+			$this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Respon berhasil dihapus<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");		
+	                redirect(base_url().'csaran/detail/'.$id_saran);
 		}
         elseif($this->input->post('btn2')=="ubah"){
             //$this->ubah($id_respon, $id_saran);
@@ -267,8 +275,8 @@ class crespon extends CI_Controller {
     public function ubah_respon($id_respon)
     {
         $id_saran = $this->input->post('id_saran');
-        /*$this->load->library('form_validation');
-        $this->form_validation->set_rules('isi_respon', 'Respon', 'trim|min_length[1]|required|xss_clean|regex_match[/^[a-zA-Z0-9  &_.~,!"\/@%()+=?-]{1,}$/]');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('isi_respon', 'Respon', 'trim|min_length[1]|required|regex_match[/^[a-zA-Z0-9  &_.~,!"\/@%()+=?-]{1,}$/]');
         
         $this->form_validation->set_message('required', '{field} tidak boleh kosong.');
         $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -276,14 +284,15 @@ class crespon extends CI_Controller {
             
         if ($this->form_validation->run() == FALSE){
             $this->ubah($id_respon);
-        }else{*/
+        }else{
             $isi_respon = $this->input->post('isi_respon');
             $data = array (
                 'isi_respon' => $isi_respon,
                 );
             $this->mrespon->ubah_respon($id_respon, $data);
+	    $this->session->set_flashdata("pesansaran","<div class=\"alert alert-success\" id=\"alert\">Berhasil mengubah isi respon<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");
             redirect(base_url()."csaran/detail/".$id_saran);
-        /*}*/
+        }
     }
 
 	public function tes()

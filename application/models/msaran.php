@@ -154,7 +154,7 @@ class msaran extends CI_Model {
    public function fetch_data_respon($limit, $id)
     {
         $this->db->select('respon.id_respon, skpd.nama, respon.id_saran, respon.kategori, respon.isi_respon, 
-            respon.tanggal_respon, respon.isAktif');
+            respon.tanggal_respon, respon.isAktif, respon.tanggal_disposisi');
         $this->db->from('respon');
         $this->db->where('respon.isi_respon IS NOT NULL');
         $this->db->where('respon.isAktif', 0);
@@ -195,7 +195,7 @@ class msaran extends CI_Model {
     {
         $this->db->where('id_saran', $id_saran);
         $query = $this->db->query("SELECT respon.id_respon, respon.id_saran , respon.kategori, 
-            respon.isi_respon, respon.lampiran_respon, respon.tanggal_respon, respon.isAktif, skpd.nama 
+            respon.isi_respon, respon.lampiran_respon, respon.tanggal_respon, respon.isAktif, skpd.nama , respon.tanggal_disposisi
             FROM respon INNER JOIN skpd ON respon.id_skpd=skpd.id_skpd AND respon.id_saran=$id_saran order by respon.tanggal_respon asc;");
         return $query;
     }

@@ -21,7 +21,6 @@
   strong { 
     color: black;
   }
-
 </style>
 
 
@@ -54,20 +53,46 @@ if($saran->result()){?>
                           <div class="metas">
                             <span class="">
                               <strong><?php echo $row->nama ?></strong>
+				   <div class="pull-right"> 
+                                      <div class="btn-group">
+                                        <?php 
+                                            if($row->isAktif==1 and $row->isSpam==0){
+                                                $wrnP = "badge-success";    $titleP = "Sudah dipublikasikan";
+                                            }
+                                            else{
+                                                $wrnP = "badge-default";    $titleP = "Belum dipublikasikan";
+                                            }
+                                        ?>
+				       </div> 
+                                        <span class="badge badge-radius <?php echo $wrnP; ?>" data-toggle="tooltip" data-placement="bottom" data-original-title="<?php echo $titleP; ?>">&#9679;</span>
+                                    </div>
+
                               <span class='text-muted pull-right'><?php echo date("d M Y H:i:s",strtotime($row->tanggal_saran));?></span>
                             </span>
                           </div>
                           <div class="metas">
-                            <span class=""><?php echo 'Alamat: '.$row->alamat ?></span>
+                            <span class=""><?php echo '<b>Alamat: </b>'.$row->alamat ?></span>
                           </div>
                           <div class="metas">
-                            <span class=""><?php echo 'Telepon: '.$row->telepon ?></span>
+                            <span class=""><?php echo '<b>Telepon: </b>'.$row->telepon ?></span>
                           </div>
                           <div class="metas">
-                            <span class=""><?php echo 'Email: '.$row->email ?></span>
+                            <span class="">
+                            	<?php if($row->email){ echo '<b>Email: </b>'.$row->email; }
+                            	else { echo '<b>Email: - </b>'; }?>
+                            </span>
                           </div>
                           <div class="metas">
-                            <span class=""><?php echo 'Topik: '.$row->topik ?></span>
+                            <span class="">
+                            	<?php if($row->topik){ echo '<b>Topik: </b>'.$row->topik; }
+                            	else { echo '<b>Topik: - </b>'; }?>
+                            </span>
+                          </div>
+                          <div class="metas">
+                            <span class="">
+                            	<?php if($row->keterangan){ echo '<b>Keterangan: </b>'.$row->keterangan; }
+                            	else { echo '<b>Keterangan: - </b>'; }?>
+                            </span>
                           </div>
                           <div class="metas">
                             <span class="">
@@ -108,12 +133,23 @@ if($saran->result()){?>
                       if($flag==FALSE){?>
                         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon</button>
                         <?php 
-                          echo form_error('kategori','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
                           echo form_error('isi_respon','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
                         ?>
                           <div id="demo" class="collapse">
                             <div>                            
                               <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/addRespon" method="post">
+                                <div>      
+                                  <?php
+                                    foreach($respon->result() as $resp){
+                                    	if($resp->id_skpd == $Idskpd){	
+                                    	   if($resp->tanggal_disposisi){
+                                    	      $tgl_disp = $resp->tanggal_disposisi;
+					   }
+                                    	}
+                                    }
+                                  ?>
+				    <input type="hidden" name="tanggal_disposisi" value=set_value($tgl_disp) />
+                                </div>
                                 <div>      
                                   <label class="control-label" for="inputBasicFirstName">Kategori</label>
                                   <?php $kategori = array(
@@ -155,7 +191,6 @@ if($saran->result()){?>
                         elseif($flag==TRUE) {?>
                         <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Respon</button>
                         <?php 
-                          echo form_error('kategori','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
                           echo form_error('isi_respon','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
                         ?>
                           <div id="demo" class="collapse">
@@ -245,10 +280,19 @@ if($saran->result()){?>
                                   <?php } ?> 
                                 </span>
                               </div>
+                                <div class="metas"> 
+                                  <span class="started"> 
+                                     <?php if($row2->tanggal_disposisi){ echo '<b>Tanggal disposisi: </b>'.$row2->tanggal_disposisi; } 
+                                     else { echo '<b>Tanggal Disposisi: - </b>'; } ?>
+                                  </span>                      
+                                </div>
                               <?php 
                               if($row2->isi_respon){?>
-                                <div class="metas">                        
-                                  <span class="started"><?php echo 'Kategori: '.$row2->kategori;?></span>
+                                <div class="metas"> 
+                                  <span class="started"> 
+                                     <?php if($row2->kategori){ echo '<b>Kategori: </b>'.$row2->kategori; } 
+                                     else { echo '<b>Kategori: - </b>'; } ?>
+                                  </span>                      
                                 </div>
                                 <?php if($row2->lampiran_respon){?>
                                   <div class="metas">                 
@@ -270,48 +314,6 @@ if($saran->result()){?>
                                 </div>
                               <?php } ?>       
                               </div>
-                              <?php if($row2->id_skpd==$Idskpd and $row2->isi_respon!=NULL) {?>
-                                  <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<?php echo $row2->id_respon;?>">Ubah Respon</button>-->
-                                  <?php 
-                                    echo form_error('kategori','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
-                                    echo form_error('isi_respon','<div class="alert alert-danger">','<button href="#" close="close" data-dismiss="alert">&times;</button></div>');
-                                  ?>
-                                  <div id="<?php echo $row2->id_respon;?>" class="collapse">                        
-                                    <form autocomplete="on" enctype="multipart/form-data" action="<?php echo base_url();?>crespon/kirim_respon/<?php echo $row2->id_respon;?>" method="post">
-                                      <div>      
-                                        <label class="control-label" for="inputBasicFirstName">Kategori</label>
-                                        <?php $kategori = array(
-                                          'name' => 'kategori',
-                                          'value' => $row2->kategori,
-                                          'rows' => 2,                                     
-                                          'cols' => 100,
-                                          'class' => 'form-control',
-                                          );
-                                        echo form_textarea($kategori);?>
-                                      </div>
-                                      <div>
-                                        <label class="control-label" for="inputBasicEmail">Respon</label>
-                                        <?php $isi_respon = array(
-                                          'name' => 'isi_respon',
-                                          'value' => $row2->isi_respon,
-                                          'rows' => 7,                                     
-                                          'cols' => 100,
-                                          'class' => 'form-control',
-                                          );
-                                        echo form_textarea($isi_respon);?>
-                                      </div>
-                                      <div>
-                                        <label class="control-label" for="inputBasicEmail">Lampiran Respon</label>
-                                        <input id="uploadFile" type="file" class="form-control" name="image" data-provides="uploadFile"/>
-                                        <div id="imagePreview"></div>
-                                      </div>
-                                      <div>
-                                        <input type="hidden" class="form-control" value="<?php echo $id_saran;?>" name="id_saran2">
-                                      </div>
-                                      <button type="submit" class="btn btn-primary"><?php echo "Kirim"; ?></button>
-                                        <!-- <button type="submit" class="btn btn-primary">Ubah</button> -->
-                                    </form>
-                              <?php } ?>
                             </div>
                           </td>
                         </tr>
@@ -326,4 +328,5 @@ if($saran->result()){?>
       </div>
     </div>
   </div>
+</div>
 <?php }?>

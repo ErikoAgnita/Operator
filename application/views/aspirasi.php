@@ -255,15 +255,15 @@
                             <label class="col-sm-2 control-label">Nama<small style="color:yellow;"> *</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-user"></i></span>
-                                <a data-toggle="tooltip" title="Hanya gunakan abjad untuk mengisi nama"><input type="text" class="form-control" placeholder="Nama" name="nama" value="<?php echo set_value('nama'); ?>">
+                                <a data-toggle="tooltip" title="Hanya gunakan abjad untuk mengisi nama"><input type="text" class="form-control" placeholder="(Minimal 4 karakter dan gunakan abjad)" name="nama" value="<?php echo set_value('nama'); ?>">
                             </div></a>
                             <?php
                                 echo form_error('nama','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
                                 ?>
-                            <label class="col-sm-2 control-label">Alamat</label>
+                            <label class="col-sm-2 control-label">Alamat<small style="color:yellow;"> *</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-home"></i></span>
-                                <a data-toggle="tooltip" title="Gunakan abjad atau nomor untuk mengisi alamat"><input type="text" class="form-control" placeholder="alamat" name="almt" value="<?php echo set_value('almt'); ?>" ></a>
+                                <a data-toggle="tooltip" title="Gunakan abjad atau nomor untuk mengisi alamat"><input type="text" class="form-control" placeholder="(Gunakan abjad dan nomor)" name="almt" value="<?php echo set_value('almt'); ?>" ></a>
                             </div>
                             <?php
                                 echo form_error('almt','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -271,7 +271,7 @@
                             <label class="col-sm-2 control-label">HP<small style="color:yellow;"> *</small></label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-phone"></i></span>
-				<a data-toggle="tooltip" title="Hanya gunakan nomor untuk mengisi HP"><input type="text" class="form-control" placeholder="HP" value="<?php echo set_value('telp'); ?>" name="telp"></a>
+				<a data-toggle="tooltip" title="Hanya gunakan nomor untuk mengisi HP"><input type="text" class="form-control" placeholder="(Gunakan nomor)" value="<?php echo set_value('telp'); ?>" name="telp"></a>
                             </div>
                             <?php
                                 echo form_error('telp','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -279,7 +279,7 @@
                             <label class="col-sm-2 control-label">Email</label>
                             <div class="input-group">
                                 <span class="input-group-addon"style="width:15%"><i class="fa fa-envelope"></i></span>
-				<input type="email" class="form-control" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" >
+				<input type="email" class="form-control" placeholder="(Gunakan format penulisan email)" name="email" value="<?php echo set_value('email'); ?>" >
                             </div>
                             <?php
                                 echo form_error('email','<div class="alert alert-danger"><button href="#" class="close" data-dismiss="alert">&times;</button>','</div>');
@@ -292,7 +292,7 @@
                                     $aspr = array('name' => 'aspr',
                                                     'value' => set_value('aspr'),
                                                     'class' => 'form-control',
-                                                    'placeholder' => 'Salurkan kritik atau saran anda',
+                                                    'placeholder' => 'Salurkan kritik atau saran anda (Hindari penggunaan tanda baca #*;:$\<>)',
                                                     'rows' => 5,
                                      );
                                     echo form_textarea($aspr);

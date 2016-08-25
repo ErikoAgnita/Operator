@@ -139,6 +139,12 @@ class mrespon extends CI_Model
         $query = $this->db->get('respon');
         return $query;
     }
+    
+    function ubah_respon($id_respon, $data)
+    {
+        $this->db->where('id_respon', $id_respon);
+        $this->db->update('respon', $data);
+    }
 
     function getId($id_respon)
     {
@@ -161,7 +167,7 @@ class mrespon extends CI_Model
     {
         $this->db->where('id_saran', $id_saran);
         $query = $this->db->query("SELECT respon.id_respon, respon.id_saran, respon.id_skpd, respon.kategori, 
-            respon.isi_respon, respon.lampiran_respon, respon.tanggal_respon, skpd.nama, respon.isAktif as ria
+            respon.isi_respon, respon.lampiran_respon, respon.tanggal_respon, respon.tanggal_disposisi, skpd.nama, respon.isAktif as ria
             FROM respon INNER JOIN skpd ON respon.id_skpd=skpd.id_skpd AND respon.id_saran=$id_saran and
             (respon.isAktif=1 or respon.id_skpd=$id_skpd)
             order by respon.tanggal_respon asc");

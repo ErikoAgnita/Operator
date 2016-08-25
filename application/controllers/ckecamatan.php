@@ -6,7 +6,7 @@ class Ckecamatan extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
-        $this->load->model('mkecamatan');
+        $this->load->model(array('mkecamatan', 'mkelurahan'));
         $this->load->library(array('form_validation', 'session'));
     }
 
@@ -143,6 +143,11 @@ class Ckecamatan extends CI_Controller {
                 'nama_kecamatan' => $nama_kecamatan,
                 'isAktif' => $isAktif
             );
+	    
+	    if($isAktif==0){
+                $stat = 0;
+                $this->mkelurahan->UpdateStatusKel($stat,$kode_kecamatan);
+            }
 
             $this->mkecamatan->UpdateKecamatan1($id_kode_kecamatan, $data);
             $this->session->set_flashdata("pesankec","<div class=\"alert alert-success\" id=\"alert\">Perubahan berhasil disimpan<button href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</button></div>");

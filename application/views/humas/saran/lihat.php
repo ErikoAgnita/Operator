@@ -1,3 +1,9 @@
+<style type="text/css">
+  strong { 
+    color: black;
+  }
+</style>
+
   <!-- Page -->
 <div class="page">
   <div class="page-content">
@@ -40,7 +46,7 @@
                     <div>
                       <div class="metas">
                         <span class="username">
-                          <?php echo "<b>".$row->nama."</b>";?>
+			  <strong><?php echo $row->nama;?></strong>
                           <span class="started">(<?php echo $row->alamat;?>)</span>
                           <span class='text-muted pull-right'><?php echo "<i>".date("d M Y H:i:s",strtotime($row->tanggal_saran));?> WIB</i></span>
                         </span>
